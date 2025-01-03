@@ -192,7 +192,7 @@ sub {
 }
 p {
 	font-size: 14px;
-	font-weight:100;
+	font-weight: 500;
 	line-height: 28px!important;
 	text-align: left;
 }

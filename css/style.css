@@ -7,14 +7,14 @@
 /////////////////////////////////////////////////////////////////////*/
 
 #preloader {
-    position:fixed;
-    left:0;
-    top:0;
-    z-index:99999999999;
-    width:100%;
-    height:100%;
-    overflow:visible;
-    background: #fff url('../img/preloader.gif') no-repeat center center;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:99999999999;
+	width:100%;
+	height:100%;
+	overflow:visible;
+	background: #fff url('../img/preloader.gif') no-repeat center center;
 }
 
 
@@ -194,6 +194,10 @@ p {
 	font-size: 14px;
 	font-weight:100;
 	line-height: 28px!important;
+	text-align: left;
+}
+#contact p {
+	text-align: center;
 }
 /* ==========================================================================Lists========================================================================== */
 dl,menu,ol,ul {
@@ -455,17 +459,17 @@ table {
 .hero {
 /*	background: url('../img/header-bg.jpg') right bottom no-repeat;*/
 background: url('../img/header-nelx-bg.jpg') right bottom no-repeat;
-	background-size: contain;
-	padding:110px 0 100px 0;
-	height:auto;
-	background-color: #FBFBFB;
+background-size: contain;
+padding:110px 0 100px 0;
+height:auto;
+background-color: #FBFBFB;
 }
 .hero h1 {
-	font-size: 120px;
-	letter-spacing: -8px;
+	font-size: 140px;
+	letter-spacing: -4px;
 	margin: 0;
 	font-weight: 600;
-	line-height: 95px;
+	line-height: 140px;
 	text-transform: uppercase;
 }
 .hero h1 span {
@@ -569,7 +573,7 @@ h1.arrow {
 	font-weight: bold;
 }
 h1.arrow span {
-    color: #E04343;
+	color: #E04343;
 }
 /* ==========================================================================About========================================================================== */
 .about-image {
@@ -584,22 +588,22 @@ h1.arrow span {
 }
 
 .color-bg a {
-    color: #FFE800;
+	color: #FFE800;
 }
 .color-bg h6, .color-bg p {
-    color: white;
+	color: white;
 }
 .color-bg h6::after{
 	border-color: #fff;
 }
 .color-bg .weight-outline-btn {
-    color: white;
-    border-color: white;
+	color: white;
+	border-color: white;
 }
 .color-bg .weight-outline-btn:hover {
-  background: #FFF;
-  color: #E04343;
-  border-color: rgba(0, 0, 0, 0);
+	background: #FFF;
+	color: #E04343;
+	border-color: rgba(0, 0, 0, 0);
 }
 .about-text {
 	padding:20px 50px 25px 50px;
@@ -610,10 +614,10 @@ h1.arrow span {
 	color: #8C8C8C;
 }
 .color-bg h1.arrow span {
-    color: #FFE800;
+	color: #FFE800;
 }
 .color-bg h1.arrow {
-    color: #FFF;
+	color: #FFF;
 }
 /* ==========================================================================Services========================================================================== */
 .services {
@@ -702,7 +706,7 @@ i.respons {
 .swag h1 span {
 	display:block;
 	font-size:25px;
-	margin-top:20px;
+	margin-top:4px;
 }
 .down-arrow-btn {
 	width:auto;
@@ -850,7 +854,7 @@ img.grayscale:hover {
 }
 
 .subscribe input[type=text]:focus {
-    outline: none;
+	outline: none;
 }
 .subscribe input[type=submit] {
 	background: #FFE800;
@@ -1076,18 +1080,18 @@ ul.slides li {
 	font-weight: bold;
 }
 .flex-control-paging li a.flex-active {
-    background: #E04343;
-    border-color: #E04343;
+	background: #E04343;
+	border-color: #E04343;
 }
 
 .color-bg .flex-control-paging li a{
-    background: white;
-    border-color: white;
+	background: white;
+	border-color: white;
 }
 
 .color-bg .flex-control-paging li a.flex-active {
-    background: #FFE800;
-    border-color: #FFE800;
+	background: #FFE800;
+	border-color: #FFE800;
 }
 /* ==========================================================================Waypoints========================================================================== */
 .wp1,.wp2,.wp3,.wp4,.wp5,.wp6 {
@@ -1120,7 +1124,7 @@ ul.slides li {
 		font-size: 100px;
 		line-height: 80px;
 		margin-top: 65px;
-}
+	}
 }
 /* 480px (WVGA - Low End Windows Phone) */
 @media screen and (max-width:480px) {
@@ -1189,31 +1193,31 @@ ul.slides li {
 /** Responsive fixes **/
 @media screen and (max-width:767px) {
 	.inner {
-    padding-top: 10px;
-    text-align: center;
+		padding-top: 10px;
+		text-align: center;
 	}
 
 	.hero h3 {
-	    letter-spacing: 10px;
+		letter-spacing: 10px;
 	}
 
 
 	.hero {
-	    padding-bottom: 0;
+		padding-bottom: 0;
 	}
 
 	.subscribe input[type=text] {
-	    width: 50%;
-	    margin-bottom: 30px;
+		width: 50%;
+		margin-bottom: 30px;
 	}
 
 	.btn-send {
-	    float: none;
-	
-	    margin-bottom: 80px;
+		float: none;
+
+		margin-bottom: 80px;
 	}
 	.effects .img {
-    	margin-bottom: 15px;
+		margin-bottom: 15px;
 	}
 	.show-menu .icon-list a {
 		display: block;
@@ -1230,10 +1234,10 @@ ul.slides li {
 
 @media screen and (max-width:991px) {
 	.hero {
-    	padding: 0px;
+		padding: 0px;
 	}
 
 	.subscribe {
-	    padding-bottom: 40px;
+		padding-bottom: 40px;
 	}
 }

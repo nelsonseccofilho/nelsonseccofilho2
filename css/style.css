@@ -457,12 +457,11 @@ table {
 }
 /* ==========================================================================Hero========================================================================== */
 .hero {
-/*	background: url('../img/header-bg.jpg') right bottom no-repeat;*/
-background: url('../img/header-nelx-bg.jpg') right bottom no-repeat;
-background-size: contain;
-padding:110px 0 100px 0;
-height:auto;
-background-color: #FBFBFB;
+	background: url('../img/header-nelx-bg.jpg') right bottom no-repeat;
+	background-size: contain;
+	padding:110px 0 100px 0;
+	height:auto;
+	background-color: #FBFBFB;
 }
 .hero h1 {
 	font-size: 140px;
@@ -490,6 +489,7 @@ background-color: #FBFBFB;
 	letter-spacing:1px;
 	color:#fff;
 	font-size: 15px;
+	text-align: center;
 }
 /* Boucing Arrow Animation */
 @keyframes arrowbounce {
@@ -551,6 +551,7 @@ background-color: #FBFBFB;
 }
 .scrollto--arrow {
 	padding:10px;
+	text-align: center;
 }
 .scrollto--arrow img {
 	animation:arrowbounce 1s alternate infinite;
@@ -1115,19 +1116,24 @@ ul.slides li {
 }
 /* ==========================================================================Responsive========================================================================== */
 /* 320px (iPhone) */
-@media screen and (max-width:414px) {
+/*@media screen and (max-width:414px) {
 	.scrollto {
 		padding: 95px 0px 0px 0px;
 	}
 
 	.hero h1 {
-		font-size: 100px;
-		line-height: 80px;
+		font-size: 80px;
+		line-height: 60px;
 		margin-top: 65px;
 	}
-}
+}*/
 /* 480px (WVGA - Low End Windows Phone) */
 @media screen and (max-width:480px) {
+    .hero h1 {
+        font-size: 80px;
+        line-height: 64px;
+        margin-top: 64px;
+    }
 	.wrapper {
 		background:#f3f5f8;
 		height:640px;
@@ -1184,12 +1190,6 @@ ul.slides li {
 	}
 }
 
-
-
-
-
-
-
 /** Responsive fixes **/
 @media screen and (max-width:767px) {
 	.inner {
@@ -1213,7 +1213,6 @@ ul.slides li {
 
 	.btn-send {
 		float: none;
-
 		margin-bottom: 80px;
 	}
 	.effects .img {
@@ -1234,7 +1233,7 @@ ul.slides li {
 
 @media screen and (max-width:991px) {
 	.hero {
-		padding: 0px;
+		padding: 40px 0px 0px 0px;
 	}
 
 	.subscribe {

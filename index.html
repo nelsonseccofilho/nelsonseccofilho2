@@ -46,12 +46,12 @@
                 <nav class="menu">
                   <!-- Menu Links -->
                   <div class="icon-list">
-                    <a href="index.html#home"><i class="fa fa-fw fa-home"></i><span>Home</span></a>
-                    <a href="index.html#about"><i class="fa fa-fw fa-quote-left"></i><span>About</span></a>
+                    <a href="index.html#home"><i class="fa fa-fw fa-home"></i><span>Início</span></a>
+                    <a href="index.html#about"><i class="fa fa-fw fa-quote-left"></i><span>Sobre mim</span></a>
                     <a href="index.html#skills"><i class="fa fa-fw fa-globe"></i><span>Skills</span></a>
                     <a href="index.html#experiences"><i class="fa fa-fw fa-rss"></i><span>UI/UX</span></a>
-                    <a href="index.html#portfolio"><i class="fa fa-fw fa-picture-o"></i><span>Portfolio</span></a>
-                    <a href="index.html#contact"><i class="fa fa-fw fa-envelope-o"></i><span>Contact</span></a>
+                    <a href="index.html#portfolio"><i class="fa fa-fw fa-picture-o"></i><span>Portfólio</span></a>
+                    <a href="index.html#contact"><i class="fa fa-fw fa-envelope-o"></i><span>Contato</span></a>
                   </div>
                 </nav>
               </div>
@@ -399,38 +399,48 @@
         =========================== -->		
 
 
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!-- SmoothScroll -->           
-        <script type="text/javascript" src="assets/smoothscroll/smoothscroll.js"></script>
-        <!-- Bootstrap -->
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Waypoints -->
-        <script src="js/waypoints.min.js"></script>
-        <!-- classie.js -->
-        <script src="js/classie.js"></script>
-        <!-- FlexSlider -->
-        <script src="assets/flexslider/jquery.flexslider.js"></script>
-        <!-- Modernizr -->
-        <script src="js/modernizr.js"></script>
-        <!-- Text Rotator -->
-        <script src="assets/textrotator/jquery.simple-text-rotator.js"></script>
-        <!-- Lightbox.js -->
-        <script src="assets/lightbox/js/lightbox.min.js"></script>
-        <!-- Google Maps --> 
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeKBBPJTG3v5w3cNPAgM6ZsJiPyL1mP_o&amp;sensor=false"></script>
-        <!-- Theme JavaScript Core -->
-        <script src="js/main.js"></script>
-        <script src="js/script.js"></script>
-
-
-        <!-- TEXT ROTATOR SETTINGS -->
-        <script type="text/javascript">
-          $(".rotate").textrotator({
-      animation: "fade", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
-      separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
-      speed: 2000 // How many milliseconds until the next word show.
-    });
-  </script>
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <!-- SmoothScroll -->           
+      <script type="text/javascript" src="assets/smoothscroll/smoothscroll.js"></script>
+      <!-- Bootstrap -->
+      <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Waypoints -->
+      <script src="js/waypoints.min.js"></script>
+      <!-- classie.js -->
+      <script src="js/classie.js"></script>
+      <!-- FlexSlider -->
+      <script src="assets/flexslider/jquery.flexslider.js"></script>
+      <!-- Modernizr -->
+      <script src="js/modernizr.js"></script>
+      <!-- Text Rotator -->
+      <script src="assets/textrotator/jquery.simple-text-rotator.js"></script>
+      <!-- Lightbox.js -->
+      <script src="assets/lightbox/js/lightbox.min.js"></script>
+      <!-- Theme JavaScript Core -->
+      <script src="js/main.js"></script>
+      <script src="js/script.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          // Verifica se o dispositivo é um desktop
+          if ($(window).width() > 1024) {
+            // Seleciona o botão com o ID #open-button
+            var $openButton = $('#open-button');
+            // Verifica se o botão existe
+            if ($openButton.length) {
+              // Simula um clique no botão
+              $openButton.click();
+            }
+          }
+        });      
+      </script>
+      <!-- TEXT ROTATOR SETTINGS -->
+      <script type="text/javascript">
+        $(".rotate").textrotator({
+        animation: "fade", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
+        separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
+        speed: 2000 // How many milliseconds until the next word show.
+      });
+    </script>
 </body>
 </html>

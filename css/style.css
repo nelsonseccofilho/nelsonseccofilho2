@@ -325,7 +325,7 @@ table {
 	padding:0;
 }
 .inner {
-	padding-top: 138px;
+	padding-top: 3.5em;
 }
 /* ==========================================================================Navigation========================================================================== */
 .menu-wrap a {
@@ -351,8 +351,8 @@ table {
 /* Common styles for menu button and menu-wrap */
 .menu-button,.menu-wrap {
 	position:fixed;
-	width:2.5em;
-	height:2.25em;
+	width:2em;
+	height:2em;
 	font-size:1.5em;
 	-webkit-transform:translate3d(1.5em,1.5em,0);
 	transform: translate3d(1.5em,1.5em,0);
@@ -395,7 +395,7 @@ table {
 }
 .icon-list {
 	float:right;
-	padding:2.5em 2em 0 6em;
+	padding:1.5em 2em 0 6em;
 }
 .icon-list a {
 	opacity:0;
@@ -423,7 +423,7 @@ table {
 }
 .show-menu .menu-wrap {
 	width:100%;
-	height:125px;
+	height:100px;
 	-webkit-transform:translate3d(0,0,0);
 	transform:translate3d(0,0,0);
 	-webkit-transition-delay:0s;
@@ -457,11 +457,11 @@ table {
 }
 /* ==========================================================================Hero========================================================================== */
 .hero {
-	background: url('../img/header-nelx-bg.jpg') right bottom no-repeat;
-	background-size: contain;
-	padding:110px 0 100px 0;
-	height:auto;
-	background-color: #FBFBFB;
+    background: url(../img/header-nelx-bg.jpg) right bottom no-repeat;
+    background-size: contain;
+    padding: 80px 0 0px 0;
+    height: auto;
+    background-color: #FBFBFB;
 }
 .hero h1 {
 	font-size: 140px;

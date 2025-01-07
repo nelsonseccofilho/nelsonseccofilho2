@@ -1,6 +1,4 @@
-/*========================================================================*/
-
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
 /* ///////////////////////////////////////////////////////////////////// 
 // 03 - Preloader
@@ -16,9 +14,6 @@
 	overflow:visible;
 	background: #fff url('../img/preloader.gif') no-repeat center center;
 }
-
-
-
 
 
 /* ==========================================================================
@@ -112,7 +107,6 @@ a:active,a:hover {
 	outline: 0;
 }
 /* ==========================================================================Typography========================================================================== */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
 h1 {
 	font-size:2em;
 	margin:0.67em 0;
@@ -583,6 +577,10 @@ h1.arrow span {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	background-size:cover;
+	-webkit-background-position:center;
+	-moz-background-position:center;
+	-o-background-position:center;
+	background-position:center;
 }
 .color-bg {
 	background: #E04343;
@@ -771,7 +769,7 @@ img.grayscale:hover {
 	display:block;
 	margin:0;
 	padding:0;
-	height:auto;
+	height:400px;
 }
 .overlay {
 	display:block;

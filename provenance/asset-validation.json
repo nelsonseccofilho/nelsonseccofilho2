@@ -1,0 +1,216 @@
+{
+  "total_files": 77,
+  "raster_assets": 52,
+  "errors": [],
+  "warnings": [],
+  "checked": [
+    {
+      "path": "public/assets/og/connectcar-freeflow-1200x630.jpg",
+      "bytes": 63691
+    },
+    {
+      "path": "public/assets/og/dasa-1200x630.jpg",
+      "bytes": 90566
+    },
+    {
+      "path": "public/assets/og/subiter-1200x630.jpg",
+      "bytes": 62922
+    },
+    {
+      "path": "public/assets/og/rede-dcc-1200x630.jpg",
+      "bytes": 79443
+    },
+    {
+      "path": "public/assets/og/horizon-his-1200x630.jpg",
+      "bytes": 71681
+    },
+    {
+      "path": "public/assets/og/default-1200x630.jpg",
+      "bytes": 31744
+    },
+    {
+      "path": "public/assets/brand/icon-192.png",
+      "bytes": 657
+    },
+    {
+      "path": "public/assets/brand/icon-512.png",
+      "bytes": 2386
+    },
+    {
+      "path": "public/assets/brand/favicon-32.png",
+      "bytes": 195
+    },
+    {
+      "path": "public/assets/brand/apple-touch-icon.png",
+      "bytes": 601
+    },
+    {
+      "path": "public/assets/projects/horizon-his/evidence/case-results-slide-1280.webp",
+      "bytes": 88294
+    },
+    {
+      "path": "public/assets/projects/horizon-his/evidence/prototype-and-interaction-map-1600.webp",
+      "bytes": 53180
+    },
+    {
+      "path": "public/assets/projects/horizon-his/evidence/triage-prototype-960.webp",
+      "bytes": 39096
+    },
+    {
+      "path": "public/assets/projects/horizon-his/evidence/triage-prototype-1600.webp",
+      "bytes": 86862
+    },
+    {
+      "path": "public/assets/projects/horizon-his/evidence/hospitalar-2025-evidence-960.webp",
+      "bytes": 111364
+    },
+    {
+      "path": "public/assets/projects/horizon-his/cover/cover-1920.webp",
+      "bytes": 61274
+    },
+    {
+      "path": "public/assets/projects/horizon-his/cover/cover-640.webp",
+      "bytes": 11406
+    },
+    {
+      "path": "public/assets/projects/horizon-his/cover/cover-master.png",
+      "bytes": 869615
+    },
+    {
+      "path": "public/assets/projects/horizon-his/cover/cover-1440.webp",
+      "bytes": 40214
+    },
+    {
+      "path": "public/assets/projects/horizon-his/cover/cover-1024.webp",
+      "bytes": 23846
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/editorial/component-states-1400.webp",
+      "bytes": 19228
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/editorial/responsive-components-1400.webp",
+      "bytes": 10526
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1920.webp",
+      "bytes": 29634
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/cover/cover-640.webp",
+      "bytes": 5464
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/cover/cover-master.png",
+      "bytes": 95350
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1440.webp",
+      "bytes": 17560
+    },
+    {
+      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1024.webp",
+      "bytes": 10404
+    },
+    {
+      "path": "public/assets/projects/subiter/editorial/inspection-map-1400.webp",
+      "bytes": 27558
+    },
+    {
+      "path": "public/assets/projects/subiter/editorial/post-inspection-flow-1400.webp",
+      "bytes": 12748
+    },
+    {
+      "path": "public/assets/projects/subiter/editorial/ai-review-1400.webp",
+      "bytes": 19318
+    },
+    {
+      "path": "public/assets/projects/subiter/cover/cover-1920.webp",
+      "bytes": 42858
+    },
+    {
+      "path": "public/assets/projects/subiter/cover/cover-640.webp",
+      "bytes": 6828
+    },
+    {
+      "path": "public/assets/projects/subiter/cover/cover-master.png",
+      "bytes": 73679
+    },
+    {
+      "path": "public/assets/projects/subiter/cover/cover-1440.webp",
+      "bytes": 24372
+    },
+    {
+      "path": "public/assets/projects/subiter/cover/cover-1024.webp",
+      "bytes": 14592
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/evidence/discovery-editorial-board-1024.webp",
+      "bytes": 106722
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/evidence/discovery-editorial-board-1536.webp",
+      "bytes": 222546
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/cover/cover-1920.webp",
+      "bytes": 125910
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/cover/cover-640.webp",
+      "bytes": 20028
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/cover/cover-master.png",
+      "bytes": 1020484
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/cover/cover-1440.webp",
+      "bytes": 77780
+    },
+    {
+      "path": "public/assets/projects/dasa-canal-do-consultor/cover/cover-1024.webp",
+      "bytes": 44498
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/evidence/transaction-state-sequence-1600.webp",
+      "bytes": 94666
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/evidence/processing-800.webp",
+      "bytes": 21568
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/evidence/pin-entry-800.webp",
+      "bytes": 24954
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/evidence/currency-choice-800.webp",
+      "bytes": 24296
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/evidence/approval-receipt-800.webp",
+      "bytes": 20214
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/cover/cover-1920.webp",
+      "bytes": 72426
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/cover/cover-640.webp",
+      "bytes": 14434
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/cover/cover-master.png",
+      "bytes": 923554
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/cover/cover-1440.webp",
+      "bytes": 49238
+    },
+    {
+      "path": "public/assets/projects/rede-dcc/cover/cover-1024.webp",
+      "bytes": 29404
+    }
+  ]
+}

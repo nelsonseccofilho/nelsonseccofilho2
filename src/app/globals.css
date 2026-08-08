@@ -530,6 +530,12 @@ img {
   background: var(--color-surface);
 }
 
+.case-navigation__back:active {
+  color: var(--color-brand-active);
+  border-color: var(--color-brand-active);
+  background: var(--color-surface-elevated);
+}
+
 .case-navigation__back:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
@@ -920,6 +926,11 @@ img {
 .contact__secondary-link:focus-visible {
   color: var(--color-brand);
   border-color: var(--color-brand);
+}
+
+.case-study .contact__secondary-link:active {
+  color: var(--color-brand-active);
+  border-color: var(--color-brand-active);
 }
 
 @media (max-width: 40rem) {

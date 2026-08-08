@@ -50,3 +50,32 @@ Prefer one coherent logical change per commit. Implementation with directly asso
 ## Stop Conditions
 
 Stop before committing and report the issue if unexpected files are staged, tests/typecheck/lint/build fail, visual QA reveals a concrete defect, secrets are detected, scope expands beyond the approved task, documentation and production changes become unintentionally mixed, or the staged diff differs materially from the reviewed implementation.
+
+## Agent Efficiency & Credit Budget
+
+Use the smallest validation scope that reliably covers the current change.
+
+- Prefer targeted file reads over broad repository searches.
+- Do not reread unchanged files without a specific reason.
+- Stop exploring once enough evidence exists to make the decision.
+- Do not rerun already-green validation unless relevant code changed afterward.
+- Prefer targeted tests during implementation.
+- Run full technical validation only once at the appropriate final checkpoint.
+- Scale visual QA to the size and risk of the change.
+- Avoid large repeated Playwright loops and equivalent screenshots.
+- Prefer a few representative visual scenarios.
+- Maximum two automatic correction iterations for the same defect.
+- If still unresolved after two iterations, stop and report.
+- If VS Code displays a long-running or continue-iterating warning, stop and report progress instead of continuing automatically.
+- Use one PowerShell command at a time.
+- Never chain commands with `;` or `&&`.
+
+Validation levels:
+
+- QUICK CHECK: CTA/copy/link/small CSS/local low-risk UI change. Typical validation: focused test if relevant, representative desktop, representative mobile, only affected theme/state, full pipeline only when technically necessary at final checkpoint.
+- FEATURE CHECK: new component/new route/meaningful UI feature/meaningful behavior change. Typical validation: relevant tests, `npm run typecheck`, `npm run lint`, `npm run build`, representative desktop/tablet/mobile, Light/Dark when theme-sensitive.
+- MILESTONE CHECK: complete case study/Home milestone/responsive-system change/theme-system change/major architecture/release checkpoint. Typical validation: full test suite, `npm run typecheck`, `npm run lint`, `npm run build`, complete responsive QA matrix, deterministic Light/Dark QA, accessibility review, Git scope review.
+
+Always choose the lowest validation level that safely covers the current change.
+
+Do not downgrade validation when the change affects global layout, theme system, routing architecture, accessibility infrastructure, security, or shared data contracts.

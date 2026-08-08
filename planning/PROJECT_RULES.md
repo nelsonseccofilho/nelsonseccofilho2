@@ -491,3 +491,56 @@ Quando houver uma nova decisão importante:
 3. atualizar PROJECT_RULES.md somente se a decisão criar ou modificar uma regra permanente.
 
 Não duplicar conteúdo desnecessariamente entre os dois documentos.
+
+## 22. AGENT EFFICIENCY & CREDIT BUDGET
+
+Usar a menor validação que cubra com segurança a mudança atual.
+
+Regras:
+
+- Preferir leitura direcionada de arquivos em vez de buscas amplas no repositório.
+- Não reler arquivos inalterados sem motivo específico.
+- Encerrar exploração quando já houver evidência suficiente para decidir.
+- Não rerodar validação já verde se nenhum código relevante mudou depois.
+- Preferir testes focados durante implementação.
+- Executar validação técnica completa apenas uma vez no checkpoint final apropriado.
+- Escalar visual QA ao tamanho e risco da mudança.
+- Evitar loops grandes e repetidos de Playwright e screenshots equivalentes.
+- Preferir poucos cenários visuais representativos.
+- Máximo de duas iterações automáticas de correção para o mesmo defeito.
+- Se não resolver após duas iterações, parar e reportar.
+- Se o VS Code sinalizar execução longa/continuação iterativa, parar e reportar progresso.
+- Um comando PowerShell por vez.
+- Nunca encadear comandos com `;` ou `&&`.
+
+Níveis de validação:
+
+- QUICK CHECK
+	Usar para CTA, copy, link, pequeno ajuste de CSS e mudança local de baixo risco.
+	Validação típica: teste focado quando relevante, desktop representativo, mobile representativo, apenas tema/estado afetado quando aplicável, pipeline completo apenas quando tecnicamente necessário no checkpoint final.
+
+- FEATURE CHECK
+	Usar para novo componente, nova rota, feature de UI relevante e mudança relevante de comportamento.
+	Validação típica: testes relevantes, `npm run typecheck`, `npm run lint`, `npm run build`, desktop/tablet/mobile representativos e Light/Dark quando sensível a tema.
+
+- MILESTONE CHECK
+	Usar para case completo, marco da Home, mudança no sistema responsivo, mudança no sistema de tema, mudança arquitetural relevante e checkpoint de release.
+	Validação típica: suíte completa de testes, `npm run typecheck`, `npm run lint`, `npm run build`, matriz responsiva completa, Light/Dark determinístico, revisão de acessibilidade e revisão de escopo Git.
+
+Regra de escolha:
+
+- Sempre escolher o menor nível que cubra com segurança a mudança atual.
+
+Não reduzir nível quando houver impacto em:
+
+- layout global;
+- sistema de tema;
+- arquitetura de rotas;
+- infraestrutura de acessibilidade;
+- segurança;
+- contratos de dados compartilhados.
+
+Compatibilidade com as Seções 12 e 17:
+
+- A profundidade da validação passa a ser definida por QUICK CHECK, FEATURE CHECK ou MILESTONE CHECK.
+- Quando o nível selecionado exigir pipeline completo, manter a sequência operacional já definida.

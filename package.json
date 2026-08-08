@@ -1,0 +1,38 @@
+{
+  "name": "nelson-secco-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.3.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "latest",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "^6.0.5",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "jsdom": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

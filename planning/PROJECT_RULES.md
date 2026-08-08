@@ -2,6 +2,28 @@
 
 Permanent rules for design, engineering, content and collaboration.
 
+## 0. LANGUAGE BOUNDARY
+
+Portuguese is the Copilot Chat conversation language.
+
+English is the project language.
+
+Only user-facing Copilot Chat communication may be in Brazilian Portuguese (pt-BR), including progress updates, explanations, questions, warnings, validation summaries, QA summaries, Git summaries, and final task reports or verdicts.
+
+All repository artifacts must be written in English unless an explicit localization requirement defines otherwise.
+
+README.md is an intentional bilingual exception: English section first, then an equivalent Brazilian Portuguese section. English is the canonical source, and both sections must remain materially equivalent in structure, facts, setup steps, commands, links, and claims.
+
+This includes planning files, project documentation, Markdown documentation, architecture documentation, requirements, content contracts, provenance documentation, technical documentation, workflow documentation, generated reports saved as files, documentation-oriented code comments, test descriptions where appropriate, and approved portfolio copy.
+
+All source code and technical identifiers must remain in English, including variables, functions, components, interfaces, types, filenames, API names, test names, and technical comments.
+
+All files under planning/ MUST be written in English.
+
+If a planning file contains Portuguese, report it as a violation and do not automatically translate the repository during an unrelated task.
+
+Git commit messages must remain in English and follow Conventional Commits.
+
 Este é o documento normativo do projeto.
 
 Qualquer pessoa ou agente trabalhando neste repositório deve obedecer estas regras.

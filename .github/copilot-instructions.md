@@ -4,9 +4,19 @@ Follow `planning/PROJECT_RULES.md` as the detailed source of truth for product, 
 
 ## Communication Language
 
-Use Brazilian Portuguese (pt-BR) for all user-facing progress updates, explanations, questions, warnings, QA and validation reports, Git and scope reports, and final task reports or verdicts.
+Use Brazilian Portuguese (pt-BR) for all user-facing Copilot Chat communication: progress updates, explanations, questions, warnings, QA and validation summaries, Git and scope summaries, and final task reports or verdicts.
 
-Preserve the required original language of source code, identifiers, APIs, component names, file paths, terminal commands, exact test strings, approved portfolio copy, and Git commit messages. Git commit messages remain in English by repository convention.
+Use English for all repository artifacts unless an explicit localization requirement says otherwise. This includes planning files, project documentation, Markdown documentation, architecture documentation, requirements, content contracts, provenance documentation, technical documentation, workflow documentation, generated reports saved as files, documentation-oriented code comments, test descriptions where appropriate, and approved portfolio copy.
+
+README.md is an intentional bilingual exception: English section first, then an equivalent Brazilian Portuguese section. English is the canonical source, and both sections must remain materially equivalent in structure, facts, setup steps, commands, links, and claims.
+
+Keep source code and technical identifiers in English, including variables, functions, components, interfaces, types, filenames, API names, test names, and technical comments.
+
+Preserve executable and exact technical artifacts as originally required: source code, identifiers, APIs, component names, file paths, terminal commands, and exact test strings.
+
+Git commit messages remain in English by repository convention and must follow Conventional Commit style.
+
+Strict boundary: Portuguese is the conversation language. English is the project language.
 
 ## Mandatory Git Finalization Workflow
 

@@ -3,6 +3,7 @@ import { ProjectCard } from '@/components/home/project-card';
 import { ProjectGrid } from '@/components/home/project-grid';
 import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
 import { SiteHeader } from '@/components/layout/site-header';
+import { WHATSAPP_CONTACT_URL } from '@/content/contact';
 
 export default function HomePage() {
   return (
@@ -230,7 +231,7 @@ export default function HomePage() {
               <div className="contact__actions">
                 <a
                   className="contact__primary-link"
-                  href="https://wa.me/5512981241764?text=Olá%20Nelson%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+                  href={WHATSAPP_CONTACT_URL}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Talk to me on WhatsApp"

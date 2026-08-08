@@ -13,8 +13,9 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
 
-  const isDark = (resolvedTheme ?? 'light') === 'dark';
-  const label = mounted ? (isDark ? 'Ativar tema claro' : 'Ativar tema escuro') : 'Ativar tema escuro';
+  const themeReady = mounted && (resolvedTheme === 'light' || resolvedTheme === 'dark');
+  const isDark = themeReady && resolvedTheme === 'dark';
+  const label = themeReady ? (isDark ? 'Ativar tema claro' : 'Ativar tema escuro') : 'Alternar tema';
 
   return (
     <button
@@ -26,7 +27,7 @@ export function ThemeToggle() {
       aria-pressed={isDark}
     >
       <span className="theme-toggle__icon" aria-hidden="true">
-        {isDark ? (
+        {!themeReady ? null : isDark ? (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 3v2" />
             <path d="M12 19v2" />

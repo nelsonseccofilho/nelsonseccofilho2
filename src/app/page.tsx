@@ -158,6 +158,48 @@ export default function HomePage() {
             </article>
           </div>
         </section>
+        <section className="seniority" aria-labelledby="seniority-title" aria-label="Seniority and value proposition">
+          <div className="layout-container seniority__inner">
+            <div className="seniority__header">
+              <p className="seniority__eyebrow">Seniority and value proposition</p>
+              <h2 id="seniority-title" className="seniority__heading">
+                Seniority and value proposition
+              </h2>
+            </div>
+            <div className="seniority__grid" role="list">
+              <article className="seniority__pillar" role="listitem">
+                <h3 className="seniority__pillar-title">Strategy</h3>
+                <p className="seniority__pillar-copy">
+                  Aligning product intent, service context and user needs before interfaces are defined.
+                </p>
+              </article>
+              <article className="seniority__pillar" role="listitem">
+                <h3 className="seniority__pillar-title">Complex Systems</h3>
+                <p className="seniority__pillar-copy">
+                  Translating intricate workflows into coherent, legible product structures.
+                </p>
+              </article>
+              <article className="seniority__pillar" role="listitem">
+                <h3 className="seniority__pillar-title">Delivery</h3>
+                <p className="seniority__pillar-copy">
+                  Turning concepts into tested decisions with clear handoff and implementation support.
+                </p>
+              </article>
+              <article className="seniority__pillar" role="listitem">
+                <h3 className="seniority__pillar-title">Discovery</h3>
+                <p className="seniority__pillar-copy">
+                  Using research, synthesis and critique to reduce ambiguity and sharpen product choices.
+                </p>
+              </article>
+              <article className="seniority__pillar" role="listitem">
+                <h3 className="seniority__pillar-title">Design Systems</h3>
+                <p className="seniority__pillar-copy">
+                  Building reusable patterns that scale across teams, touchpoints and future product change.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

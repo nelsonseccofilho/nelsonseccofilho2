@@ -429,6 +429,67 @@ img {
   text-transform: uppercase;
 }
 
+.seniority {
+  padding-block: clamp(1.5rem, 2.5vw, 2.5rem) clamp(2rem, 4vw, 3rem);
+}
+
+.seniority__inner {
+  display: grid;
+  gap: var(--spacing-5);
+}
+
+.seniority__header {
+  display: grid;
+  gap: var(--spacing-2);
+}
+
+.seniority__eyebrow {
+  margin: 0;
+  color: var(--color-brand);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.seniority__heading {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.seniority__grid {
+  display: grid;
+  gap: var(--spacing-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+
+.seniority__pillar {
+  display: grid;
+  gap: var(--spacing-2);
+  padding: var(--spacing-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-elevated);
+}
+
+.seniority__pillar-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.seniority__pillar-copy {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 40rem) {
   .hero__disciplines {
     row-gap: var(--spacing-3);

@@ -2,6 +2,12 @@
 
 Follow `planning/PROJECT_RULES.md` as the detailed source of truth for product, engineering, validation, documentation and Git workflow rules.
 
+## Communication Language
+
+Use Brazilian Portuguese (pt-BR) for all user-facing progress updates, explanations, questions, warnings, QA and validation reports, Git and scope reports, and final task reports or verdicts.
+
+Preserve the required original language of source code, identifiers, APIs, component names, file paths, terminal commands, exact test strings, approved portfolio copy, and Git commit messages. Git commit messages remain in English by repository convention.
+
 ## Mandatory Git Finalization Workflow
 
 Before every commit, Copilot Chat must:

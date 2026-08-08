@@ -94,6 +94,7 @@ export default function HomePage() {
                 title="DASA — Canal do Consultor"
                 description="Discovery-led product design work translating research into business rules for a complex consultation journey and decision structure."
                 tags={['Research & Discovery', 'Product Design', 'Business Rules']}
+                href="/projects/dasa-canal-do-consultor"
                 image={{
                   alt: 'Editorial representation of a consultation journey translating research into decision rules and product strategy.',
                   width: 1920,

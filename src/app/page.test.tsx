@@ -28,10 +28,12 @@ describe('HomePage', () => {
     expect(subiterLink).toHaveAttribute('href', '/projects/subiter');
     const redeDccLink = within(featuredCases).getByRole('link', { name: /rede dcc 1\.0/i });
     expect(redeDccLink).toHaveAttribute('href', '/projects/rede-dcc');
+    const dasaLink = within(featuredCases).getByRole('link', { name: /dasa — canal do consultor/i });
+    expect(dasaLink).toHaveAttribute('href', '/projects/dasa-canal-do-consultor');
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
-    expect(within(featuredCases).getAllByRole('link')).toHaveLength(3);
+    expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(4);
     expect(screen.getByText(/discovery-led product design work/i)).toBeInTheDocument();

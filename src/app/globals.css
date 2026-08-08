@@ -254,7 +254,7 @@ img {
 }
 
 .featured-cases {
-  padding-block: clamp(3rem, 6vw, 6rem);
+  padding-block: clamp(2rem, 4vw, 4rem) clamp(3rem, 6vw, 6rem);
 }
 
 .featured-cases__inner {

@@ -1,76 +1,76 @@
 # N3LX Portfolio — Decision Log
 
-Objetivo:
+Objective:
 
-Registrar decisões de produto, UX, UI, arquitetura, tecnologia, conteúdo e processo já tomadas durante a construção do novo portfólio.
+Record product, UX, UI, architecture, technology, content, and process decisions already made during the construction of the new portfolio.
 
-Cada decisão futura poderá ser acrescentada cronologicamente sem apagar decisões anteriores.
+Future decisions may be added chronologically without removing previous decisions.
 
-## D-001 — Reconstrução completa do portfólio
+## D-001 — Full portfolio rebuild
 
 **Status:** Accepted
 
 **Context**
-O portfólio anterior foi movido para `_outofdate/`.
+The previous portfolio was moved to `_outofdate/`.
 
 **Decision**
-O novo portfólio será reconstruído do zero dentro do mesmo repositório.
+The new portfolio will be rebuilt from scratch within the same repository.
 
 **Rationale**
-O legado não deve influenciar automaticamente a nova implementação e não participa de lint/build/test.
+Legacy code should not automatically influence the new implementation and is excluded from lint/build/test.
 
 **Consequences**
-A implementação nova pode evoluir sem depender do projeto anterior.
+The new implementation can evolve without depending on the previous project.
 
 ---
 
-## D-002 — Marca principal N3LX
+## D-002 — Primary N3LX brand
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir uma marca profissional e visual para o portfólio.
+It was necessary to define a professional and visual brand for the portfolio.
 
 **Decision**
-A identidade visual principal do portfólio será N3LX.
+The portfolio's primary visual identity will be N3LX.
 
 **Rationale**
-O nome funciona como marca profissional/artística visual.
+The name works as a professional and visual artistic brand.
 
 **Consequences**
-O posicionamento profissional passa a ser comunicado com consistência.
+Professional positioning becomes consistently communicated.
 
 ---
 
-## D-003 — Metadata principal
+## D-003 — Primary metadata
 
 **Status:** Accepted
 
 **Context**
-Era necessário estabelecer um title e description principais para o projeto.
+It was necessary to establish the project's primary title and description.
 
 **Decision**
-O title principal é:
+The primary title is:
 
 N3LX | Senior Product Designer | UX Strategy | Product Discovery | Design Systems | AI-assisted Product Design
 
 **Rationale**
-Preservar conteúdo indexável no HTML inicial sempre que possível.
+Preserve indexable content in the initial HTML whenever possible.
 
 **Consequences**
-O projeto passa a ter uma identidade de SEO e compartilhamento mais clara.
+The project gains a clearer SEO and sharing identity.
 
 ---
 
-## D-004 — Stack técnica
+## D-004 — Technical stack
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir a base técnica do projeto.
+It was necessary to define the project's technical foundation.
 
 **Decision**
-Stack principal:
+Primary stack:
 
 - Next.js 16
 - React 19
@@ -84,259 +84,259 @@ Stack principal:
 - next-themes
 
 **Rationale**
-O projeto utiliza renderização moderna do Next.js e deve evitar dependências sem necessidade clara.
+The project uses modern Next.js rendering and should avoid dependencies without a clear need.
 
 **Consequences**
-A base técnica segue um padrão moderno, testável e escalável.
+The technical foundation follows a modern, testable, and scalable standard.
 
 ---
 
-## D-005 — Qualidade antes de evolução
+## D-005 — Quality before evolution
 
 **Status:** Accepted
 
 **Context**
-Era necessário estabelecer um critério mínimo de qualidade para a evolução do projeto.
+It was necessary to establish a minimum quality criterion for project evolution.
 
 **Decision**
-Nenhuma nova etapa funcional deve avançar com TypeScript quebrado, ESLint quebrado, testes quebrados ou build quebrado.
+No new functional stage should advance with broken TypeScript, broken ESLint, broken tests, or broken build.
 
 **Rationale**
-A qualidade técnica é pré-requisito para evolução segura.
+Technical quality is a prerequisite for safe evolution.
 
 **Consequences**
-O fluxo de validação passa a ser consistente e audível.
+The validation flow becomes consistent and auditable.
 
 ---
 
-## D-006 — Light como tema padrão
+## D-006 — Light as default theme
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir a experiência visual inicial do projeto.
+It was necessary to define the project's initial visual experience.
 
 **Decision**
-O site abre em Light Theme e o Dark Theme estará disponível através de ThemeToggle.
+The site opens in Light Theme and Dark Theme is available through ThemeToggle.
 
 **Rationale**
-Light Theme é o padrão inicial e o dark theme é uma extensão opcional.
+Light Theme is the default and dark theme is an optional extension.
 
 **Consequences**
-A experiência inicial é mais limpa e acessível.
+The initial experience is cleaner and more accessible.
 
 ---
 
-## D-007 — Cor principal
+## D-007 — Primary color
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir uma cor de marca forte, mas não dominante.
+It was necessary to define a strong but non-dominant brand color.
 
 **Decision**
-A cor principal é Xbox Green: #107C10.
+The primary color is Xbox Green: #107C10.
 
 **Rationale**
-A cor deve funcionar como accent, foco, interação e feedback sem dominar toda a interface.
+The color should work as accent, focus, interaction, and feedback without dominating the entire interface.
 
 **Consequences**
-A marca ganha consistência visual sem perder elegância.
+The brand gains visual consistency without losing elegance.
 
 ---
 
-## D-008 — Direção visual
+## D-008 — Visual direction
 
 **Status:** Accepted
 
 **Context**
-Era necessário orientar a estética do portfólio.
+It was necessary to define the portfolio's aesthetic direction.
 
 **Decision**
-A experiência deve ser elegante, tecnológica, editorial, madura e compatível com um Senior Product Designer.
+The experience should be elegant, technological, editorial, mature, and consistent with a Senior Product Designer profile.
 
 **Rationale**
-A referência visual precisa comunicar sofisticação sem copiar marcas específicas.
+The visual reference must communicate sophistication without copying specific brands.
 
 **Consequences**
-O resultado se aproxima de um padrão premium sem depender de cópia literal.
+The result approaches a premium standard without relying on literal copying.
 
 ---
 
-## D-009 — Design tokens semânticos
+## D-009 — Semantic design tokens
 
 **Status:** Accepted
 
 **Context**
-Era necessário criar uma base visual consistente.
+It was necessary to create a consistent visual foundation.
 
 **Decision**
-A interface utiliza tokens para brand, backgrounds, surfaces, text, borders, focus, spacing, radius, transitions e container.
+The interface uses tokens for brand, backgrounds, surfaces, text, borders, focus, spacing, radius, transitions, and container.
 
 **Rationale**
-Evitar valores arbitrários quando já existir um token apropriado.
+Avoid arbitrary values when an appropriate token already exists.
 
 **Consequences**
-A implementação visual se torna mais consistente e escalável.
+The visual implementation becomes more consistent and scalable.
 
 ---
 
-## D-010 — Container máximo
+## D-010 — Maximum container width
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir a largura máxima do layout principal.
+It was necessary to define the maximum width of the main layout.
 
 **Decision**
-O container principal possui 1600px de largura máxima com padding lateral responsivo.
+The main container has a maximum width of 1600px with responsive side padding.
 
 **Rationale**
-A experiência deve aproveitar monitores grandes sem criar linhas de leitura excessivamente longas.
+The experience should take advantage of large displays without creating excessively long reading lines.
 
 **Consequences**
-O layout ganha controle editorial e boa legibilidade em telas grandes.
+The layout gains editorial control and strong readability on large screens.
 
 ---
 
-## D-011 — Viewports oficiais de QA
+## D-011 — Official QA viewports
 
 **Status:** Accepted
 
 **Context**
-Era necessário definir checkpoints de validação visual.
+It was necessary to define visual validation checkpoints.
 
 **Decision**
-Os presets principais de QA são 1920 × 1080, 1366 × 768, 820 × 1180 e 440 × 956.
+The primary QA presets are 1920 × 1080, 1366 × 768, 820 × 1180, and 440 × 956.
 
 **Rationale**
-Essas resoluções funcionam como checkpoints de QA sem transformar o layout em uma construção específica para dispositivos individuais.
+These resolutions act as QA checkpoints without turning the layout into a device-specific build.
 
 **Consequences**
-A interface passa a ser validada com base em intervalos de tamanho relevantes.
+The interface is validated based on relevant size ranges.
 
 ---
 
-## D-012 — ThemeToggle acessível
+## D-012 — Accessible ThemeToggle
 
 **Status:** Accepted
 
 **Context**
-Era necessário garantir uma interação acessível de tema.
+It was necessary to ensure an accessible theme interaction.
 
 **Decision**
-ThemeToggle usa button real, type="button", target mínimo 44 × 44, funciona por teclado, possui nome acessível dinâmico e estado perceptível.
+ThemeToggle uses a real button, type="button", minimum 44 × 44 target, keyboard operation, dynamic accessible name, and perceivable state.
 
 **Rationale**
-A alternância de tema precisa ser acessível e previsível.
+Theme switching must be accessible and predictable.
 
 **Consequences**
-A experiência de tema melhora em usabilidade e acessibilidade.
+The theme experience improves usability and accessibility.
 
 ---
 
-## D-013 — Motion responsável
+## D-013 — Responsible motion
 
 **Status:** Accepted
 
 **Context**
-Era necessário estabelecer a direção de microinterações.
+It was necessary to define microinteraction direction.
 
 **Decision**
-Microinterações serão curtas, funcionais, discretas e respeitarão prefers-reduced-motion.
+Microinteractions will be short, functional, subtle, and respect prefers-reduced-motion.
 
 **Rationale**
-Movimento não deve prejudicar legibilidade ou controle.
+Motion should not harm readability or control.
 
 **Consequences**
-A interface permanece elegante sem comprometer conforto e acessibilidade.
+The interface remains elegant without compromising comfort and accessibility.
 
 ---
 
-## D-014 — Cases principais
+## D-014 — Main cases
 
 **Status:** Accepted
 
 **Context**
-Era necessário estruturar a narrativa de cases e projetos selecionados.
+It was necessary to structure the narrative for case studies and selected projects.
 
 **Decision**
-A arquitetura editorial atual contempla HORIZON HIS, SUBITER, REDE DCC 1.0, DASA — Canal do Consultor, ConnectCar Freeflow, ConnectCar Design System e trabalhos selecionados adicionais.
+The current editorial architecture includes HORIZON HIS, SUBITER, REDE DCC 1.0, DASA — Canal do Consultor, ConnectCar Freeflow, ConnectCar Design System, and additional selected work.
 
 **Rationale**
-Os cases devem refletir uma narrativa profissional consistente e apoiada em trabalho real.
+Case studies should reflect a consistent professional narrative backed by real work.
 
 **Consequences**
-A implementação futura ganha uma base editorial sólida.
+Future implementation gains a solid editorial foundation.
 
 ---
 
-## D-015 — Evidências de portfólio
+## D-015 — Portfolio evidence
 
 **Status:** Accepted
 
 **Context**
-Era necessário garantir que claims profissionais sejam sustentados.
+It was necessary to ensure professional claims are supported.
 
 **Decision**
-Claims importantes devem ser sustentados por evidências reais e distinguidos entre pesquisa, benchmark, conceito, protótipo, implementação e produto em produção.
+Important claims must be supported by real evidence and distinguished across research, benchmark, concept, prototype, implementation, and production product.
 
 **Rationale**
-Nunca apresentar benchmark como solução autoral e nunca apresentar protótipo como produto implementado.
+Never present benchmark material as authored final solution, and never present a prototype as an implemented product.
 
 **Consequences**
-A credibilidade do portfólio aumenta.
+Portfolio credibility increases.
 
 ---
 
-## D-016 — Imagens locais e performance
+## D-016 — Local images and performance
 
 **Status:** Accepted
 
 **Context**
-Era necessário estabelecer um padrão de distribuição de assets.
+It was necessary to establish an asset distribution standard.
 
 **Decision**
-Assets definitivos devem ficar no projeto, com nomes semânticos, dimensões adequadas, formatos modernos, versões otimizadas, alt text e lazy loading quando aplicável.
+Final assets must stay in the project, with semantic names, proper dimensions, modern formats, optimized versions, alt text, and lazy loading when applicable.
 
 **Rationale**
-Evitar depender de URLs temporárias do Figma em produção.
+Avoid depending on temporary Figma URLs in production.
 
 **Consequences**
-A performance e a previsibilidade do portfólio aumentam.
+Portfolio performance and predictability increase.
 
 ---
 
-## D-017 — Desenvolvimento pela rede local
+## D-017 — Local network development
 
 **Status:** Accepted
 
 **Context**
-Era necessário permitir o desenvolvimento através da rede local.
+It was necessary to allow development through the local network.
 
 **Decision**
-Durante o desenvolvimento, o projeto pode ser acessado através da rede local em 192.168.1.72.
+During development, the project may be accessed through the local network at 192.168.1.72.
 
 **Rationale**
-allowedDevOrigins é utilizado somente para permitir corretamente a hidratação e os assets do Next.js durante desenvolvimento em rede.
+allowedDevOrigins is used only to properly allow Next.js hydration and assets during network development.
 
 **Consequences**
-A experiência local de desenvolvimento se torna mais realista sem transformar essa configuração em dependência de produção.
+The local development experience becomes more realistic without making this setting a production dependency.
 
 ---
 
-## D-018 — Foundation antes de composição visual
+## D-018 — Foundation before visual composition
 
 **Status:** Accepted
 
 **Context**
-Era necessário organizar a ordem de implementação.
+It was necessary to organize implementation order.
 
 **Decision**
-A construção segue a ordem: Foundation técnica, Design Foundation, Header, Hero, Project Grid, Case Studies, Selected Work, Footer, Motion refinement, SEO/performance/final QA.
+Build order follows: technical Foundation, Design Foundation, Header, Hero, Project Grid, Case Studies, Selected Work, Footer, Motion refinement, SEO/performance/final QA.
 
 **Rationale**
-Evitar construir interfaces finais antes da foundation necessária.
+Avoid building final interfaces before the required foundation.
 
 **Consequences**
-A implementação ganha clareza progressiva e menor retrabalho.
+Implementation gains progressive clarity and reduced rework.

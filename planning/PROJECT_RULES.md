@@ -1,6 +1,6 @@
 # N3LX Portfolio — Project Rules
 
-Permanent rules for design, engineering, content and collaboration.
+Permanent rules for design, engineering, content, and collaboration.
 
 ## 0. LANGUAGE BOUNDARY
 
@@ -24,102 +24,102 @@ If a planning file contains Portuguese, report it as a violation and do not auto
 
 Git commit messages must remain in English and follow Conventional Commits.
 
-Este é o documento normativo do projeto.
+This is the project's normative document.
 
-Qualquer pessoa ou agente trabalhando neste repositório deve obedecer estas regras.
+Any person or agent working in this repository must follow these rules.
 
-Se uma regra precisar mudar, primeiro registrar a mudança em DECISIONS.md.
+If a rule needs to change, first record the change in DECISIONS.md.
 
 ## 1. PRODUCT & UX
 
-- Utilizar como referência princípios e boas práticas da Nielsen Norman Group.
-- Clareza acima de ornamentação.
-- Não esconder funções importantes.
-- Não criar interações que dependam exclusivamente de hover.
-- Sempre considerar feedback, estado, erro e recuperação.
-- Priorizar reconhecimento sobre memorização.
-- Reduzir carga cognitiva.
-- Manter hierarquia visual clara.
-- Não sacrificar usabilidade por estética.
-- Touch target mínimo recomendado: 44 × 44px.
-- Interfaces devem funcionar com teclado.
+- Use Nielsen Norman Group principles and best practices as reference.
+- Clarity over ornamentation.
+- Do not hide important functionality.
+- Do not create interactions that depend exclusively on hover.
+- Always consider feedback, state, error, and recovery.
+- Prioritize recognition over recall.
+- Reduce cognitive load.
+- Maintain a clear visual hierarchy.
+- Do not sacrifice usability for aesthetics.
+- Recommended minimum touch target: 44 × 44px.
+- Interfaces must work with keyboard navigation.
 
 ## 2. VISUAL DESIGN
 
-Direção:
+Direction:
 
 - premium;
-- elegante;
-- tecnológica;
+- elegant;
+- technological;
 - editorial;
-- minimalista sem ser vazia.
+- minimalist without being empty.
 
-Referências qualitativas:
+Qualitative references:
 
 OpenAI
 Apple
 Samsung
 
-Nunca copiar layouts ou identidade dessas empresas.
+Never copy layouts or identity from those companies.
 
-Cor principal:
+Primary color:
 
 #107C10
 
-Light Theme por padrão.
+Light Theme by default.
 
-Dark Theme disponível.
+Dark Theme available.
 
-Verde deve ser usado com disciplina.
+Green must be used with discipline.
 
 ## 3. RESPONSIVENESS
 
-A aplicação deve ser fluida.
+The application must be fluid.
 
-QA obrigatório nos presets:
+Required QA presets:
 
 - 1920 × 1080
 - 1366 × 768
 - 820 × 1180
 - 440 × 956
 
-Também considerar comportamento intermediário.
+Also consider intermediate behavior.
 
-Não criar CSS específico para marcas/modelos de dispositivos.
+Do not create CSS specific to device brands/models.
 
-Não aceitar overflow horizontal não intencional.
+Do not accept unintended horizontal overflow.
 
 ## 4. ACCESSIBILITY
 
-Obrigatório:
+Required:
 
-- HTML semântico;
-- heading hierarchy coerente;
+- semantic HTML;
+- coherent heading hierarchy;
 - alt text;
-- labels acessíveis;
-- navegação por teclado;
+- accessible labels;
+- keyboard navigation;
 - focus-visible;
-- contraste adequado;
-- aria somente quando necessário;
-- não remover outline sem substituição;
+- adequate contrast;
+- aria only when necessary;
+- never remove outline without replacement;
 - prefers-reduced-motion;
-- não usar apenas cor para transmitir informação.
+- do not use color alone to convey information.
 
-SVG decorativo deve ser escondido da árvore de acessibilidade quando apropriado.
+Decorative SVG must be hidden from the accessibility tree when appropriate.
 
 ## 5. CSS
 
-CSS próprio segue:
+Custom CSS follows:
 
 https://getbem.com/
 
-Convenção BEM:
+BEM convention:
 
 - block
 - block__element
 - block--modifier
 
-Exemplos:
+Examples:
 
 - theme-toggle
 - theme-toggle__icon
@@ -127,20 +127,20 @@ Exemplos:
 - project-card__title
 - project-card--featured
 
-Regras:
+Rules:
 
-- sem !important;
-- sem inline style, salvo necessidade técnica justificada;
-- evitar seletores excessivamente específicos;
-- priorizar tokens semânticos;
-- evitar valores mágicos;
-- evitar abstrações prematuras.
+- no !important;
+- no inline style, unless technically justified;
+- avoid excessively specific selectors;
+- prioritize semantic tokens;
+- avoid magic values;
+- avoid premature abstractions.
 
 ## 6. DESIGN TOKENS
 
-Usar tokens existentes antes de criar novos valores.
+Use existing tokens before creating new values.
 
-Categorias:
+Categories:
 
 - brand;
 - background;
@@ -153,19 +153,19 @@ Categorias:
 - transitions;
 - containers.
 
-Brand principal:
+Primary brand:
 
 #107C10
 
-Container máximo:
+Maximum container:
 
 1600px
 
 ## 7. THEMING
 
-Light é padrão.
+Light is default.
 
-Dark é opcional.
+Dark is optional.
 
 Theme Provider:
 
@@ -179,121 +179,121 @@ enableSystem:
 
 false
 
-Alterações de tema não podem provocar:
+Theme changes must not cause:
 
 - layout shift;
-- quebra de hydration;
-- flash visual excessivo;
-- perda de contraste.
+- hydration breakage;
+- excessive visual flashing;
+- contrast loss.
 
 ## 8. MOTION
 
-Microinterações:
+Microinteractions:
 
-- rápidas;
-- elegantes;
-- discretas;
-- funcionais.
+- fast;
+- elegant;
+- subtle;
+- functional.
 
-Não criar animações apenas por decoração.
+Do not create animations only for decoration.
 
-Sempre respeitar:
+Always respect:
 
 prefers-reduced-motion
 
-Motion nunca pode impedir uma ação.
+Motion must never block an action.
 
 ## 9. SEO
 
-Obrigatório pensar em SEO desde a implementação.
+SEO must be considered from implementation start.
 
-Preservar:
+Preserve:
 
 - metadata;
 - title;
 - description;
 - lang;
-- conteúdo semanticamente indexável;
-- headings corretos;
-- URLs compreensíveis;
+- semantically indexable content;
+- correct headings;
+- understandable URLs;
 - alt text;
-- Open Graph quando implementado;
-- canonical quando aplicável.
+- Open Graph when implemented;
+- canonical when applicable.
 
-Título principal atual:
+Current primary title:
 
 N3LX | Senior Product Designer | UX Strategy | Product Discovery | Design Systems | AI-assisted Product Design
 
 ## 10. PERFORMANCE
 
-Priorizar Core Web Vitals.
+Prioritize Core Web Vitals.
 
-Evitar:
+Avoid:
 
-- JavaScript desnecessário;
-- dependências grandes sem justificativa;
-- imagens gigantes;
+- unnecessary JavaScript;
+- large dependencies without justification;
+- oversized images;
 - layout shift;
-- fontes bloqueantes;
-- animações caras;
-- client components sem necessidade.
+- render-blocking fonts;
+- expensive animations;
+- client components without need.
 
-Preferir Server Components quando não houver necessidade real de estado/interação no cliente.
+Prefer Server Components whenever client state/interaction is not truly required.
 
 ## 11. IMAGES & ASSETS
 
-Assets de produção devem ser locais.
+Production assets must be local.
 
-Não depender de URLs temporárias do Figma.
+Do not depend on temporary Figma URLs.
 
-Usar:
+Use:
 
-- formato adequado;
-- compressão;
-- dimensões adequadas;
+- proper format;
+- compression;
+- suitable dimensions;
 - responsive images;
-- lazy loading quando aplicável;
-- alt text adequado.
+- lazy loading when applicable;
+- proper alt text.
 
-Não usar imagens apenas como decoração se não acrescentarem valor.
+Do not use images as decoration if they add no value.
 
 ## 12. TESTS
 
-Regra fundamental:
+Fundamental rule:
 
-Não construir funcionalidade sem teste correspondente quando ela possuir comportamento testável.
+Do not build functionality without a corresponding test when behavior is testable.
 
-Antes de considerar uma etapa concluída:
+Before considering a stage complete:
 
 - npm run typecheck
 - npm run lint
 - npm test
 - npm run build
 
-Testes devem validar:
+Tests must validate:
 
-- comportamento;
-- acessibilidade;
-- contratos importantes.
+- behavior;
+- accessibility;
+- important contracts.
 
-Evitar:
+Avoid:
 
-- snapshots frágeis;
-- detalhes internos;
-- test IDs quando consultas semânticas forem possíveis.
+- fragile snapshots;
+- internal details;
+- test IDs when semantic queries are possible.
 
-Preferir React Testing Library por:
+Prefer React Testing Library by:
 
 - role
 - name
 - text
 - label
 
-Não alterar produção apenas para fazer teste passar quando o erro estiver no teste.
+Do not alter production code only to make tests pass when the error is in the test.
 
 ## 13. ENGINEERING
 
-Stack oficial atual:
+Current official stack:
 
 - Next.js
 - React
@@ -303,27 +303,27 @@ Stack oficial atual:
 - React Testing Library
 - next-themes
 
-TypeScript deve permanecer strict.
+TypeScript must remain strict.
 
-Não adicionar dependência sem necessidade.
+Do not add dependencies without need.
 
-Não criar abstração antes de existir necessidade real.
+Do not create abstraction before a real need exists.
 
-Preservar Server Components como padrão no App Router.
+Preserve Server Components as default in App Router.
 
-Adicionar "use client" somente quando necessário.
+Add "use client" only when necessary.
 
 ## 14. GIT
 
-Commits seguem:
+Commits follow:
 
 https://www.conventionalcommits.org/
 
-Formato:
+Format:
 
 type(scope): description
 
-Tipos comuns:
+Common types:
 
 - feat
 - fix
@@ -334,13 +334,13 @@ Tipos comuns:
 - perf
 - style
 
-Exemplos:
+Examples:
 
 - feat(theme): add accessible light and dark toggle
 - fix(test): isolate theme toggle renders
 - docs(planning): document project decisions
 
-Não usar mensagens genéricas como:
+Do not use generic messages such as:
 
 - update
 - changes
@@ -348,11 +348,11 @@ Não usar mensagens genéricas como:
 
 ## 15. OPERATIONAL WORKFLOW
 
-Existem três terminais permanentes:
+There are three permanent terminals:
 
 ### PowerShell `npm`
 
-Executa:
+Runs:
 
 - npm install
 - npm run typecheck
@@ -362,15 +362,15 @@ Executa:
 
 ### PowerShell `run dev`
 
-Executa exclusivamente:
+Runs exclusively:
 
 - npm run dev
 
-Fica aberto durante o desenvolvimento.
+Remains open during development.
 
 ### PowerShell `git`
 
-Executa exclusivamente comandos Git:
+Runs Git commands only:
 
 - git status
 - git diff
@@ -383,28 +383,28 @@ Executa exclusivamente comandos Git:
 
 ### VS Code Chat
 
-Responsável por:
+Responsible for:
 
-- criar arquivos;
-- editar arquivos;
-- remover arquivos;
-- refatorar código.
+- creating files;
+- editing files;
+- removing files;
+- refactoring code.
 
-O VS Code Chat NÃO deve:
+VS Code Chat must NOT:
 
-- executar Git;
-- executar npm;
-- executar npx;
-- executar comandos de terminal.
+- run Git;
+- run npm;
+- run npx;
+- run terminal commands.
 
 ## 16. DEVELOPMENT PROCESS
 
-Fluxo padrão:
+Default flow:
 
-Planejar
-→ fornecer escopo ao VS Code Chat
-→ agente altera arquivos
-→ revisar diff
+Plan
+→ provide scope to VS Code Chat
+→ agent changes files
+→ review diff
 → Keep
 → typecheck
 → lint
@@ -413,65 +413,65 @@ Planejar
 → run dev
 → Visual QA
 → git status
-→ stage seletivo
+→ selective stage
 → Conventional Commit
 
-Não usar `git add .` automaticamente.
+Do not use `git add .` automatically.
 
-Preferir stage seletivo.
+Prefer selective staging.
 
 ## 17. IMPLEMENTATION REVIEW & VALIDATION WORKFLOW
 
-Toda unidade de implementação deve passar por revisão e validação antes de Git write.
+Every implementation unit must pass review and validation before Git write.
 
-Sequência obrigatória:
+Mandatory sequence:
 
-1. verificar escopo do working tree;
-2. revisar código de produção;
-3. revisar testes;
-4. revisar integração;
-5. revisar CSS/estilo quando aplicável;
-6. executar `npm test`;
-7. executar `npm run typecheck`;
-8. executar `npm run lint`;
-9. executar `npm run build`;
-10. preparar RUN DEV visual QA quando UI for afetada;
-11. fazer staging somente após validação;
-12. revisar nomes dos arquivos staged com comando Git read-only;
-13. revisar o diff staged completo;
-14. fazer commit somente após staged filenames e staged diff passarem na revisão;
-15. verificar `git status --short` após o commit.
+1. verify working-tree scope;
+2. review production code;
+3. review tests;
+4. review integration;
+5. review CSS/style when applicable;
+6. run `npm test`;
+7. run `npm run typecheck`;
+8. run `npm run lint`;
+9. run `npm run build`;
+10. prepare RUN DEV visual QA when UI is affected;
+11. stage only after validation;
+12. review staged filenames with a read-only Git command;
+13. review the complete staged diff;
+14. commit only after staged filenames and staged diff pass review;
+15. check `git status --short` after commit.
 
-Convenções de interação:
+Interaction conventions:
 
-- comandos apresentados ao usuário devem identificar o contexto: GIT, NPM ou RUN DEV;
-- comandos PowerShell devem ser fornecidos um por vez;
-- não afirmar que Visual QA passou sem evidência visual renderizada;
-- não misturar implementação, QA e commit em um único passo sem controle;
-- commits devem permanecer coesos e limitados a uma unidade de implementação;
-- segredos e configurações MCP locais nunca devem ser commitados.
+- commands shown to the user must identify context: GIT, NPM, or RUN DEV;
+- PowerShell commands must be provided one at a time;
+- never claim Visual QA passed without rendered visual evidence;
+- do not mix implementation, QA, and commit in one uncontrolled step;
+- commits must remain cohesive and limited to one implementation unit;
+- secrets and local MCP configs must never be committed.
 
 ## 18. LEGACY
 
-A pasta:
+The folder:
 
 _outofdate/
 
-contém o portfólio anterior.
+contains the previous portfolio.
 
-Ela:
+It:
 
-- não participa da aplicação atual;
-- não participa do lint;
-- não participa dos testes;
-- não deve ser usada como fonte automática de implementação;
-- serve apenas como arquivo histórico/referência manual.
+- does not participate in the current application;
+- does not participate in lint;
+- does not participate in tests;
+- must not be used as an automatic implementation source;
+- serves only as historical/manual reference.
 
 ## 19. CONTENT INTEGRITY
 
-Nunca ampliar claims profissionais sem evidência.
+Never expand professional claims without evidence.
 
-Distinguir explicitamente:
+Explicitly distinguish:
 
 - benchmark;
 - discovery;
@@ -482,87 +482,87 @@ Distinguir explicitamente:
 - implemented solution;
 - production product.
 
-Não apresentar benchmark como trabalho autoral.
+Do not present benchmark as authored work.
 
-Não transformar hipótese editorial em fato histórico.
+Do not turn an editorial hypothesis into a historical fact.
 
 ## 20. SCOPE CONTROL
 
-Não adicionar melhorias fora da tarefa atual por iniciativa própria.
+Do not add improvements outside the current task on your own initiative.
 
-Quando encontrar oportunidade fora do escopo:
+When finding an out-of-scope opportunity:
 
-- informar;
-- registrar;
-- implementar somente quando aprovada.
+- report it;
+- register it;
+- implement only when approved.
 
-Uma tarefa deve modificar somente os arquivos necessários.
+A task must change only necessary files.
 
 ## 21. DOCUMENTATION
 
 DECISIONS.md:
-registra decisões e suas razões.
+records decisions and their rationale.
 
 PROJECT_RULES.md:
-registra regras permanentes.
+records permanent rules.
 
-Quando houver uma nova decisão importante:
+When there is a new important decision:
 
-1. implementar e validar;
-2. registrar em DECISIONS.md;
-3. atualizar PROJECT_RULES.md somente se a decisão criar ou modificar uma regra permanente.
+1. implement and validate;
+2. record it in DECISIONS.md;
+3. update PROJECT_RULES.md only if the decision creates or changes a permanent rule.
 
-Não duplicar conteúdo desnecessariamente entre os dois documentos.
+Do not duplicate content unnecessarily between the two documents.
 
 ## 22. AGENT EFFICIENCY & CREDIT BUDGET
 
-Usar a menor validação que cubra com segurança a mudança atual.
+Use the smallest validation scope that safely covers the current change.
 
-Regras:
+Rules:
 
-- Preferir leitura direcionada de arquivos em vez de buscas amplas no repositório.
-- Não reler arquivos inalterados sem motivo específico.
-- Encerrar exploração quando já houver evidência suficiente para decidir.
-- Não rerodar validação já verde se nenhum código relevante mudou depois.
-- Preferir testes focados durante implementação.
-- Executar validação técnica completa apenas uma vez no checkpoint final apropriado.
-- Escalar visual QA ao tamanho e risco da mudança.
-- Evitar loops grandes e repetidos de Playwright e screenshots equivalentes.
-- Preferir poucos cenários visuais representativos.
-- Máximo de duas iterações automáticas de correção para o mesmo defeito.
-- Se não resolver após duas iterações, parar e reportar.
-- Se o VS Code sinalizar execução longa/continuação iterativa, parar e reportar progresso.
-- Um comando PowerShell por vez.
-- Nunca encadear comandos com `;` ou `&&`.
+- Prefer targeted file reading over broad repository searches.
+- Do not reread unchanged files without a specific reason.
+- Stop exploration when there is already enough evidence to decide.
+- Do not rerun already-green validation if no relevant code changed afterward.
+- Prefer focused tests during implementation.
+- Run full technical validation only once at the appropriate final checkpoint.
+- Scale visual QA to the size and risk of the change.
+- Avoid large repeated Playwright loops and equivalent screenshots.
+- Prefer a few representative visual scenarios.
+- Maximum of two automatic correction iterations for the same defect.
+- If unresolved after two iterations, stop and report.
+- If VS Code signals long-running/iterative continuation, stop and report progress.
+- One PowerShell command at a time.
+- Never chain commands with `;` or `&&`.
 
-Níveis de validação:
+Validation levels:
 
 - QUICK CHECK
-	Usar para CTA, copy, link, pequeno ajuste de CSS e mudança local de baixo risco.
-	Validação típica: teste focado quando relevante, desktop representativo, mobile representativo, apenas tema/estado afetado quando aplicável, pipeline completo apenas quando tecnicamente necessário no checkpoint final.
+Use for CTA, copy, link, small CSS adjustment, and local low-risk change.
+Typical validation: focused test when relevant, representative desktop, representative mobile, only affected theme/state when applicable, full pipeline only when technically necessary at the final checkpoint.
 
 - FEATURE CHECK
-	Usar para novo componente, nova rota, feature de UI relevante e mudança relevante de comportamento.
-	Validação típica: testes relevantes, `npm run typecheck`, `npm run lint`, `npm run build`, desktop/tablet/mobile representativos e Light/Dark quando sensível a tema.
+Use for a new component, new route, meaningful UI feature, and meaningful behavior change.
+Typical validation: relevant tests, `npm run typecheck`, `npm run lint`, `npm run build`, representative desktop/tablet/mobile, and Light/Dark when theme-sensitive.
 
 - MILESTONE CHECK
-	Usar para case completo, marco da Home, mudança no sistema responsivo, mudança no sistema de tema, mudança arquitetural relevante e checkpoint de release.
-	Validação típica: suíte completa de testes, `npm run typecheck`, `npm run lint`, `npm run build`, matriz responsiva completa, Light/Dark determinístico, revisão de acessibilidade e revisão de escopo Git.
+Use for full case study, Home milestone, responsive-system change, theme-system change, relevant architectural change, and release checkpoint.
+Typical validation: full test suite, `npm run typecheck`, `npm run lint`, `npm run build`, complete responsive matrix, deterministic Light/Dark, accessibility review, and Git scope review.
 
-Regra de escolha:
+Selection rule:
 
-- Sempre escolher o menor nível que cubra com segurança a mudança atual.
+- Always choose the smallest level that safely covers the current change.
 
-Não reduzir nível quando houver impacto em:
+Do not reduce level when there is impact on:
 
-- layout global;
-- sistema de tema;
-- arquitetura de rotas;
-- infraestrutura de acessibilidade;
-- segurança;
-- contratos de dados compartilhados.
+- global layout;
+- theme system;
+- route architecture;
+- accessibility infrastructure;
+- security;
+- shared data contracts.
 
-Compatibilidade com as Seções 12 e 17:
+Compatibility with Sections 12 and 17:
 
-- A profundidade da validação passa a ser definida por QUICK CHECK, FEATURE CHECK ou MILESTONE CHECK.
-- Quando o nível selecionado exigir pipeline completo, manter a sequência operacional já definida.
+- Validation depth is defined by QUICK CHECK, FEATURE CHECK, or MILESTONE CHECK.
+- When the selected level requires full pipeline, keep the already defined operational sequence.

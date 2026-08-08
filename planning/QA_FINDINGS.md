@@ -1,18 +1,18 @@
 # N3LX Portfolio — QA Findings
 
-Este documento registra problemas, inconsistências, riscos e oportunidades de refinamento encontrados durante as validações do portfólio.
+This document records issues, inconsistencies, risks, and refinement opportunities found during portfolio validations.
 
-Cada finding recebe um identificador permanente.
+Each finding receives a permanent identifier.
 
-O ciclo padrão é:
+The standard lifecycle is:
 
 Found
 → In Progress
 → Ready for Retest
 → Verified
 
-Findings não devem ser marcados como Verified apenas porque o código foi alterado.
-É necessária uma nova validação.
+Findings must not be marked as Verified only because code was changed.
+A new validation is required.
 
 ## QA-001 — Orphan separator in Hero disciplines on mobile
 
@@ -30,75 +30,75 @@ Findings não devem ser marcados como Verified apenas porque o código foi alter
 
 ### Description
 
-Durante o QA responsivo da primeira composição Header + Hero, a lista de disciplinas quebra em duas linhas.
+During responsive QA of the first Header + Hero composition, the discipline list wraps to two lines.
 
-A composição observada é aproximadamente:
+The observed composition is approximately:
 
 UX Strategy · Product Discovery · Design Systems
 · AI-assisted Product Design
 
-O separador visual aparece isolado no início da segunda linha.
+The visual separator appears orphaned at the start of the second line.
 
 ### Expected
 
-Quando a lista quebrar em telas estreitas, nenhum separador deve aparecer órfão no início ou final de uma linha.
+When the list wraps on narrow screens, no separator should appear orphaned at the beginning or end of a line.
 
-Os itens precisam continuar sendo percebidos como elementos independentes e semanticamente claros.
+Items must remain perceivable as independent and semantically clear elements.
 
 ### Actual
 
-O separador utilizado entre os itens acompanha o quarto item para a segunda linha e aparece visualmente antes de:
+The separator used between items moves with the fourth item to the second line and appears visually before:
 
 AI-assisted Product Design
 
-Isso gera ruído visual e enfraquece o acabamento editorial da composição.
+This creates visual noise and weakens the editorial finish of the composition.
 
 ### Evidence
 
-Encontrado durante QA no viewport oficial:
+Found during QA in the official viewport:
 
 440 × 956
 
-O problema aparece no grupo:
+The issue appears in the group:
 
 hero__disciplines
 hero__discipline
 
-Não foi observado overflow horizontal.
+No horizontal overflow was observed.
 
-A estrutura geral do Hero permanece correta.
+The general Hero structure remains correct.
 
 ### Proposed resolution
 
-Preservar os separadores em larguras onde os itens permanecem confortavelmente distribuídos.
+Keep separators at widths where items remain comfortably distributed.
 
-Em telas estreitas, remover visualmente os separadores e utilizar row-gap e column-gap para definir a separação entre os itens.
+On narrow screens, remove separators visually and use row-gap and column-gap to define separation between items.
 
-A solução deve:
+The solution should:
 
-- permanecer CSS-only;
-- preservar a semântica atual;
-- não reduzir artificialmente o font-size;
-- não usar nowrap;
-- não criar CSS específico para um modelo de dispositivo.
+- remain CSS-only;
+- preserve current semantics;
+- not artificially reduce font size;
+- not use nowrap;
+- not create CSS specific to one device model.
 
 ### Regression scope
 
-Após a correção validar:
+After correction validate:
 
 Primary:
 - 440 × 956
 
-Confirmar que não houve regressão aparente em:
+Confirm there is no apparent regression at:
 - 820 × 1180
 - 1366 × 768
 - 1920 × 1080
 
-Também confirmar:
+Also confirm:
 
-- ausência de overflow horizontal;
-- presença das quatro disciplinas;
-- comportamento equivalente em Light e Dark.
+- absence of horizontal overflow;
+- presence of all four disciplines;
+- equivalent behavior in Light and Dark.
 
 ### Verification
 
@@ -124,74 +124,74 @@ Pending.
 
 ### Description
 
-Durante o QA foi exibido um erro de hidratação relacionado ao sistema de tema.
+During QA, a hydration error related to the theme system was displayed.
 
-O React mostrou diferenças entre servidor e cliente dentro do ThemeToggle, incluindo propriedades dependentes do tema como:
+React showed server/client differences in ThemeToggle, including theme-dependent properties such as:
 
 - aria-label;
 - aria-pressed;
-- SVG/ícone renderizado.
+- rendered SVG/icon.
 
-Também foi exibido um warning relacionado ao script injetado pelo next-themes através do ThemeProvider.
+A warning related to the script injected by next-themes through ThemeProvider was also shown.
 
 ### Expected
 
-O HTML inicialmente produzido pelo servidor e o primeiro render do cliente devem ser compatíveis.
+The HTML initially produced by the server and the client's first render must be compatible.
 
-O ThemeToggle só deve apresentar estado visual e atributos acessíveis dependentes do tema quando o tema estiver seguramente resolvido no cliente.
+ThemeToggle should only display theme-dependent visual state and accessible attributes after theme resolution is safe on the client.
 
-A aplicação não deve apresentar hydration mismatch.
+The application must not present hydration mismatch.
 
 ### Actual
 
-Servidor e cliente produzem estados diferentes para o ThemeToggle durante a hidratação.
+Server and client produce different ThemeToggle states during hydration.
 
-Foi observado também:
+It was also observed:
 
 "Encountered a script tag while rendering React component"
 
-apontando para AppThemeProvider / next-themes.
+pointing to AppThemeProvider / next-themes.
 
 ### Evidence
 
-Encontrado visualmente no Next.js development error overlay e confirmado pelo hydration diff do React.
+Found visually in the Next.js development error overlay and confirmed by React hydration diff.
 
-O diff inclui diferenças em:
+The diff includes differences in:
 
 - aria-label;
 - aria-pressed;
-- ícone light/dark.
+- light/dark icon.
 
 ### Proposed resolution
 
-Investigar primeiro a implementação atual do ThemeToggle.
+First investigate the current ThemeToggle implementation.
 
-A solução deve seguir a recomendação oficial do next-themes para não renderizar UI dependente de theme/resolvedTheme antes de o componente estar montado no cliente.
+The solution should follow the official next-themes recommendation to avoid rendering theme/resolvedTheme-dependent UI before the component is mounted on the client.
 
-Não aplicar suppressHydrationWarning no ThemeToggle para esconder o problema.
+Do not apply suppressHydrationWarning on ThemeToggle to hide the problem.
 
-Não remover atributos acessíveis.
+Do not remove accessible attributes.
 
-Não trocar next-themes sem investigação.
+Do not replace next-themes without investigation.
 
-O warning específico do ThemeScript deve ser avaliado separadamente caso permaneça depois que o hydration mismatch do ThemeToggle for resolvido.
+The specific ThemeScript warning should be evaluated separately if it remains after ThemeToggle hydration mismatch is resolved.
 
 ### Regression scope
 
-Validar:
+Validate:
 
-- carregamento inicial em Light;
-- carregamento inicial com Dark persistido;
-- troca Light → Dark;
-- troca Dark → Light;
-- reload com Dark persistido;
-- ausência de hydration mismatch;
-- aria-label correto;
-- aria-pressed correto;
-- ausência de layout shift perceptível;
-- testes existentes do ThemeToggle.
+- initial load in Light;
+- initial load with persisted Dark;
+- switch Light → Dark;
+- switch Dark → Light;
+- reload with persisted Dark;
+- absence of hydration mismatch;
+- correct aria-label;
+- correct aria-pressed;
+- absence of perceptible layout shift;
+- existing ThemeToggle tests.
 
-Checkpoints principais:
+Primary checkpoints:
 
 1920 × 1080
 1366 × 768
@@ -225,15 +225,15 @@ Pending.
 
 ### Description
 
-O ThemeToggle fica verticalmente abaixo do centro do Header porque `.theme-toggle` possui `margin-top: 24px` enquanto o container do Header utiliza `align-items: center`.
+ThemeToggle sits below Header vertical center because `.theme-toggle` has `margin-top: 24px` while the Header container uses `align-items: center`.
 
 ### Expected
 
-O ThemeToggle deve ser centralizado verticalmente pelo layout pai do Header, compartilhando o mesmo centro visual da marca N3LX.
+ThemeToggle should be vertically centered by the Header parent layout, sharing the same visual center as the N3LX brand.
 
 ### Actual
 
-A medição em runtime no viewport 440 × 956 confirmou:
+Runtime measurement in viewport 440 × 956 confirmed:
 
 - Header inner centerY: 38px
 - Brand centerY: 38px
@@ -241,29 +241,29 @@ A medição em runtime no viewport 440 × 956 confirmou:
 - Delta vertical: +12px
 - ThemeToggle margin-top: 24px
 
-A hipótese anterior de desalinhamento horizontal foi descartada pela medição: o grid horizontal estava correto.
+The previous hypothesis of horizontal misalignment was discarded by measurement: the horizontal grid was correct.
 
 ### Proposed resolution
 
-Remover o `margin-top: 24px` do componente base `.theme-toggle` para que seu posicionamento vertical dentro do Header seja determinado por `.site-header__inner { align-items: center; }`.
+Remove `margin-top: 24px` from base `.theme-toggle` so its vertical positioning inside Header is determined by `.site-header__inner { align-items: center; }`.
 
 ### Regression scope
 
-Validar visualmente:
+Validate visually:
 
 - 1920 × 1080
 - 1366 × 768
 - 820 × 1180
 - 440 × 956
 
-Também confirmar:
+Also confirm:
 
-- ThemeToggle centralizado verticalmente no Header;
-- marca N3LX preservada;
-- grid horizontal preservado;
-- ausência de overflow horizontal;
-- comportamento equivalente em Light e Dark;
-- navegação por teclado e focus-visible preservados.
+- ThemeToggle vertically centered in Header;
+- N3LX brand preserved;
+- horizontal grid preserved;
+- absence of horizontal overflow;
+- equivalent behavior in Light and Dark;
+- keyboard navigation and focus-visible preserved.
 
 ### Verification
 

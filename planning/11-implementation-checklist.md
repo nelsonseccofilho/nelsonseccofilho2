@@ -1,6 +1,6 @@
-# Implementation Checklist — execução um passo por vez
+# Implementation Checklist — one step at a time
 
-Cada bloco abaixo termina em **teste + validação + commit**.
+Each block below ends with **test + validation + commit**.
 
 ### A. Foundation
 - [ ] Next.js / TypeScript / App Router / Tailwind
@@ -8,7 +8,7 @@ Cada bloco abaixo termina em **teste + validação + commit**.
 - [ ] Light default + dark theme
 - [ ] Locale PT-BR/EN
 - [ ] Test runner baseline
-- [ ] `lint` + tests verdes
+- [ ] `lint` + green tests
 
 Commit: `feat(app): establish portfolio foundation and test baseline`
 

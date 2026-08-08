@@ -25,6 +25,16 @@ export default function HomePage() {
                   alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
                 }}
               />
+              <ProjectCard
+                id="subiter"
+                title="SUBITER"
+                description="Editorial representation of complex inspection and post-inspection workflows for enterprise systems, including AI-assisted review patterns."
+                tags={['Complex Systems', 'Inspections', 'AI-assisted Workflows']}
+                image={{
+                  src: '/assets/projects/subiter/cover/cover-1440.webp',
+                  alt: 'Editorial interface composition with inspection workflow grid, trend line and review summary panels.',
+                }}
+              />
             </ProjectGrid>
           </div>
         </section>

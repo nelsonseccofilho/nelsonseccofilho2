@@ -22,6 +22,8 @@ describe('HomePage', () => {
     expect(screen.getByText(/ai-assisted product design/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /featured cases/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER']);
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 });

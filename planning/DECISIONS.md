@@ -340,3 +340,21 @@ Avoid building final interfaces before the required foundation.
 
 **Consequences**
 Implementation gains progressive clarity and reduced rework.
+
+---
+
+## D-019 — External QA handoff timing and evidence policy
+
+**Status:** Accepted
+
+**Context**
+It was necessary to define when independent external QA can happen and how to preserve visual-review integrity and security boundaries.
+
+**Decision**
+Final external QA will run only after content and microinteractions are complete. Temporary HTTPS access may be used during that QA session, but rendered Playwright evidence remains mandatory for visual review. Findings must be recorded in planning/QA_FINDINGS.md, and temporary access must be terminated immediately after QA.
+
+**Rationale**
+External reachability improves independent review, but objective local rendered evidence is still required for reliable visual validation.
+
+**Consequences**
+The project keeps a controlled and auditable final QA process without turning temporary external access into a deployment path.

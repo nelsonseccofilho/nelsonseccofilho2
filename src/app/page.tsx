@@ -84,6 +84,29 @@ export default function HomePage() {
                   },
                 }}
               />
+              <ProjectCard
+                id="dasa"
+                title="DASA — Canal do Consultor"
+                description="Discovery-led product design work translating research into business rules for a complex consultation journey and decision structure."
+                tags={['Research & Discovery', 'Product Design', 'Business Rules']}
+                image={{
+                  alt: 'Editorial representation of a consultation journey translating research into decision rules and product strategy.',
+                  width: 1920,
+                  height: 1080,
+                  light: {
+                    640: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-640.webp',
+                    1024: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1024.webp',
+                    1440: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1440.webp',
+                    1920: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1920.webp',
+                  },
+                  dark: {
+                    640: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-640.webp',
+                    1024: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1024.webp',
+                    1440: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1440.webp',
+                    1920: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1920.webp',
+                  },
+                }}
+              />
             </ProjectGrid>
           </div>
         </section>

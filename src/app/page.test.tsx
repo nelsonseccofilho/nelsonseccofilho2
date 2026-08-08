@@ -24,7 +24,13 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0']);
+    expect(screen.getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
+    expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(4);
+    expect(screen.getByText(/discovery-led product design work/i)).toBeInTheDocument();
+    expect(screen.getByText('Research & Discovery')).toBeInTheDocument();
+    expect(screen.getByText('Product Design')).toBeInTheDocument();
+    expect(screen.getByText('Business Rules')).toBeInTheDocument();
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 });

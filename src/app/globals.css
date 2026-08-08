@@ -253,6 +253,36 @@ img {
   color: var(--color-border);
 }
 
+.featured-cases {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.featured-cases__inner {
+  display: grid;
+  gap: var(--spacing-6);
+}
+
+.featured-cases__heading {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--spacing-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-grid__item {
+  min-width: 0;
+}
+
 @media (max-width: 40rem) {
   .hero__disciplines {
     row-gap: var(--spacing-3);

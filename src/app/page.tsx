@@ -1,14 +1,22 @@
-import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { Hero } from '@/components/home/hero';
+import { ProjectGrid } from '@/components/home/project-grid';
+import { SiteHeader } from '@/components/layout/site-header';
 
 export default function HomePage() {
   return (
-    <main className="layout-container">
-      <h1>N3LX</h1>
-      <p>
-        Senior Product Designer | UX Strategy | Product Discovery | Design Systems |
-        AI-assisted Product Design
-      </p>
-      <ThemeToggle />
-    </main>
+    <>
+      <SiteHeader />
+      <main>
+        <Hero />
+        <section className="featured-cases" aria-labelledby="featured-cases-title">
+          <div className="layout-container featured-cases__inner">
+            <h2 id="featured-cases-title" className="featured-cases__heading">
+              Featured cases
+            </h2>
+            <ProjectGrid />
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

@@ -25,7 +25,7 @@ Commit: `feat(layout): add tested responsive application shell`
 
 ### C. Home
 - [ ] Hero
-- [ ] Featured cases
+- [x] Featured cases structure / ProjectGrid
 - [ ] ProjectCard
 - [ ] Selected Work
 - [ ] seniority/value narrative

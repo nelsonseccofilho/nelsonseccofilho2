@@ -566,3 +566,26 @@ Compatibility with Sections 12 and 17:
 
 - Validation depth is defined by QUICK CHECK, FEATURE CHECK, or MILESTONE CHECK.
 - When the selected level requires full pipeline, keep the already defined operational sequence.
+
+### Prompt Economy & Session Hygiene
+
+- Task prompts must contain only task-specific delta: objective, authorized scope, exceptional constraints, required validation, and stop condition.
+- Do not repeatedly restate permanent repository rules already defined in this document or in `.github/copilot-instructions.md`.
+- Prefer short and explicit prompts over large repeated instruction blocks.
+- Start a new Copilot Chat session when moving to a substantially different project phase or when accumulated context becomes excessive.
+- If VS Code or Copilot warns about prolonged AI usage, stop and report progress instead of automatically continuing.
+- For complex work, prefer separate phases: Research -> Plan -> Implement.
+- Small and well-defined tasks may proceed directly without unnecessary research/planning cycles.
+- Do not repeatedly reread unchanged files.
+- Do not repeatedly rerun already-green validation when relevant code has not changed.
+- Keep final reports concise and avoid reproducing repository-known instructions.
+- Use only tools or MCP integrations that materially help the current task.
+- Avoid loading unrelated external context.
+- Prefer the lowest-complexity model that can safely complete the task; use stronger reasoning models for architecture, ambiguous debugging, and complex decisions.
+- Avoid unnecessary model switching during the same working session.
+- When appropriate, Auto model selection is preferred for routine implementation work.
+- Quality safeguards must not be removed merely to reduce AI usage.
+
+Reference:
+
+- https://docs.github.com/en/copilot/tutorials/optimize-ai-usage

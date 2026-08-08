@@ -358,3 +358,21 @@ External reachability improves independent review, but objective local rendered 
 
 **Consequences**
 The project keeps a controlled and auditable final QA process without turning temporary external access into a deployment path.
+
+---
+
+## D-020 — Prompt economy and context hygiene as permanent AI practice
+
+**Status:** Accepted
+
+**Context**
+It was necessary to reduce avoidable AI credit usage while preserving delivery quality and safety in AI-assisted development.
+
+**Decision**
+The project adopts prompt economy and context hygiene as a permanent operating practice, following GitHub Copilot guidance on optimizing AI usage (https://docs.github.com/en/copilot/tutorials/optimize-ai-usage). Stable rules must remain in repository-level instructions so task prompts can stay compact and delta-focused. Major phases should use fresh Copilot Chat sessions when appropriate.
+
+**Rationale**
+Compact prompts, controlled context growth, and selective tool usage improve efficiency without reducing quality safeguards.
+
+**Consequences**
+The team preserves mandatory validation quality while improving AI cost-efficiency, context clarity, and execution focus.

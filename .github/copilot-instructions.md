@@ -95,3 +95,13 @@ Validation levels:
 Always choose the lowest validation level that safely covers the current change.
 
 Do not downgrade validation when the change affects global layout, theme system, routing architecture, accessibility infrastructure, security, or shared data contracts.
+
+## Prompt Economy & Context Hygiene
+
+- Rely on `planning/PROJECT_RULES.md` for permanent standards instead of repeating them in each task prompt.
+- Keep prompts and final reports concise, scoped, and task-specific.
+- Avoid unnecessary rereads of unchanged files and repeated reruns of already-green validation.
+- Prefer the smallest safe validation scope required by the selected validation level.
+- Stop and report progress when VS Code/Copilot signals prolonged or iterative continuation warnings.
+- Start a new Copilot Chat session for substantially different phases or when context becomes too large.
+- Use only relevant tools, MCP integrations, and external context for the current task.

@@ -398,7 +398,38 @@ Não usar `git add .` automaticamente.
 
 Preferir stage seletivo.
 
-## 17. LEGACY
+## 17. IMPLEMENTATION REVIEW & VALIDATION WORKFLOW
+
+Toda unidade de implementação deve passar por revisão e validação antes de Git write.
+
+Sequência obrigatória:
+
+1. verificar escopo do working tree;
+2. revisar código de produção;
+3. revisar testes;
+4. revisar integração;
+5. revisar CSS/estilo quando aplicável;
+6. executar `npm test`;
+7. executar `npm run typecheck`;
+8. executar `npm run lint`;
+9. executar `npm run build`;
+10. preparar RUN DEV visual QA quando UI for afetada;
+11. fazer staging somente após validação;
+12. revisar nomes dos arquivos staged com comando Git read-only;
+13. revisar o diff staged completo;
+14. fazer commit somente após staged filenames e staged diff passarem na revisão;
+15. verificar `git status --short` após o commit.
+
+Convenções de interação:
+
+- comandos apresentados ao usuário devem identificar o contexto: GIT, NPM ou RUN DEV;
+- comandos PowerShell devem ser fornecidos um por vez;
+- não afirmar que Visual QA passou sem evidência visual renderizada;
+- não misturar implementação, QA e commit em um único passo sem controle;
+- commits devem permanecer coesos e limitados a uma unidade de implementação;
+- segredos e configurações MCP locais nunca devem ser commitados.
+
+## 18. LEGACY
 
 A pasta:
 
@@ -414,7 +445,7 @@ Ela:
 - não deve ser usada como fonte automática de implementação;
 - serve apenas como arquivo histórico/referência manual.
 
-## 18. CONTENT INTEGRITY
+## 19. CONTENT INTEGRITY
 
 Nunca ampliar claims profissionais sem evidência.
 
@@ -433,7 +464,7 @@ Não apresentar benchmark como trabalho autoral.
 
 Não transformar hipótese editorial em fato histórico.
 
-## 19. SCOPE CONTROL
+## 20. SCOPE CONTROL
 
 Não adicionar melhorias fora da tarefa atual por iniciativa própria.
 
@@ -445,7 +476,7 @@ Quando encontrar oportunidade fora do escopo:
 
 Uma tarefa deve modificar somente os arquivos necessários.
 
-## 20. DOCUMENTATION
+## 21. DOCUMENTATION
 
 DECISIONS.md:
 registra decisões e suas razões.

@@ -1,11 +1,15 @@
 import '@testing-library/jest-dom/vitest';
-import { render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import HomePage from './page';
+import { cleanup, render, screen, within } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+import { HomePage } from '@/components/home/home-page';
 
 describe('HomePage', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it('renders the new header, hero and featured cases composition', () => {
-    render(<HomePage />);
+    render(<HomePage locale="en" />);
 
     const hero = screen.getByRole('region', { name: /hero/i });
     const featuredCases = screen.getByRole('region', { name: /featured cases/i });
@@ -23,13 +27,13 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /featured cases/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
     const horizonLink = within(featuredCases).getByRole('link', { name: /horizon his/i });
-    expect(horizonLink).toHaveAttribute('href', '/projects/horizon-his');
+    expect(horizonLink).toHaveAttribute('href', '/en/projects/horizon-his');
     const subiterLink = within(featuredCases).getByRole('link', { name: /subiter/i });
-    expect(subiterLink).toHaveAttribute('href', '/projects/subiter');
+    expect(subiterLink).toHaveAttribute('href', '/en/projects/subiter');
     const redeDccLink = within(featuredCases).getByRole('link', { name: /rede dcc 1\.0/i });
-    expect(redeDccLink).toHaveAttribute('href', '/projects/rede-dcc');
+    expect(redeDccLink).toHaveAttribute('href', '/en/projects/rede-dcc');
     const dasaLink = within(featuredCases).getByRole('link', { name: /dasa — canal do consultor/i });
-    expect(dasaLink).toHaveAttribute('href', '/projects/dasa-canal-do-consultor');
+    expect(dasaLink).toHaveAttribute('href', '/en/projects/dasa-canal-do-consultor');
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
@@ -63,8 +67,10 @@ describe('HomePage', () => {
     const aboutSection = screen.getByRole('region', { name: /about/i });
     expect(aboutSection).toBeInTheDocument();
     expect(within(aboutSection).getByRole('heading', { level: 2, name: /about/i })).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/senior product designer/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/healthtech, payments and industrial operations/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/over 12 years of experience building digital products/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/more than 8 years focused on ux and product design/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/including terramagna and noalvo/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/without compromising critical thinking or experience quality/i)).toBeInTheDocument();
 
     const contactSection = screen.getByRole('region', { name: /let['’]s build something meaningful/i });
     expect(contactSection).toBeInTheDocument();
@@ -80,5 +86,23 @@ describe('HomePage', () => {
     expect(within(contactSection).queryByRole('link', { name: /placeholder/i })).not.toBeInTheDocument();
 
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it('renders canonical Portuguese content and localized project links', () => {
+    render(<HomePage locale="pt-BR" />);
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Design de produtos digitais para sistemas complexos.' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Página inicial — N3LX' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: 'Vamos conversar' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en');
+    expect(screen.getByRole('link', { name: /horizon his/i })).toHaveAttribute('href', '/projetos/horizon-his');
+    expect(screen.getByRole('link', { name: /subiter/i })).toHaveAttribute('href', '/projetos/subiter');
+    const aboutSection = screen.getByRole('region', { name: /sobre/i });
+    expect(within(aboutSection).getByText(/mais de 12 anos de experiência na construção de produtos digitais/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/mais de 8 anos dedicados a ux e product design/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/sem abrir mão do pensamento crítico e da qualidade da experiência/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Alternar tema' })).toBeInTheDocument();
   });
 });

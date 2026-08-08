@@ -73,7 +73,7 @@ describe('ProjectCard', () => {
           title="HORIZON HIS"
           description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
           tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
-          href="/projects/horizon-his"
+          href="/en/projects/horizon-his"
           image={{
             alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
             width: 1920,
@@ -97,7 +97,7 @@ describe('ProjectCard', () => {
 
     const link = screen.getByRole('link', { name: /horizon his/i });
 
-    expect(link).toHaveAttribute('href', '/projects/horizon-his');
+    expect(link).toHaveAttribute('href', '/en/projects/horizon-his');
   });
 
   it('does not expose a fake case-study link before the route exists', () => {

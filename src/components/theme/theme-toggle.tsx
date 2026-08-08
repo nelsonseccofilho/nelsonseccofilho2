@@ -2,6 +2,8 @@
 
 import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
+import { enCommon } from '@/content/i18n';
+import type { CommonContent } from '@/content/i18n/types';
 
 const emptySubscribe = () => () => {};
 
@@ -9,13 +11,15 @@ function useMounted() {
   return useSyncExternalStore(emptySubscribe, () => true, () => false);
 }
 
-export function ThemeToggle() {
+type ThemeToggleProps = { labels?: CommonContent['themeToggle'] };
+
+export function ThemeToggle({ labels = enCommon.themeToggle }: ThemeToggleProps = {}) {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
 
   const themeReady = mounted && (resolvedTheme === 'light' || resolvedTheme === 'dark');
   const isDark = themeReady && resolvedTheme === 'dark';
-  const label = themeReady ? (isDark ? 'Ativar tema claro' : 'Ativar tema escuro') : 'Alternar tema';
+  const label = themeReady ? (isDark ? labels.activateLightLabel : labels.activateDarkLabel) : labels.pendingLabel;
 
   return (
     <button

@@ -45,10 +45,19 @@ export type LocalizedImageContent = {
 
 export type HomeProjectCardContent = {
   routeId: ProjectRouteId;
-  title: string;
   description: string;
   tags: readonly string[];
+  tagsLabel: string;
   image: LocalizedImageContent;
+};
+
+export type HomeAccessibilityLabels = AccessibilityLabels & {
+  hero: string;
+  professionalDisciplines: string;
+  selectedWorkTags: string;
+  seniority: string;
+  about: string;
+  contact: string;
 };
 
 export type HomeContent = {
@@ -66,7 +75,6 @@ export type HomeContent = {
   selectedWork: {
     eyebrow: string;
     title: string;
-    projectTitle: string;
     description: string;
     tags: readonly string[];
     image: LocalizedImageContent;
@@ -89,7 +97,7 @@ export type HomeContent = {
     description: string;
     primaryActionLabel: string;
   };
-  accessibility: AccessibilityLabels;
+  accessibility: HomeAccessibilityLabels;
 };
 
 export type ProjectFacts = {

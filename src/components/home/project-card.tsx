@@ -15,12 +15,13 @@ type ProjectCardProps = {
   id: string;
   title: string;
   description: string;
-  tags: string[];
+  tags: readonly string[];
+  tagsLabel?: string;
   image: ProjectCardImage;
   href?: string;
 };
 
-export function ProjectCard({ id, title, description, tags, image, href }: ProjectCardProps) {
+export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, image, href }: ProjectCardProps) {
   const titleId = `${id}-title`;
 
   return (
@@ -39,7 +40,7 @@ export function ProjectCard({ id, title, description, tags, image, href }: Proje
                 {title}
               </h3>
               <p className="project-card__description">{description}</p>
-              <ul className="project-card__tags" aria-label={`${title} tags`}>
+              <ul className="project-card__tags" aria-label={tagsLabel}>
                 {tags.map((tag) => (
                   <li key={tag} className="project-card__tag">
                     {tag}
@@ -62,7 +63,7 @@ export function ProjectCard({ id, title, description, tags, image, href }: Proje
               {title}
             </h3>
             <p className="project-card__description">{description}</p>
-            <ul className="project-card__tags" aria-label={`${title} tags`}>
+            <ul className="project-card__tags" aria-label={tagsLabel}>
               {tags.map((tag) => (
                 <li key={tag} className="project-card__tag">
                   {tag}

@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { enCommon, ptBRCommon } from '@/content/i18n';
 
 const { useThemeMock, setThemeMock } = vi.hoisted(() => ({
   useThemeMock: vi.fn(),
@@ -28,7 +29,7 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    const darkMarkup = renderToString(<ThemeToggle />);
+    const darkMarkup = renderToString(<ThemeToggle labels={enCommon.themeToggle} />);
 
     useThemeMock.mockReturnValue({
       theme: 'light',
@@ -36,10 +37,10 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    const lightMarkup = renderToString(<ThemeToggle />);
+    const lightMarkup = renderToString(<ThemeToggle labels={enCommon.themeToggle} />);
     const container = document.createElement('div');
     container.innerHTML = darkMarkup;
-    const button = within(container).getByRole('button', { name: 'Alternar tema' });
+    const button = within(container).getByRole('button', { name: 'Toggle theme' });
 
     expect(darkMarkup).toBe(lightMarkup);
     expect(button).toHaveAttribute('aria-pressed', 'false');
@@ -53,7 +54,7 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    const serverMarkup = renderToString(<ThemeToggle />);
+    const serverMarkup = renderToString(<ThemeToggle labels={enCommon.themeToggle} />);
     const container = document.createElement('div');
     document.body.appendChild(container);
     container.innerHTML = serverMarkup;
@@ -65,9 +66,9 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    render(<ThemeToggle />, { container, hydrate: true });
+    render(<ThemeToggle labels={enCommon.themeToggle} />, { container, hydrate: true });
 
-    const button = within(container).getByRole('button', { name: 'Ativar tema escuro' });
+    const button = within(container).getByRole('button', { name: 'Activate dark theme' });
     expect(button).toHaveAttribute('aria-pressed', 'false');
     expect(button.querySelector('svg')).toBeInTheDocument();
     expect(consoleErrorSpy).not.toHaveBeenCalled();
@@ -80,11 +81,11 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    render(<ThemeToggle />);
+    render(<ThemeToggle labels={enCommon.themeToggle} />);
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute('aria-label', 'Ativar tema escuro');
+    expect(button).toHaveAttribute('aria-label', 'Activate dark theme');
     expect(button).toHaveAttribute('aria-pressed', 'false');
   });
 
@@ -95,7 +96,7 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    render(<ThemeToggle />);
+    render(<ThemeToggle labels={enCommon.themeToggle} />);
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -109,13 +110,25 @@ describe('ThemeToggle', () => {
       setTheme: setThemeMock,
     });
 
-    render(<ThemeToggle />);
+    render(<ThemeToggle labels={enCommon.themeToggle} />);
 
     const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Ativar tema claro');
+    expect(button).toHaveAttribute('aria-label', 'Activate light theme');
     expect(button).toHaveAttribute('aria-pressed', 'true');
 
     fireEvent.click(button);
     expect(setThemeMock).toHaveBeenCalledWith('light');
+  });
+
+  it('resolves Portuguese accessibility labels from the provided locale content', () => {
+    useThemeMock.mockReturnValue({
+      theme: 'light',
+      resolvedTheme: 'light',
+      setTheme: setThemeMock,
+    });
+
+    render(<ThemeToggle labels={ptBRCommon.themeToggle} />);
+
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Ativar tema escuro');
   });
 });

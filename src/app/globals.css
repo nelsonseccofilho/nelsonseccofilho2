@@ -272,11 +272,17 @@ img {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--spacing-5);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .project-grid__item {
@@ -375,11 +381,20 @@ img {
 
 .selected-work__card {
   display: grid;
-  gap: var(--spacing-5);
-  padding: var(--spacing-5);
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 100%;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   background: var(--color-surface-elevated);
+}
+
+@media (min-width: 768px) {
+  .selected-work__card {
+    max-width: calc((100% - var(--spacing-5)) / 2);
+    justify-self: start;
+  }
 }
 
 .selected-work__media {
@@ -393,13 +408,13 @@ img {
 
 .selected-work__content {
   display: grid;
-  gap: var(--spacing-3);
+  gap: var(--spacing-2);
 }
 
 .selected-work__title {
   margin: 0;
   color: var(--color-text-primary);
-  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -407,7 +422,7 @@ img {
 .selected-work__description {
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.25vw, 1rem);
   line-height: 1.6;
 }
 

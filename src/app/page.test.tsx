@@ -18,7 +18,7 @@ describe('HomePage', () => {
     expect(within(hero).getByText(/senior product designer/i)).toBeInTheDocument();
     expect(screen.getByText(/ux strategy/i)).toBeInTheDocument();
     expect(screen.getByText(/product discovery/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/design systems/i)).toHaveLength(3);
+    expect(within(hero).getByText('Design Systems')).toBeInTheDocument();
     expect(screen.getByText(/ai-assisted product design/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /featured cases/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
@@ -36,25 +36,26 @@ describe('HomePage', () => {
     expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(4);
-    expect(screen.getByText(/discovery-led product design work/i)).toBeInTheDocument();
+    expect(screen.getByText(/discovery-led product design translating research/i)).toBeInTheDocument();
     expect(screen.getByText('Research & Discovery')).toBeInTheDocument();
     expect(screen.getByText('Product Design')).toBeInTheDocument();
     expect(screen.getByText('Business Rules')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /connectcar \/ freeflow/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /design systems for mobility/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /connectcar/i })).toBeInTheDocument();
-    expect(screen.getByText(/editorial representation of responsive component studies/i)).toBeInTheDocument();
+    expect(screen.getByText(/responsive ui and design-system studies for connectcar \/ freeflow/i)).toBeInTheDocument();
     expect(screen.getAllByText('Design Systems')).toHaveLength(3);
+    expect(screen.getByText('Mobility')).toBeInTheDocument();
     expect(screen.getByText('Responsive UI')).toBeInTheDocument();
-    expect(screen.getByText('Editorial Reference')).toBeInTheDocument();
 
-    const senioritySection = screen.getByRole('region', { name: /seniority and value proposition/i });
+    const senioritySection = screen.getByRole('region', { name: /strategy through delivery/i });
     expect(senioritySection).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 2, name: /seniority and value proposition/i })).toBeInTheDocument();
-    expect(within(senioritySection).getByText(/strategy/i)).toBeInTheDocument();
-    expect(within(senioritySection).getByText(/complex systems/i)).toBeInTheDocument();
-    expect(within(senioritySection).getByText(/delivery/i)).toBeInTheDocument();
-    expect(within(senioritySection).getByText(/discovery/i)).toBeInTheDocument();
-    expect(within(senioritySection).getByText(/design systems/i)).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 2, name: /strategy through delivery/i })).toBeInTheDocument();
+    expect(within(senioritySection).getByText(/how i work/i)).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Strategy' })).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Complex Systems' })).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Delivery' })).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Discovery' })).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Design Systems' })).toBeInTheDocument();
     const pillarNames = within(senioritySection).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
     expect(pillarNames).toEqual(['Strategy', 'Complex Systems', 'Delivery', 'Discovery', 'Design Systems']);
     expect(within(senioritySection).getAllByRole('heading', { level: 3 })).toHaveLength(5);
@@ -63,7 +64,7 @@ describe('HomePage', () => {
     expect(aboutSection).toBeInTheDocument();
     expect(within(aboutSection).getByRole('heading', { level: 2, name: /about/i })).toBeInTheDocument();
     expect(within(aboutSection).getByText(/senior product designer/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/complex digital products/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/healthtech, payments and industrial operations/i)).toBeInTheDocument();
 
     const contactSection = screen.getByRole('region', { name: /let['’]s build something meaningful/i });
     expect(contactSection).toBeInTheDocument();

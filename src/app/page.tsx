@@ -44,7 +44,7 @@ export default function HomePage() {
               <ProjectCard
                 id="subiter"
                 title="SUBITER"
-                description="Editorial representation of complex inspection and post-inspection workflows for enterprise systems, including AI-assisted review patterns."
+                description="Product Design leadership for a production inspection platform connecting operational workflows, traceability and AI-assisted review."
                 tags={['Complex Systems', 'Inspections', 'AI-assisted Workflows']}
                 href="/projects/subiter"
                 image={{
@@ -68,7 +68,7 @@ export default function HomePage() {
               <ProjectCard
                 id="rede-dcc"
                 title="REDE DCC 1.0"
-                description="Interaction design for a financial choice shaped by transactional states, decision points and exception handling."
+                description="Interaction design for a financial choice within a payment journey spanning transactional states, decision points and exception handling."
                 tags={['Payments', 'Interaction Design', 'Transactional States']}
                 href="/projects/rede-dcc"
                 image={{
@@ -92,7 +92,7 @@ export default function HomePage() {
               <ProjectCard
                 id="dasa"
                 title="DASA — Canal do Consultor"
-                description="Discovery-led product design work translating research into business rules for a complex consultation journey and decision structure."
+                description="Discovery-led product design translating research into business rules for a complex consultant scheduling journey and product decision structure."
                 tags={['Research & Discovery', 'Product Design', 'Business Rules']}
                 href="/projects/dasa-canal-do-consultor"
                 image={{
@@ -121,7 +121,7 @@ export default function HomePage() {
             <div className="selected-work__header">
               <p className="selected-work__eyebrow">Selected work</p>
               <h2 id="selected-work-title" className="selected-work__heading">
-                ConnectCar / Freeflow
+                Design systems for mobility
               </h2>
             </div>
             <article className="selected-work__card" aria-labelledby="selected-work-card-title">
@@ -152,12 +152,12 @@ export default function HomePage() {
                   ConnectCar / Freeflow
                 </h3>
                 <p className="selected-work__description">
-                  Editorial representation of responsive component studies and design-system references for a mobility experience narrative.
+                  Responsive UI and design-system studies for ConnectCar / Freeflow. The cover is an editorial representation.
                 </p>
                 <ul className="selected-work__tags" aria-label="ConnectCar / Freeflow tags">
-                  <li className="selected-work__tag">Design Systems</li>
+                  <li className="selected-work__tag">Mobility</li>
                   <li className="selected-work__tag">Responsive UI</li>
-                  <li className="selected-work__tag">Editorial Reference</li>
+                  <li className="selected-work__tag">Design Systems</li>
                 </ul>
               </div>
             </article>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <section className="seniority" aria-labelledby="seniority-title" aria-label="Seniority and value proposition">
           <div className="layout-container seniority__inner">
             <div className="seniority__header">
-              <p className="seniority__eyebrow">Seniority and value proposition</p>
+              <p className="seniority__eyebrow">How I work</p>
               <h2 id="seniority-title" className="seniority__heading">
-                Seniority and value proposition
+                Strategy through delivery
               </h2>
             </div>
             <div className="seniority__grid" role="list">
               <article className="seniority__pillar" role="listitem">
                 <h3 className="seniority__pillar-title">Strategy</h3>
                 <p className="seniority__pillar-copy">
-                  Aligning product intent, service context and user needs before interfaces are defined.
+                  Aligning product intent, service context and user needs to guide product and interface decisions.
                 </p>
               </article>
               <article className="seniority__pillar" role="listitem">
@@ -187,7 +187,7 @@ export default function HomePage() {
               <article className="seniority__pillar" role="listitem">
                 <h3 className="seniority__pillar-title">Delivery</h3>
                 <p className="seniority__pillar-copy">
-                  Turning concepts into tested decisions with clear handoff and implementation support.
+                  Turning concepts into delivery-ready decisions with clear handoff and implementation support.
                 </p>
               </article>
               <article className="seniority__pillar" role="listitem">
@@ -208,15 +208,14 @@ export default function HomePage() {
         <section className="about" aria-labelledby="about-title" aria-label="About">
           <div className="layout-container about__inner">
             <div className="about__content">
-              <p className="about__eyebrow">About</p>
               <h2 id="about-title" className="about__heading">
                 About
               </h2>
               <p className="about__copy">
-                I’m a senior product designer focused on shaping thoughtful experiences for complex digital products.
+                I’m a senior product designer and UX lead with hands-on experience across healthtech, payments and industrial operations.
               </p>
               <p className="about__copy">
-                My work sits at the intersection of product strategy, UX and technology, turning ambiguity into clear experiences from discovery through delivery.
+                I work from discovery and product strategy through UX/UI, prototyping, design systems and implementation support.
               </p>
             </div>
           </div>

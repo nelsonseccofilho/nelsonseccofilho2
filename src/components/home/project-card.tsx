@@ -1,0 +1,41 @@
+import Image from 'next/image';
+
+type ProjectCardImage = {
+  src: string;
+  alt: string;
+};
+
+type ProjectCardProps = {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  image: ProjectCardImage;
+};
+
+export function ProjectCard({ id, title, description, tags, image }: ProjectCardProps) {
+  const titleId = `${id}-title`;
+
+  return (
+    <li className="project-grid__item">
+      <article className="project-card" aria-labelledby={titleId}>
+        <div className="project-card__media">
+          <Image className="project-card__image" src={image.src} alt={image.alt} width={1440} height={810} sizes="(max-width: 767px) 100vw, (max-width: 1199px) 92vw, (max-width: 1599px) 82vw, 1440px" />
+        </div>
+        <div className="project-card__content">
+          <h3 id={titleId} className="project-card__title">
+            {title}
+          </h3>
+          <p className="project-card__description">{description}</p>
+          <ul className="project-card__tags" aria-label={`${title} tags`}>
+            {tags.map((tag) => (
+              <li key={tag} className="project-card__tag">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    </li>
+  );
+}

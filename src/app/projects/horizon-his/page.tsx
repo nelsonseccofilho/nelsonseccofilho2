@@ -175,10 +175,10 @@ export default function HorizonHisPage() {
         >
           <CaseMedia
             image={{
-              src: '/assets/projects/horizon-his/evidence/hospitalar-2025-evidence-960.webp',
-              alt: 'Photographic record of the prototype presentation at Hospitalar 2025 with the kiosk in the background.',
+              src: '/assets/projects/horizon-his/evidence/prototype-and-interaction-map-1600.webp',
+              alt: 'High-fidelity prototype and interaction map used to validate the HORIZON HIS vision.',
             }}
-            caption="Hospitalar 2025 presentation context."
+            caption="High-fidelity prototype and interaction-map evidence."
           />
         </CaseSection>
 

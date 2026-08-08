@@ -10,7 +10,7 @@
 Project names, descriptions and tags remain HTML. Covers intentionally avoid essential baked copy.
 
 ## HORIZON case
-Use triage prototype, interaction map and (after privacy review) Hospitalar event photo. The result slide is available as secondary proof, but prefer HTML metrics instead of rasterized text.
+Use the triage prototype and interaction map. The Hospitalar event photo remains `review_privacy` and must not be used in the public case unless separately authorized. The result slide is available as secondary proof, but prefer HTML metrics instead of rasterized text.
 
 ## SUBITER case
 Use the three editorial support visuals until publication clearance allows real UI exports. Label them in the caption as editorial representations when shown.

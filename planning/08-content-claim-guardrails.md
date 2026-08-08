@@ -4,12 +4,9 @@
 Safe narrative: high-fidelity navigable prototype, clinical/domain validation, executive decision support, Hospitalar 2025 presentation. Preserve the distinction between **validated prototype** and **production implementation**.
 
 ## SUBITER
-The Figma evidence demonstrates rich inspection/post-inspection flows and explicitly includes “Product Designer / Nelson Secco”. However, before public launch confirm:
-1. product naming relationship (Subiter / Inspectly / AltusEye / TH Drone),
-2. publication authorization,
-3. which artifacts may be shown externally,
-4. implementation/result claims.
-Assets in this kit are therefore labelled **editorial representation**, not screenshots.
+Approved factual narrative: the Subiter Web Portal was delivered to production; Marina is the AI assistant integrated into the portal; SUBITER performed an inspection involving the National Geographic Delfina in Ecuador; and the contribution received formal company recognition.
+
+Active public visuals are approved **editorial representations**, not original or confidential product UI screenshots. Publication provenance remains distinct from factual claim evidence: only assets explicitly marked `publish` in the provenance manifest may be used publicly, and any future real UI exports require separate authorization.
 
 ## REDE DCC 1.0
 Show a curated state sequence rather than the full canvas. Focus claim: a simple financial choice required handling multiple transactional states and exceptions. Do not imply every terminal/payment project is the same initiative.

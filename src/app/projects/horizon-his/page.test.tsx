@@ -40,9 +40,10 @@ describe('HorizonHisPage', () => {
 
     expect(screen.getByRole('img', { name: /overview of the horizon his journey map showing multiple connected interface flows and states/i })).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: /detailed section of the horizon his journey map showing connected interface states/i })).toHaveLength(4);
-    expect(screen.queryByRole('img', { name: /high-fidelity prototype and interaction map used to validate the horizon his vision/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /high-fidelity prototype and interaction map used to validate the horizon his vision/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /horizon his triage prototype screen with intake, vital signs, and generated data/i })).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /photographic record of the prototype presentation at hospitalar 2025 with the kiosk in the background/i })).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: /photographic record of the prototype presentation at hospitalar 2025 with the kiosk in the background/i })).not.toBeInTheDocument();
+    expect(screen.getByText('High-fidelity prototype and interaction-map evidence.')).toBeInTheDocument();
 
     const navigation = screen.getByRole('navigation', { name: /case navigation/i });
     const backLink = within(navigation).getByRole('link', { name: /← back to projects/i });

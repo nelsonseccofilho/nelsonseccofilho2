@@ -46,6 +46,7 @@ export default function HomePage() {
                 title="SUBITER"
                 description="Editorial representation of complex inspection and post-inspection workflows for enterprise systems, including AI-assisted review patterns."
                 tags={['Complex Systems', 'Inspections', 'AI-assisted Workflows']}
+                href="/projects/subiter"
                 image={{
                   alt: 'Editorial interface composition with inspection workflow grid, trend line and review summary panels.',
                   width: 1920,

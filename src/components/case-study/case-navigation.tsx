@@ -1,11 +1,15 @@
 import Link from 'next/link';
 
-export function CaseNavigation() {
+type CaseNavigationProps = {
+  label?: string;
+};
+
+export function CaseNavigation({ label = 'Back to Featured Cases' }: CaseNavigationProps) {
   return (
     <nav className="case-navigation" aria-label="Case navigation">
       <div className="layout-container case-navigation__inner">
         <Link href="/" className="case-navigation__back">
-          Back to Featured Cases
+          {label}
         </Link>
       </div>
     </nav>

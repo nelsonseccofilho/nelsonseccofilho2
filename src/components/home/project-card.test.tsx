@@ -65,6 +65,41 @@ describe('ProjectCard', () => {
     expect(screen.getByRole('article', { name: 'HORIZON HIS' })).toBeInTheDocument();
   });
 
+  it('renders an optional link when a route exists', () => {
+    render(
+      <ul>
+        <ProjectCard
+          id="horizon-his"
+          title="HORIZON HIS"
+          description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
+          tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
+          href="/projects/horizon-his"
+          image={{
+            alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
+            width: 1920,
+            height: 1080,
+            light: {
+              640: '/assets/projects/horizon-his/cover/light/cover-640.webp',
+              1024: '/assets/projects/horizon-his/cover/light/cover-1024.webp',
+              1440: '/assets/projects/horizon-his/cover/light/cover-1440.webp',
+              1920: '/assets/projects/horizon-his/cover/light/cover-1920.webp',
+            },
+            dark: {
+              640: '/assets/projects/horizon-his/cover/dark/cover-640.webp',
+              1024: '/assets/projects/horizon-his/cover/dark/cover-1024.webp',
+              1440: '/assets/projects/horizon-his/cover/dark/cover-1440.webp',
+              1920: '/assets/projects/horizon-his/cover/dark/cover-1920.webp',
+            },
+          }}
+        />
+      </ul>,
+    );
+
+    const link = screen.getByRole('link', { name: /horizon his/i });
+
+    expect(link).toHaveAttribute('href', '/projects/horizon-his');
+  });
+
   it('does not expose a fake case-study link before the route exists', () => {
     render(<ul>{horizonCard}</ul>);
 

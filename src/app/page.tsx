@@ -21,6 +21,7 @@ export default function HomePage() {
                 title="HORIZON HIS"
                 description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
                 tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
+                href="/projects/horizon-his"
                 image={{
                   alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
                   width: 1920,

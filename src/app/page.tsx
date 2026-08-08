@@ -35,6 +35,16 @@ export default function HomePage() {
                   alt: 'Editorial interface composition with inspection workflow grid, trend line and review summary panels.',
                 }}
               />
+              <ProjectCard
+                id="rede-dcc"
+                title="REDE DCC 1.0"
+                description="Interaction design for a financial choice shaped by transactional states, decision points and exception handling."
+                tags={['Payments', 'Interaction Design', 'Transactional States']}
+                image={{
+                  src: '/assets/projects/rede-dcc/cover/cover-1440.webp',
+                  alt: 'Payment interface composition showing transaction flow states and confirmation screens.',
+                }}
+              />
             </ProjectGrid>
           </div>
         </section>

@@ -23,7 +23,8 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /featured cases/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER']);
+    expect(screen.getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0']);
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 });

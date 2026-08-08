@@ -2,6 +2,8 @@
   --color-brand: #107C10;
   --color-brand-hover: #0E6B0E;
   --color-brand-active: #0B5C0B;
+  --color-brand-text: var(--color-brand);
+  --color-brand-text-active: var(--color-brand-active);
   --color-background: #FFFFFF;
   --color-surface: #F6F8F5;
   --color-surface-elevated: #FFFFFF;
@@ -38,6 +40,8 @@
   --color-surface-elevated: #1B211B;
   --color-text-primary: #F4F7F4;
   --color-text-secondary: #AAB3AA;
+  --color-brand-text: #2D8C2D;
+  --color-brand-text-active: #4D884D;
   --color-border: #303830;
   color-scheme: dark;
 }
@@ -137,7 +141,7 @@ img {
 .theme-toggle:active {
   background: var(--color-surface);
   border-color: var(--color-brand-active);
-  color: var(--color-brand-active);
+  color: var(--color-brand-text-active);
 }
 
 .theme-toggle:focus-visible {
@@ -191,7 +195,7 @@ img {
 
 .site-header__brand:hover,
 .site-header__brand:focus-visible {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   opacity: 0.95;
 }
 
@@ -222,13 +226,13 @@ img {
 
 .site-header__cta:hover,
 .site-header__cta:focus-visible {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   border-color: var(--color-brand);
   background: var(--color-surface);
 }
 
 .site-header__cta:active {
-  color: var(--color-brand-active);
+  color: var(--color-brand-text-active);
   border-color: var(--color-brand-active);
   background: var(--color-surface-elevated);
 }
@@ -258,7 +262,7 @@ img {
 
 .hero__eyebrow {
   margin: 0;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -341,7 +345,7 @@ img {
 
 .case-hero__eyebrow {
   margin: 0;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -525,13 +529,13 @@ img {
 
 .case-navigation__back:hover,
 .case-navigation__back:focus-visible {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   border-color: var(--color-brand);
   background: var(--color-surface);
 }
 
 .case-navigation__back:active {
-  color: var(--color-brand-active);
+  color: var(--color-brand-text-active);
   border-color: var(--color-brand-active);
   background: var(--color-surface-elevated);
 }
@@ -641,7 +645,7 @@ img {
 
 .project-card__link:hover .project-card__title,
 .project-card__link:focus-visible .project-card__title {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
 }
 
 .project-card__link:active .project-card__media {
@@ -651,7 +655,7 @@ img {
 }
 
 .project-card__link:active .project-card__title {
-  color: var(--color-brand-active);
+  color: var(--color-brand-text-active);
 }
 
 .project-card__tags {
@@ -664,7 +668,7 @@ img {
 }
 
 .project-card__tag {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -688,7 +692,7 @@ img {
 
 .selected-work__eyebrow {
   margin: 0;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -760,7 +764,7 @@ img {
 }
 
 .selected-work__tag {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -784,7 +788,7 @@ img {
 
 .seniority__eyebrow {
   margin: 0;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -852,7 +856,7 @@ img {
 .about__eyebrow,
 .contact__eyebrow {
   margin: 0;
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -924,12 +928,12 @@ img {
 
 .contact__secondary-link:hover,
 .contact__secondary-link:focus-visible {
-  color: var(--color-brand);
+  color: var(--color-brand-text);
   border-color: var(--color-brand);
 }
 
 .case-study .contact__secondary-link:active {
-  color: var(--color-brand-active);
+  color: var(--color-brand-text-active);
   border-color: var(--color-brand-active);
 }
 
@@ -966,5 +970,20 @@ img {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
+  }
+
+  .theme-toggle,
+  .theme-toggle__icon,
+  .site-header__brand,
+  .site-header__cta,
+  .project-card__media,
+  .project-card__title,
+  .project-card__description,
+  .contact__primary-link,
+  .contact__secondary-link,
+  .case-navigation__back {
+    transition-property: none;
+    transition-duration: 0s;
+    transition-delay: 0s;
   }
 }

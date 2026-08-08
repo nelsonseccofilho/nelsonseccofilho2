@@ -1,8 +1,13 @@
-import Image from 'next/image';
+import { ThemeAwareProjectImage } from './theme-aware-project-image';
+
+type ResponsiveSources = Record<number, string>;
 
 type ProjectCardImage = {
-  src: string;
   alt: string;
+  width: number;
+  height: number;
+  light: ResponsiveSources;
+  dark: ResponsiveSources;
 };
 
 type ProjectCardProps = {
@@ -20,7 +25,10 @@ export function ProjectCard({ id, title, description, tags, image }: ProjectCard
     <li className="project-grid__item">
       <article className="project-card" aria-labelledby={titleId}>
         <div className="project-card__media">
-          <Image className="project-card__image" src={image.src} alt={image.alt} width={1440} height={810} sizes="(max-width: 767px) 100vw, (max-width: 1199px) 92vw, (max-width: 1599px) 82vw, 1440px" />
+          <ThemeAwareProjectImage
+            image={image}
+            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 92vw, (max-width: 1599px) 82vw, 1440px"
+          />
         </div>
         <div className="project-card__content">
           <h3 id={titleId} className="project-card__title">

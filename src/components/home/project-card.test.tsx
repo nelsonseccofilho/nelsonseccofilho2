@@ -1,7 +1,11 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ProjectCard } from './project-card';
+
+vi.mock('next-themes', () => ({
+  useTheme: () => ({ resolvedTheme: 'light' }),
+}));
 
 const horizonCard = (
   <ProjectCard
@@ -10,8 +14,21 @@ const horizonCard = (
     description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
     tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
     image={{
-      src: '/assets/projects/horizon-his/cover/cover-1440.webp',
       alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
+      width: 1920,
+      height: 1080,
+      light: {
+        640: '/assets/projects/horizon-his/cover/light/cover-640.webp',
+        1024: '/assets/projects/horizon-his/cover/light/cover-1024.webp',
+        1440: '/assets/projects/horizon-his/cover/light/cover-1440.webp',
+        1920: '/assets/projects/horizon-his/cover/light/cover-1920.webp',
+      },
+      dark: {
+        640: '/assets/projects/horizon-his/cover/dark/cover-640.webp',
+        1024: '/assets/projects/horizon-his/cover/dark/cover-1024.webp',
+        1440: '/assets/projects/horizon-his/cover/dark/cover-1440.webp',
+        1920: '/assets/projects/horizon-his/cover/dark/cover-1920.webp',
+      },
     }}
   />
 );
@@ -31,7 +48,7 @@ describe('ProjectCard', () => {
     expect(article).toHaveClass('project-card');
   });
 
-  it('renders the title, description, tags and accessible cover image', () => {
+  it('renders the title, description, tags and accessible cover image', async () => {
     render(<ul>{horizonCard}</ul>);
 
     expect(screen.getByRole('heading', { level: 3, name: 'HORIZON HIS' })).toBeInTheDocument();
@@ -39,7 +56,13 @@ describe('ProjectCard', () => {
     expect(screen.getByText('Healthtech')).toBeInTheDocument();
     expect(screen.getByText('UX Leadership')).toBeInTheDocument();
     expect(screen.getByText('Product Strategy')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /hospital information system prototype interface/i })).toBeInTheDocument();
+    expect(await screen.findByRole('img', { name: /hospital information system prototype interface/i })).toBeInTheDocument();
+  });
+
+  it('keeps ProjectCard as a server component by not requiring client-only props', () => {
+    render(<ul>{horizonCard}</ul>);
+
+    expect(screen.getByRole('article', { name: 'HORIZON HIS' })).toBeInTheDocument();
   });
 
   it('does not expose a fake case-study link before the route exists', () => {

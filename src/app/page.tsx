@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/hero';
 import { ProjectCard } from '@/components/home/project-card';
 import { ProjectGrid } from '@/components/home/project-grid';
+import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
 import { SiteHeader } from '@/components/layout/site-header';
 
 export default function HomePage() {
@@ -108,6 +109,53 @@ export default function HomePage() {
                 }}
               />
             </ProjectGrid>
+          </div>
+        </section>
+        <section className="selected-work" aria-labelledby="selected-work-title">
+          <div className="layout-container selected-work__inner">
+            <div className="selected-work__header">
+              <p className="selected-work__eyebrow">Selected work</p>
+              <h2 id="selected-work-title" className="selected-work__heading">
+                ConnectCar / Freeflow
+              </h2>
+            </div>
+            <article className="selected-work__card" aria-labelledby="selected-work-card-title">
+              <div className="selected-work__media">
+                <ThemeAwareProjectImage
+                  image={{
+                    alt: 'Editorial representation of responsive component studies and design-system references for ConnectCar / Freeflow.',
+                    width: 1920,
+                    height: 1080,
+                    light: {
+                      640: '/assets/projects/connectcar-freeflow/cover/light/cover-640.webp',
+                      1024: '/assets/projects/connectcar-freeflow/cover/light/cover-1024.webp',
+                      1440: '/assets/projects/connectcar-freeflow/cover/light/cover-1440.webp',
+                      1920: '/assets/projects/connectcar-freeflow/cover/light/cover-1920.webp',
+                    },
+                    dark: {
+                      640: '/assets/projects/connectcar-freeflow/cover/dark/cover-640.webp',
+                      1024: '/assets/projects/connectcar-freeflow/cover/dark/cover-1024.webp',
+                      1440: '/assets/projects/connectcar-freeflow/cover/dark/cover-1440.webp',
+                      1920: '/assets/projects/connectcar-freeflow/cover/dark/cover-1920.webp',
+                    },
+                  }}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1199px) 92vw, 960px"
+                />
+              </div>
+              <div className="selected-work__content">
+                <h3 id="selected-work-card-title" className="selected-work__title">
+                  ConnectCar / Freeflow
+                </h3>
+                <p className="selected-work__description">
+                  Editorial representation of responsive component studies and design-system references for a mobility experience narrative.
+                </p>
+                <ul className="selected-work__tags" aria-label="ConnectCar / Freeflow tags">
+                  <li className="selected-work__tag">Design Systems</li>
+                  <li className="selected-work__tag">Responsive UI</li>
+                  <li className="selected-work__tag">Editorial Reference</li>
+                </ul>
+              </div>
+            </article>
           </div>
         </section>
       </main>

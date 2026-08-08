@@ -70,6 +70,7 @@ export default function HomePage() {
                 title="REDE DCC 1.0"
                 description="Interaction design for a financial choice shaped by transactional states, decision points and exception handling."
                 tags={['Payments', 'Interaction Design', 'Transactional States']}
+                href="/projects/rede-dcc"
                 image={{
                   alt: 'Payment interface composition showing transaction flow states and confirmation screens.',
                   width: 1920,

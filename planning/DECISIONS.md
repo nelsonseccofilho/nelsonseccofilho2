@@ -376,3 +376,23 @@ Compact prompts, controlled context growth, and selective tool usage improve eff
 
 **Consequences**
 The team preserves mandatory validation quality while improving AI cost-efficiency, context clarity, and execution focus.
+
+---
+
+## D-021 — Public localization architecture and canonical language
+
+**Status:** Accepted
+
+**Context**
+The portfolio requires complete Brazilian Portuguese and English publication without duplicating page implementations or adding an internationalization dependency without a demonstrated need.
+
+**Decision**
+Brazilian Portuguese (`pt-BR`) is the primary, default, and canonical language for public portfolio content. Portuguese uses `/` and `/projetos/...`; English is secondary and uses `/en` and `/en/projects/...`. There are no `/pt` routes. Native Next.js App Router primitives and typed dictionaries will be used without middleware or an i18n dependency at this stage. The typed route map is the authoritative source for equivalent localized paths.
+
+Public facts, metrics, evidence boundaries, and professional claims must remain materially equivalent between locales. Repository documentation remains in English.
+
+**Rationale**
+Explicit typed routes and content contracts preserve stable canonical URLs, support static rendering, reduce translation drift, and keep the architecture proportionate to the current route set.
+
+**Consequences**
+Future localized routes, metadata, internal links, and the language switcher must consume the shared route map and typed content contracts. Portuguese source content is canonical; English is maintained as an equivalent localized publication.

@@ -6,7 +6,9 @@ Permanent rules for design, engineering, content, and collaboration.
 
 Portuguese is the Copilot Chat conversation language.
 
-English is the project language.
+English is the repository documentation and technical artifact language.
+
+Brazilian Portuguese is the primary, default, and canonical language for public portfolio content. English is the secondary public locale.
 
 Only user-facing Copilot Chat communication may be in Brazilian Portuguese (pt-BR), including progress updates, explanations, questions, warnings, validation summaries, QA summaries, Git summaries, and final task reports or verdicts.
 
@@ -14,7 +16,7 @@ All repository artifacts must be written in English unless an explicit localizat
 
 README.md is an intentional bilingual exception: English section first, then an equivalent Brazilian Portuguese section. English is the canonical source, and both sections must remain materially equivalent in structure, facts, setup steps, commands, links, and claims.
 
-This includes planning files, project documentation, Markdown documentation, architecture documentation, requirements, content contracts, provenance documentation, technical documentation, workflow documentation, generated reports saved as files, documentation-oriented code comments, test descriptions where appropriate, and approved portfolio copy.
+This includes planning files, project documentation, Markdown documentation, architecture documentation, requirements, content contracts, provenance documentation, technical documentation, workflow documentation, generated reports saved as files, documentation-oriented code comments, and test descriptions where appropriate. Localized public portfolio copy is the explicit exception: its canonical source is Brazilian Portuguese, with materially equivalent English content.
 
 All source code and technical identifiers must remain in English, including variables, functions, components, interfaces, types, filenames, API names, test names, and technical comments.
 
@@ -29,6 +31,16 @@ This is the project's normative document.
 Any person or agent working in this repository must follow these rules.
 
 If a rule needs to change, first record the change in DECISIONS.md.
+
+### Public localization
+
+- Supported public locales are `pt-BR` and `en`.
+- Portuguese routes use `/` and `/projetos/...`.
+- English routes use `/en` and `/en/projects/...`.
+- `/pt` routes must not exist.
+- The typed route map is authoritative for localized internal paths and equivalent-route resolution.
+- Public facts, metrics, evidence boundaries, and professional claims must remain materially equivalent between locales.
+- Native Next.js App Router primitives and typed dictionaries are preferred; do not add an i18n dependency without a material architectural need.
 
 ## 1. PRODUCT & UX
 

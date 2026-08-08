@@ -15,7 +15,7 @@ describe('HomePage', () => {
     expect(hero).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: /designing digital products for complex systems\./i })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
-    expect(screen.getByText(/senior product designer/i)).toBeInTheDocument();
+    expect(within(hero).getByText(/senior product designer/i)).toBeInTheDocument();
     expect(screen.getByText(/ux strategy/i)).toBeInTheDocument();
     expect(screen.getByText(/product discovery/i)).toBeInTheDocument();
     expect(screen.getAllByText(/design systems/i)).toHaveLength(3);
@@ -49,6 +49,26 @@ describe('HomePage', () => {
     const pillarNames = within(senioritySection).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
     expect(pillarNames).toEqual(['Strategy', 'Complex Systems', 'Delivery', 'Discovery', 'Design Systems']);
     expect(within(senioritySection).getAllByRole('heading', { level: 3 })).toHaveLength(5);
+
+    const aboutSection = screen.getByRole('region', { name: /about/i });
+    expect(aboutSection).toBeInTheDocument();
+    expect(within(aboutSection).getByRole('heading', { level: 2, name: /about/i })).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/senior product designer/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/complex digital products/i)).toBeInTheDocument();
+
+    const contactSection = screen.getByRole('region', { name: /let['’]s build something meaningful/i });
+    expect(contactSection).toBeInTheDocument();
+    expect(within(contactSection).getByRole('heading', { level: 2, name: /let['’]s build something meaningful/i })).toBeInTheDocument();
+    const whatsappLink = within(contactSection).getByRole('link', { name: /talk to me on whatsapp/i });
+    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5512981241764?text=Olá%20Nelson%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.');
+    const emailLink = within(contactSection).getByRole('link', { name: /nelsonseccofilho@gmail.com/i });
+    const linkedInLink = within(contactSection).getByRole('link', { name: /linkedin/i });
+    expect(emailLink).toHaveAttribute('href', 'mailto:nelsonseccofilho@gmail.com');
+    expect(linkedInLink).toHaveAttribute('href', 'https://www.linkedin.com/in/nelsonseccofilho/');
+    expect(whatsappLink.compareDocumentPosition(emailLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(whatsappLink.compareDocumentPosition(linkedInLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(within(contactSection).queryByRole('link', { name: /placeholder/i })).not.toBeInTheDocument();
+
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
 });

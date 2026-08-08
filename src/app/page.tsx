@@ -200,6 +200,54 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        <section className="about" aria-labelledby="about-title" aria-label="About">
+          <div className="layout-container about__inner">
+            <div className="about__content">
+              <p className="about__eyebrow">About</p>
+              <h2 id="about-title" className="about__heading">
+                About
+              </h2>
+              <p className="about__copy">
+                I’m a senior product designer focused on shaping thoughtful experiences for complex digital products.
+              </p>
+              <p className="about__copy">
+                My work sits at the intersection of product strategy, UX and technology, turning ambiguity into clear experiences from discovery through delivery.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="contact" aria-labelledby="contact-title" aria-label="Contact">
+          <div className="layout-container contact__inner">
+            <div className="contact__content">
+              <p className="contact__eyebrow">Contact</p>
+              <h2 id="contact-title" className="contact__heading">
+                Let’s build something meaningful.
+              </h2>
+              <p className="contact__copy">
+                Have a complex product challenge or an opportunity to collaborate? Let’s talk.
+              </p>
+              <div className="contact__actions">
+                <a
+                  className="contact__primary-link"
+                  href="https://wa.me/5512981241764?text=Olá%20Nelson%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Talk to me on WhatsApp"
+                >
+                  Talk to me on WhatsApp
+                </a>
+                <div className="contact__secondary-links" aria-label="Secondary contact links">
+                  <a className="contact__secondary-link" href="mailto:nelsonseccofilho@gmail.com">
+                    nelsonseccofilho@gmail.com
+                  </a>
+                  <a className="contact__secondary-link" href="https://www.linkedin.com/in/nelsonseccofilho/" target="_blank" rel="noreferrer">
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

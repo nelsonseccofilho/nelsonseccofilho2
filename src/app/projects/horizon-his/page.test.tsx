@@ -14,7 +14,7 @@ describe('HorizonHisPage', () => {
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: /turning a complex his vision into a navigable product experience/i })).toBeInTheDocument();
-    expect(screen.getByText(/product design-led prototype for salux's next hospital information system/i)).toBeInTheDocument();
+    expect(screen.getByText(/product design-led prototype for salux’s next hospital information system/i)).toBeInTheDocument();
 
     const hero = screen.getByRole('region', { name: /turning a complex his vision into a navigable product experience/i });
     expect(within(hero).getByText('UX Lead / Product Designer')).toBeInTheDocument();
@@ -22,11 +22,12 @@ describe('HorizonHisPage', () => {
     expect(within(hero).getByText('2025')).toBeInTheDocument();
     expect(within(hero).getByText('High-fidelity navigable prototype')).toBeInTheDocument();
     expect(within(hero).getByText('Presented at Hospitalar 2025')).toBeInTheDocument();
+    expect(within(hero).getByText('Validated prototype')).toBeInTheDocument();
     expect(
       await within(hero).findByRole('img', { name: /editorial composition featuring the horizon his prototype interface/i }),
     ).toBeInTheDocument();
 
-    expect(screen.getByRole('heading', { level: 2, name: /salux's next hospital information system/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /salux’s next hospital information system/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /making a broad his vision tangible before full implementation/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /end-to-end product design ownership/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /selecting the journeys that made the vision understandable/i })).toBeInTheDocument();
@@ -44,7 +45,7 @@ describe('HorizonHisPage', () => {
     expect(screen.getByRole('img', { name: /photographic record of the prototype presentation at hospitalar 2025 with the kiosk in the background/i })).toBeInTheDocument();
 
     const navigation = screen.getByRole('navigation', { name: /case navigation/i });
-    const backLink = within(navigation).getByRole('link', { name: /back to featured cases/i });
+    const backLink = within(navigation).getByRole('link', { name: /← back to projects/i });
     expect(backLink).toHaveAttribute('href', '/');
     expect(screen.queryByRole('link', { name: /next case/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/3 months/i)).not.toBeInTheDocument();

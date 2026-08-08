@@ -44,10 +44,12 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText('Validation with the Canal do Consultor tribe')).toBeInTheDocument();
     expect(screen.getByText(/front-end and back-end alignment/i)).toBeInTheDocument();
     expect(screen.getByText(/interface and api decisions/i)).toBeInTheDocument();
+    expect(screen.getByText(/supporting alignment before delivery discussions/i)).toBeInTheDocument();
     expect(screen.getAllByText(/existing pilot/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/future backlog definition/i)).toBeInTheDocument();
+    expect(screen.getByText(/generated input for future backlog definition/i)).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /confidentiality and publication boundaries/i })).toBeInTheDocument();
+    expect(screen.getByText(/all visuals on this page/i)).toBeInTheDocument();
     expect(screen.getByText(/do not reveal production ui screens/i)).toBeInTheDocument();
 
     const navigation = screen.getByRole('navigation', { name: /case navigation/i });

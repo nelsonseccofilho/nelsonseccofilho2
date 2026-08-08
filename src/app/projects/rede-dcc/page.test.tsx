@@ -20,10 +20,11 @@ describe('RedeDccPage', () => {
     expect(within(hero).getByText('Senior Product Designer')).toBeInTheDocument();
     expect(within(hero).getByText('2023')).toBeInTheDocument();
     expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
-    expect(within(hero).getByText('Implemented in the final product')).toBeInTheDocument();
+    expect(within(hero).getByText('Implemented in REDE’s product')).toBeInTheDocument();
     expect(await within(hero).findByRole('img', { name: /payment interface composition showing transaction flow states and confirmation screens/i })).toBeInTheDocument();
 
-    expect(screen.getAllByText(/international mastercard and visa cardholders/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/international mastercard and visa cardholders using rede payment terminals in brazil/i)).toBeInTheDocument();
+    expect(screen.getByText(/international cardholders using cards linked to foreign accounts/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /orchestrating the transaction states/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /knowing when not to prototype/i })).toBeInTheDocument();
     expect(screen.getByText(/a navigable prototype was not necessary for this delivery/i)).toBeInTheDocument();

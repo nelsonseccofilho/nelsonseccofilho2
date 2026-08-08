@@ -168,10 +168,10 @@ export default function DasaCanalDoConsultorPage() {
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">
-              Front-end and back-end alignment was built through a shared prioritization layer for interface and API decisions, reducing ambiguity before delivery discussions.
+              Front-end and back-end alignment was built through a shared prioritization layer for interface and API decisions, supporting alignment before delivery discussions.
             </p>
             <p className="case-section__copy">
-              The structure supported an existing pilot and generated reliable input for future backlog definition.
+              The structure supported an existing pilot and generated input for future backlog definition.
             </p>
           </div>
         </CaseSection>
@@ -183,7 +183,7 @@ export default function DasaCanalDoConsultorPage() {
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">
-              All visuals in this page are editorial representations or synthesis artifacts prepared for portfolio communication and do not reveal production UI screens.
+              All visuals on this page are editorial representations or synthesis artifacts prepared for portfolio communication and do not reveal production UI screens.
             </p>
           </div>
         </CaseSection>

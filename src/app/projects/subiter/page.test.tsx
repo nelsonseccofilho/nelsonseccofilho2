@@ -25,13 +25,17 @@ describe('SubiterPage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /introducing marina — ai inside the product/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /supporting a real international inspection operation/i })).toBeInTheDocument();
     expect(screen.getAllByText(/national geographic delfina/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/were delivered to production and became part of subiter’s operational product ecosystem/i)).toBeInTheDocument();
+    expect(screen.getByText(/the contribution was also formally recognized by the company/i)).toBeInTheDocument();
+    expect(screen.getByText(/i wrote an article for subiter presenting the product vision/i)).toBeInTheDocument();
+    expect(screen.queryByText(/production adoption is presented/i)).not.toBeInTheDocument();
 
     const delfinaLink = screen.getByRole('link', { name: /view national geographic delfina/i });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');
     expect(delfinaLink).toHaveAttribute('target', '_blank');
     expect(delfinaLink).toHaveAttribute('rel', 'noreferrer');
 
-    const articleLink = screen.getByRole('link', { name: /read the article on subiter/i });
+    const articleLink = screen.getByRole('link', { name: /read the article on subiter’s website/i });
     expect(articleLink).toHaveAttribute('href', 'https://www.subiter.com/post/portal-web-da-subiter-rastreabilidade-e-intelig%C3%AAncia-na-ind%C3%BAstria-4-0');
     expect(articleLink).toHaveAttribute('target', '_blank');
     expect(articleLink).toHaveAttribute('rel', 'noreferrer');

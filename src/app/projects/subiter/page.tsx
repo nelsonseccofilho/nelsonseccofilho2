@@ -174,7 +174,9 @@ export default function SubiterPage() {
           intro="The Web Portal and improvements to the inspection-report experience were delivered to production and became part of Subiter’s operational product ecosystem."
         >
           <div className="case-section__text-block">
-            <p className="case-section__copy">Production adoption is presented as ecosystem continuity, not as an isolated release claim.</p>
+            <p className="case-section__copy">
+              This delivery connected the Web Portal and inspection-report experience within the same operational ecosystem.
+            </p>
           </div>
         </CaseSection>
 
@@ -210,7 +212,7 @@ export default function SubiterPage() {
         <CaseSection
           id="published-perspective"
           title="Writing about the product"
-          intro="An article I wrote for Subiter presenting the product vision behind the Web Portal and how inspection data, traceability, user experience and AI come together within the platform."
+          intro="I wrote an article for Subiter presenting the product vision behind the Web Portal and how inspection data, traceability, user experience and AI come together within the platform."
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">Portal Web da Subiter: Rastreabilidade e inteligência na indústria 4.0</p>
@@ -221,7 +223,7 @@ export default function SubiterPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Read the article on Subiter →
+                Read the article on Subiter’s website →
               </a>
             </p>
           </div>

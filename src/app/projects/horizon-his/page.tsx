@@ -8,7 +8,7 @@ import { CaseSection } from '@/components/case-study/case-section';
 export const metadata: Metadata = {
   title: 'HORIZON HIS — Product Design Case Study | Nelson Secco',
   description:
-    "Product Design case study showing how SALUX's HORIZON HIS vision became a high-fidelity navigable prototype presented at Hospitalar 2025.",
+    'Product Design case study showing how SALUX’s HORIZON HIS vision became a high-fidelity navigable prototype presented at Hospitalar 2025.',
 };
 
 const heroMetadata = [
@@ -17,6 +17,7 @@ const heroMetadata = [
   { label: 'Year', value: '2025' },
   { label: 'Deliverable', value: 'High-fidelity navigable prototype' },
   { label: 'Context', value: 'Presented at Hospitalar 2025' },
+  { label: 'Status', value: 'Validated prototype' },
 ];
 
 export default function HorizonHisPage() {
@@ -27,7 +28,7 @@ export default function HorizonHisPage() {
         <CaseHero
           eyebrow="HORIZON HIS"
           title="Turning a complex HIS vision into a navigable product experience"
-          description="Product Design-led prototype for SALUX's next hospital information system."
+          description="Product Design-led prototype for SALUX’s next hospital information system."
           metadata={heroMetadata}
           image={{
             alt: 'Editorial composition featuring the HORIZON HIS prototype interface in a clinical journey.',
@@ -50,7 +51,7 @@ export default function HorizonHisPage() {
 
         <CaseSection
           id="context"
-          title="SALUX's next Hospital Information System"
+          title="SALUX’s next Hospital Information System"
           intro="SALUX wanted to materialize its vision for a new Hospital Information System in a market with established platforms such as MV and Tasy. The goal of this phase was to make that vision tangible enough to experience, discuss, validate and present before committing to a complete production implementation."
         >
           <div className="case-section__text-block">
@@ -61,7 +62,7 @@ export default function HorizonHisPage() {
         <CaseSection
           id="challenge"
           title="Making a broad HIS vision tangible before full implementation"
-          intro="A HIS can contain a large number of workflows, users, states and dependencies. The challenge was to decide what needed to exist in the prototype so the product vision could become concrete, navigable and presentable for Hospitalar 2025."
+          intro="A hospital information system can contain a large number of workflows, users, states and dependencies. The challenge was to decide what needed to exist in the prototype so the product vision could become concrete, navigable and presentable for Hospitalar 2025."
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">The phase had to stay focused on clarity, not on premature build scope.</p>
@@ -71,7 +72,7 @@ export default function HorizonHisPage() {
         <CaseSection
           id="role"
           title="End-to-end Product Design ownership"
-          intro="Nelson was UX Lead at SALUX and the Product Designer directly responsible for HORIZON HIS. No other Product Designer was dedicated to HORIZON, while the other designers he led remained focused on other SALUX initiatives. That focus allowed him to concentrate on the HIS vision."
+          intro="I was UX Lead at SALUX and the Product Designer directly responsible for HORIZON HIS. No other Product Designer was dedicated to HORIZON, while the other designers I led remained focused on other SALUX initiatives. That focus allowed me to concentrate on the HIS vision."
         >
           <ul className="case-bullets" aria-label="HORIZON responsibilities">
             <li className="case-bullets__item">Journey selection</li>
@@ -206,7 +207,7 @@ export default function HorizonHisPage() {
           </div>
         </CaseSection>
 
-        <CaseNavigation />
+        <CaseNavigation label="← Back to projects" />
       </main>
     </>
   );

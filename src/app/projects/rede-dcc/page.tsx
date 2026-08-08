@@ -8,7 +8,7 @@ import { SiteHeader } from '@/components/layout/site-header';
 export const metadata: Metadata = {
   title: 'REDE DCC 1.0 — Product Design Case Study | Nelson Secco',
   description:
-    'Interaction Design case study for a Dynamic Currency Conversion payment journey implemented in REDE final product.',
+    'Interaction Design case study for a Dynamic Currency Conversion payment journey implemented in REDE’s product.',
 };
 
 const heroMetadata = [
@@ -20,7 +20,7 @@ const heroMetadata = [
   { label: 'Engagement', value: '8 months' },
   { label: 'Languages', value: 'Portuguese / English' },
   { label: 'Deliverable', value: 'End-to-end transaction journey' },
-  { label: 'Status', value: 'Implemented in the final product' },
+  { label: 'Status', value: 'Implemented in REDE’s product' },
 ];
 
 export default function RedeDccPage() {
@@ -89,7 +89,7 @@ export default function RedeDccPage() {
         <CaseSection
           id="international-cardholders"
           title="Designing for international cardholders"
-          intro="The experience was designed for international Mastercard and Visa cardholders using REDE payment terminals with cards linked to foreign accounts."
+          intro="The experience was designed for international cardholders using cards linked to foreign accounts."
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">The interaction language had to remain legible at terminal speed.</p>
@@ -180,7 +180,7 @@ export default function RedeDccPage() {
         <CaseSection
           id="delivery"
           title="From interaction states to the final product"
-          intro="The DCC journey was documented and delivered for implementation in REDE’s final product, including the required transaction states, interface behavior and supporting components."
+          intro="The DCC journey was documented and delivered for implementation in REDE’s product, including the required transaction states, interface behavior and supporting components."
         >
           <div className="case-section__text-block">
             <p className="case-section__copy">Delivery covered both journey integrity and implementation-facing specification detail.</p>

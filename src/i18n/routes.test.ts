@@ -3,6 +3,7 @@ import { SUPPORTED_LOCALES } from './locales';
 import {
   ROUTE_IDS,
   findLocalizedRoute,
+  getHomeCasesPath,
   getLocaleFromPath,
   getLocalizedPath,
   resolveEquivalentPath,
@@ -13,6 +14,11 @@ describe('localized route map', () => {
   it('maps the Portuguese and English home routes in both directions', () => {
     expect(resolveEquivalentPath('/', 'en')).toBe('/en');
     expect(resolveEquivalentPath('/en', 'pt-BR')).toBe('/');
+  });
+
+  it('resolves the localized Featured Cases anchor without duplicating locale paths', () => {
+    expect(getHomeCasesPath('pt-BR')).toBe('/#cases');
+    expect(getHomeCasesPath('en')).toBe('/en#cases');
   });
 
   it.each([

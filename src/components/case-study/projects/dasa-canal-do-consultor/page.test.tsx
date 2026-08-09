@@ -64,8 +64,9 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
 
     const navigation = screen.getByRole('navigation', { name: /case study navigation/i });
-    const backLink = within(navigation).getByRole('link', { name: /← back to projects/i });
-    expect(backLink).toHaveAttribute('href', '/en');
+    const backLink = within(navigation).getByRole('link', { name: /← all projects/i });
+    expect(backLink).toHaveAttribute('href', '/en#cases');
+    expect(within(navigation).queryByText(/next case/i)).not.toBeInTheDocument();
 
     expect(screen.queryByText(/nationwide rollout/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/all dasa hospitals/i)).not.toBeInTheDocument();
@@ -120,8 +121,8 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/dasa-canal-do-consultor');
 
     const navigation = screen.getByRole('navigation', { name: /navega[cç][aã]o do estudo de caso/i });
-    const backLink = within(navigation).getByRole('link', { name: /← voltar aos projetos/i });
-    expect(backLink).toHaveAttribute('href', '/');
+    const backLink = within(navigation).getByRole('link', { name: /← todos os projetos/i });
+    expect(backLink).toHaveAttribute('href', '/#cases');
 
     expect(screen.queryByText(/editorial reconstruction used for portfolio communication/i)).not.toBeInTheDocument();
   });

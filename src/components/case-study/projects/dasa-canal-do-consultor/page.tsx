@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { BackToTop } from '@/components/case-study/back-to-top';
+import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
@@ -6,7 +8,6 @@ import { CaseSection } from '@/components/case-study/case-section';
 import { commonContent } from '@/content/i18n';
 import { dasaCanalDoConsultorCaseContent, dasaCanalDoConsultorSharedFacts } from '@/content/i18n/projects/dasa-canal-do-consultor';
 import type { Locale } from '@/i18n/locales';
-import { getLocalizedPath } from '@/i18n/routes';
 import { SiteHeader } from '@/components/layout/site-header';
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
     <>
       <SiteHeader content={common} locale={locale} routeId="dasa-canal-do-consultor" />
       <main className="case-study">
+        <CaseBreadcrumb locale={locale} projectId="dasa-canal-do-consultor" />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
@@ -167,11 +169,8 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           </div>
         </CaseSection>
 
-        <CaseNavigation
-          label={common.caseNavigation.backLabel}
-          href={getLocalizedPath('home', locale)}
-          accessibilityLabel={common.accessibility.caseNavigation}
-        />
+        <CaseNavigation locale={locale} projectId="dasa-canal-do-consultor" />
+        <BackToTop label={common.backToTop.label} accessibilityLabel={common.backToTop.accessibilityLabel} />
       </main>
     </>
   );

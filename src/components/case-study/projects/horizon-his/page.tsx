@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { BackToTop } from '@/components/case-study/back-to-top';
+import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
 import { SiteHeader } from '@/components/layout/site-header';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { CaseMedia } from '@/components/case-study/case-media';
@@ -7,7 +9,6 @@ import { CaseSection } from '@/components/case-study/case-section';
 import { horizonHisCaseContent, horizonHisSharedFacts } from '@/content/i18n/projects/horizon-his';
 import { commonContent } from '@/content/i18n';
 import type { Locale } from '@/i18n/locales';
-import { getLocalizedPath } from '@/i18n/routes';
 
 export const metadata: Metadata = {
   title: 'HORIZON HIS — Product Design Case Study | Nelson Secco',
@@ -23,6 +24,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
     <>
       <SiteHeader content={common} locale={locale} routeId="horizon-his" />
       <main className="case-study">
+        <CaseBreadcrumb locale={locale} projectId="horizon-his" />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
@@ -190,11 +192,8 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           </div>
         </CaseSection>
 
-        <CaseNavigation
-          label={common.caseNavigation.backLabel}
-          href={getLocalizedPath('home', locale)}
-          accessibilityLabel={common.accessibility.caseNavigation}
-        />
+        <CaseNavigation locale={locale} projectId="horizon-his" />
+        <BackToTop label={common.backToTop.label} accessibilityLabel={common.backToTop.accessibilityLabel} />
       </main>
     </>
   );

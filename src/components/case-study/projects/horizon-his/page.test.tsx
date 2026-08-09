@@ -39,9 +39,8 @@ describe('HorizonHisPage', () => {
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
 
     const navigation = screen.getByRole('navigation', { name: /case study navigation/i });
-    expect(within(navigation).getByRole('link', { name: /← back to projects/i })).toHaveAttribute('href', '/en');
-
-    expect(screen.queryByRole('link', { name: /next case/i })).not.toBeInTheDocument();
+    expect(within(navigation).getByRole('link', { name: /← all projects/i })).toHaveAttribute('href', '/en#cases');
+    expect(within(navigation).getByRole('link', { name: /next case.*subiter/i })).toHaveAttribute('href', '/en/projects/subiter');
     expect(screen.queryByText(/3 months/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/approved by the presidency/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/roi/i)).not.toBeInTheDocument();
@@ -74,7 +73,7 @@ describe('HorizonHisPage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/horizon-his');
 
     const navigation = screen.getByRole('navigation', { name: /navega[cç][aã]o do estudo de caso/i });
-    expect(within(navigation).getByRole('link', { name: /← voltar aos projetos/i })).toHaveAttribute('href', '/');
+    expect(within(navigation).getByRole('link', { name: /← todos os projetos/i })).toHaveAttribute('href', '/#cases');
 
     expect(screen.queryByText(/executive presentation evidence/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/high-fidelity prototype and interaction-map evidence/i)).not.toBeInTheDocument();

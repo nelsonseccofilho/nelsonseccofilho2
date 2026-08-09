@@ -12,7 +12,9 @@ export const enCommon = {
     activateDarkLabel: 'Activate dark theme',
   },
   languageSwitcher: { label: 'Language', portugueseLabel: 'Portuguese', englishLabel: 'English' },
-  caseNavigation: { backLabel: '← Back to projects' },
+  breadcrumb: { accessibilityLabel: 'Breadcrumb', homeLabel: 'Home', projectsLabel: 'Projects' },
+  caseNavigation: { allProjectsLabel: '← All projects', nextCaseLabel: 'Next case' },
+  backToTop: { label: '↑ Top', accessibilityLabel: 'Back to top' },
   accessibility: {
     home: 'N3LX home',
     mainNavigation: 'Main navigation',

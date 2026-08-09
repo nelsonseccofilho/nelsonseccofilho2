@@ -13,6 +13,8 @@ describe('HomePage', () => {
 
     const hero = screen.getByRole('region', { name: /hero/i });
     const featuredCases = screen.getByRole('region', { name: /featured cases/i });
+    expect(featuredCases).toHaveAttribute('id', 'cases');
+    expect(document.querySelectorAll('#cases')).toHaveLength(1);
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();

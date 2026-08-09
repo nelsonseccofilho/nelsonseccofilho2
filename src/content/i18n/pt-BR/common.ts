@@ -12,7 +12,9 @@ export const ptBRCommon = {
     activateDarkLabel: 'Ativar tema escuro',
   },
   languageSwitcher: { label: 'Idioma', portugueseLabel: 'Português', englishLabel: 'Inglês' },
-  caseNavigation: { backLabel: '← Voltar aos projetos' },
+  breadcrumb: { accessibilityLabel: 'Navegação estrutural', homeLabel: 'Início', projectsLabel: 'Projetos' },
+  caseNavigation: { allProjectsLabel: '← Todos os projetos', nextCaseLabel: 'Próximo case' },
+  backToTop: { label: '↑ Topo', accessibilityLabel: 'Voltar ao topo' },
   accessibility: {
     home: 'Página inicial — N3LX',
     mainNavigation: 'Navegação principal',

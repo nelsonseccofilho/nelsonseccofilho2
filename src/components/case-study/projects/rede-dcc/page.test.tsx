@@ -42,8 +42,8 @@ describe('RedeDccPage', () => {
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
 
     const navigation = screen.getByRole('navigation', { name: /case study navigation/i });
-    const backLink = within(navigation).getByRole('link', { name: /← back to projects/i });
-    expect(backLink).toHaveAttribute('href', '/en');
+    const backLink = within(navigation).getByRole('link', { name: /← all projects/i });
+    expect(backLink).toHaveAttribute('href', '/en#cases');
 
     expect(screen.queryByText(/roi/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/conversion uplift/i)).not.toBeInTheDocument();
@@ -78,8 +78,8 @@ describe('RedeDccPage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/rede-dcc');
 
     const navigation = screen.getByRole('navigation', { name: /navega[cç][aã]o do estudo de caso/i });
-    const backLink = within(navigation).getByRole('link', { name: /← voltar aos projetos/i });
-    expect(backLink).toHaveAttribute('href', '/');
+    const backLink = within(navigation).getByRole('link', { name: /← todos os projetos/i });
+    expect(backLink).toHaveAttribute('href', '/#cases');
 
     expect(screen.queryByText(/curated transaction-state sequence used to review the complete journey/i)).not.toBeInTheDocument();
   });

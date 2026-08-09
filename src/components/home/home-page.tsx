@@ -23,7 +23,7 @@ export function HomePage({ locale }: HomePageProps) {
       <SiteHeader content={common} locale={locale} routeId="home" />
       <main>
         <Hero content={content.hero} accessibility={content.accessibility} />
-        <section className="pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-cases-title">
+        <section id="cases" className="pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-cases-title">
           <div className="layout-container grid gap-8">
             <h2 id="featured-cases-title" className="m-0 text-[clamp(2rem,3.5vw,3.5rem)] leading-none font-bold text-[var(--color-text-primary)]">
               {content.featuredCases.title}

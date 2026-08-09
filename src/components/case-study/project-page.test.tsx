@@ -42,6 +42,6 @@ describe('localized project page registry', () => {
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/horizon-his');
     expect(screen.getByRole('navigation', { name: 'Navegação do estudo de caso' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '← Voltar aos projetos' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: '← Todos os projetos' })).toHaveAttribute('href', '/#cases');
   });
 });

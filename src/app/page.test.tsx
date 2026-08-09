@@ -38,6 +38,7 @@ describe('HomePage', () => {
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
     expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
+    expect(within(featuredCases).getAllByText('View case →')).toHaveLength(4);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(4);
     expect(screen.getByText(/discovery-led product design translating research/i)).toBeInTheDocument();
@@ -98,6 +99,7 @@ describe('HomePage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en');
     expect(screen.getByRole('link', { name: /horizon his/i })).toHaveAttribute('href', '/projetos/horizon-his');
     expect(screen.getByRole('link', { name: /subiter/i })).toHaveAttribute('href', '/projetos/subiter');
+    expect(screen.getAllByText('Ver case →')).toHaveLength(4);
     const aboutSection = screen.getByRole('region', { name: /sobre/i });
     expect(within(aboutSection).getByText(/mais de 12 anos de experiência na construção de produtos digitais/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/mais de 8 anos dedicados a ux e product design/i)).toBeInTheDocument();

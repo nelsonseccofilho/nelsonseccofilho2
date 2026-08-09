@@ -13,6 +13,7 @@ export const enHome = {
   },
   featuredCases: {
     title: 'Featured cases',
+    actionLabel: 'View case →',
     projects: [
       {
         routeId: 'horizon-his',

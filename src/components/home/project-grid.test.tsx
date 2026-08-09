@@ -18,7 +18,7 @@ describe('ProjectGrid', () => {
 
     const collection = screen.getByRole('list');
 
-    expect(collection).toHaveClass('project-grid');
+    expect(collection.tagName).toBe('UL');
     expect(within(collection).getByText('First case')).toBeInTheDocument();
     expect(within(collection).getByText('Second case')).toBeInTheDocument();
   });

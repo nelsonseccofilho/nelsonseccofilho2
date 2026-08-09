@@ -12,23 +12,23 @@ export function CaseSection({ id, title, intro, children, mediaFirst = false }: 
   const titleId = `${id}-title`;
 
   return (
-    <section className="case-section" aria-labelledby={titleId} id={id}>
-      <div className="layout-container case-section__inner">
+    <section className="py-10 md:py-16 xl:py-20" aria-labelledby={titleId} id={id}>
+      <div className="layout-container grid gap-8 md:gap-10">
         {!mediaFirst ? (
-          <header className="case-section__header">
-            <h2 id={titleId} className="case-section__title">
+          <header className="grid max-w-[60rem] gap-3">
+            <h2 id={titleId} className="m-0 max-w-[24ch] text-[clamp(1.75rem,3vw,3rem)] leading-[1.08] font-bold tracking-[-0.04em] text-[var(--color-text-primary)]">
               {title}
             </h2>
-            {intro ? <p className="case-section__copy">{intro}</p> : null}
+            {intro ? <p className="m-0 max-w-[58rem] text-[1.05rem] leading-[1.75] text-[var(--color-text-secondary)]">{intro}</p> : null}
           </header>
         ) : null}
-        <div className="case-section__body">{children}</div>
+        <div className="grid gap-5 md:gap-6">{children}</div>
         {mediaFirst ? (
-          <header className="case-section__header case-section__header--after-media">
-            <h2 id={titleId} className="case-section__title">
+          <header className="mt-2 grid max-w-[60rem] gap-3">
+            <h2 id={titleId} className="m-0 max-w-[24ch] text-[clamp(1.75rem,3vw,3rem)] leading-[1.08] font-bold tracking-[-0.04em] text-[var(--color-text-primary)]">
               {title}
             </h2>
-            {intro ? <p className="case-section__copy">{intro}</p> : null}
+            {intro ? <p className="m-0 max-w-[58rem] text-[1.05rem] leading-[1.75] text-[var(--color-text-secondary)]">{intro}</p> : null}
           </header>
         ) : null}
       </div>

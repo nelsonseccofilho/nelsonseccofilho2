@@ -44,8 +44,8 @@ describe('ProjectCard', () => {
     const article = screen.getByRole('article', { name: 'HORIZON HIS' });
     const item = article.closest('li');
 
-    expect(item).toHaveClass('project-grid__item');
-    expect(article).toHaveClass('project-card');
+    expect(item?.tagName).toBe('LI');
+    expect(article).toHaveAccessibleName('HORIZON HIS');
   });
 
   it('renders the title, description, tags and accessible cover image', async () => {
@@ -74,6 +74,7 @@ describe('ProjectCard', () => {
           description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
           tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
           href="/en/projects/horizon-his"
+          actionLabel="View case →"
           image={{
             alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
             width: 1920,
@@ -98,6 +99,8 @@ describe('ProjectCard', () => {
     const link = screen.getByRole('link', { name: /horizon his/i });
 
     expect(link).toHaveAttribute('href', '/en/projects/horizon-his');
+    expect(screen.getByText('View case →')).toBeInTheDocument();
+    expect(link.querySelectorAll('a')).toHaveLength(0);
   });
 
   it('does not expose a fake case-study link before the route exists', () => {

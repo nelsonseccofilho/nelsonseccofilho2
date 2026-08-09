@@ -70,6 +70,7 @@ export type HomeContent = {
   };
   featuredCases: {
     title: string;
+    actionLabel: string;
     projects: readonly HomeProjectCardContent[];
   };
   selectedWork: {

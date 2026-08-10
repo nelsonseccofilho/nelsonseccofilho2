@@ -1,9 +1,9 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import { useTheme } from 'next-themes';
 import { enCommon } from '@/content/i18n';
 import type { CommonContent } from '@/content/i18n/types';
+import { useTheme } from './theme-provider';
 
 const emptySubscribe = () => () => {};
 

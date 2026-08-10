@@ -63,7 +63,8 @@ type SubiterCaseLocalizedContent = {
     role: {
       title: string;
       intro: string;
-      paragraph: string;
+      responsibilitiesLabel: string;
+      responsibilities: readonly string[];
     };
     users: {
       title: string;
@@ -167,8 +168,15 @@ export const subiterCaseContent = {
         title: 'Liderança de design hands-on da estrutura à entrega',
         intro:
           'Como UX Lead / Senior Product Designer, atuei de forma hands-on em estratégia de produto e execução de UX/UI para os produtos digitais da Subiter.',
-        paragraph:
-          'Minhas responsabilidades incluíram evoluir o Web Portal, estruturar arquitetura da informação e fluxos de usuário, desenhar interfaces e padrões visuais, aprimorar documentação do produto, desenvolver componentes reutilizáveis e práticas de Design System, além de apoiar priorização junto a Engenharia, especialistas de inspeção e liderança da empresa.',
+        responsibilitiesLabel: 'Minhas responsabilidades incluíram:',
+        responsibilities: [
+          'evoluir o Web Portal',
+          'estruturar arquitetura da informação e fluxos de usuário',
+          'desenhar interfaces e padrões visuais',
+          'aprimorar documentação do produto',
+          'desenvolver componentes reutilizáveis e práticas de Design System',
+          'apoiar priorização junto a Engenharia, especialistas de inspeção e liderança da empresa',
+        ],
       },
       users: {
         title: 'Design para todo o ecossistema de inspeção',
@@ -296,8 +304,15 @@ export const subiterCaseContent = {
         title: 'Hands-on design leadership from structure to delivery',
         intro:
           'As UX Lead / Senior Product Designer, I worked hands-on across product strategy and UX/UI execution for Subiter\'s digital products.',
-        paragraph:
-          'My responsibilities included evolving the Web Portal, structuring information architecture and user flows, designing interfaces and visual patterns, improving product documentation, developing reusable components and Design System practices, and supporting prioritization alongside Engineering, inspection specialists and company leadership.',
+        responsibilitiesLabel: 'My responsibilities included:',
+        responsibilities: [
+          'evolving the Web Portal',
+          'structuring information architecture and user flows',
+          'designing interfaces and visual patterns',
+          'improving product documentation',
+          'developing reusable components and Design System practices',
+          'supporting prioritization alongside Engineering, inspection specialists and company leadership',
+        ],
       },
       users: {
         title: 'Designing across the inspection ecosystem',

@@ -29,6 +29,11 @@ describe('SubiterPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: /introducing marina — ai inside the product/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /supporting a real international inspection operation/i })).toBeInTheDocument();
+    const role = screen.getByRole('heading', { level: 2, name: /hands-on design leadership/i }).closest('section');
+    expect(role).not.toBeNull();
+    const responsibilities = within(role!).getByRole('list', { name: /my responsibilities included/i });
+    expect(within(responsibilities).getAllByRole('listitem')).toHaveLength(6);
+    expect(within(responsibilities).getByText(/supporting prioritization alongside engineering/i)).toBeInTheDocument();
     expect(screen.getByText(/as subiter's digital and operational capabilities evolved/i)).toBeInTheDocument();
     expect(screen.getAllByText(/national geographic delfina/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/were delivered to production and became part of subiter[’']s operational product ecosystem/i)).toBeInTheDocument();
@@ -78,6 +83,11 @@ describe('SubiterPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: /introduzindo marina — ia dentro do produto/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /apoiando uma opera[cç][aã]o internacional real de inspe[cç][aã]o/i })).toBeInTheDocument();
+    const role = screen.getByRole('heading', { level: 2, name: /lideran[cç]a de design hands-on/i }).closest('section');
+    expect(role).not.toBeNull();
+    const responsibilities = within(role!).getByRole('list', { name: /minhas responsabilidades inclu[ií]ram/i });
+    expect(within(responsibilities).getAllByRole('listitem')).toHaveLength(6);
+    expect(within(responsibilities).getByText(/apoiar prioriza[cç][aã]o junto a engenharia/i)).toBeInTheDocument();
     expect(screen.getByText(/as capacidades digitais e operacionais da subiter/i)).toBeInTheDocument();
     expect(screen.getByText(/foram entregues em produ[cç][aã]o e passaram a integrar o ecossistema operacional/i)).toBeInTheDocument();
     expect(screen.getByText(/a contribui[cç][aã]o tamb[eé]m foi formalmente reconhecida pela empresa/i)).toBeInTheDocument();

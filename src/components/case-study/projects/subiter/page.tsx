@@ -23,7 +23,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
   return (
     <>
       <SiteHeader content={common} locale={locale} routeId="subiter" />
-      <main className="case-study">
+      <main className="case-study subiter-case">
         <CaseCollectionLink locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
@@ -45,7 +45,9 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.context.intro}
         >
           <div className="case-section__text-block">
-            <p className="case-section__copy">{content.sections.context.paragraph}</p>
+            <p className="case-section__copy subiter-editorial-note" data-subiter-highlight>
+              {content.sections.context.paragraph}
+            </p>
           </div>
         </CaseSection>
 
@@ -65,7 +67,16 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.role.intro}
         >
           <div className="case-section__text-block">
-            <p className="case-section__copy">{content.sections.role.paragraph}</p>
+            <p className="subiter-responsibilities__label">{content.sections.role.responsibilitiesLabel}</p>
+            <ul
+              className="subiter-responsibilities"
+              aria-label={content.sections.role.responsibilitiesLabel}
+              data-subiter-responsibilities
+            >
+              {content.sections.role.responsibilities.map((responsibility) => (
+                <li key={responsibility}>{responsibility}</li>
+              ))}
+            </ul>
           </div>
         </CaseSection>
 
@@ -133,7 +144,9 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.aiAssistedProductWork.intro}
         >
           <div className="case-section__text-block">
-            <p className="case-section__copy">{content.sections.aiAssistedProductWork.paragraph}</p>
+            <p className="case-section__copy subiter-editorial-note" data-subiter-highlight>
+              {content.sections.aiAssistedProductWork.paragraph}
+            </p>
           </div>
         </CaseSection>
 

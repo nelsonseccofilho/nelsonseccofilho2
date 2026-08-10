@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
+import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
@@ -59,7 +59,7 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
     <>
       <SiteHeader content={common} locale={locale} routeId="dasa-canal-do-consultor" />
       <main className="case-study">
-        <CaseBreadcrumb locale={locale} projectId="dasa-canal-do-consultor" />
+        <CaseCollectionLink locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}

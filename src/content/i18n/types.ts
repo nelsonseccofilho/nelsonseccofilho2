@@ -32,10 +32,8 @@ export type CommonContent = {
     portugueseLabel: string;
     englishLabel: string;
   };
-  breadcrumb: {
+  caseCollectionLink: {
     accessibilityLabel: string;
-    homeLabel: string;
-    projectsLabel: string;
   };
   caseNavigation: {
     allProjectsLabel: string;

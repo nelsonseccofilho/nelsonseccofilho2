@@ -12,7 +12,7 @@ export const ptBRCommon = {
     activateDarkLabel: 'Ativar tema escuro',
   },
   languageSwitcher: { label: 'Idioma', portugueseLabel: 'Português', englishLabel: 'Inglês' },
-  breadcrumb: { accessibilityLabel: 'Navegação estrutural', homeLabel: 'Início', projectsLabel: 'Projetos' },
+  caseCollectionLink: { accessibilityLabel: 'Coleção de projetos' },
   caseNavigation: { allProjectsLabel: '← Todos os projetos', nextCaseLabel: 'Próximo case' },
   backToTop: { label: '↑ Topo', accessibilityLabel: 'Voltar ao topo' },
   evidenceViewer: {

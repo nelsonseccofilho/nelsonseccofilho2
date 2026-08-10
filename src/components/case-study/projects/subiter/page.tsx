@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
+import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
@@ -24,7 +24,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
     <>
       <SiteHeader content={common} locale={locale} routeId="subiter" />
       <main className="case-study">
-        <CaseBreadcrumb locale={locale} projectId="subiter" />
+        <CaseCollectionLink locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}

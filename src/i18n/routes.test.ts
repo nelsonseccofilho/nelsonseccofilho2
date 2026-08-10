@@ -45,6 +45,15 @@ describe('localized route map', () => {
     expect(paths.every((path) => path !== '/pt' && !path.startsWith('/pt/'))).toBe(true);
   });
 
+  it('does not expose artificial project collection index routes', () => {
+    const paths = Object.values(routeMap).flatMap((route) => Object.values(route));
+
+    expect(paths).not.toContain('/projetos');
+    expect(paths).not.toContain('/en/projects');
+    expect(findLocalizedRoute('/projetos')).toBeNull();
+    expect(findLocalizedRoute('/en/projects')).toBeNull();
+  });
+
   it('has complete Portuguese and English parity for every route ID', () => {
     for (const routeId of ROUTE_IDS) {
       expect(Object.keys(routeMap[routeId]).sort()).toEqual([...SUPPORTED_LOCALES].sort());

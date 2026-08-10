@@ -12,7 +12,7 @@ export const enCommon = {
     activateDarkLabel: 'Activate dark theme',
   },
   languageSwitcher: { label: 'Language', portugueseLabel: 'Portuguese', englishLabel: 'English' },
-  breadcrumb: { accessibilityLabel: 'Breadcrumb', homeLabel: 'Home', projectsLabel: 'Projects' },
+  caseCollectionLink: { accessibilityLabel: 'Case collection' },
   caseNavigation: { allProjectsLabel: '← All projects', nextCaseLabel: 'Next case' },
   backToTop: { label: '↑ Top', accessibilityLabel: 'Back to top' },
   evidenceViewer: {

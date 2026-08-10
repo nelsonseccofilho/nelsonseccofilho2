@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
+import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
@@ -43,7 +43,7 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
     <>
       <SiteHeader content={common} locale={locale} routeId="rede-dcc" />
       <main className="case-study">
-        <CaseBreadcrumb locale={locale} projectId="rede-dcc" />
+        <CaseCollectionLink locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}

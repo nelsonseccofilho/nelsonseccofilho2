@@ -45,6 +45,13 @@ export type CommonContent = {
     label: string;
     accessibilityLabel: string;
   };
+  evidenceViewer: {
+    openImageLabel: string;
+    closeImageLabel: string;
+    enlargedImageLabel: string;
+    viewAllArtifactsLabel: string;
+    showLessLabel: string;
+  };
   accessibility: AccessibilityLabels;
 };
 

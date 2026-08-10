@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { EvidenceViewer, type EvidenceViewerLabels } from '@/components/case-study/evidence-viewer';
 import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
 
 type ResponsiveSources = Record<number, string>;
@@ -22,10 +23,16 @@ type CaseMediaProps = {
   className?: string;
   scrollable?: boolean;
   sizes?: string;
+  viewerLabels?: EvidenceViewerLabels;
 };
 
-export function CaseMedia({ image, caption, className, scrollable = false, sizes = '100vw' }: CaseMediaProps) {
-  const figureClassName = ['case-media', scrollable ? 'case-media--scrollable' : '', className].filter(Boolean).join(' ');
+export function CaseMedia({ image, caption, className, scrollable = false, sizes = '100vw', viewerLabels }: CaseMediaProps) {
+  const mediaClassName = [scrollable ? 'case-media--scrollable' : '', className].filter(Boolean).join(' ');
+  const figureClassName = ['case-media', mediaClassName].filter(Boolean).join(' ');
+
+  if (!('light' in image) && viewerLabels) {
+    return <EvidenceViewer image={image} labels={viewerLabels} caption={caption} className={mediaClassName} />;
+  }
 
   return (
     <figure className={figureClassName}>

@@ -3,6 +3,7 @@ import { BackToTop } from '@/components/case-study/back-to-top';
 import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
 import { SiteHeader } from '@/components/layout/site-header';
 import { CaseHero } from '@/components/case-study/case-hero';
+import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
@@ -19,6 +20,12 @@ export const metadata: Metadata = {
 export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = horizonHisCaseContent[locale];
+  const journeyDetails = [
+    horizonHisSharedFacts.assets.journeyDetail01,
+    horizonHisSharedFacts.assets.journeyDetail02,
+    horizonHisSharedFacts.assets.journeyDetail03,
+    horizonHisSharedFacts.assets.journeyDetail04,
+  ].map((src) => ({ image: { src, alt: content.sections.journeys.detailAlt } }));
 
   return (
     <>
@@ -86,34 +93,10 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
                 alt: content.sections.journeys.overviewAlt,
               }}
               caption={content.sections.journeys.overviewCaption}
+              viewerLabels={common.evidenceViewer}
             />
             <p className="case-section__copy">{content.sections.journeys.overviewParagraph}</p>
-            <div className="case-section__detail-grid">
-              <CaseMedia
-                image={{
-                  src: horizonHisSharedFacts.assets.journeyDetail01,
-                  alt: content.sections.journeys.detailAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: horizonHisSharedFacts.assets.journeyDetail02,
-                  alt: content.sections.journeys.detailAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: horizonHisSharedFacts.assets.journeyDetail03,
-                  alt: content.sections.journeys.detailAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: horizonHisSharedFacts.assets.journeyDetail04,
-                  alt: content.sections.journeys.detailAlt,
-                }}
-              />
-            </div>
+            <EvidenceGallery items={journeyDetails} labels={common.evidenceViewer} />
           </div>
         </CaseSection>
 
@@ -137,6 +120,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
               src: horizonHisSharedFacts.assets.triagePrototype,
               alt: content.sections.prototype.imageAlt,
             }}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -151,6 +135,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
               alt: content.sections.validation.imageAlt,
             }}
             caption={content.sections.validation.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -165,6 +150,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
               alt: content.sections.hospitalar.imageAlt,
             }}
             caption={content.sections.hospitalar.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 

@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { HomePage } from '@/components/home/home-page';
 import DasaCanalDoConsultorPage from './page';
@@ -42,7 +42,13 @@ describe('DasaCanalDoConsultorPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: /discovery diagrams and synthesis artifacts/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /diagram representing the canal do consultor ecosystem and connected systems/i })).toBeInTheDocument();
+    const viewAllArtifacts = screen.getByRole('button', { name: 'View all artifacts (8)' });
+    expect(viewAllArtifacts).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('img', { name: /diagram showing the discovery to delivery narrative and handoff structure/i })).not.toBeInTheDocument();
+    fireEvent.click(viewAllArtifacts);
     expect(screen.getByRole('img', { name: /diagram showing the discovery to delivery narrative and handoff structure/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Show less' })).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(9);
 
     expect(screen.getByText('Validation with NAC coordinators')).toBeInTheDocument();
     expect(screen.getByText('Validation with consultants')).toBeInTheDocument();
@@ -102,7 +108,14 @@ describe('DasaCanalDoConsultorPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: /diagramas de discovery e artefatos de s[ií]ntese/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /diagrama representando o ecossistema do canal do consultor e sistemas conectados/i })).toBeInTheDocument();
+    const viewAllArtifacts = screen.getByRole('button', { name: 'Ver todos os artefatos (8)' });
+    expect(viewAllArtifacts).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('img', { name: /diagrama mostrando a narrativa de discovery para delivery e a estrutura de handoff/i })).not.toBeInTheDocument();
+    fireEvent.click(viewAllArtifacts);
     expect(screen.getByRole('img', { name: /diagrama mostrando a narrativa de discovery para delivery e a estrutura de handoff/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Mostrar menos' })).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(9);
+    expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
 
     expect(screen.getByText('Validação com coordenadores de NAC')).toBeInTheDocument();
     expect(screen.getByText('Validação com consultores')).toBeInTheDocument();

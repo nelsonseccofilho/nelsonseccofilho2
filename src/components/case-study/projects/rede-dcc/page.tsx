@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
 import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
 import { CaseHero } from '@/components/case-study/case-hero';
+import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
@@ -19,6 +20,24 @@ export const metadata: Metadata = {
 export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = redeDccCaseContent[locale];
+  const transactionStates = [
+    {
+      src: redeDccSharedFacts.assets.currencyChoice,
+      alt: content.sections.clarityBeforeProgression.currencyChoiceAlt,
+    },
+    {
+      src: redeDccSharedFacts.assets.pinEntry,
+      alt: content.sections.clarityBeforeProgression.pinEntryAlt,
+    },
+    {
+      src: redeDccSharedFacts.assets.processing,
+      alt: content.sections.clarityBeforeProgression.processingAlt,
+    },
+    {
+      src: redeDccSharedFacts.assets.approvalReceipt,
+      alt: content.sections.clarityBeforeProgression.approvalReceiptAlt,
+    },
+  ].map((image) => ({ image }));
 
   return (
     <>
@@ -100,6 +119,7 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
               alt: content.sections.transactionStates.imageAlt,
             }}
             caption={content.sections.transactionStates.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -109,32 +129,7 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.clarityBeforeProgression.intro}
         >
           <div className="case-section__stack">
-            <div className="case-section__detail-grid">
-              <CaseMedia
-                image={{
-                  src: redeDccSharedFacts.assets.currencyChoice,
-                  alt: content.sections.clarityBeforeProgression.currencyChoiceAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: redeDccSharedFacts.assets.pinEntry,
-                  alt: content.sections.clarityBeforeProgression.pinEntryAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: redeDccSharedFacts.assets.processing,
-                  alt: content.sections.clarityBeforeProgression.processingAlt,
-                }}
-              />
-              <CaseMedia
-                image={{
-                  src: redeDccSharedFacts.assets.approvalReceipt,
-                  alt: content.sections.clarityBeforeProgression.approvalReceiptAlt,
-                }}
-              />
-            </div>
+            <EvidenceGallery items={transactionStates} labels={common.evidenceViewer} />
           </div>
         </CaseSection>
 

@@ -15,6 +15,13 @@ export const enCommon = {
   breadcrumb: { accessibilityLabel: 'Breadcrumb', homeLabel: 'Home', projectsLabel: 'Projects' },
   caseNavigation: { allProjectsLabel: '← All projects', nextCaseLabel: 'Next case' },
   backToTop: { label: '↑ Top', accessibilityLabel: 'Back to top' },
+  evidenceViewer: {
+    openImageLabel: 'Open enlarged image',
+    closeImageLabel: 'Close image',
+    enlargedImageLabel: 'Enlarged image',
+    viewAllArtifactsLabel: 'View all artifacts',
+    showLessLabel: 'Show less',
+  },
   accessibility: {
     home: 'N3LX home',
     mainNavigation: 'Main navigation',

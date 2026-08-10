@@ -15,6 +15,13 @@ export const ptBRCommon = {
   breadcrumb: { accessibilityLabel: 'Navegação estrutural', homeLabel: 'Início', projectsLabel: 'Projetos' },
   caseNavigation: { allProjectsLabel: '← Todos os projetos', nextCaseLabel: 'Próximo case' },
   backToTop: { label: '↑ Topo', accessibilityLabel: 'Voltar ao topo' },
+  evidenceViewer: {
+    openImageLabel: 'Abrir imagem ampliada',
+    closeImageLabel: 'Fechar imagem',
+    enlargedImageLabel: 'Imagem ampliada',
+    viewAllArtifactsLabel: 'Ver todos os artefatos',
+    showLessLabel: 'Mostrar menos',
+  },
   accessibility: {
     home: 'Página inicial — N3LX',
     mainNavigation: 'Navegação principal',

@@ -36,6 +36,7 @@ describe('RedeDccPage', () => {
     expect(screen.getByText(/implemented within rede[’']s existing payment ecosystem/i)).toBeInTheDocument();
     expect(screen.getByText('Curated transaction-state sequence used to review the complete journey.')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /curated sequence of rede dcc transaction states from currency selection to completion/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(5);
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/rede-dcc');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/rede-dcc');

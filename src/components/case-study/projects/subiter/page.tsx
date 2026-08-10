@@ -90,6 +90,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
               alt: content.sections.productStructure.imageAlt,
             }}
             caption={content.sections.productStructure.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -104,6 +105,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
               alt: content.sections.inspectionLifecycle.imageAlt,
             }}
             caption={content.sections.inspectionLifecycle.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -120,6 +122,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
                 alt: content.sections.marina.imageAlt,
               }}
               caption={content.sections.marina.caption}
+              viewerLabels={common.evidenceViewer}
             />
           </div>
         </CaseSection>

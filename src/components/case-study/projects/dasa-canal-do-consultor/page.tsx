@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
 import { CaseBreadcrumb } from '@/components/case-study/case-breadcrumb';
 import { CaseHero } from '@/components/case-study/case-hero';
+import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
@@ -19,6 +20,40 @@ export const metadata: Metadata = {
 export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = dasaCanalDoConsultorCaseContent[locale];
+  const diagrams = [
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram01Ecosystem,
+      alt: content.sections.diagrams.diagram01EcosystemAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram02ResearchScale,
+      alt: content.sections.diagrams.diagram02ResearchScaleAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram03DiscoveryProcess,
+      alt: content.sections.diagrams.diagram03DiscoveryProcessAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram04ResearchToRules,
+      alt: content.sections.diagrams.diagram04ResearchToRulesAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram05InformationFragmentation,
+      alt: content.sections.diagrams.diagram05InformationFragmentationAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram06ThemeMap,
+      alt: content.sections.diagrams.diagram06ThemeMapAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram07ComplexityExamples,
+      alt: content.sections.diagrams.diagram07ComplexityExamplesAlt,
+    },
+    {
+      src: dasaCanalDoConsultorSharedFacts.assets.diagram08DiscoveryDelivery,
+      alt: content.sections.diagrams.diagram08DiscoveryDeliveryAlt,
+    },
+  ].map((image) => ({ image }));
 
   return (
     <>
@@ -74,6 +109,7 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
               alt: content.sections.evidenceBoard.imageAlt,
             }}
             caption={content.sections.evidenceBoard.caption}
+            viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
 
@@ -82,56 +118,7 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           title={content.sections.diagrams.title}
           intro={content.sections.diagrams.intro}
         >
-          <div className="case-section__detail-grid">
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram01Ecosystem,
-                alt: content.sections.diagrams.diagram01EcosystemAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram02ResearchScale,
-                alt: content.sections.diagrams.diagram02ResearchScaleAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram03DiscoveryProcess,
-                alt: content.sections.diagrams.diagram03DiscoveryProcessAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram04ResearchToRules,
-                alt: content.sections.diagrams.diagram04ResearchToRulesAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram05InformationFragmentation,
-                alt: content.sections.diagrams.diagram05InformationFragmentationAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram06ThemeMap,
-                alt: content.sections.diagrams.diagram06ThemeMapAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram07ComplexityExamples,
-                alt: content.sections.diagrams.diagram07ComplexityExamplesAlt,
-              }}
-            />
-            <CaseMedia
-              image={{
-                src: dasaCanalDoConsultorSharedFacts.assets.diagram08DiscoveryDelivery,
-                alt: content.sections.diagrams.diagram08DiscoveryDeliveryAlt,
-              }}
-            />
-          </div>
+          <EvidenceGallery items={diagrams} labels={common.evidenceViewer} initiallyVisibleCount={4} />
         </CaseSection>
 
         <CaseSection

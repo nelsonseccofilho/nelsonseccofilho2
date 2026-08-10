@@ -33,6 +33,7 @@ describe('HorizonHisPage', () => {
     expect(screen.getByText('High-fidelity prototype and interaction-map evidence.')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /high-fidelity prototype and interaction map used to validate the horizon his vision/i })).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: /detailed section of the horizon his journey map showing connected interface states/i })).toHaveLength(4);
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(8);
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/horizon-his');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/horizon-his');

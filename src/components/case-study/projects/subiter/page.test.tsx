@@ -38,6 +38,7 @@ describe('SubiterPage', () => {
     expect(screen.getByText('Editorial representation, not a literal product screenshot.')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /editorial representation of an inspection map with industrial assets/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /editorial representation of ai-assisted review integrated into inspection operations/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(3);
 
     const delfinaLink = screen.getByRole('link', { name: /view national geographic delfina/i });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');

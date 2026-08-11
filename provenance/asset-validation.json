@@ -1,6 +1,6 @@
 {
-  "total_files": 77,
-  "raster_assets": 52,
+  "total_files": 68,
+  "raster_assets": 43,
   "errors": [],
   "warnings": [],
   "checked": [
@@ -61,10 +61,6 @@
       "bytes": 86862
     },
     {
-      "path": "public/assets/projects/horizon-his/evidence/hospitalar-2025-evidence-960.webp",
-      "bytes": 111364
-    },
-    {
       "path": "public/assets/projects/horizon-his/cover/cover-1920.webp",
       "bytes": 61274
     },
@@ -93,24 +89,8 @@
       "bytes": 10526
     },
     {
-      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1920.webp",
-      "bytes": 29634
-    },
-    {
-      "path": "public/assets/projects/connectcar-freeflow/cover/cover-640.webp",
-      "bytes": 5464
-    },
-    {
       "path": "public/assets/projects/connectcar-freeflow/cover/cover-master.png",
       "bytes": 95350
-    },
-    {
-      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1440.webp",
-      "bytes": 17560
-    },
-    {
-      "path": "public/assets/projects/connectcar-freeflow/cover/cover-1024.webp",
-      "bytes": 10404
     },
     {
       "path": "public/assets/projects/subiter/editorial/inspection-map-1400.webp",
@@ -125,24 +105,8 @@
       "bytes": 19318
     },
     {
-      "path": "public/assets/projects/subiter/cover/cover-1920.webp",
-      "bytes": 42858
-    },
-    {
-      "path": "public/assets/projects/subiter/cover/cover-640.webp",
-      "bytes": 6828
-    },
-    {
       "path": "public/assets/projects/subiter/cover/cover-master.png",
       "bytes": 73679
-    },
-    {
-      "path": "public/assets/projects/subiter/cover/cover-1440.webp",
-      "bytes": 24372
-    },
-    {
-      "path": "public/assets/projects/subiter/cover/cover-1024.webp",
-      "bytes": 14592
     },
     {
       "path": "public/assets/projects/dasa-canal-do-consultor/evidence/discovery-editorial-board-1024.webp",

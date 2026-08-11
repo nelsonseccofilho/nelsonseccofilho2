@@ -2,15 +2,15 @@
 
 ## Home
 - HORIZON card: `projects/horizon-his/cover/cover-*.webp`
-- SUBITER card: `projects/subiter/cover/cover-*.webp`
+- SUBITER card: reconstruction placeholder; the unthemed legacy `cover-*.webp` variants were retired after publication-safety review.
 - REDE DCC card: `projects/rede-dcc/cover/cover-*.webp`
 - DASA card: `projects/dasa-canal-do-consultor/cover/cover-*.webp`
-- Selected Work: `projects/connectcar-freeflow/cover/cover-*.webp`
+- Selected Work: reconstruction placeholder; the legacy ConnectCar / Freeflow `cover-*.webp` variants were retired after publication-safety review.
 
 Project names, descriptions and tags remain HTML. Covers intentionally avoid essential baked copy.
 
 ## HORIZON case
-Use the triage prototype and interaction map. The Hospitalar event photo remains `review_privacy` and must not be used in the public case unless separately authorized. The result slide is available as secondary proof, but prefer HTML metrics instead of rasterized text.
+Use the triage prototype and interaction map. The Hospitalar event photo was retired after `review_privacy`: it contained a visibly identifiable person, had no recorded publication/privacy authorization, and was not required by the current product. The result slide is available as secondary proof, but prefer HTML metrics instead of rasterized text.
 
 ## SUBITER case
 Use the three editorial support visuals until publication clearance allows real UI exports. Label them in the caption as editorial representations when shown.

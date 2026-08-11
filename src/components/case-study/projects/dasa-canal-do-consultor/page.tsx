@@ -25,10 +25,44 @@ export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
 export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = dasaCanalDoConsultorCaseContent[locale];
-  const diagrams = Array.from({ length: 8 }, (_, index) => ({
-    id: `dasa-diagram-${index + 1}`,
-    placeholderLabel: common.mediaPlaceholders.evidence,
-  }));
+  const diagrams = [
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/narrative/narrative-cross-system-analysis.jpg',
+        alt: content.sections.diagrams.diagram01EcosystemAlt,
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/narrative/narrative-discovery-to-opportunity.jpg',
+        alt: content.sections.diagrams.diagram03DiscoveryProcessAlt,
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/evidence/evidence-parameterization-rules.jpg',
+        alt: content.sections.diagrams.diagram04ResearchToRulesAlt,
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/evidence/evidence-patient-and-insurance.jpg',
+        alt: content.sections.diagrams.diagram05InformationFragmentationAlt,
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/evidence/evidence-scheduling-models.jpg',
+        alt: content.sections.diagrams.diagram07ComplexityExamplesAlt,
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/dasa-canal-do-consultor/evidence/evidence-recurrence-and-reporting.jpg',
+        alt: content.sections.diagrams.diagram06ThemeMapAlt,
+      },
+    },
+  ] as const;
 
   return (
     <>
@@ -40,7 +74,10 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          placeholderLabel={common.mediaPlaceholders.cover}
+          image={{
+            src: '/assets/projects/dasa-canal-do-consultor/cover/cover-home-dasa-canal-consultor.jpg',
+            alt: content.hero.imageAlt,
+          }}
         />
 
         <CaseSection
@@ -73,7 +110,10 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           intro={content.sections.evidenceBoard.intro}
         >
           <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
+            image={{
+              src: '/assets/projects/dasa-canal-do-consultor/evidence/evidence-dasa-research-board.jpg',
+              alt: content.sections.evidenceBoard.imageAlt,
+            }}
             caption={content.sections.evidenceBoard.caption}
             viewerLabels={common.evidenceViewer}
           />

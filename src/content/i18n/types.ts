@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/locales';
 import type { RouteId } from '@/i18n/routes';
 
 export type DictionaryByLocale<Dictionary> = Readonly<Record<Locale, Dictionary>>;
-export type ProjectRouteId = Exclude<RouteId, 'home' | 'building-portfolio'>;
+export type ProjectRouteId = Exclude<RouteId, 'home' | 'building-portfolio' | 'privacy'>;
 
 export type MetadataContent = {
   title: string;

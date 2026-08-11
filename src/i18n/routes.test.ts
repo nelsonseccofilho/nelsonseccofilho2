@@ -17,6 +17,7 @@ describe('localized route map', () => {
 
   it.each([
     ['building-portfolio', '/construindo-este-portfolio', '/en/building-this-portfolio'],
+    ['privacy', '/privacidade', '/en/privacy'],
     ['horizon-his', '/projetos/horizon-his', '/en/projects/horizon-his'],
     ['subiter', '/projetos/subiter', '/en/projects/subiter'],
     ['rede-dcc', '/projetos/rede-dcc', '/en/projects/rede-dcc'],

@@ -38,7 +38,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiOperations!).getByText(/não representa o esforço intelectual total do projeto/i)).toHaveTextContent(/fase futura de imagem\/art direction definida na D-022/i);
     expect(screen.getByRole('heading', { level: 2, name: 'Custo operacional do experimento' })).toBeInTheDocument();
     expect(screen.getByText(/Hospedagem: Netlify, no ambiente atual de produção\./i)).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(2);
+    expect(screen.getByRole('img', { name: /workspace com vs code, localhost, terminal e colaboração assistida por ia/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /documento de decisões do projeto usado como referência de convenções e governança técnica/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /evidência de qa e validação responsiva usada para revisar ux, acessibilidade e qualidade técnica/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /figma/i })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Portfólio' })).toHaveAttribute('href', '/');
@@ -66,6 +68,8 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiOperations!).getByText(/Git activity between August 7–10, 2026/i)).toHaveTextContent(/implementation, refinement, and validation/i);
     expect(within(aiOperations!).getByText(/not a claim for the project’s total intellectual effort/i)).toHaveTextContent(/future imagery\/art-direction phase defined in D-022/i);
     expect(within(aiOperations!).getByText(/responsibility for deciding what to do.*remains human/i)).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /workspace evidence with vs code, localhost, terminal, and ai-assisted collaboration/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /project decision log evidence used as a source for conventions and implementation governance/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Operational cost of the experiment' })).toBeInTheDocument();
     expect(screen.getByText(/Hosting: Netlify, for the current production environment\./i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'View repository on GitHub ↗' })).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');

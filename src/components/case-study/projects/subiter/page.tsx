@@ -35,7 +35,10 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          placeholderLabel={common.mediaPlaceholders.cover}
+          image={{
+            src: '/assets/projects/subiter/hero/hero-master.webp',
+            alt: content.hero.imageAlt,
+          }}
         />
 
         <CaseSection
@@ -95,7 +98,10 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.productStructure.intro}
         >
           <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
+            image={{
+              src: '/assets/projects/subiter/narrative/portal-system-overview-master.webp',
+              alt: content.sections.productStructure.imageAlt,
+            }}
             caption={content.sections.productStructure.caption}
             viewerLabels={common.evidenceViewer}
           />
@@ -107,7 +113,10 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.inspectionLifecycle.intro}
         >
           <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
+            image={{
+              src: '/assets/projects/subiter/narrative/structural-inspections-master.webp',
+              alt: content.sections.inspectionLifecycle.imageAlt,
+            }}
             caption={content.sections.inspectionLifecycle.caption}
             viewerLabels={common.evidenceViewer}
           />
@@ -121,7 +130,10 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           <div className="case-section__stack">
             <p className="case-section__copy">{content.sections.marina.paragraph}</p>
             <CaseMedia
-              placeholderLabel={common.mediaPlaceholders.evidence}
+              image={{
+                src: '/assets/projects/subiter/narrative/asset-ids-traceability-master.webp',
+                alt: content.sections.marina.imageAlt,
+              }}
               caption={content.sections.marina.caption}
               viewerLabels={common.evidenceViewer}
             />

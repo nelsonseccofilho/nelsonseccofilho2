@@ -3,9 +3,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import EnglishLoading from '@/app/(en)/en/building-this-portfolio/loading';
+import EnglishLoading from '@/app/(en)/(with-footer)/en/building-this-portfolio/loading';
 import EnglishNotFound from '@/app/(en)/not-found';
-import PortugueseLoading from '@/app/(pt-BR)/construindo-este-portfolio/loading';
+import PortugueseLoading from '@/app/(pt-BR)/(with-footer)/construindo-este-portfolio/loading';
 import PortugueseNotFound from '@/app/(pt-BR)/not-found';
 
 vi.mock('@/components/theme/theme-provider', () => ({
@@ -54,7 +54,7 @@ describe('localized route feedback', () => {
 
   it('uses native notFound routes and disables loading motion when requested', () => {
     const portugueseCatchAll = readFileSync(resolve(process.cwd(), 'src/app/(pt-BR)/[...notFound]/page.tsx'), 'utf8');
-    const englishCatchAll = readFileSync(resolve(process.cwd(), 'src/app/(en)/en/[...notFound]/page.tsx'), 'utf8');
+    const englishCatchAll = readFileSync(resolve(process.cwd(), 'src/app/(en)/(with-footer)/en/[...notFound]/page.tsx'), 'utf8');
     const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
 
     expect(portugueseCatchAll).toContain('notFound();');

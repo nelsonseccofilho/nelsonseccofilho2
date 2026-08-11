@@ -25,10 +25,44 @@ export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
 export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = redeDccCaseContent[locale];
-  const transactionStates = Array.from({ length: 4 }, (_, index) => ({
-    id: `rede-transaction-${index + 1}`,
-    placeholderLabel: common.mediaPlaceholders.evidence,
-  }));
+  const transactionStates = [
+    {
+      image: {
+        src: '/assets/projects/rede-dcc/narrative/narrative-currency-choice.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Tela de escolha de moeda do DCC com destaque para a decisão entre BRL e moeda de origem.'
+            : 'DCC currency-choice state highlighting the BRL versus home-currency decision.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/rede-dcc/narrative/narrative-preauthorization-continuity.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Continuidade da transação entre pré-autorização e sequência de confirmação.'
+            : 'Transaction continuity between pre-authorization and confirmation sequence.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/rede-dcc/narrative/narrative-receipt-consent.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Estado de confirmação com comprovante e consentimento da etapa transacional.'
+            : 'Confirmation state with receipt and consent in the transactional flow.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/rede-dcc/narrative/narrative-device-handoff.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Handoff entre operador e cliente durante a jornada no terminal de pagamento.'
+            : 'Operator-to-customer handoff during the payment-terminal journey.',
+      },
+    },
+  ] as const;
 
   return (
     <>
@@ -40,7 +74,10 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          placeholderLabel={common.mediaPlaceholders.cover}
+          image={{
+            src: '/assets/projects/rede-dcc/hero/hero-dcc-terminal.png',
+            alt: content.hero.imageAlt,
+          }}
         />
 
         <CaseSection
@@ -99,7 +136,10 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.transactionStates.intro}
         >
           <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
+            image={{
+              src: '/assets/projects/rede-dcc/narrative/narrative-transaction-states.png',
+              alt: content.sections.transactionStates.imageAlt,
+            }}
             caption={content.sections.transactionStates.caption}
             viewerLabels={common.evidenceViewer}
           />

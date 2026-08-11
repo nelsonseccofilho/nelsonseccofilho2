@@ -6,17 +6,29 @@ export type PortfolioMetaCaseContent = {
   title: string;
   subtitle: string;
   intro: string;
+  heroMedia?: {
+    src: string;
+    alt: string;
+  };
   sections: readonly {
     id: string;
     title: string;
     paragraphs: readonly string[];
     bullets?: readonly string[];
     placeholder?: boolean;
+    media?: {
+      src: string;
+      alt: string;
+    };
   }[];
   deployment: {
     title: string;
     steps: readonly { label: string; description: string }[];
     productionLabel: string;
+    media?: {
+      src: string;
+      alt: string;
+    };
   };
   professionalEvidence: {
     title: string;
@@ -37,6 +49,10 @@ const ptBR: PortfolioMetaCaseContent = {
   title: 'Construindo este portfólio',
   subtitle: 'Product Design × Engineering × AI-assisted development',
   intro: 'Este portfólio começou como um problema de posicionamento. A hipótese era que o próprio produto poderia demonstrar, em vez de apenas descrever, minha capacidade de conectar Design, Produto e Engenharia.',
+  heroMedia: {
+    src: '/assets/projects/building-this-portfolio/hero/hero-building-this-portfolio-workspace.png',
+    alt: 'Workspace com VS Code, localhost, terminal e colaboração assistida por IA durante a construção do portfólio.',
+  },
   sections: [
     {
       id: 'why-rebuild',
@@ -49,12 +65,20 @@ const ptBR: PortfolioMetaCaseContent = {
       paragraphs: ['Tratei o portfólio como um produto: conteúdo primeiro, evidências claras, duas línguas, acessibilidade, responsividade, manutenção técnica e validação contínua. A implementação deveria sustentar o posicionamento profissional, não funcionar apenas como sua embalagem.'],
       bullets: ['Conteúdo primeiro e narrativa orientada por evidências', 'PT-BR canônico e experiência equivalente em inglês', 'Componentes compartilhados, comportamento acessível e critérios testáveis'],
       placeholder: true,
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-github-repository.png',
+        alt: 'Evidência do repositório GitHub do projeto, usada como base da hipótese de produto.',
+      },
     },
     {
       id: 'code-first',
       title: 'Código como meio de design neste projeto',
       paragraphs: ['Não houve telas finais previamente desenhadas no Figma. As decisões passaram por discussão, implementação, renderização no navegador, crítica humana, testes e refinamento. Isso não torna o Figma obsoleto nem define um método universal: neste produto, o código foi um dos meios de design. Figma continua relevante para documentação, referências e materiais de apoio.'],
       bullets: ['Objetivo → hipótese → implementação → render', 'Revisão humana → teste → refinamento', 'Commit → deploy → validação em produção'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-code-as-design-medium.png',
+        alt: 'Fluxo de trabalho mostrando código como meio de design entre decisão, implementação e validação.',
+      },
     },
     {
       id: 'product-decisions',
@@ -66,6 +90,10 @@ const ptBR: PortfolioMetaCaseContent = {
       title: 'Arquitetura a serviço da qualidade',
       paragraphs: ['Next.js App Router, React e TypeScript sustentam rotas e dicionários tipados. Componentes compartilhados e tokens semânticos mantêm consistência. Tailwind CSS é o padrão atual para UI nova e migrada; shadcn/ui e primitivas Radix são usados onde resolvem interação e acessibilidade de forma significativa.'],
       placeholder: true,
+      media: {
+        src: '/assets/projects/building-this-portfolio/source-exports/netlify-build-settings.png',
+        alt: 'Configuração de Build Settings no Netlify usada para garantir consistência de ambiente e publicação.',
+      },
     },
     {
       id: 'quality',
@@ -74,16 +102,28 @@ const ptBR: PortfolioMetaCaseContent = {
         'Velocidade de implementação foi acompanhada por gates explícitos: testes automatizados, typecheck, lint, build de produção, QA responsivo, Light/Dark, localização PT-BR/EN, teclado, movimento reduzido, contraste, revisão visual humana e validação do deploy em produção.',
         'Após a publicação, o portfólio passou a contar com Microsoft Clarity como camada de observação comportamental. Heatmaps, gravações de sessão e padrões de interação passam a apoiar novas revisões de UX com evidências de uso real, mantendo analytics condicionado à escolha do visitante. O ciclo se expande para Design → implementação → validação automatizada → produção → observação comportamental → refinamento.',
       ],
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-qa-findings.png',
+        alt: 'Evidência de QA e validação responsiva usada para revisar UX, acessibilidade e qualidade técnica.',
+      },
     },
     {
       id: 'documentation',
       title: 'Documentação e convenções',
       paragraphs: ['Conventional Commits organiza o histórico semântico. BEM permanece na arquitetura CSS original/legada, enquanto Tailwind é o padrão de UI atual. A documentação evoluiu junto com decisões e implementação; ela apoia colaboração, não a substitui.'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-decisions-documentation.png',
+        alt: 'Documento de decisões do projeto usado como referência de convenções e governança técnica.',
+      },
     },
     {
       id: 'ux-review',
       title: 'Revisão de UX e acessibilidade',
       paragraphs: ['As revisões de UX foram orientadas por princípios de usabilidade e referências publicadas pela Nielsen Norman Group (NN/g). A acessibilidade foi tratada por revisão, validação de contraste, QA de teclado e critérios relevantes orientados pela WCAG quando avaliados — sem alegação de certificação ou endosso.'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-responsive-validation.png',
+        alt: 'Cenários de validação responsiva em múltiplas larguras para revisão de usabilidade e acessibilidade.',
+      },
     },
     {
       id: 'human-qa',
@@ -99,6 +139,10 @@ const ptBR: PortfolioMetaCaseContent = {
         'Com o avanço do projeto, aprendi que o resultado dependia menos de simplesmente “usar IA” e mais de definir bem o problema, fornecer contexto suficiente, controlar o escopo e validar o que era produzido.',
         'As ferramentas aceleraram partes da execução. Decisões de produto, direção de UX, critérios de qualidade, revisão visual, validação factual e aprovação final continuaram sob minha responsabilidade.',
       ],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-human-ai-workflow.png',
+        alt: 'Evidência de colaboração humano-IA aplicada ao workflow de execução e revisão no VS Code.',
+      },
     },
     {
       id: 'ai-operations',
@@ -138,6 +182,10 @@ const ptBR: PortfolioMetaCaseContent = {
       { label: 'Resultado', description: 'O portfólio ficou disponível em produção; “funciona localmente” não foi considerado o fim da implementação.' },
     ],
     productionLabel: 'Ver repositório no GitHub ↗',
+    media: {
+      src: '/assets/projects/building-this-portfolio/source-exports/netlify-production-deploy.png',
+      alt: 'Deploy publicado no Netlify evidenciando a transição de localhost para produção.',
+    },
   },
   professionalEvidence: {
     title: 'O que este trabalho demonstra',
@@ -158,12 +206,44 @@ const en: PortfolioMetaCaseContent = {
   title: 'Building this portfolio',
   subtitle: 'Product Design × Engineering × AI-assisted development',
   intro: 'This portfolio began as a positioning problem. The hypothesis was that the product itself could demonstrate, rather than merely describe, my ability to connect Design, Product, and Engineering.',
+  heroMedia: {
+    src: '/assets/projects/building-this-portfolio/hero/hero-building-this-portfolio-workspace.png',
+    alt: 'Workspace evidence with VS Code, localhost, terminal, and AI-assisted collaboration during portfolio development.',
+  },
   sections: [
     { id: 'why-rebuild', title: 'Why rebuild the portfolio', paragraphs: ['The previous presentation no longer fully represented my current convergence of Product Design, UX, software-development knowledge, Engineering collaboration, implementation, and AI-assisted workflows. The goal was no longer just to show projects: it was to make visible how I think, structure decisions, build, and validate.'] },
-    { id: 'hypothesis', title: 'The product hypothesis', paragraphs: ['I treated the portfolio as a product: content first, clear evidence, two languages, accessibility, responsiveness, technical maintainability, and continuous validation. Its implementation needed to support the professional positioning, not merely package it.'], bullets: ['Content-first, evidence-led narrative', 'Canonical PT-BR routes and an equivalent English experience', 'Shared components, accessible behavior, and testable criteria'], placeholder: true },
-    { id: 'code-first', title: 'Code as a design medium in this project', paragraphs: ['There were no final UI screens designed beforehand in Figma. Decisions moved through discussion, implementation, browser rendering, human critique, testing, and refinement. This does not make Figma obsolete or define a universal method: in this product, code was one of the design media. Figma remains relevant for documentation, references, and supporting materials.'], bullets: ['Objective → hypothesis → implementation → render', 'Human review → test → refinement', 'Commit → deploy → production validation'] },
+    {
+      id: 'hypothesis',
+      title: 'The product hypothesis',
+      paragraphs: ['I treated the portfolio as a product: content first, clear evidence, two languages, accessibility, responsiveness, technical maintainability, and continuous validation. Its implementation needed to support the professional positioning, not merely package it.'],
+      bullets: ['Content-first, evidence-led narrative', 'Canonical PT-BR routes and an equivalent English experience', 'Shared components, accessible behavior, and testable criteria'],
+      placeholder: true,
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-github-repository.png',
+        alt: 'GitHub repository evidence used as the product-hypothesis baseline.',
+      },
+    },
+    {
+      id: 'code-first',
+      title: 'Code as a design medium in this project',
+      paragraphs: ['There were no final UI screens designed beforehand in Figma. Decisions moved through discussion, implementation, browser rendering, human critique, testing, and refinement. This does not make Figma obsolete or define a universal method: in this product, code was one of the design media. Figma remains relevant for documentation, references, and supporting materials.'],
+      bullets: ['Objective → hypothesis → implementation → render', 'Human review → test → refinement', 'Commit → deploy → production validation'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-code-as-design-medium.png',
+        alt: 'Workflow evidence showing code as a design medium across implementation and validation loops.',
+      },
+    },
     { id: 'product-decisions', title: 'Product and UX decisions', paragraphs: ['The bilingual architecture, editorial Home hierarchy, case ordering, navigation without artificial hierarchies, Evidence System, Light/Dark themes, and SUBITER scannability refinement are product decisions—not merely interface details.'] },
-    { id: 'architecture', title: 'Architecture in service of quality', paragraphs: ['Next.js App Router, React, and TypeScript support typed routes and dictionaries. Shared components and semantic tokens maintain consistency. Tailwind CSS is the current standard for new and migrated UI; shadcn/ui and Radix primitives are used where they meaningfully solve interaction and accessibility needs.'], placeholder: true },
+    {
+      id: 'architecture',
+      title: 'Architecture in service of quality',
+      paragraphs: ['Next.js App Router, React, and TypeScript support typed routes and dictionaries. Shared components and semantic tokens maintain consistency. Tailwind CSS is the current standard for new and migrated UI; shadcn/ui and Radix primitives are used where they meaningfully solve interaction and accessibility needs.'],
+      placeholder: true,
+      media: {
+        src: '/assets/projects/building-this-portfolio/source-exports/netlify-build-settings.png',
+        alt: 'Netlify Build Settings evidence used to stabilize environment and publishing.',
+      },
+    },
     {
       id: 'quality',
       title: 'Quality as product work',
@@ -171,9 +251,29 @@ const en: PortfolioMetaCaseContent = {
         'Implementation speed was paired with explicit gates: automated tests, typecheck, lint, production build, responsive QA, Light/Dark QA, PT-BR/EN localization, keyboard review, reduced-motion behavior, contrast validation, human visual review, and production deployment validation.',
         'After publication, Microsoft Clarity became a behavioral-observation layer for the portfolio. Heatmaps, session recordings, and interaction patterns can support future UX reviews with real-use evidence, while analytics remains conditional on the visitor’s choice. The loop expands to Design → implementation → automated validation → production → behavioral observation → refinement.',
       ],
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-qa-findings.png',
+        alt: 'QA and responsive-validation evidence used to assess UX, accessibility, and technical quality.',
+      },
     },
-    { id: 'documentation', title: 'Documentation and conventions', paragraphs: ['Conventional Commits organizes semantic history. BEM remains in the original/legacy CSS architecture, while Tailwind is the current UI standard. Documentation evolved alongside decisions and implementation; it supports collaboration rather than replacing it.'] },
-    { id: 'ux-review', title: 'UX and accessibility review', paragraphs: ['UX reviews were informed by usability principles and research published by Nielsen Norman Group (NN/g). Accessibility work included review, contrast validation, keyboard QA, and relevant WCAG-oriented criteria where assessed—without claims of certification or endorsement.'] },
+    {
+      id: 'documentation',
+      title: 'Documentation and conventions',
+      paragraphs: ['Conventional Commits organizes semantic history. BEM remains in the original/legacy CSS architecture, while Tailwind is the current UI standard. Documentation evolved alongside decisions and implementation; it supports collaboration rather than replacing it.'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/evidence/evidence-decisions-documentation.png',
+        alt: 'Project decision log evidence used as a source for conventions and implementation governance.',
+      },
+    },
+    {
+      id: 'ux-review',
+      title: 'UX and accessibility review',
+      paragraphs: ['UX reviews were informed by usability principles and research published by Nielsen Norman Group (NN/g). Accessibility work included review, contrast validation, keyboard QA, and relevant WCAG-oriented criteria where assessed—without claims of certification or endorsement.'],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-responsive-validation.png',
+        alt: 'Responsive-validation evidence across representative viewports for UX and accessibility review.',
+      },
+    },
     { id: 'human-qa', title: 'Human review changed the product', paragraphs: ['Visual and semantic critique found issues that automated validation alone would not. A few examples document how decisions were revised without losing scope.'], bullets: ['A false breadcrumb hierarchy became the contextual “← All projects” link.', 'Primary and complementary evidence gained distinct weight; DASA disclosure was validated through 4 → 8 → 4.', 'The lightbox began deriving its width from intrinsic media dimensions.', 'SUBITER gained better narrative measure, a semantic responsibilities list, and restrained editorial callouts.', 'Dark tokens were corrected from 3.83:1 and 3.86:1 to 4.61:1 and 4.72:1, with a regression test.'] },
     {
       id: 'ai-collaboration',
@@ -183,6 +283,10 @@ const en: PortfolioMetaCaseContent = {
         'As the project evolved, I learned that results depended less on simply “using AI” and more on framing the problem well, providing enough context, controlling scope, and validating what was produced.',
         'The tools accelerated parts of execution. Product decisions, UX direction, quality criteria, visual review, factual validation, and final approval remained my responsibility.',
       ],
+      media: {
+        src: '/assets/projects/building-this-portfolio/narrative/narrative-human-ai-workflow.png',
+        alt: 'Human-AI workflow evidence showing assisted collaboration under human review and approval.',
+      },
     },
     {
       id: 'ai-operations',
@@ -222,6 +326,10 @@ const en: PortfolioMetaCaseContent = {
       { label: 'Result', description: 'The portfolio became available in production; “works locally” was not treated as the end of implementation.' },
     ],
     productionLabel: 'View repository on GitHub ↗',
+    media: {
+      src: '/assets/projects/building-this-portfolio/source-exports/netlify-production-deploy.png',
+      alt: 'Published Netlify deployment evidence documenting the localhost-to-production transition.',
+    },
   },
   professionalEvidence: {
     title: 'What this work demonstrates',

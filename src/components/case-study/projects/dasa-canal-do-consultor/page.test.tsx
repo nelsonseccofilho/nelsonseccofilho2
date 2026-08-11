@@ -29,7 +29,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(within(hero).getByText('PM/PO · UX Researcher · Product Designer · Lead Developer')).toBeInTheDocument();
     expect(within(hero).getByText('Canal do Consultor / MV Soul / Feegow / Tasy')).toBeInTheDocument();
     expect(within(hero).getByText('Existing pilot and future backlog input')).toBeInTheDocument();
-    expect(within(hero).getByRole('img', { name: 'Cover being rebuilt' })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: /editorial composition of the canal do consultor discovery work with maps, synthesis, and business rules/i })).toBeInTheDocument();
 
     expect(screen.getByText('37 participants interviewed')).toBeInTheDocument();
     expect(screen.getByText('3 NACs visited — RJ, SP and Brasília')).toBeInTheDocument();
@@ -39,14 +39,13 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText('57 business rules and features mapped')).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /discovery diagrams and synthesis artifacts/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(5);
-    const viewAllArtifacts = screen.getByRole('button', { name: 'View all artifacts (8)' });
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(5);
+    const viewAllArtifacts = screen.getByRole('button', { name: 'View all artifacts (6)' });
     expect(viewAllArtifacts).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByRole('img', { name: /diagram showing the discovery to delivery narrative and handoff structure/i })).not.toBeInTheDocument();
     fireEvent.click(viewAllArtifacts);
-    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(9);
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(7);
     expect(screen.getByRole('button', { name: 'Show less' })).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
 
     expect(screen.getByText('Validation with NAC coordinators')).toBeInTheDocument();
     expect(screen.getByText('Validation with consultants')).toBeInTheDocument();
@@ -61,7 +60,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText(/all visuals on this page/i)).toBeInTheDocument();
     expect(screen.getByText(/do not reveal production ui screens/i)).toBeInTheDocument();
     expect(screen.getByText('Editorial reconstruction used for portfolio communication.')).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(9);
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(7);
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/dasa-canal-do-consultor');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/dasa-canal-do-consultor');
@@ -96,6 +95,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(within(hero).getByText('PM/PO · UX Researcher · Product Designer · Lead Developer')).toBeInTheDocument();
     expect(within(hero).getByText('Canal do Consultor / MV Soul / Feegow / Tasy')).toBeInTheDocument();
     expect(within(hero).getByText('Piloto existente e insumos para backlog futuro')).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: /composição editorial do trabalho de discovery do canal do consultor com mapas, síntese e regras de negócio/i })).toBeInTheDocument();
 
     expect(screen.getByText('37 participantes entrevistados')).toBeInTheDocument();
     expect(screen.getByText('3 NACs visitados — RJ, SP e Brasília')).toBeInTheDocument();
@@ -105,14 +105,13 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText('57 regras de negócio e funcionalidades mapeadas')).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /diagramas de discovery e artefatos de s[ií]ntese/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(5);
-    const viewAllArtifacts = screen.getByRole('button', { name: 'Ver todos os artefatos (8)' });
+    expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(5);
+    const viewAllArtifacts = screen.getByRole('button', { name: 'Ver todos os artefatos (6)' });
     expect(viewAllArtifacts).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByRole('img', { name: /diagrama mostrando a narrativa de discovery para delivery e a estrutura de handoff/i })).not.toBeInTheDocument();
     fireEvent.click(viewAllArtifacts);
-    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(9);
+    expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(7);
     expect(screen.getByRole('button', { name: 'Mostrar menos' })).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.queryByRole('button', { name: /^Abrir imagem ampliada:/ })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
 
     expect(screen.getByText('Validação com coordenadores de NAC')).toBeInTheDocument();

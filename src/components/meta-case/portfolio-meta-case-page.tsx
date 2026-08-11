@@ -1,4 +1,5 @@
 import { BackToTop } from '@/components/case-study/back-to-top';
+import { CaseHero } from '@/components/case-study/case-hero';
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
 import { SiteHeader } from '@/components/layout/site-header';
 import { MediaPlaceholder } from '@/components/media/media-placeholder';
@@ -20,19 +21,14 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
           <PortfolioReturnLink locale={locale} />
         </nav>
         <article>
-          <header className="py-[clamp(2.5rem,6vw,6rem)]">
-            <div className="layout-container grid gap-8 lg:grid-cols-12 lg:items-end">
-              <div className="grid gap-5 lg:col-span-7">
-                <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase">{content.eyebrow}</p>
-                <h1 className="m-0 max-w-[13ch] text-[clamp(2.75rem,6vw,6rem)] leading-[0.92] font-bold tracking-[-0.05em] text-[var(--color-text-primary)]">{content.title}</h1>
-                <p className="m-0 text-[clamp(1rem,1.6vw,1.2rem)] font-semibold text-[var(--color-brand-text)]">{content.subtitle}</p>
-                <p className="m-0 max-w-[50rem] text-[clamp(1.05rem,1.8vw,1.3rem)] leading-[1.65] text-[var(--color-text-secondary)]">{content.intro}</p>
-              </div>
-              <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] lg:col-span-5">
-                <MediaPlaceholder label={common.mediaPlaceholders.visual} variant="hero" />
-              </div>
-            </div>
-          </header>
+          <CaseHero
+            eyebrow={content.eyebrow}
+            title={content.title}
+            description={content.subtitle}
+            supportingCopy={content.intro}
+            image={content.heroMedia}
+            placeholderLabel={common.mediaPlaceholders.visual}
+          />
 
           {content.sections.map((section, index) => (
             <section key={section.id} id={section.id} className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby={`${section.id}-title`}>
@@ -48,7 +44,13 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
                       {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                     </ul>
                   ) : null}
-                  {section.placeholder ? (
+                  {section.media ? (
+                    <div className="aspect-video overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img className="h-full w-full object-contain object-center" src={section.media.src} alt={section.media.alt} loading="lazy" />
+                    </div>
+                  ) : null}
+                  {section.placeholder && !section.media ? (
                     <div className="aspect-video overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)]">
                       <MediaPlaceholder label={common.mediaPlaceholders.evidence} variant="evidence" />
                     </div>
@@ -70,6 +72,12 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
                     </div>
                   ))}
                 </dl>
+                {content.deployment.media ? (
+                  <div className="aspect-video overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img className="h-full w-full object-contain object-center" src={content.deployment.media.src} alt={content.deployment.media.alt} loading="lazy" />
+                  </div>
+                ) : null}
                 <AnalyticsLink
                   className="contact__secondary-link inline-flex min-h-11 w-fit items-center"
                   href={GITHUB_PORTFOLIO_REPOSITORY_URL}

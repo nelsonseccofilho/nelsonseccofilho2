@@ -26,7 +26,7 @@ describe('RedeDccPage', () => {
     expect(within(hero).getByText('2023')).toBeInTheDocument();
     expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
     expect(within(hero).getByText(/Implemented in REDE[’']s product/i)).toBeInTheDocument();
-    expect(within(hero).getByRole('img', { name: 'Cover being rebuilt' })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: /payment interface composition showing transaction flow states and confirmation screens/i })).toBeInTheDocument();
 
     expect(screen.getByText(/international mastercard and visa cardholders using rede payment terminals in brazil/i)).toBeInTheDocument();
     expect(screen.getByText(/international cardholders using cards linked to foreign accounts/i)).toBeInTheDocument();
@@ -35,8 +35,7 @@ describe('RedeDccPage', () => {
     expect(screen.getByText(/a navigable prototype was not necessary for this delivery/i)).toBeInTheDocument();
     expect(screen.getByText(/implemented within rede[’']s existing payment ecosystem/i)).toBeInTheDocument();
     expect(screen.getByText('Curated transaction-state sequence used to review the complete journey.')).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(5);
-    expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(5);
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/rede-dcc');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/rede-dcc');
@@ -64,7 +63,7 @@ describe('RedeDccPage', () => {
     expect(within(hero).getByText('2023')).toBeInTheDocument();
     expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
     expect(within(hero).getByText('Implementado no produto da REDE')).toBeInTheDocument();
-    expect(within(hero).getByRole('img', { name: 'Capa em reconstrução' })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: /composição de interfaces de pagamento mostrando estados do fluxo de transação e telas de confirmação/i })).toBeInTheDocument();
 
     expect(screen.getByText(/mastercard e visa usando terminais de pagamento da rede no brasil/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /orquestrando os estados transacionais/i })).toBeInTheDocument();
@@ -72,7 +71,7 @@ describe('RedeDccPage', () => {
     expect(screen.getByText(/um prot[oó]tipo naveg[aá]vel n[aã]o era necess[aá]rio para esta entrega/i)).toBeInTheDocument();
     expect(screen.getByText(/implementada dentro do ecossistema de pagamentos j[aá] existente da rede/i)).toBeInTheDocument();
     expect(screen.getByText('Sequência curada de estados transacionais usada para revisar a jornada completa.')).toBeInTheDocument();
-    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(5);
+    expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(5);
 
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('href', '/projetos/rede-dcc');
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');

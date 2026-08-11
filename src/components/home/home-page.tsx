@@ -1,19 +1,13 @@
 import Link from 'next/link';
 import { AnalyticsConsentSurface } from '@/components/analytics/analytics-provider';
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
-import { PrivacyPreferencesButton } from '@/components/analytics/privacy-preferences-button';
 import { BackToTop } from '@/components/case-study/back-to-top';
 import { Hero } from '@/components/home/hero';
 import { ProjectCard } from '@/components/home/project-card';
 import { ProjectGrid } from '@/components/home/project-grid';
-import { MediaPlaceholder } from '@/components/media/media-placeholder';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SendIcon } from '@/components/ui/send-icon';
 import {
-  CONTACT_EMAIL,
-  CONTACT_EMAIL_URL,
-  GITHUB_PROFILE_URL,
-  LINKEDIN_CONTACT_URL,
   N3LX_SPOTIFY_URL,
   WHATSAPP_CONTACT_URL,
 } from '@/content/contact';
@@ -45,6 +39,17 @@ export function HomePage({ locale }: HomePageProps) {
             <ProjectGrid>
               {content.featuredCases.projects.map((project) => {
                 const facts = projectFacts[project.routeId];
+                const featuredImage =
+                  project.routeId === 'horizon-his'
+                    ? { src: '/assets/projects/horizon-his/cover/cover-home-horizon-his.png', alt: project.image.alt }
+                    : project.routeId === 'subiter'
+                      ? { src: '/assets/projects/subiter/cover/cover-master.webp', alt: project.image.alt }
+                      : project.routeId === 'rede-dcc'
+                    ? { src: '/assets/projects/rede-dcc/cover/cover-home-rede-dcc.png', alt: project.image.alt }
+                    : project.routeId === 'dasa-canal-do-consultor'
+                      ? { src: '/assets/projects/dasa-canal-do-consultor/cover/cover-home-dasa-canal-consultor.jpg', alt: project.image.alt }
+                      : undefined;
+
                 return (
                   <ProjectCard
                     key={project.routeId}
@@ -53,6 +58,7 @@ export function HomePage({ locale }: HomePageProps) {
                     description={project.description}
                     tags={project.tags}
                     tagsLabel={project.tagsLabel}
+                    image={featuredImage}
                     href={getLocalizedPath(project.routeId, locale)}
                     placeholderLabel={common.mediaPlaceholders.cover}
                     actionLabel={content.featuredCases.actionLabel}
@@ -75,7 +81,15 @@ export function HomePage({ locale }: HomePageProps) {
               aria-labelledby="selected-work-card-title"
             >
               <div className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] md:col-span-7 md:aspect-[4/3] lg:aspect-[16/10]">
-                <MediaPlaceholder label={common.mediaPlaceholders.visual} variant="selected-work" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="project-card__image"
+                  src="/assets/projects/connectcar-freeflow/cover/cover-1920.webp"
+                  srcSet="/assets/projects/connectcar-freeflow/cover/cover-640.webp 640w, /assets/projects/connectcar-freeflow/cover/cover-1024.webp 1024w, /assets/projects/connectcar-freeflow/cover/cover-1440.webp 1440w, /assets/projects/connectcar-freeflow/cover/cover-1920.webp 1920w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 58vw, 52vw"
+                  alt={content.selectedWork.image.alt}
+                  loading="lazy"
+                />
               </div>
               <div className="grid content-center gap-3 md:col-span-5 md:pr-4">
                 <h3 id="selected-work-card-title" className="m-0 text-[clamp(1.1rem,1.7vw,1.35rem)] leading-[1.2] font-bold text-[var(--color-text-primary)]">
@@ -173,32 +187,6 @@ export function HomePage({ locale }: HomePageProps) {
                   <SendIcon className="contact__primary-icon" />
                   <span>{content.contact.primaryActionLabel}</span>
                 </AnalyticsLink>
-                <div className="contact__secondary-links" aria-label={content.accessibility.secondaryContactLinks}>
-                  <a className="contact__secondary-link" href={CONTACT_EMAIL_URL} data-clarity-mask="true">
-                    {CONTACT_EMAIL}
-                  </a>
-                  <AnalyticsLink
-                    className="contact__secondary-link"
-                    href={LINKEDIN_CONTACT_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="contact_linkedin_click"
-                    data-clarity-mask="true"
-                  >
-                    LinkedIn
-                  </AnalyticsLink>
-                  <AnalyticsLink
-                    className="contact__secondary-link"
-                    href={GITHUB_PROFILE_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="contact_github_click"
-                    data-clarity-mask="true"
-                  >
-                    GitHub
-                  </AnalyticsLink>
-                  <PrivacyPreferencesButton label={common.privacy.manageLabel} />
-                </div>
               </div>
             </div>
           </div>

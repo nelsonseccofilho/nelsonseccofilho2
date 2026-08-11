@@ -25,10 +25,44 @@ export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
 export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = horizonHisCaseContent[locale];
-  const journeyDetails = Array.from({ length: 4 }, (_, index) => ({
-    id: `horizon-journey-${index + 1}`,
-    placeholderLabel: common.mediaPlaceholders.evidence,
-  }));
+  const journeyDetails = [
+    {
+      image: {
+        src: '/assets/projects/horizon-his/narrative/narrative-patient-list.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Recorte narrativo de lista de pacientes e estados de triagem no HORIZON HIS.'
+            : 'Narrative crop of patient-list and triage states in HORIZON HIS.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/horizon-his/narrative/narrative-vital-signs-monitoring.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Recorte narrativo do monitoramento de sinais vitais na jornada clínica.'
+            : 'Narrative crop of vital-sign monitoring in the clinical journey.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/horizon-his/narrative/narrative-prescription-workflow.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Recorte narrativo do fluxo de prescrição em uma etapa da experiência.'
+            : 'Narrative crop of prescription workflow in a key experience step.',
+      },
+    },
+    {
+      image: {
+        src: '/assets/projects/horizon-his/narrative/narrative-integrated-management.png',
+        alt:
+          locale === 'pt-BR'
+            ? 'Recorte narrativo de gestão integrada conectando módulos operacionais do HIS.'
+            : 'Narrative crop of integrated management connecting HIS operational modules.',
+      },
+    },
+  ] as const;
 
   return (
     <>
@@ -40,7 +74,10 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          placeholderLabel={common.mediaPlaceholders.cover}
+          image={{
+            src: '/assets/projects/horizon-his/hero/hero-hospitalar-overview.png',
+            alt: content.hero.imageAlt,
+          }}
         />
 
         <CaseSection
@@ -85,7 +122,10 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
         >
           <div className="case-section__stack">
             <CaseMedia
-              placeholderLabel={common.mediaPlaceholders.evidence}
+              image={{
+                src: '/assets/projects/horizon-his/hero/hero-platform-highlight.png',
+                alt: content.sections.journeys.overviewAlt,
+              }}
               caption={content.sections.journeys.overviewCaption}
               viewerLabels={common.evidenceViewer}
             />
@@ -109,10 +149,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           title={content.sections.prototype.title}
           intro={content.sections.prototype.intro}
         >
-          <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
-            viewerLabels={common.evidenceViewer}
-          />
+          <></>
         </CaseSection>
 
         <CaseSection
@@ -120,11 +157,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           title={content.sections.validation.title}
           intro={content.sections.validation.intro}
         >
-          <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
-            caption={content.sections.validation.caption}
-            viewerLabels={common.evidenceViewer}
-          />
+          <></>
         </CaseSection>
 
         <CaseSection
@@ -133,7 +166,10 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.hospitalar.intro}
         >
           <CaseMedia
-            placeholderLabel={common.mediaPlaceholders.evidence}
+            image={{
+              src: '/assets/projects/horizon-his/evidence/evidence-3d-showcase.png',
+              alt: content.sections.hospitalar.imageAlt,
+            }}
             caption={content.sections.hospitalar.caption}
             viewerLabels={common.evidenceViewer}
           />

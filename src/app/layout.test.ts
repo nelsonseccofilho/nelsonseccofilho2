@@ -3,8 +3,11 @@ import { resolve } from 'node:path';
 import { Children, isValidElement, type ReactNode } from 'react';
 import { describe, expect, it } from 'vitest';
 import { AnalyticsProvider } from '@/components/analytics/analytics-provider';
+import { SiteFooter } from '@/components/layout/site-footer';
 import { ThemeInitializationScript } from '@/components/theme/theme-initialization-script';
 import { AppThemeProvider } from '@/components/theme/theme-provider';
+import EnglishFooterLayout from './(en)/(with-footer)/layout';
+import PortugueseFooterLayout from './(pt-BR)/(with-footer)/layout';
 import EnglishRootLayout, { metadata as englishMetadata } from './(en)/layout';
 import PortugueseRootLayout, { metadata as portugueseMetadata } from './(pt-BR)/layout';
 
@@ -52,7 +55,7 @@ describe('layout metadata', () => {
     expect(portugueseLayout.props.lang).toBe('pt-BR');
   });
 
-  it('owns one theme provider, one analytics boundary and one pre-hydration script per localized document', () => {
+  it('keeps root localized layouts responsible for providers/scripts but not footer landmarks', () => {
     const englishLayout = EnglishRootLayout({ children: null });
     const portugueseLayout = PortugueseRootLayout({ children: null });
 
@@ -60,6 +63,16 @@ describe('layout metadata', () => {
       expect(countElements(layout, AppThemeProvider)).toBe(1);
       expect(countElements(layout, AnalyticsProvider)).toBe(1);
       expect(countElements(layout, ThemeInitializationScript)).toBe(1);
+      expect(countElements(layout, SiteFooter)).toBe(0);
+    }
+  });
+
+  it('renders one global footer in the normal-page layout boundary for each locale', () => {
+    const englishLayout = EnglishFooterLayout({ children: null });
+    const portugueseLayout = PortugueseFooterLayout({ children: null });
+
+    for (const layout of [englishLayout, portugueseLayout]) {
+      expect(countElements(layout, SiteFooter)).toBe(1);
     }
   });
 });

@@ -9,6 +9,10 @@ type ProjectCardProps = {
   tags: readonly string[];
   tagsLabel?: string;
   placeholderLabel: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   href?: string;
   actionLabel?: string;
 };
@@ -20,7 +24,7 @@ const itemLayout: Record<string, string> = {
   'dasa-canal-do-consultor': '2xl:col-span-7',
 };
 
-export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, placeholderLabel, href, actionLabel }: ProjectCardProps) {
+export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, placeholderLabel, image, href, actionLabel }: ProjectCardProps) {
   const titleId = `${id}-title`;
 
   const card = (
@@ -32,7 +36,13 @@ export function ProjectCard({ id, title, description, tags, tagsLabel = `${title
           id === 'subiter' && '2xl:aspect-[4/3]',
         )}
       >
-        <MediaPlaceholder label={placeholderLabel} variant="project-card" />
+        {image ? (
+          // Native images keep project cards predictable with approved editorial assets.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="project-card__image" src={image.src} alt={image.alt} loading="lazy" />
+        ) : (
+          <MediaPlaceholder label={placeholderLabel} variant="project-card" />
+        )}
       </div>
       <div className="grid content-start gap-3">
         <h3

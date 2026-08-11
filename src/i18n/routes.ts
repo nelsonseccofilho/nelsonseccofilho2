@@ -1,6 +1,6 @@
 import { SUPPORTED_LOCALES, type Locale } from './locales';
 
-export const ROUTE_IDS = ['home', 'building-portfolio', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const;
+export const ROUTE_IDS = ['home', 'building-portfolio', 'privacy', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const;
 
 export type RouteId = (typeof ROUTE_IDS)[number];
 export type LocalizedPath = '/' | `/${string}`;
@@ -15,6 +15,10 @@ export const routeMap = {
   'building-portfolio': {
     'pt-BR': '/construindo-este-portfolio',
     en: '/en/building-this-portfolio',
+  },
+  privacy: {
+    'pt-BR': '/privacidade',
+    en: '/en/privacy',
   },
   'horizon-his': {
     'pt-BR': '/projetos/horizon-his',

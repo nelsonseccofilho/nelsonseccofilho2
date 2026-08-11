@@ -15,6 +15,7 @@ type ProjectCardProps = {
   };
   href?: string;
   actionLabel?: string;
+  actionAriaLabel?: string;
 };
 
 const itemLayout: Record<string, string> = {
@@ -24,7 +25,18 @@ const itemLayout: Record<string, string> = {
   'dasa-canal-do-consultor': '2xl:col-span-7',
 };
 
-export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, placeholderLabel, image, href, actionLabel }: ProjectCardProps) {
+export function ProjectCard({
+  id,
+  title,
+  description,
+  tags,
+  tagsLabel = `${title} tags`,
+  placeholderLabel,
+  image,
+  href,
+  actionLabel,
+  actionAriaLabel,
+}: ProjectCardProps) {
   const titleId = `${id}-title`;
 
   const card = (
@@ -57,13 +69,9 @@ export function ProjectCard({ id, title, description, tags, tagsLabel = `${title
         <p className="m-0 max-w-[62rem] text-[clamp(1rem,1.4vw,1.15rem)] leading-[1.6] text-[var(--color-text-secondary)] transition-colors duration-[var(--transition-fast)]">
           {description}
         </p>
-        <ul className="mt-1 flex list-none flex-wrap gap-2 p-0" aria-label={tagsLabel}>
-          {tags.map((tag) => (
-            <li key={tag} className="text-[0.82rem] leading-[1.4] font-semibold tracking-[0.08em] text-[var(--color-brand-text)] uppercase">
-              {tag}
-            </li>
-          ))}
-        </ul>
+        <p className="m-0 text-[0.84rem] leading-[1.5] font-semibold text-[var(--color-text-secondary)]" aria-label={tagsLabel}>
+          {tags.join(' · ')}
+        </p>
         {href && actionLabel ? (
           <span className="mt-1 inline-flex min-h-11 w-fit items-center text-sm font-semibold text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)] group-hover:text-[var(--color-brand-text)] group-focus-visible:text-[var(--color-brand-text)]">
             {actionLabel}
@@ -78,6 +86,7 @@ export function ProjectCard({ id, title, description, tags, tagsLabel = `${title
       {href ? (
         <Link
           href={href}
+          aria-label={actionAriaLabel}
           className="group block h-full rounded-[var(--radius-xl)] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
         >
           {card}

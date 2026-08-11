@@ -4,15 +4,39 @@ import type { HomeContent } from '@/content/i18n/types';
 type HeroProps = {
   content?: HomeContent['hero'];
   accessibility?: Pick<HomeContent['accessibility'], 'hero' | 'professionalDisciplines'>;
+  resume?: {
+    label: string;
+    ariaLabel: string;
+    href: string;
+  };
 };
 
-export function Hero({ content = enHome.hero, accessibility = enHome.accessibility }: HeroProps = {}) {
+export function Hero({ content = enHome.hero, accessibility = enHome.accessibility, resume }: HeroProps = {}) {
   return (
     <section className="py-[clamp(3rem,6vw,6rem)] lg:py-[clamp(3.5rem,4.5vw,5.25rem)]" aria-label={accessibility.hero}>
       <div className="layout-container grid gap-6 py-[clamp(2rem,5vw,3.5rem)] md:gap-8 lg:max-w-[calc(var(--container-max)-8rem)] lg:justify-self-start lg:py-10">
         <div className="grid gap-1">
           <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase">{content.name}</p>
-          <p className="m-0 text-sm font-semibold text-[var(--color-text-secondary)]">{content.eyebrow}</p>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <p className="m-0 text-sm font-semibold text-[var(--color-text-secondary)]">{content.eyebrow}</p>
+            {resume ? (
+              <>
+                <span className="text-[var(--color-border)]" aria-hidden="true">
+                  ·
+                </span>
+                <a
+                  className="hero__resume-link"
+                  href={resume.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={resume.ariaLabel}
+                >
+                  <span>{resume.label}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </>
+            ) : null}
+          </div>
         </div>
         <h1 className="m-0 max-w-[12ch] text-[clamp(2.7rem,5vw,4.75rem)] leading-[0.95] font-bold tracking-[-0.045em] text-[var(--color-text-primary)] lg:max-w-[15ch]">
           {content.title}

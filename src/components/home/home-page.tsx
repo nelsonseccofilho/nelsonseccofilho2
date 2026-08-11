@@ -24,14 +24,23 @@ type HomePageProps = {
 export function HomePage({ locale }: HomePageProps) {
   const common = commonContent[locale];
   const content = homeContent[locale];
+  const resumeHref = locale === 'pt-BR' ? '/assets/resume/N3LX_PT-BR.pdf' : '/assets/resume/N3LX_EN.pdf';
 
   return (
     <>
       <SiteHeader content={common} locale={locale} routeId="home" />
       <main>
-        <Hero content={content.hero} accessibility={content.accessibility} />
+        <Hero
+          content={content.hero}
+          accessibility={content.accessibility}
+          resume={{
+            label: common.header.resumeLabel,
+            ariaLabel: common.header.resumeAriaLabel,
+            href: resumeHref,
+          }}
+        />
         <AnalyticsConsentSurface />
-        <section className="pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-projects-title">
+        <section id="projects" className="scroll-mt-24 pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-projects-title">
           <div className="layout-container grid gap-8">
             <h2 id="featured-projects-title" className="m-0 text-[clamp(2rem,3.5vw,3.5rem)] leading-none font-bold text-[var(--color-text-primary)]">
               {content.featuredCases.title}
@@ -62,6 +71,9 @@ export function HomePage({ locale }: HomePageProps) {
                     href={getLocalizedPath(project.routeId, locale)}
                     placeholderLabel={common.mediaPlaceholders.cover}
                     actionLabel={content.featuredCases.actionLabel}
+                    actionAriaLabel={
+                      locale === 'pt-BR' ? `Ver case ${facts.projectName}` : `View ${facts.projectName} case study`
+                    }
                   />
                 );
               })}
@@ -96,6 +108,9 @@ export function HomePage({ locale }: HomePageProps) {
                   {selectedWork.projectName}
                 </h3>
                 <p className="m-0 text-[clamp(0.95rem,1.25vw,1rem)] leading-[1.6] text-[var(--color-text-secondary)]">{content.selectedWork.description}</p>
+                <p className="m-0 text-[0.84rem] leading-[1.5] font-semibold tracking-[0.04em] text-[var(--color-text-secondary)] uppercase">
+                  {content.selectedWork.provenanceLabel}
+                </p>
                 <ul className="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={content.accessibility.selectedWorkTags}>
                   {content.selectedWork.tags.map((tag) => (
                     <li key={tag} className="text-[0.82rem] leading-[1.4] font-semibold tracking-[0.08em] text-[var(--color-brand-text)] uppercase">
@@ -107,7 +122,7 @@ export function HomePage({ locale }: HomePageProps) {
             </article>
           </div>
         </section>
-        <section className="pt-[clamp(1.5rem,2.5vw,2.5rem)] pb-[clamp(2rem,4vw,3rem)]" aria-labelledby="seniority-title" aria-label={content.accessibility.seniority}>
+        <section id="work-process" className="scroll-mt-24 pt-[clamp(1.5rem,2.5vw,2.5rem)] pb-[clamp(2rem,4vw,3rem)]" aria-labelledby="seniority-title" aria-label={content.accessibility.seniority}>
           <div className="layout-container grid gap-8 md:gap-10">
             <div className="grid gap-2">
               <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase">{content.seniority.eyebrow}</p>
@@ -144,29 +159,44 @@ export function HomePage({ locale }: HomePageProps) {
             </div>
           </div>
         </section>
-        <section className="about" aria-labelledby="about-title" aria-label={content.accessibility.about}>
+        <section id="about" className="about scroll-mt-24" aria-labelledby="about-title" aria-label={content.accessibility.about}>
           <div className="layout-container about__inner">
-            <div className="about__content">
-              <h2 id="about-title" className="about__heading">
-                {content.about.title}
-              </h2>
-              {content.about.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="about__copy">
-                  {paragraph}
-                </p>
-              ))}
-              <p className="about__copy">{content.about.businessContext}</p>
-              <div className="mt-5 grid gap-3 border-t border-[var(--color-border)] pt-6">
-                <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
-                <p className="about__copy">{content.about.artisticCopy}</p>
-                <a className="contact__secondary-link min-h-11 w-fit items-center" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
-                  {content.about.artisticActionLabel}
-                </a>
+            <div className="about__grid">
+              <div className="about__aside">
+                <p className="about__eyebrow">{content.about.eyebrow}</p>
+                <h2 id="about-title" className="about__heading">
+                  {content.about.title}
+                </h2>
+              </div>
+              <div className="about__main">
+                <ul className="about__positioning" aria-label="Professional positioning">
+                  {content.about.positioning.map((item) => (
+                    <li key={item.title} className="about__positioning-item">
+                      <p className="about__positioning-title">{item.title}</p>
+                      <p className="about__positioning-copy">{item.description}</p>
+                    </li>
+                  ))}
+                </ul>
+                <div className="about__biography">
+                  {content.about.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="about__copy">
+                      {paragraph}
+                    </p>
+                  ))}
+                  <p className="about__copy">{content.about.businessContext}</p>
+                </div>
+                <div className="about__secondary">
+                  <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
+                  <p className="about__copy">{content.about.artisticCopy}</p>
+                  <a className="contact__secondary-link min-h-11 w-fit items-center" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
+                    {content.about.artisticActionLabel}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="contact" aria-labelledby="contact-title" aria-label={content.accessibility.contact}>
+        <section id="contact" className="contact scroll-mt-24" aria-labelledby="contact-title" aria-label={content.accessibility.contact}>
           <div className="layout-container contact__inner">
             <div className="contact__content">
               <p className="contact__eyebrow">{content.contact.eyebrow}</p>

@@ -10,6 +10,7 @@ type SiteFooterProps = {
 
 export function SiteFooter({ locale }: SiteFooterProps) {
   const year = new Date().getFullYear();
+  const resumeHref = locale === 'pt-BR' ? '/assets/resume/N3LX_PT-BR.pdf' : '/assets/resume/N3LX_EN.pdf';
   const navLabel = locale === 'pt-BR' ? 'Navegação de rodapé' : 'Footer navigation';
   const copyright =
     locale === 'pt-BR'
@@ -42,6 +43,15 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               data-clarity-mask="true"
             >
               GitHub
+            </a>
+            <a
+              className="contact__secondary-link"
+              href={resumeHref}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={locale === 'pt-BR' ? 'Abrir currículo de Nelson Secco em português' : "Open Nelson Secco's resume in English"}
+            >
+              {locale === 'pt-BR' ? 'Currículo' : 'Resume'}
             </a>
             <Link className="contact__secondary-link" href={getLocalizedPath('privacy', locale)}>
               {locale === 'pt-BR' ? 'Privacidade' : 'Privacy'}

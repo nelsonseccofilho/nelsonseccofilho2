@@ -5,7 +5,18 @@ export const enCommon = {
     title: 'Nelson Secco — Senior Product Designer & UX Consultant',
     description: 'Senior Product Designer with a software-development background who also works as a UX Consultant across Design, Product, and Engineering.',
   },
-  header: { contactLabel: 'Let’s talk' },
+  header: {
+    contactLabel: 'Let’s talk',
+    resumeLabel: 'Resume',
+    resumeAriaLabel: "Open Nelson Secco's resume in English",
+    sectionsNavLabel: 'Home sections',
+    sectionLinks: [
+      { label: 'Projects', anchor: 'projects' },
+      { label: 'How I work', anchor: 'work-process' },
+      { label: 'About', anchor: 'about' },
+      { label: 'Contact', anchor: 'contact' },
+    ],
+  },
   themeToggle: {
     pendingLabel: 'Toggle theme',
     activateLightLabel: 'Activate light theme',

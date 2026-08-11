@@ -5,7 +5,18 @@ export const ptBRCommon = {
     title: 'Nelson Secco — Senior Product Designer & UX Consultant',
     description: 'Senior Product Designer com background em desenvolvimento de software, também atuando como UX Consultant entre Design, Produto e Engenharia.',
   },
-  header: { contactLabel: 'Vamos conversar' },
+  header: {
+    contactLabel: 'Vamos conversar',
+    resumeLabel: 'Currículo',
+    resumeAriaLabel: 'Abrir currículo de Nelson Secco em português',
+    sectionsNavLabel: 'Seções da Home',
+    sectionLinks: [
+      { label: 'Projetos', anchor: 'projects' },
+      { label: 'Como trabalho', anchor: 'work-process' },
+      { label: 'Sobre', anchor: 'about' },
+      { label: 'Contato', anchor: 'contact' },
+    ],
+  },
   themeToggle: {
     pendingLabel: 'Alternar tema',
     activateLightLabel: 'Ativar tema claro',

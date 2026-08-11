@@ -21,6 +21,13 @@ export type CommonContent = {
   metadata: MetadataContent;
   header: {
     contactLabel: string;
+    resumeLabel: string;
+    resumeAriaLabel: string;
+    sectionsNavLabel: string;
+    sectionLinks: readonly {
+      label: string;
+      anchor: 'projects' | 'work-process' | 'about' | 'contact';
+    }[];
   };
   themeToggle: {
     pendingLabel: string;
@@ -113,6 +120,7 @@ export type HomeContent = {
     eyebrow: string;
     title: string;
     description: string;
+    provenanceLabel: string;
     tags: readonly string[];
     image: LocalizedImageContent;
   };
@@ -125,7 +133,13 @@ export type HomeContent = {
     }[];
   };
   about: {
+    eyebrow: string;
     title: string;
+    positioning: readonly {
+      title: string;
+      description: string;
+    }[];
+    highlights: readonly string[];
     paragraphs: readonly string[];
     businessContext: string;
     artisticEyebrow: string;

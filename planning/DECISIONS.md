@@ -599,3 +599,36 @@ public/assets/projects/
     ├── hero/
     ├── narrative/
     └── evidence/
+
+---
+
+## D-024 — HORIZON HIS: uso de dados fictícios em assets visuais do portfólio
+
+### Context
+O case HORIZON HIS inclui telas de um protótipo de alta fidelidade apresentado na Hospitalar 2025. Para garantir integridade factual, privacidade e segurança de publicação, foi necessário definir se os dados exibidos nas interfaces poderiam ser usados como base visual para os assets do portfólio.
+
+### Decision
+Foi confirmado por Nelson Secco que os dados presentes nas telas do protótipo HORIZON HIS são fictícios, não representam pacientes reais e foram curados previamente para demonstração pública na feira como personas e cenários simulados.
+
+Com base nisso, as telas do protótipo podem ser utilizadas como referência visual para construção dos assets do portfólio, incluindo capas e imagens editoriais internas do case, desde que a narrativa continue correta quanto à natureza do artefato.
+
+### Rationale
+Essa decisão permite preservar melhor a riqueza visual e a credibilidade do trabalho de produto, mostrando mais detalhes da interface sem depender excessivamente de blur ou mascaramento. Ao mesmo tempo, mantém a integridade do portfólio ao não sugerir que se trata de dados reais ou de um sistema em produção.
+
+### Constraints
+- O HORIZON HIS deve continuar sendo descrito como protótipo de alta fidelidade / experiência proposta.
+- Os assets não devem sugerir que o sistema estava implantado em produção.
+- As imagens finais devem seguir direção editorial, evitando aparência de screenshot cru.
+- Mesmo com dados fictícios, a composição deve priorizar leitura de produto, contexto e narrativa visual.
+
+### Consequences
+- As telas do HORIZON HIS podem ser usadas com maior nitidez e legibilidade nos assets.
+- A home e o case interno podem receber composições mais fortes e mais fiéis ao produto.
+- A direção visual seguirá o princípio de Editorial Product Storytelling já aprovado.
+- Essa decisão se aplica especificamente ao HORIZON HIS com base na confirmação explícita do autor do portfólio.
+
+### Decision Owner / Originator
+Nelson Secco
+
+### AI Contribution Note
+The confirmation originated from Nelson Secco. AI-assisted analysis was used to structure and document the decision and to translate it into visual direction guidelines for the portfolio.

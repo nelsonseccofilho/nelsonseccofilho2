@@ -201,22 +201,23 @@ img {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--color-surface-elevated);
-  color: var(--color-text-primary);
+  background: transparent;
+  color: var(--color-text-secondary);
   cursor: pointer;
   transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease;
 }
 
 .theme-toggle:hover {
   background: var(--color-surface);
-  border-color: var(--color-brand);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
 }
 
 .theme-toggle:active {
   background: var(--color-surface);
-  border-color: var(--color-brand-active);
+  border-color: var(--color-border);
   color: var(--color-brand-text-active);
 }
 
@@ -261,12 +262,30 @@ img {
 .site-header__brand {
   display: inline-flex;
   align-items: center;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  gap: 2px;
   text-decoration: none;
   color: var(--color-text-primary);
   transition: color var(--transition-fast) ease, opacity var(--transition-fast) ease;
+}
+
+.site-header__brand-mark {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+
+.site-header__brand-mark rect {
+  fill: var(--color-brand);
+}
+
+.site-header__brand-mark path {
+  fill: var(--color-text-inverse);
+}
+
+.site-header__brand-type {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.045em;
 }
 
 .site-header__brand:hover,
@@ -298,6 +317,7 @@ img {
   justify-content: center;
   min-width: 36px;
   min-height: 36px;
+  padding-inline: var(--spacing-2);
   border-radius: var(--radius-pill);
   color: var(--color-text-secondary);
   font-size: 0.78rem;
@@ -314,51 +334,79 @@ img {
   color: var(--color-brand-text);
 }
 
-.site-header__cta {
+.whatsapp-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
-  padding: 0 var(--spacing-4);
-  border: 1px solid var(--color-border);
+  gap: var(--spacing-2);
+  border: 1px solid var(--color-text-primary);
   border-radius: var(--radius-pill);
-  background: var(--color-surface-elevated);
-  color: var(--color-text-primary);
-  font-size: 0.92rem;
+  background: var(--color-text-primary);
+  color: var(--color-background);
   font-weight: 600;
-  letter-spacing: -0.01em;
   text-decoration: none;
-  white-space: nowrap;
-  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease;
+  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease,
+    box-shadow var(--transition-fast) ease;
 }
 
-.site-header__cta:hover,
-.site-header__cta:focus-visible {
-  color: var(--color-brand-text);
+.whatsapp-action:hover,
+.whatsapp-action:focus-visible {
   border-color: var(--color-brand);
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-text-primary) 92%, var(--color-brand) 8%);
 }
 
-.site-header__cta:active {
-  color: var(--color-brand-text-active);
+.whatsapp-action:active {
   border-color: var(--color-brand-active);
-  background: var(--color-surface-elevated);
+  background: color-mix(in srgb, var(--color-text-primary) 88%, var(--color-brand) 12%);
+  box-shadow: none;
 }
 
-.site-header__cta:focus-visible {
+.whatsapp-action:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
+.site-header__cta {
+  min-height: 44px;
+  padding: 0 var(--spacing-4);
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.site-header__cta-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 @media (max-width: 480px) {
-  .site-header__actions {
+  .site-header__inner {
     gap: var(--spacing-2);
   }
 
+  .site-header__actions {
+    gap: var(--spacing-1);
+  }
+
   .site-header__cta {
-    min-height: 36px;
-    padding: 0 10px;
+    min-height: 44px;
+    gap: var(--spacing-1);
+    padding: 0 var(--spacing-2);
     font-size: 0.85rem;
+  }
+
+  .language-switcher__link {
+    padding-inline: var(--spacing-1);
+  }
+
+  .site-header__cta-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -584,6 +632,13 @@ img {
 .contact__content {
   display: grid;
   gap: var(--spacing-3);
+}
+
+.about__content {
+  max-width: 44rem;
+}
+
+.contact__content {
   max-width: 42rem;
 }
 
@@ -621,29 +676,23 @@ img {
 }
 
 .contact__primary-link {
-  display: inline-flex;
   width: fit-content;
   padding: 0.9rem 1.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background: var(--color-text-primary);
-  color: var(--color-background);
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease,
-    box-shadow var(--transition-fast) ease;
+}
+
+.contact__primary-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .contact__primary-link:hover,
 .contact__primary-link:focus-visible {
-  border-color: var(--color-brand);
   box-shadow: 0 10px 22px color-mix(in srgb, var(--color-text-primary) 16%, transparent);
-}
-
-.contact__primary-link:active {
-  border-color: var(--color-brand-active);
-  background: color-mix(in srgb, var(--color-text-primary) 92%, var(--color-brand) 8%);
-  box-shadow: none;
 }
 
 .contact__secondary-links {

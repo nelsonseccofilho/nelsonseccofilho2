@@ -11,8 +11,9 @@ describe('Hero', () => {
     expect(section).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: /designing digital products for complex systems\./i })).toBeInTheDocument();
-    expect(screen.getByText(/senior product designer/i)).toBeInTheDocument();
-    expect(screen.getByText(/i connect product strategy, ux and technology to turn complex problems into clear, scalable digital experiences\./i)).toBeInTheDocument();
+    expect(screen.getByText('Nelson Secco')).toBeInTheDocument();
+    expect(screen.getByText('Senior Product Designer')).toBeInTheDocument();
+    expect(screen.getByText(/software-development background, working hands-on across design, product, and engineering/i)).toBeInTheDocument();
     expect(screen.getByText('UX Strategy')).toBeInTheDocument();
     expect(screen.getByText('Product Discovery')).toBeInTheDocument();
     expect(screen.getByText('Design Systems')).toBeInTheDocument();

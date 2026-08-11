@@ -1,32 +1,45 @@
 import '@testing-library/jest-dom/vitest';
-import { cleanup, render, screen, within } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { HomePage } from '@/components/home/home-page';
+
+function setScrollY(value: number) {
+  Object.defineProperty(window, 'scrollY', { configurable: true, value });
+  fireEvent.scroll(window);
+}
 
 describe('HomePage', () => {
   afterEach(() => {
     cleanup();
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
+    vi.restoreAllMocks();
   });
 
   it('renders the new header, hero and featured cases composition', () => {
     render(<HomePage locale="en" />);
 
     const hero = screen.getByRole('region', { name: /hero/i });
-    const featuredCases = screen.getByRole('region', { name: /featured cases/i });
-    expect(featuredCases).toHaveAttribute('id', 'cases');
-    expect(document.querySelectorAll('#cases')).toHaveLength(1);
+    const featuredCases = screen.getByRole('region', { name: /featured projects/i });
+    const analyticsConsentSlot = document.querySelector('[data-analytics-consent-slot="true"]');
+    expect(document.querySelectorAll('#cases')).toHaveLength(0);
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('main')).toBeInTheDocument();
     expect(hero).toBeInTheDocument();
+    expect(analyticsConsentSlot).toBeInTheDocument();
+    expect(hero.compareDocumentPosition(analyticsConsentSlot!) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(analyticsConsentSlot!.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(screen.getByRole('heading', { level: 1, name: /designing digital products for complex systems\./i })).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
-    expect(within(hero).getByText(/senior product designer/i)).toBeInTheDocument();
+    expect(within(hero).getByText('Nelson Secco')).toBeInTheDocument();
+    expect(within(hero).getByText('Senior Product Designer')).toBeInTheDocument();
+    expect(within(hero).queryByText('Senior Product Designer & UX Consultant')).not.toBeInTheDocument();
+    expect(within(hero).getByText(/software-development background, working hands-on across design, product, and engineering/i)).toBeInTheDocument();
     expect(screen.getByText(/ux strategy/i)).toBeInTheDocument();
     expect(screen.getByText(/product discovery/i)).toBeInTheDocument();
     expect(within(hero).getByText('Design Systems')).toBeInTheDocument();
     expect(screen.getByText(/ai-assisted product design/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /featured cases/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /featured projects/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /horizon his/i })).toBeInTheDocument();
     const horizonLink = within(featuredCases).getByRole('link', { name: /horizon his/i });
     expect(horizonLink).toHaveAttribute('href', '/en/projects/horizon-his');
@@ -40,7 +53,7 @@ describe('HomePage', () => {
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
     expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
-    expect(within(featuredCases).getAllByText('View case →')).toHaveLength(4);
+    expect(within(featuredCases).getAllByText('View project →')).toHaveLength(4);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(4);
     expect(screen.getByText(/discovery-led product design translating research/i)).toBeInTheDocument();
@@ -70,22 +83,40 @@ describe('HomePage', () => {
     const aboutSection = screen.getByRole('region', { name: /about/i });
     expect(aboutSection).toBeInTheDocument();
     expect(within(aboutSection).getByRole('heading', { level: 2, name: /about/i })).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/over 12 years of experience building digital products/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/more than 8 years focused on ux and product design/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/including terramagna and noalvo/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/without compromising critical thinking or experience quality/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/i’m nelson secco, a senior product designer who also works as a ux consultant/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/n3lx digital business is the business structure/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/outside of digital product work, i also write and produce original music as n3lx/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByRole('link', { name: 'Listen to N3LX on Spotify ↗' })).toHaveAttribute('href', 'https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE');
+    expect(screen.getByRole('link', { name: 'See how it was built →' })).toHaveAttribute('href', '/en/building-this-portfolio');
+    expect(screen.queryByRole('link', { name: /figma/i })).not.toBeInTheDocument();
+    expect(screen.getAllByRole('img', { name: /being rebuilt/i })).toHaveLength(5);
 
     const contactSection = screen.getByRole('region', { name: /let['’]s build something meaningful/i });
     expect(contactSection).toBeInTheDocument();
     expect(within(contactSection).getByRole('heading', { level: 2, name: /let['’]s build something meaningful/i })).toBeInTheDocument();
+    expect(within(contactSection).getByText(/a Product Design opportunity, or a UX consulting project/i)).toBeInTheDocument();
     const whatsappLink = within(contactSection).getByRole('link', { name: /talk to me on whatsapp/i });
     expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5512981241764?text=Olá%20Nelson%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.');
+    expect(whatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
+    const headerWhatsappLink = screen.getByRole('link', { name: 'Let’s talk' });
+    expect(headerWhatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
+    expect(headerWhatsappLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(document.querySelectorAll('[data-icon="send"]')).toHaveLength(2);
     const emailLink = within(contactSection).getByRole('link', { name: /nelsonseccofilho@gmail.com/i });
     const linkedInLink = within(contactSection).getByRole('link', { name: /linkedin/i });
+    const githubLink = within(contactSection).getByRole('link', { name: /github/i });
     expect(emailLink).toHaveAttribute('href', 'mailto:nelsonseccofilho@gmail.com');
     expect(linkedInLink).toHaveAttribute('href', 'https://www.linkedin.com/in/nelsonseccofilho/');
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho');
+    expect(githubLink).toHaveAttribute('target', '_blank');
+    expect(whatsappLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(emailLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(linkedInLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(githubLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(within(contactSection).getByRole('button', { name: 'Privacy' })).toBeInTheDocument();
     expect(whatsappLink.compareDocumentPosition(emailLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(whatsappLink.compareDocumentPosition(linkedInLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(whatsappLink.compareDocumentPosition(githubLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(within(contactSection).queryByRole('link', { name: /placeholder/i })).not.toBeInTheDocument();
 
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
@@ -95,18 +126,54 @@ describe('HomePage', () => {
     render(<HomePage locale="pt-BR" />);
 
     expect(screen.getByRole('heading', { level: 1, name: 'Design de produtos digitais para sistemas complexos.' })).toBeInTheDocument();
+    const hero = screen.getByRole('region', { name: /apresentação/i });
+    expect(within(hero).getByText('Senior Product Designer')).toBeInTheDocument();
+    expect(within(hero).queryByText('Senior Product Designer & UX Consultant')).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Projetos em destaque' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Página inicial — N3LX' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Vamos conversar' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en');
     expect(screen.getByRole('link', { name: /horizon his/i })).toHaveAttribute('href', '/projetos/horizon-his');
     expect(screen.getByRole('link', { name: /subiter/i })).toHaveAttribute('href', '/projetos/subiter');
-    expect(screen.getAllByText('Ver case →')).toHaveLength(4);
+    expect(screen.getAllByText('Ver projeto →')).toHaveLength(4);
     const aboutSection = screen.getByRole('region', { name: /sobre/i });
-    expect(within(aboutSection).getByText(/mais de 12 anos de experiência na construção de produtos digitais/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/mais de 8 anos dedicados a ux e product design/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByText(/sem abrir mão do pensamento crítico e da qualidade da experiência/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/sou nelson secco, senior product designer/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/também atuo como ux consultant em projetos independentes/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByText(/n3lx digital business é a estrutura empresarial/i)).toBeInTheDocument();
+    expect(within(aboutSection).getByRole('link', { name: 'Ouvir N3LX no Spotify ↗' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Ver como foi construído →' })).toHaveAttribute('href', '/construindo-este-portfolio');
+    const contactSection = screen.getByRole('region', { name: /vamos construir algo relevante/i });
+    expect(within(contactSection).getByText(/uma oportunidade em Product Design ou um projeto de consultoria em UX/i)).toBeInTheDocument();
+    const whatsappLink = within(contactSection).getByRole('link', { name: 'Fale comigo pelo WhatsApp' });
+    const githubLink = within(contactSection).getByRole('link', { name: 'GitHub' });
+    expect(whatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho');
+    expect(githubLink).toHaveAttribute('target', '_blank');
+    expect(screen.getByRole('link', { name: 'Vamos conversar' }).querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
+    expect(document.querySelectorAll('[data-icon="send"]')).toHaveLength(2);
+    expect(within(contactSection).getByRole('button', { name: 'Privacidade' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Alternar tema' })).toBeInTheDocument();
+  });
+
+  it.each([
+    ['pt-BR', 'Voltar ao topo', '↑ Topo'],
+    ['en', 'Back to top', '↑ Top'],
+  ] as const)('reuses the localized BackToTop behavior on the %s Home', (locale, accessibilityLabel, visibleLabel) => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
+    const initialLocation = window.location.href;
+
+    render(<HomePage locale={locale} />);
+
+    expect(screen.queryByRole('button', { name: accessibilityLabel })).not.toBeInTheDocument();
+    setScrollY(600);
+
+    const backToTop = screen.getByRole('button', { name: accessibilityLabel });
+    expect(backToTop).toHaveTextContent(visibleLabel);
+    expect(screen.getAllByRole('button', { name: accessibilityLabel })).toHaveLength(1);
+
+    fireEvent.click(backToTop);
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+    expect(window.location.href).toBe(initialLocation);
   });
 });

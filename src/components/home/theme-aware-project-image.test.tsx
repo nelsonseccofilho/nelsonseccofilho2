@@ -5,7 +5,7 @@ import { ThemeAwareProjectImage } from './theme-aware-project-image';
 
 const useThemeMock = vi.fn();
 
-vi.mock('next-themes', () => ({
+vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => useThemeMock(),
 }));
 

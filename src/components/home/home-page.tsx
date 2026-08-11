@@ -1,10 +1,23 @@
+import Link from 'next/link';
+import { AnalyticsConsentSurface } from '@/components/analytics/analytics-provider';
+import { AnalyticsLink } from '@/components/analytics/analytics-link';
+import { PrivacyPreferencesButton } from '@/components/analytics/privacy-preferences-button';
+import { BackToTop } from '@/components/case-study/back-to-top';
 import { Hero } from '@/components/home/hero';
 import { ProjectCard } from '@/components/home/project-card';
 import { ProjectGrid } from '@/components/home/project-grid';
-import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
+import { MediaPlaceholder } from '@/components/media/media-placeholder';
 import { SiteHeader } from '@/components/layout/site-header';
-import { CONTACT_EMAIL, CONTACT_EMAIL_URL, LINKEDIN_CONTACT_URL, WHATSAPP_CONTACT_URL } from '@/content/contact';
-import { homeProjectImages, selectedWork } from '@/content/home-shared';
+import { SendIcon } from '@/components/ui/send-icon';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_URL,
+  GITHUB_PROFILE_URL,
+  LINKEDIN_CONTACT_URL,
+  N3LX_SPOTIFY_URL,
+  WHATSAPP_CONTACT_URL,
+} from '@/content/contact';
+import { selectedWork } from '@/content/home-shared';
 import { commonContent, homeContent } from '@/content/i18n';
 import { projectFacts } from '@/content/project-facts';
 import type { Locale } from '@/i18n/locales';
@@ -23,16 +36,15 @@ export function HomePage({ locale }: HomePageProps) {
       <SiteHeader content={common} locale={locale} routeId="home" />
       <main>
         <Hero content={content.hero} accessibility={content.accessibility} />
-        <section id="cases" className="pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-cases-title">
+        <AnalyticsConsentSurface />
+        <section className="pt-[clamp(2rem,4vw,4rem)] pb-[clamp(3rem,6vw,6rem)]" aria-labelledby="featured-projects-title">
           <div className="layout-container grid gap-8">
-            <h2 id="featured-cases-title" className="m-0 text-[clamp(2rem,3.5vw,3.5rem)] leading-none font-bold text-[var(--color-text-primary)]">
+            <h2 id="featured-projects-title" className="m-0 text-[clamp(2rem,3.5vw,3.5rem)] leading-none font-bold text-[var(--color-text-primary)]">
               {content.featuredCases.title}
             </h2>
             <ProjectGrid>
               {content.featuredCases.projects.map((project) => {
                 const facts = projectFacts[project.routeId];
-                const image = homeProjectImages[project.routeId];
-
                 return (
                   <ProjectCard
                     key={project.routeId}
@@ -42,7 +54,7 @@ export function HomePage({ locale }: HomePageProps) {
                     tags={project.tags}
                     tagsLabel={project.tagsLabel}
                     href={getLocalizedPath(project.routeId, locale)}
-                    image={{ ...image, alt: project.image.alt }}
+                    placeholderLabel={common.mediaPlaceholders.cover}
                     actionLabel={content.featuredCases.actionLabel}
                   />
                 );
@@ -63,10 +75,7 @@ export function HomePage({ locale }: HomePageProps) {
               aria-labelledby="selected-work-card-title"
             >
               <div className="relative aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] md:col-span-7 md:aspect-[4/3] lg:aspect-[16/10]">
-                <ThemeAwareProjectImage
-                  image={{ ...selectedWork.image, alt: content.selectedWork.image.alt }}
-                  sizes="(max-width: 767px) 100vw, (max-width: 1399px) 58vw, 760px"
-                />
+                <MediaPlaceholder label={common.mediaPlaceholders.visual} variant="selected-work" />
               </div>
               <div className="grid content-center gap-3 md:col-span-5 md:pr-4">
                 <h3 id="selected-work-card-title" className="m-0 text-[clamp(1.1rem,1.7vw,1.35rem)] leading-[1.2] font-bold text-[var(--color-text-primary)]">
@@ -105,6 +114,22 @@ export function HomePage({ locale }: HomePageProps) {
             </ol>
           </div>
         </section>
+        <section className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby="portfolio-meta-case-title">
+          <div className="layout-container">
+            <div className="grid max-w-[70rem] gap-5 border-y border-[var(--color-border)] py-[clamp(2.5rem,5vw,4.5rem)] md:grid-cols-12 md:gap-8">
+              <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase md:col-span-4">{content.metaCase.eyebrow}</p>
+              <div className="grid gap-5 md:col-span-8">
+                <h2 id="portfolio-meta-case-title" className="m-0 max-w-[15ch] text-[clamp(2rem,4vw,3.75rem)] leading-none font-bold tracking-[-0.035em] text-[var(--color-text-primary)]">
+                  {content.metaCase.title}
+                </h2>
+                <p className="m-0 max-w-[48rem] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.7] text-[var(--color-text-secondary)]">{content.metaCase.description}</p>
+                <Link className="contact__secondary-link min-h-11 w-fit items-center" href={getLocalizedPath('building-portfolio', locale)}>
+                  {content.metaCase.primaryActionLabel}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="about" aria-labelledby="about-title" aria-label={content.accessibility.about}>
           <div className="layout-container about__inner">
             <div className="about__content">
@@ -116,6 +141,14 @@ export function HomePage({ locale }: HomePageProps) {
                   {paragraph}
                 </p>
               ))}
+              <p className="about__copy">{content.about.businessContext}</p>
+              <div className="mt-5 grid gap-3 border-t border-[var(--color-border)] pt-6">
+                <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
+                <p className="about__copy">{content.about.artisticCopy}</p>
+                <a className="contact__secondary-link min-h-11 w-fit items-center" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
+                  {content.about.artisticActionLabel}
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -128,28 +161,50 @@ export function HomePage({ locale }: HomePageProps) {
               </h2>
               <p className="contact__copy">{content.contact.description}</p>
               <div className="contact__actions">
-                <a
-                  className="contact__primary-link"
+                <AnalyticsLink
+                  className="whatsapp-action contact__primary-link"
                   href={WHATSAPP_CONTACT_URL}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={content.contact.primaryActionLabel}
+                  eventName="contact_whatsapp_click"
+                  data-clarity-mask="true"
                 >
-                  {content.contact.primaryActionLabel}
-                </a>
+                  <SendIcon className="contact__primary-icon" />
+                  <span>{content.contact.primaryActionLabel}</span>
+                </AnalyticsLink>
                 <div className="contact__secondary-links" aria-label={content.accessibility.secondaryContactLinks}>
-                  <a className="contact__secondary-link" href={CONTACT_EMAIL_URL}>
+                  <a className="contact__secondary-link" href={CONTACT_EMAIL_URL} data-clarity-mask="true">
                     {CONTACT_EMAIL}
                   </a>
-                  <a className="contact__secondary-link" href={LINKEDIN_CONTACT_URL} target="_blank" rel="noreferrer">
+                  <AnalyticsLink
+                    className="contact__secondary-link"
+                    href={LINKEDIN_CONTACT_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="contact_linkedin_click"
+                    data-clarity-mask="true"
+                  >
                     LinkedIn
-                  </a>
+                  </AnalyticsLink>
+                  <AnalyticsLink
+                    className="contact__secondary-link"
+                    href={GITHUB_PROFILE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="contact_github_click"
+                    data-clarity-mask="true"
+                  >
+                    GitHub
+                  </AnalyticsLink>
+                  <PrivacyPreferencesButton label={common.privacy.manageLabel} />
                 </div>
               </div>
             </div>
           </div>
         </section>
       </main>
+      <BackToTop label={common.backToTop.label} accessibilityLabel={common.backToTop.accessibilityLabel} />
     </>
   );
 }

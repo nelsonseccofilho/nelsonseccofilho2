@@ -7,17 +7,15 @@ import { subiterCaseContent, subiterSharedFacts } from '@/content/i18n/projects/
 import { commonContent, homeContent } from '.';
 
 const expectedPortugueseAboutParagraphs = [
-  'Sou Senior Product Designer com mais de 12 anos de experiência na construção de produtos digitais e mais de 8 anos dedicados a UX e Product Design.',
-  'Atuo de forma hands-on do Discovery à entrega, transformando problemas complexos, regras de negócio e necessidades de usuários em experiências claras, consistentes e viáveis — conectando Design, Produto e Engenharia.',
-  'Ao longo da minha trajetória, trabalhei em produtos para empresas como Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como TerraMagna e NOALVO, posteriormente reconhecidas entre as 100 Startups to Watch.',
-  'Meu background em Front-end e o uso de IA e automação complementam minha prática de Design, permitindo explorar, prototipar e validar soluções com maior velocidade sem abrir mão do pensamento crítico e da qualidade da experiência.',
+  'Sou Nelson Secco, Senior Product Designer, e também atuo como UX Consultant em projetos independentes. Trabalho na interseção entre Design, Produto e Engenharia. Minha trajetória combina experiência em UX e Product Design com um background em desenvolvimento de software, o que me permite compreender tanto a experiência que queremos criar quanto as condições técnicas necessárias para transformá-la em produto.',
+  'Atuo de forma hands-on em produtos e sistemas complexos: investigo contextos, estruturo fluxos e regras, desenho interfaces e colaboro de perto com Engenharia até a implementação. Meu papel não é substituir especialidades, mas criar continuidade entre decisões de produto, qualidade da experiência e viabilidade técnica.',
+  'Hoje também exploro uma forma de trabalho em que Design e implementação acontecem cada vez mais próximos, usando IA para apoiar análise, prototipação, desenvolvimento e validação. As ferramentas aceleram a execução, mas decisões, revisão crítica e critérios de qualidade continuam humanos. Este próprio portfólio foi construído dessa forma e é uma evidência prática de como trabalho hoje.',
 ] as const;
 
 const expectedEnglishAboutParagraphs = [
-  'I’m a Senior Product Designer with over 12 years of experience building digital products and more than 8 years focused on UX and Product Design.',
-  'I work hands-on from Discovery to delivery, turning complex problems, business rules, and user needs into clear, consistent, and feasible experiences — connecting Design, Product, and Engineering.',
-  'Throughout my career, I’ve worked on products for companies such as Embraer, Santander, Bradesco, DASA, REDE, ConnectCar, and Salux, as well as startups including TerraMagna and NOALVO, later recognized among Brazil’s 100 Startups to Watch.',
-  'My Front-end background and use of AI and automation complement my Design practice, helping me explore, prototype, and validate solutions faster without compromising critical thinking or experience quality.',
+  'I’m Nelson Secco, a Senior Product Designer who also works as a UX Consultant on independent engagements. I work at the intersection of Design, Product, and Engineering. My background combines UX and Product Design experience with software development, helping me understand both the experience we want to create and the technical conditions required to turn it into a real product.',
+  'I work hands-on across complex products and systems: investigating context, structuring flows and rules, designing interfaces, and collaborating closely with Engineering through implementation. My role is not to replace other disciplines, but to create continuity between product decisions, experience quality, and technical feasibility.',
+  'I’m also exploring a way of working where Design and implementation happen increasingly close together, using AI to support analysis, prototyping, development, and validation. These tools accelerate execution, but decisions, critical review, and quality standards remain human responsibilities. This portfolio itself was built this way and is practical evidence of how I work today.',
 ] as const;
 
 function getStructure(value: unknown): unknown {
@@ -59,6 +57,12 @@ describe('Home and shared localized content', () => {
     expect(homeContent.en.about.paragraphs).toEqual(expectedEnglishAboutParagraphs);
     expect(new Set(homeContent['pt-BR'].about.paragraphs).size).toBe(homeContent['pt-BR'].about.paragraphs.length);
     expect(new Set(homeContent.en.about.paragraphs).size).toBe(homeContent.en.about.paragraphs.length);
+    expect(homeContent['pt-BR'].hero.eyebrow).toBe('Senior Product Designer');
+    expect(homeContent.en.hero.eyebrow).toBe('Senior Product Designer');
+    expect(homeContent['pt-BR'].hero.eyebrow).not.toBe('Senior Product Designer & UX Consultant');
+    expect(homeContent.en.hero.eyebrow).not.toBe('Senior Product Designer & UX Consultant');
+    expect(homeContent['pt-BR'].contact.description).toContain('projeto de consultoria em UX');
+    expect(homeContent.en.contact.description).toContain('UX consulting project');
   });
 
   it('keeps project factual identifiers equivalent across locales and shared facts', () => {

@@ -43,6 +43,13 @@ export type CommonContent = {
     label: string;
     accessibilityLabel: string;
   };
+  privacy: {
+    title: string;
+    description: string;
+    declineLabel: string;
+    allowLabel: string;
+    manageLabel: string;
+  };
   routeLoading: {
     label: string;
   };
@@ -91,6 +98,7 @@ export type HomeAccessibilityLabels = AccessibilityLabels & {
 export type HomeContent = {
   metadata: MetadataContent;
   hero: {
+    name: string;
     eyebrow: string;
     title: string;
     description: string;
@@ -119,6 +127,16 @@ export type HomeContent = {
   about: {
     title: string;
     paragraphs: readonly string[];
+    businessContext: string;
+    artisticEyebrow: string;
+    artisticCopy: string;
+    artisticActionLabel: string;
+  };
+  metaCase: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryActionLabel: string;
   };
   contact: {
     eyebrow: string;

@@ -2,8 +2,8 @@ import type { CommonContent } from '../types';
 
 export const enCommon = {
   metadata: {
-    title: 'N3LX | Senior Product Designer | UX Strategy | Product Discovery | Design Systems | AI-assisted Product Design',
-    description: 'Senior Product Designer and UX Lead specializing in digital products, complex systems, strategy and technology-driven experiences.',
+    title: 'Nelson Secco — Senior Product Designer & UX Consultant',
+    description: 'Senior Product Designer with a software-development background who also works as a UX Consultant across Design, Product, and Engineering.',
   },
   header: { contactLabel: 'Let’s talk' },
   themeToggle: {
@@ -15,6 +15,13 @@ export const enCommon = {
   portfolioReturn: { accessibilityLabel: 'Portfolio navigation', label: 'Portfolio' },
   caseNavigation: { nextProjectLabel: 'Next project' },
   backToTop: { label: '↑ Top', accessibilityLabel: 'Back to top' },
+  privacy: {
+    title: 'Privacy and experience',
+    description: 'I use Microsoft Clarity to understand how people navigate the portfolio and guide UX improvements. Analytics is only enabled if you allow it.',
+    declineLabel: 'Decline',
+    allowLabel: 'Allow analytics',
+    manageLabel: 'Privacy',
+  },
   routeLoading: { label: 'Loading content…' },
   notFound: {
     code: '404',
@@ -37,7 +44,7 @@ export const enCommon = {
     home: 'N3LX home',
     mainNavigation: 'Main navigation',
     caseNavigation: 'Case study navigation',
-    featuredCases: 'Featured cases',
+    featuredCases: 'Featured projects',
     secondaryContactLinks: 'Secondary contact links',
   },
 } as const satisfies CommonContent;

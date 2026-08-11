@@ -2,18 +2,19 @@ import type { HomeContent } from '../types';
 
 export const ptBRHome = {
   metadata: {
-    title: 'N3LX | Senior Product Designer',
-    description: 'Product Design para sistemas digitais complexos, da estratégia e descoberta à entrega.',
+    title: 'Nelson Secco — Senior Product Designer & UX Consultant',
+    description: 'Senior Product Designer com background em desenvolvimento de software, também atuando como UX Consultant entre Design, Produto e Engenharia.',
   },
   hero: {
+    name: 'Nelson Secco',
     eyebrow: 'Senior Product Designer',
     title: 'Design de produtos digitais para sistemas complexos.',
-    description: 'Conecto estratégia de produto, UX e tecnologia para transformar problemas complexos em experiências digitais claras e escaláveis.',
+    description: 'Senior Product Designer com background em desenvolvimento de software, atuando de forma hands-on entre Design, Produto e Engenharia.',
     disciplines: ['Estratégia de UX', 'Product Discovery', 'Design Systems', 'Product Design assistido por IA'],
   },
   featuredCases: {
-    title: 'Cases em destaque',
-    actionLabel: 'Ver case →',
+    title: 'Projetos em destaque',
+    actionLabel: 'Ver projeto →',
     projects: [
       {
         routeId: 'horizon-his',
@@ -66,21 +67,30 @@ export const ptBRHome = {
   about: {
     title: 'Sobre',
     paragraphs: [
-      'Sou Senior Product Designer com mais de 12 anos de experiência na construção de produtos digitais e mais de 8 anos dedicados a UX e Product Design.',
-      'Atuo de forma hands-on do Discovery à entrega, transformando problemas complexos, regras de negócio e necessidades de usuários em experiências claras, consistentes e viáveis — conectando Design, Produto e Engenharia.',
-      'Ao longo da minha trajetória, trabalhei em produtos para empresas como Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como TerraMagna e NOALVO, posteriormente reconhecidas entre as 100 Startups to Watch.',
-      'Meu background em Front-end e o uso de IA e automação complementam minha prática de Design, permitindo explorar, prototipar e validar soluções com maior velocidade sem abrir mão do pensamento crítico e da qualidade da experiência.',
+      'Sou Nelson Secco, Senior Product Designer, e também atuo como UX Consultant em projetos independentes. Trabalho na interseção entre Design, Produto e Engenharia. Minha trajetória combina experiência em UX e Product Design com um background em desenvolvimento de software, o que me permite compreender tanto a experiência que queremos criar quanto as condições técnicas necessárias para transformá-la em produto.',
+      'Atuo de forma hands-on em produtos e sistemas complexos: investigo contextos, estruturo fluxos e regras, desenho interfaces e colaboro de perto com Engenharia até a implementação. Meu papel não é substituir especialidades, mas criar continuidade entre decisões de produto, qualidade da experiência e viabilidade técnica.',
+      'Hoje também exploro uma forma de trabalho em que Design e implementação acontecem cada vez mais próximos, usando IA para apoiar análise, prototipação, desenvolvimento e validação. As ferramentas aceleram a execução, mas decisões, revisão crítica e critérios de qualidade continuam humanos. Este próprio portfólio foi construído dessa forma e é uma evidência prática de como trabalho hoje.',
     ],
+    businessContext: 'Minha trajetória inclui produtos para Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como TerraMagna e NOALVO, posteriormente reconhecidas entre as 100 Startups to Watch. N3LX Digital Business é a estrutura empresarial pela qual conduzo projetos independentes de Product Design e consultoria em UX.',
+    artisticEyebrow: 'Além de produto e tecnologia',
+    artisticCopy: 'Fora do trabalho com produtos digitais, também componho e produzo música autoral como N3LX — outro espaço onde exploro criatividade, experimentação e construção.',
+    artisticActionLabel: 'Ouvir N3LX no Spotify ↗',
+  },
+  metaCase: {
+    eyebrow: 'Por trás deste portfólio',
+    title: 'Este portfólio também é um produto.',
+    description: 'Concebido e construído diretamente em código, ele evoluiu por ciclos de decisão, implementação, revisão humana, testes e validação em produção — conectando Product Design, Engenharia e desenvolvimento assistido por IA.',
+    primaryActionLabel: 'Ver como foi construído →',
   },
   contact: {
     eyebrow: 'Contato',
     title: 'Vamos construir algo relevante.',
-    description: 'Tem um desafio complexo de produto ou uma oportunidade de colaboração? Vamos conversar.',
+    description: 'Tem um desafio complexo de produto, uma oportunidade em Product Design ou um projeto de consultoria em UX? Vamos conversar.',
     primaryActionLabel: 'Fale comigo pelo WhatsApp',
   },
   accessibility: {
     home: 'Página inicial — N3LX', mainNavigation: 'Navegação principal', caseNavigation: 'Navegação do estudo de caso',
-    featuredCases: 'Cases em destaque', secondaryContactLinks: 'Links secundários de contato', hero: 'Apresentação',
+    featuredCases: 'Projetos em destaque', secondaryContactLinks: 'Links secundários de contato', hero: 'Apresentação',
     professionalDisciplines: 'Disciplinas profissionais', selectedWorkTags: 'Tags do ConnectCar / Freeflow',
     seniority: 'Senioridade e proposta de valor', about: 'Sobre', contact: 'Contato',
   },

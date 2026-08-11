@@ -3,7 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ProjectCard } from './project-card';
 
-vi.mock('next-themes', () => ({
+vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
@@ -13,23 +13,7 @@ const horizonCard = (
     title="HORIZON HIS"
     description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
     tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
-    image={{
-      alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
-      width: 1920,
-      height: 1080,
-      light: {
-        640: '/assets/projects/horizon-his/cover/light/cover-640.webp',
-        1024: '/assets/projects/horizon-his/cover/light/cover-1024.webp',
-        1440: '/assets/projects/horizon-his/cover/light/cover-1440.webp',
-        1920: '/assets/projects/horizon-his/cover/light/cover-1920.webp',
-      },
-      dark: {
-        640: '/assets/projects/horizon-his/cover/dark/cover-640.webp',
-        1024: '/assets/projects/horizon-his/cover/dark/cover-1024.webp',
-        1440: '/assets/projects/horizon-his/cover/dark/cover-1440.webp',
-        1920: '/assets/projects/horizon-his/cover/dark/cover-1920.webp',
-      },
-    }}
+    placeholderLabel="Cover being rebuilt"
   />
 );
 
@@ -48,7 +32,7 @@ describe('ProjectCard', () => {
     expect(article).toHaveAccessibleName('HORIZON HIS');
   });
 
-  it('renders the title, description, tags and accessible cover image', async () => {
+  it('renders the title, description, tags and intentional cover placeholder', () => {
     render(<ul>{horizonCard}</ul>);
 
     expect(screen.getByRole('heading', { level: 3, name: 'HORIZON HIS' })).toBeInTheDocument();
@@ -56,7 +40,7 @@ describe('ProjectCard', () => {
     expect(screen.getByText('Healthtech')).toBeInTheDocument();
     expect(screen.getByText('UX Leadership')).toBeInTheDocument();
     expect(screen.getByText('Product Strategy')).toBeInTheDocument();
-    expect(await screen.findByRole('img', { name: /hospital information system prototype interface/i })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Cover being rebuilt' })).toHaveAttribute('data-placeholder-variant', 'project-card');
   });
 
   it('keeps ProjectCard as a server component by not requiring client-only props', () => {
@@ -74,24 +58,8 @@ describe('ProjectCard', () => {
           description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
           tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
           href="/en/projects/horizon-his"
-          actionLabel="View case →"
-          image={{
-            alt: 'Hospital information system prototype interface showing triage workflow and generated clinical data panels.',
-            width: 1920,
-            height: 1080,
-            light: {
-              640: '/assets/projects/horizon-his/cover/light/cover-640.webp',
-              1024: '/assets/projects/horizon-his/cover/light/cover-1024.webp',
-              1440: '/assets/projects/horizon-his/cover/light/cover-1440.webp',
-              1920: '/assets/projects/horizon-his/cover/light/cover-1920.webp',
-            },
-            dark: {
-              640: '/assets/projects/horizon-his/cover/dark/cover-640.webp',
-              1024: '/assets/projects/horizon-his/cover/dark/cover-1024.webp',
-              1440: '/assets/projects/horizon-his/cover/dark/cover-1440.webp',
-              1920: '/assets/projects/horizon-his/cover/dark/cover-1920.webp',
-            },
-          }}
+          actionLabel="View project →"
+          placeholderLabel="Cover being rebuilt"
         />
       </ul>,
     );
@@ -99,7 +67,7 @@ describe('ProjectCard', () => {
     const link = screen.getByRole('link', { name: /horizon his/i });
 
     expect(link).toHaveAttribute('href', '/en/projects/horizon-his');
-    expect(screen.getByText('View case →')).toBeInTheDocument();
+    expect(screen.getByText('View project →')).toBeInTheDocument();
     expect(link.querySelectorAll('a')).toHaveLength(0);
   });
 

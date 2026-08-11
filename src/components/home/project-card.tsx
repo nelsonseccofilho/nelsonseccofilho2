@@ -1,16 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { ThemeAwareProjectImage } from './theme-aware-project-image';
-
-type ResponsiveSources = Record<number, string>;
-
-type ProjectCardImage = {
-  alt: string;
-  width: number;
-  height: number;
-  light: ResponsiveSources;
-  dark: ResponsiveSources;
-};
+import { MediaPlaceholder } from '@/components/media/media-placeholder';
 
 type ProjectCardProps = {
   id: string;
@@ -18,7 +8,7 @@ type ProjectCardProps = {
   description: string;
   tags: readonly string[];
   tagsLabel?: string;
-  image: ProjectCardImage;
+  placeholderLabel: string;
   href?: string;
   actionLabel?: string;
 };
@@ -30,11 +20,8 @@ const itemLayout: Record<string, string> = {
   'dasa-canal-do-consultor': '2xl:col-span-7',
 };
 
-export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, image, href, actionLabel }: ProjectCardProps) {
+export function ProjectCard({ id, title, description, tags, tagsLabel = `${title} tags`, placeholderLabel, href, actionLabel }: ProjectCardProps) {
   const titleId = `${id}-title`;
-  const imageSizes = id === 'horizon-his'
-    ? '(max-width: 767px) 100vw, (max-width: 1535px) 50vw, 66vw'
-    : '(max-width: 767px) 100vw, (max-width: 1535px) 50vw, 58vw';
 
   const card = (
     <article className="grid h-full gap-5" aria-labelledby={titleId}>
@@ -45,7 +32,7 @@ export function ProjectCard({ id, title, description, tags, tagsLabel = `${title
           id === 'subiter' && '2xl:aspect-[4/3]',
         )}
       >
-        <ThemeAwareProjectImage image={image} sizes={imageSizes} />
+        <MediaPlaceholder label={placeholderLabel} variant="project-card" />
       </div>
       <div className="grid content-start gap-3">
         <h3

@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
+import { AnalyticsProvider } from '@/components/analytics/analytics-provider';
+import { ThemeInitializationScript } from '@/components/theme/theme-initialization-script';
 import { AppThemeProvider } from '@/components/theme/theme-provider';
+import { ptBRCommon } from '@/content/i18n';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'N3LX | Senior Product Designer | UX Strategy | Product Discovery | Design Systems | AI-assisted Product Design',
-  description:
-    'Senior Product Designer e UX Lead especializado em produtos digitais, sistemas complexos, estratégia e experiências orientadas por tecnologia.',
+  title: ptBRCommon.metadata.title,
+  description: ptBRCommon.metadata.description,
   icons: {
     icon: '/assets/brand/favicon-32.png',
     apple: '/assets/brand/apple-touch-icon.png',
@@ -15,8 +17,15 @@ export const metadata: Metadata = {
 export default function PortugueseRootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <ThemeInitializationScript />
+      </head>
       <body>
-        <AppThemeProvider>{children}</AppThemeProvider>
+        <AppThemeProvider>
+          <AnalyticsProvider copy={ptBRCommon.privacy} locale="pt-BR">
+            {children}
+          </AnalyticsProvider>
+        </AppThemeProvider>
       </body>
     </html>
   );

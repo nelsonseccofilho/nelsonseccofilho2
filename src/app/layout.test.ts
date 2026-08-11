@@ -1,8 +1,22 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { Children, isValidElement, type ReactNode } from 'react';
 import { describe, expect, it } from 'vitest';
+import { AnalyticsProvider } from '@/components/analytics/analytics-provider';
+import { ThemeInitializationScript } from '@/components/theme/theme-initialization-script';
+import { AppThemeProvider } from '@/components/theme/theme-provider';
 import EnglishRootLayout, { metadata as englishMetadata } from './(en)/layout';
 import PortugueseRootLayout, { metadata as portugueseMetadata } from './(pt-BR)/layout';
+
+function countElements(node: ReactNode, type: unknown): number {
+  if (!isValidElement(node)) return 0;
+
+  const children = (node.props as { children?: ReactNode }).children;
+  return (
+    Number(node.type === type) +
+    Children.toArray(children).reduce<number>((total, child) => total + countElements(child, type), 0)
+  );
+}
 
 function relativeLuminance(hex: string) {
   const channels = hex
@@ -22,14 +36,12 @@ function contrastRatio(foreground: string, background: string) {
 }
 
 describe('layout metadata', () => {
-  it('exposes the expected title and description', () => {
-    expect(englishMetadata.title).toBe(
-      'N3LX | Senior Product Designer | UX Strategy | Product Discovery | Design Systems | AI-assisted Product Design',
-    );
-    expect(englishMetadata.description).toBe(
-      'Senior Product Designer e UX Lead especializado em produtos digitais, sistemas complexos, estratégia e experiências orientadas por tecnologia.',
-    );
-    expect(portugueseMetadata).toEqual(englishMetadata);
+  it('exposes locale-aware titles and descriptions', () => {
+    expect(englishMetadata.title).toBe('Nelson Secco — Senior Product Designer & UX Consultant');
+    expect(englishMetadata.description).toMatch(/software-development background.*UX Consultant/i);
+    expect(portugueseMetadata.title).toBe('Nelson Secco — Senior Product Designer & UX Consultant');
+    expect(portugueseMetadata.description).toMatch(/background em desenvolvimento de software.*UX Consultant/i);
+    expect(portugueseMetadata.description).not.toBe(englishMetadata.description);
   });
 
   it('sets the document language in each root layout without client mutation', () => {
@@ -38,6 +50,17 @@ describe('layout metadata', () => {
 
     expect(englishLayout.props.lang).toBe('en');
     expect(portugueseLayout.props.lang).toBe('pt-BR');
+  });
+
+  it('owns one theme provider, one analytics boundary and one pre-hydration script per localized document', () => {
+    const englishLayout = EnglishRootLayout({ children: null });
+    const portugueseLayout = PortugueseRootLayout({ children: null });
+
+    for (const layout of [englishLayout, portugueseLayout]) {
+      expect(countElements(layout, AppThemeProvider)).toBe(1);
+      expect(countElements(layout, AnalyticsProvider)).toBe(1);
+      expect(countElements(layout, ThemeInitializationScript)).toBe(1);
+    }
   });
 });
 

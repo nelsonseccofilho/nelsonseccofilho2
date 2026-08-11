@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import { ResumeDialog } from '@/components/ui/resume-dialog';
 import { CONTACT_EMAIL, CONTACT_EMAIL_URL, GITHUB_PROFILE_URL, LINKEDIN_CONTACT_URL } from '@/content/contact';
+import { commonContent } from '@/content/i18n';
 import type { Locale } from '@/i18n/locales';
 import { getLocalizedPath } from '@/i18n/routes';
 
@@ -16,6 +18,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
     locale === 'pt-BR'
       ? `© ${year} N3LX Digital Business. Todos os direitos reservados.`
       : `© ${year} N3LX Digital Business. All rights reserved.`;
+  const content = commonContent[locale];
 
   return (
     <footer>
@@ -44,15 +47,18 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             >
               GitHub
             </a>
-            <a
-              className="contact__secondary-link"
-              href={resumeHref}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={locale === 'pt-BR' ? 'Abrir currículo de Nelson Secco em português' : "Open Nelson Secco's resume in English"}
-            >
-              {locale === 'pt-BR' ? 'Currículo' : 'Resume'}
-            </a>
+            <ResumeDialog
+              pdfHref={resumeHref}
+              triggerClassName="contact__secondary-link"
+              labels={{
+                triggerLabel: content.header.resumeLabel,
+                triggerAriaLabel: content.header.resumeAriaLabel,
+                dialogTitle: content.resumeDialog.title,
+                closeLabel: content.resumeDialog.closeLabel,
+                downloadLabel: content.resumeDialog.downloadLabel,
+                loadingLabel: content.resumeDialog.loadingLabel,
+              }}
+            />
             <Link className="contact__secondary-link" href={getLocalizedPath('privacy', locale)}>
               {locale === 'pt-BR' ? 'Privacidade' : 'Privacy'}
             </Link>

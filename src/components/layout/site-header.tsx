@@ -41,9 +41,10 @@ export function SiteHeader({ content = enCommon, locale = 'en', routeId = 'home'
             rel="noreferrer"
             eventName="contact_whatsapp_click"
             data-clarity-mask="true"
+            aria-label={content.header.contactAriaLabel}
           >
             <SendIcon className="site-header__cta-icon" />
-            <span>{content.header.contactLabel}</span>
+            <span className="site-header__cta-label" aria-hidden="true">{content.header.contactLabel}</span>
           </AnalyticsLink>
           <ThemeToggle labels={content.themeToggle} />
         </div>

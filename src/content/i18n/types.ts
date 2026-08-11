@@ -21,6 +21,7 @@ export type CommonContent = {
   metadata: MetadataContent;
   header: {
     contactLabel: string;
+    contactAriaLabel: string;
     resumeLabel: string;
     resumeAriaLabel: string;
     sectionsNavLabel: string;
@@ -78,6 +79,12 @@ export type CommonContent = {
     evidence: string;
   };
   accessibility: AccessibilityLabels;
+  resumeDialog: {
+    title: string;
+    closeLabel: string;
+    downloadLabel: string;
+    loadingLabel: string;
+  };
 };
 
 export type LocalizedImageContent = {

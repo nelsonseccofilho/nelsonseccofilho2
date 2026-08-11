@@ -7,6 +7,7 @@ export const ptBRCommon = {
   },
   header: {
     contactLabel: 'Vamos conversar',
+    contactAriaLabel: 'Vamos conversar pelo WhatsApp',
     resumeLabel: 'Currículo',
     resumeAriaLabel: 'Abrir currículo de Nelson Secco em português',
     sectionsNavLabel: 'Seções da Home',
@@ -57,5 +58,11 @@ export const ptBRCommon = {
     caseNavigation: 'Navegação do estudo de caso',
     featuredCases: 'Projetos em destaque',
     secondaryContactLinks: 'Links secundários de contato',
+  },
+  resumeDialog: {
+    title: 'Currículo — Nelson Secco',
+    closeLabel: 'Fechar currículo',
+    downloadLabel: 'Baixar PDF',
+    loadingLabel: 'Carregando currículo…',
   },
 } as const satisfies CommonContent;

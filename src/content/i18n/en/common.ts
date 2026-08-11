@@ -7,6 +7,7 @@ export const enCommon = {
   },
   header: {
     contactLabel: 'Let’s talk',
+    contactAriaLabel: 'Let’s talk on WhatsApp',
     resumeLabel: 'Resume',
     resumeAriaLabel: "Open Nelson Secco's resume in English",
     sectionsNavLabel: 'Home sections',
@@ -57,5 +58,11 @@ export const enCommon = {
     caseNavigation: 'Case study navigation',
     featuredCases: 'Featured projects',
     secondaryContactLinks: 'Secondary contact links',
+  },
+  resumeDialog: {
+    title: 'Resume — Nelson Secco',
+    closeLabel: 'Close resume',
+    downloadLabel: 'Download PDF',
+    loadingLabel: 'Loading resume…',
   },
 } as const satisfies CommonContent;

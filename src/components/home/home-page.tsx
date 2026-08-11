@@ -37,6 +37,10 @@ export function HomePage({ locale }: HomePageProps) {
             label: common.header.resumeLabel,
             ariaLabel: common.header.resumeAriaLabel,
             href: resumeHref,
+            dialogTitle: common.resumeDialog.title,
+            closeLabel: common.resumeDialog.closeLabel,
+            downloadLabel: common.resumeDialog.downloadLabel,
+            loadingLabel: common.resumeDialog.loadingLabel,
           }}
         />
         <AnalyticsConsentSurface />

@@ -1,3 +1,4 @@
+import { ResumeDialog } from '@/components/ui/resume-dialog';
 import { enHome } from '@/content/i18n';
 import type { HomeContent } from '@/content/i18n/types';
 
@@ -8,6 +9,10 @@ type HeroProps = {
     label: string;
     ariaLabel: string;
     href: string;
+    dialogTitle: string;
+    closeLabel: string;
+    downloadLabel: string;
+    loadingLabel: string;
   };
 };
 
@@ -24,16 +29,18 @@ export function Hero({ content = enHome.hero, accessibility = enHome.accessibili
                 <span className="text-[var(--color-border)]" aria-hidden="true">
                   ·
                 </span>
-                <a
-                  className="hero__resume-link"
-                  href={resume.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={resume.ariaLabel}
-                >
-                  <span>{resume.label}</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+                <ResumeDialog
+                  pdfHref={resume.href}
+                  triggerClassName="hero__resume-link"
+                  labels={{
+                    triggerLabel: resume.label,
+                    triggerAriaLabel: resume.ariaLabel,
+                    dialogTitle: resume.dialogTitle,
+                    closeLabel: resume.closeLabel,
+                    downloadLabel: resume.downloadLabel,
+                    loadingLabel: resume.loadingLabel,
+                  }}
+                />
               </>
             ) : null}
           </div>

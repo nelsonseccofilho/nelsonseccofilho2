@@ -32,7 +32,7 @@ describe('SiteHeader', () => {
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     const homeLink = screen.getByRole('link', { name: 'N3LX home' });
-    const contactLink = screen.getByRole('link', { name: /let.s talk/i });
+    const contactLink = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
     expect(homeLink).toHaveAttribute('href', '/en');
     expect(within(homeLink).getByText('3LX')).toBeInTheDocument();
     expect(homeLink.querySelector('.site-header__brand-mark')).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe('SiteHeader', () => {
     render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
 
     expect(screen.getByRole('link', { name: 'Página inicial — N3LX' })).toHaveAttribute('href', '/');
-    const contactLink = screen.getByRole('link', { name: 'Vamos conversar' });
+    const contactLink = screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' });
     expect(contactLink).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Idioma' })).toBeInTheDocument();
@@ -108,5 +108,36 @@ describe('SiteHeader', () => {
     expect(headerRule).not.toBeNull();
     expect(headerRule?.[1]).toMatch(/position:\s*sticky;/);
     expect(headerRule?.[1]).toMatch(/top:\s*0;/);
+  });
+
+  it('CTA has an aria-label with full WhatsApp context (EN)', () => {
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+
+    const cta = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
+    expect(cta).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+    expect(cta.querySelector('.site-header__cta-icon')).toBeInTheDocument();
+  });
+
+  it('CTA has an aria-label with full WhatsApp context (PT-BR)', () => {
+    render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
+
+    const cta = screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' });
+    expect(cta).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+  });
+
+  it('CTA label text has site-header__cta-label class for mobile hide CSS', () => {
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+
+    const cta = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
+    const labelSpan = cta.querySelector('.site-header__cta-label');
+    expect(labelSpan).toBeInTheDocument();
+    expect(labelSpan).toHaveTextContent("Let\u2019s talk");
+    expect(labelSpan).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('mobile CSS hides CTA label text below 480px', () => {
+    const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
+
+    expect(css).toMatch(/\.site-header__cta-label\s*\{[^}]*display:\s*none/);
   });
 });

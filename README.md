@@ -184,12 +184,20 @@ Prefer documenting the commands above rather than hardcoding volatile test count
 The current architecture uses existing Next.js + Netlify delivery.
 Responsive image behavior is handled by the current implementation paths and rendered asset variants already present in the repository.
 
-## Privacy / analytics
+## Microsoft Clarity
 
-- Microsoft Clarity is integrated behind explicit user consent
-- No analytics on localhost
-- Analytics only initializes in production mode with approved host and configured project ID
+- Microsoft Clarity is integrated through `@microsoft/clarity@1.0.2` behind explicit user consent
+- The current production project ID is `y0aa3mivpo`
+- `NEXT_PUBLIC_CLARITY_PROJECT_ID` supplies the project ID; it is a public client-side setting, not a secret
+- Client-side initialization lives in `src/components/analytics/clarity.ts` and is coordinated by `src/components/analytics/analytics-provider.tsx`
+- Analytics only initializes when consent is granted and a project ID is available, in production mode on the approved host
+- Local development does not define the variable by default, intentionally preventing local activity from contaminating production sessions, heatmaps, and analytics
+- In Netlify, configure the variable under **Project configuration → Environment variables**; Netlify supplies it at build time
+- Creating or changing any `NEXT_PUBLIC_*` value requires a new build and deploy
+- Google Ads, Google Analytics, and Google Tag Manager are optional integrations and are not required for basic Clarity operation
 - Privacy pages are available at `/privacidade` and `/en/privacy`
+
+Production validation — 2026-08-11: `clarity.js → collect → HTTP 204 → live session/replay confirmed`
 
 ## Footer and routing architecture
 
@@ -412,12 +420,20 @@ Prefira documentar os comandos acima em vez de fixar contagens de teste volátei
 A arquitetura atual usa a entrega existente com Next.js + Netlify.
 O comportamento responsivo de imagem é tratado pelos paths atuais de implementação e variantes de assets já presentes no repositório.
 
-## Privacidade / analytics
+## Microsoft Clarity
 
-- Microsoft Clarity integrado com consentimento explícito do usuário
-- Sem analytics em localhost
-- Analytics só inicializa em modo de produção com host aprovado e project ID configurado
+- Microsoft Clarity integrado por `@microsoft/clarity@1.0.2` com consentimento explícito do usuário
+- O project ID atual de produção é `y0aa3mivpo`
+- `NEXT_PUBLIC_CLARITY_PROJECT_ID` fornece o project ID; é uma configuração pública client-side, não um segredo
+- A inicialização client-side fica em `src/components/analytics/clarity.ts` e é coordenada por `src/components/analytics/analytics-provider.tsx`
+- Analytics só inicializa quando há consentimento e um project ID disponível, em modo de produção e no host aprovado
+- O desenvolvimento local não define a variável por padrão, evitando intencionalmente contaminar sessões, heatmaps e analytics de produção
+- Na Netlify, configure a variável em **Project configuration → Environment variables**; a Netlify a fornece durante o build
+- Criar ou alterar qualquer valor `NEXT_PUBLIC_*` exige um novo build e deploy
+- Google Ads, Google Analytics e Google Tag Manager são integrações opcionais e não são necessários para o funcionamento básico do Clarity
 - Páginas de privacidade disponíveis em `/privacidade` e `/en/privacy`
+
+Validação em produção — 2026-08-11: `clarity.js → collect → HTTP 204 → sessão ao vivo/replay confirmados`
 
 ## Arquitetura de footer e rotas
 

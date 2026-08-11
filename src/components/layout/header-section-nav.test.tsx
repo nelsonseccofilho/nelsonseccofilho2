@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext } from '@/lib/section-navigation';
 import { HeaderSectionNav } from './header-section-nav';
 
 const usePathnameMock = vi.fn();
@@ -22,6 +23,7 @@ describe('HeaderSectionNav', () => {
   beforeEach(() => {
     usePathnameMock.mockReturnValue('/en');
     disconnectMock.mockReset();
+    window.sessionStorage.clear();
 
     class MockIntersectionObserver {
       observe = vi.fn();
@@ -30,6 +32,11 @@ describe('HeaderSectionNav', () => {
 
     vi.stubGlobal('IntersectionObserver', MockIntersectionObserver as unknown as typeof IntersectionObserver);
     vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: false }));
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+      callback(0);
+      return 1;
+    });
+    vi.stubGlobal('cancelAnimationFrame', vi.fn());
   });
 
   afterEach(() => {
@@ -84,6 +91,57 @@ describe('HeaderSectionNav', () => {
     fireEvent.click(screen.getByRole('link', { name: 'About' }));
 
     expect(window.sessionStorage.getItem('n3lx:pending-home-section')).toBe('about');
+  });
+
+  it('restores the temporary locale scroll context on Home without leaving a hash', () => {
+    const projects = document.createElement('section');
+    projects.id = 'projects';
+    projects.getBoundingClientRect = vi.fn(() => ({ bottom: 1100, height: 100, left: 0, right: 0, top: 1000, width: 0, x: 0, y: 1000, toJSON: () => ({}) }));
+    const workProcess = document.createElement('section');
+    workProcess.id = 'work-process';
+    workProcess.getBoundingClientRect = vi.fn(() => ({ bottom: 2500, height: 100, left: 0, right: 0, top: 2400, width: 0, x: 0, y: 2400, toJSON: () => ({}) }));
+    const about = document.createElement('section');
+    about.id = 'about';
+    about.getBoundingClientRect = vi.fn(() => ({ bottom: 3700, height: 100, left: 0, right: 0, top: 3600, width: 0, x: 0, y: 3600, toJSON: () => ({}) }));
+    const contact = document.createElement('section');
+    contact.id = 'contact';
+    contact.getBoundingClientRect = vi.fn(() => ({ bottom: 4900, height: 100, left: 0, right: 0, top: 4800, width: 0, x: 0, y: 4800, toJSON: () => ({}) }));
+
+    document.body.append(projects, workProcess, about, contact);
+    window.sessionStorage.setItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext({ sectionId: 'about', progress: 0.5 }));
+
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+    const replaceState = vi.spyOn(window.history, 'replaceState');
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 4200, behavior: 'auto' });
+    expect(window.sessionStorage.getItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY)).toBeNull();
+    expect(replaceState).not.toHaveBeenCalled();
+  });
+
+  it('drops a stale locale scroll context when the destination section no longer exists', () => {
+    const projects = document.createElement('section');
+    projects.id = 'projects';
+    projects.getBoundingClientRect = vi.fn(() => ({ bottom: 1100, height: 100, left: 0, right: 0, top: 1000, width: 0, x: 0, y: 1000, toJSON: () => ({}) }));
+    const workProcess = document.createElement('section');
+    workProcess.id = 'work-process';
+    workProcess.getBoundingClientRect = vi.fn(() => ({ bottom: 2500, height: 100, left: 0, right: 0, top: 2400, width: 0, x: 0, y: 2400, toJSON: () => ({}) }));
+    const contact = document.createElement('section');
+    contact.id = 'contact';
+    contact.getBoundingClientRect = vi.fn(() => ({ bottom: 4900, height: 100, left: 0, right: 0, top: 4800, width: 0, x: 0, y: 4800, toJSON: () => ({}) }));
+
+    document.body.append(projects, workProcess, contact);
+    window.sessionStorage.setItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext({ sectionId: 'about', progress: 0.5 }));
+
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(window.sessionStorage.getItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY)).toBeNull();
   });
 
   it('disconnects the observer on unmount to avoid duplicated watchers', () => {

@@ -7,6 +7,12 @@ import { WHATSAPP_CONTACT_URL } from '@/content/contact';
 import { enCommon, ptBRCommon } from '@/content/i18n';
 import { SiteHeader } from './site-header';
 
+const usePathnameMock = vi.fn();
+
+vi.mock('next/navigation', () => ({
+  usePathname: () => usePathnameMock(),
+}));
+
 vi.mock('@/components/theme/theme-toggle', () => ({
   ThemeToggle: ({ labels }: { labels: { pendingLabel: string } }) => <button type="button">{labels.pendingLabel}</button>,
 }));
@@ -18,6 +24,7 @@ describe('SiteHeader', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    usePathnameMock.mockReturnValue('/en');
   });
 
   it('renders English Header labels and localized Home links', () => {
@@ -47,6 +54,8 @@ describe('SiteHeader', () => {
   });
 
   it('resolves Header and shared labels from Portuguese content', () => {
+    usePathnameMock.mockReturnValue('/');
+
     render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
 
     expect(screen.getByRole('link', { name: 'Página inicial — N3LX' })).toHaveAttribute('href', '/');

@@ -2,7 +2,17 @@
 
 import { useEffect, useState, type MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
-import { getSectionHref, HOME_SECTION_IDS, isReducedMotionPreferred, SECTION_OBSERVER_OPTIONS, shouldHandleInPageSectionNavigation, type HomeSectionId } from '@/lib/section-navigation';
+import {
+  clearLocaleScrollContext,
+  getLocaleScrollTarget,
+  getSectionHref,
+  HOME_SECTION_IDS,
+  isReducedMotionPreferred,
+  readLocaleScrollContext,
+  SECTION_OBSERVER_OPTIONS,
+  shouldHandleInPageSectionNavigation,
+  type HomeSectionId,
+} from '@/lib/section-navigation';
 
 type HeaderSectionNavLink = {
   label: string;
@@ -48,6 +58,41 @@ export function HeaderSectionNav({ links, homePath, label }: HeaderSectionNavPro
     targets.forEach((target) => observer.observe(target));
 
     return () => observer.disconnect();
+  }, [inPageNavigation]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !inPageNavigation) {
+      return;
+    }
+
+    const context = readLocaleScrollContext();
+    if (!context) {
+      return;
+    }
+
+    let firstFrame = 0;
+    let secondFrame = 0;
+
+    const restoreScrollContext = () => {
+      const target = getLocaleScrollTarget(context);
+      if (target === null) {
+        clearLocaleScrollContext();
+        return;
+      }
+
+      window.sessionStorage.removeItem(PENDING_SECTION_STORAGE_KEY);
+      window.scrollTo({ top: target, behavior: 'auto' });
+      clearLocaleScrollContext();
+    };
+
+    firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(restoreScrollContext);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+    };
   }, [inPageNavigation]);
 
   useEffect(() => {

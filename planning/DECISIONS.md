@@ -396,3 +396,164 @@ Explicit typed routes and content contracts preserve stable canonical URLs, supp
 
 **Consequences**
 Future localized routes, metadata, internal links, and the language switcher must consume the shared route map and typed content contracts. Portuguese source content is canonical; English is maintained as an equivalent localized publication.
+
+---
+
+## D-022 — Visual Art Direction — Editorial Product Storytelling
+
+**Status:** Approved
+
+**Date**
+2026-08-10
+
+**Decision Owner / Originator**
+Nelson Secco
+
+**Attribution**
+The direction originated from Nelson Secco. AI-assisted analysis was used to refine, articulate, and document the decision.
+
+**Scope**
+Case-study imagery strategy for the Nelson Secco Product Design Portfolio.
+
+**Context**
+The portfolio currently uses intentional reconstruction placeholders while publication safety is being resolved, legacy/unapproved imagery is removed, and final case imagery is still pending art direction. The placeholders are temporary by design and were introduced to prevent rushed visual asset publication before the technical and editorial foundation is complete. Final imagery work happens after the current structural and release work.
+
+**Decision**
+Adopt Editorial Product Storytelling as the visual direction for final case-study imagery.
+
+Core principle:
+Product/interface is the protagonist.
+Real-world context provides narrative.
+Atmosphere and art direction provide finish.
+
+The objective is not generic "beautiful mockups". The objective is to communicate what kind of product this is, where and how it is used, what experience the case discusses, and the complexity and character of the design problem.
+
+**Approved Visual Principles**
+- Premium editorial composition.
+- Contextually plausible environments.
+- Product storytelling over decoration.
+- Interfaces treated as evidence, not visual props.
+- Scenario/device/context may be art-directed or AI-generated.
+- UI, data, and representation of the work must remain factually coherent.
+- Confidentiality and publication constraints must be respected.
+- Reconstructed/editorial visuals must not be presented as literal production screenshots when they are not.
+- Few excellent images are preferable to many mediocre screenshots.
+
+**Avoid**
+- Generic Dribbble-style device mockups.
+- Gratuitous glassmorphism.
+- Abstract 3D without narrative function.
+- Excessive glow.
+- Impossible device perspectives.
+- Generic stock-photo people.
+- Stereotypical "AI startup" aesthetic.
+- Visual spectacle that obscures the product story.
+
+**Case-Specific Direction**
+
+HORIZON HIS:
+Product plus contemporary clinical environment.
+
+Intent:
+Communicate healthcare-system complexity, calmness, institutional quality, and product vision.
+
+Important boundary:
+HORIZON was a prototype, not a production deployment. Final imagery must not imply that generated clinical scenarios are documentary evidence of a deployed product.
+
+SUBITER:
+Product plus operational context.
+
+Intent:
+Use a more spatial/cinematic composition that shows technology integrated into the operational world. The direction may be visually bolder than HORIZON while remaining credible and product-centered.
+
+REDE DCC 1.0:
+Interaction plus transaction.
+
+Intent:
+Prioritize tactile payment experience centered on device/interface and transaction journey states (for example: amount, authentication/PIN, processing, confirmation/receipt). Avoid generic business-person-with-terminal imagery. The interaction is the protagonist.
+
+DASA — Canal do Consultor:
+Complexity plus research plus systems plus synthesis.
+
+Intent:
+Represent discovery and organization of a complex service ecosystem without inventing confidential product screenshots.
+
+Relevant project evidence, where appropriate:
+- 37 participants interviewed.
+- 3 NACs visited.
+- 4 systems analyzed.
+- 290 research quotes mapped.
+- 57 business rules/features mapped.
+
+The visual language may be more editorial/systemic because literal confidential UI should not be simulated as authentic public evidence.
+
+**Home vs Case Imagery Roles**
+
+Home / Featured Project Cover:
+- Condensed visual narrative.
+- Immediate readability at smaller sizes.
+- Strong focal point.
+- Sufficient breathing room.
+- Recognizable case personality.
+
+Case Hero:
+- Expanded storytelling.
+- Richer context.
+- Stronger product-environment relationship.
+- More cinematic/editorial composition when appropriate.
+
+The home cover and case hero may derive from the same direction but do not need to be identical crops.
+
+**Asset Strategy**
+Preferred minimum per case:
+- Featured Project cover.
+- Case hero image.
+- One or two high-value narrative/evidence images when useful.
+
+Do not create imagery only to fill space. Quality over quantity.
+
+**Creation Workflow**
+Imagery production happens one case at a time:
+1. Review the case narrative.
+2. Inspect available Figma source material.
+3. Identify the strongest product-defining screens.
+4. Review publication/confidentiality constraints.
+5. Define what the image must communicate.
+6. Propose 2–3 art-direction concepts/compositions.
+7. Select one direction.
+8. Generate/build the visual.
+9. Review factual fidelity.
+10. Review composition, lighting, device/context, hierarchy, and accessibility.
+11. Integrate into the portfolio.
+12. Validate responsive behavior.
+
+Do not mass-generate all case imagery before individual review.
+
+**Figma and AI Role**
+Available Figma material is the primary design reference where accessible.
+
+AI-generated imagery may support:
+- Environments.
+- Contextual scenes.
+- Device presentation.
+- Lighting.
+- Composition exploration.
+- Editorial reconstruction.
+
+AI must not invent:
+- Project outcomes.
+- Product features.
+- Research evidence.
+- Client facts.
+- Production status.
+- Confidential interfaces represented as authentic public screenshots.
+
+Human approval is required for every final image.
+
+**Portfolio-Level Consistency**
+Consistency should come from composition quality, editorial sophistication, lighting discipline, hierarchy, product-first framing, and restrained visual language.
+
+Consistency must not come from forcing all cases into the same mockup template. Each case keeps its own personality.
+
+**Future Note**
+After portfolio completion, revisit this decision and image-production process as source material for a LinkedIn article about Product Storytelling, art direction for Product Design case studies, moving beyond generic portfolio mockups, responsible use of generative AI, and maintaining factual integrity while creating editorial imagery.

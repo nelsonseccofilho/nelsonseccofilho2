@@ -33,8 +33,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiCollaboration!).getByText(/aprovação final continuaram sob minha responsabilidade/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/Configurei ChatGPT Plus, VS Code, Codex, Git, GitHub e GitHub Copilot Pro\+/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/A escolha do agente e do nível de capacidade também fez parte da operação do projeto/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/10 de agosto de 2026/i)).toHaveTextContent(/5\.174 de 7\.000 AI credits.*aproximadamente 74%.*uso adicional desabilitado/i);
-    expect(within(aiOperations!).getByText(/prevista para ser renovada em 31 de agosto/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/57 commits · 4 dias de atividade · ~22h de trabalho identificável/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/atividade Git entre 7 e 10 de agosto de 2026/i)).toHaveTextContent(/implementação, refinamento e validação/i);
+    expect(within(aiOperations!).getByText(/não representa o esforço intelectual total do projeto/i)).toHaveTextContent(/fase futura de imagem\/art direction definida na D-022/i);
     expect(screen.getByRole('heading', { level: 2, name: 'Custo operacional do experimento' })).toBeInTheDocument();
     expect(screen.getByText(/Hospedagem: Netlify, no ambiente atual de produção\./i)).toBeInTheDocument();
     expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(2);
@@ -61,8 +62,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiCollaboration!).getByText(/final approval remained my responsibility/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/configured ChatGPT Plus, VS Code, Codex, Git, GitHub, and GitHub Copilot Pro\+/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/Choosing the agent and capability level also became part of the project operation/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/August 10, 2026 snapshot/i)).toHaveTextContent(/5,174 of 7,000 AI credits.*approximately 74%.*additional usage disabled/i);
-    expect(within(aiOperations!).getByText(/scheduled to reset on August 31/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/57 commits · 4 days of activity · ~22 hours of identifiable work/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/Git activity between August 7–10, 2026/i)).toHaveTextContent(/implementation, refinement, and validation/i);
+    expect(within(aiOperations!).getByText(/not a claim for the project’s total intellectual effort/i)).toHaveTextContent(/future imagery\/art-direction phase defined in D-022/i);
     expect(within(aiOperations!).getByText(/responsibility for deciding what to do.*remains human/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Operational cost of the experiment' })).toBeInTheDocument();
     expect(screen.getByText(/Hosting: Netlify, for the current production environment\./i)).toBeInTheDocument();
@@ -86,6 +88,7 @@ describe('PortfolioMetaCasePage', () => {
     expect(publishedCopy).not.toMatch(/GitHub Copilot Pro(?!\+)/);
     expect(publishedCopy).toMatch(/Hospedagem: Netlify, no ambiente atual de produção\.|Hosting: Netlify, for the current production environment\./);
     expect(publishedCopy).not.toMatch(/US\$ 0|USD 0|USD 10|USD 29|USD 59|OPENAI|GITHUB INC/i);
-    expect((5_174 / 7_000) * 100).toBeCloseTo(73.9, 1);
+    expect(publishedCopy).toMatch(/57 commits · 4 dias de atividade · ~22h de trabalho identificável\.|57 commits · 4 days of activity · ~22 hours of identifiable work\./);
+    expect(publishedCopy).toMatch(/atividade Git entre 7 e 10 de agosto de 2026|Git activity between August 7–10, 2026/);
   });
 });

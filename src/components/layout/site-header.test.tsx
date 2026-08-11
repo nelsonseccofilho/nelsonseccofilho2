@@ -32,6 +32,12 @@ describe('SiteHeader', () => {
     expect(contactLink).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Language' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Home sections' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/en#projects');
+    expect(screen.getByRole('link', { name: 'How I work' })).toHaveAttribute('href', '/en#work-process');
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/en#about');
+    expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/en#contact');
+    expect(screen.queryByRole('link', { name: "Open Nelson Secco's resume in English" })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveTextContent('PT-BR');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en');
@@ -48,6 +54,12 @@ describe('SiteHeader', () => {
     expect(contactLink).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Idioma' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Seções da Home' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Projetos' })).toHaveAttribute('href', '/#projects');
+    expect(screen.getByRole('link', { name: 'Como trabalho' })).toHaveAttribute('href', '/#work-process');
+    expect(screen.getByRole('link', { name: 'Sobre' })).toHaveAttribute('href', '/#about');
+    expect(screen.getByRole('link', { name: 'Contato' })).toHaveAttribute('href', '/#contact');
+    expect(screen.queryByRole('link', { name: 'Abrir currículo de Nelson Secco em português' })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Português' })).toHaveTextContent('PT-BR');
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en');
@@ -78,5 +90,14 @@ describe('SiteHeader', () => {
     expect(artwork).toHaveAttribute('height', '128');
     expect(brandRules).toHaveLength(1);
     expect(gapDeclarations).toEqual(['2px']);
+  });
+
+  it('keeps the header persistent contract as sticky with top 0', () => {
+    const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
+    const headerRule = css.match(/\.site-header\s*{([\s\S]*?)}/);
+
+    expect(headerRule).not.toBeNull();
+    expect(headerRule?.[1]).toMatch(/position:\s*sticky;/);
+    expect(headerRule?.[1]).toMatch(/top:\s*0;/);
   });
 });

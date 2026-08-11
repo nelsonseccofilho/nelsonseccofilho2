@@ -245,7 +245,9 @@ img {
 }
 
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 40;
   border-bottom: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-background) 92%, transparent);
   backdrop-filter: blur(8px);
@@ -257,6 +259,13 @@ img {
   justify-content: space-between;
   min-height: 76px;
   gap: var(--spacing-4);
+}
+
+.site-header__start {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--spacing-5);
 }
 
 .site-header__brand {
@@ -299,6 +308,48 @@ img {
   align-items: center;
   flex-wrap: nowrap;
   gap: var(--spacing-3);
+}
+
+.site-header__section-nav {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.site-header__section-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition-fast) ease;
+}
+
+.site-header__section-link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  left: 0;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 180ms ease;
+}
+
+.site-header__section-link:hover,
+.site-header__section-link:focus-visible {
+  color: var(--color-brand-text);
+}
+
+.site-header__section-link[aria-current='location'] {
+  color: var(--color-text-primary);
+}
+
+.site-header__section-link[aria-current='location']::after {
+  border-color: var(--color-brand-text);
 }
 
 .language-switcher {
@@ -382,6 +433,24 @@ img {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.hero__resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast) ease, border-color var(--transition-fast) ease;
+}
+
+.hero__resume-link:hover,
+.hero__resume-link:focus-visible {
+  color: var(--color-brand-text);
+  border-color: var(--color-brand);
 }
 
 @media (max-width: 480px) {
@@ -636,12 +705,88 @@ img {
   gap: var(--spacing-3);
 }
 
+.about__grid {
+  display: grid;
+  gap: var(--spacing-5);
+}
+
+.about__aside {
+  display: grid;
+  gap: var(--spacing-2);
+  align-content: start;
+}
+
+.about__main {
+  display: grid;
+  gap: var(--spacing-5);
+}
+
+.about__positioning {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: var(--spacing-4) 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about__positioning-item {
+  display: grid;
+  gap: 6px;
+}
+
+.about__positioning-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about__positioning-copy {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.about__biography {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.3rem);
+}
+
+.about__secondary {
+  display: grid;
+  gap: var(--spacing-3);
+  padding-top: var(--spacing-5);
+  border-top: 1px solid var(--color-border);
+}
+
 .about__content {
   max-width: 44rem;
 }
 
 .contact__content {
   max-width: 42rem;
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: start;
+    column-gap: clamp(2rem, 3vw, 3.5rem);
+  }
+
+  .about__main {
+    max-width: 50rem;
+  }
+
+  .about__positioning {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--spacing-4);
+  }
 }
 
 .about__eyebrow,
@@ -728,6 +873,12 @@ img {
   }
 }
 
+@media (min-width: 1024px) {
+  .site-header__section-nav {
+    display: inline-flex;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -744,6 +895,8 @@ img {
   .theme-toggle,
   .theme-toggle__icon,
   .site-header__brand,
+  .site-header__section-link,
+  .site-header__section-link::after,
   .site-header__cta,
   .contact__primary-link,
   .contact__secondary-link,

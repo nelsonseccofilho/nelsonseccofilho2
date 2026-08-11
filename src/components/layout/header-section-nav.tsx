@@ -1,0 +1,117 @@
+'use client';
+
+import { useEffect, useState, type MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
+import { getSectionHref, HOME_SECTION_IDS, isReducedMotionPreferred, SECTION_OBSERVER_OPTIONS, shouldHandleInPageSectionNavigation, type HomeSectionId } from '@/lib/section-navigation';
+
+type HeaderSectionNavLink = {
+  label: string;
+  anchor: HomeSectionId;
+};
+
+type HeaderSectionNavProps = {
+  links: readonly HeaderSectionNavLink[];
+  homePath: string;
+  label: string;
+};
+
+const PENDING_SECTION_STORAGE_KEY = 'n3lx:pending-home-section';
+
+export function HeaderSectionNav({ links, homePath, label }: HeaderSectionNavProps) {
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<HomeSectionId | null>(null);
+  const inPageNavigation = shouldHandleInPageSectionNavigation(pathname, homePath);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !inPageNavigation) {
+      return;
+    }
+
+    const targets = HOME_SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (!targets.length || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visible?.target.id && HOME_SECTION_IDS.includes(visible.target.id as HomeSectionId)) {
+        setActiveSection(visible.target.id as HomeSectionId);
+      }
+    }, SECTION_OBSERVER_OPTIONS);
+
+    targets.forEach((target) => observer.observe(target));
+
+    return () => observer.disconnect();
+  }, [inPageNavigation]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !inPageNavigation) {
+      return;
+    }
+
+    const pendingSection = window.sessionStorage.getItem(PENDING_SECTION_STORAGE_KEY) as HomeSectionId | null;
+    if (!pendingSection || !HOME_SECTION_IDS.includes(pendingSection)) {
+      return;
+    }
+
+    const target = document.getElementById(pendingSection);
+    if (!target) {
+      window.sessionStorage.removeItem(PENDING_SECTION_STORAGE_KEY);
+      return;
+    }
+
+    const behavior: ScrollBehavior = isReducedMotionPreferred() ? 'auto' : 'smooth';
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior, block: 'start' });
+      window.history.replaceState(window.history.state, '', homePath);
+      setActiveSection(pendingSection);
+      window.sessionStorage.removeItem(PENDING_SECTION_STORAGE_KEY);
+    });
+  }, [homePath, inPageNavigation]);
+
+  function handleSectionClick(event: MouseEvent<HTMLAnchorElement>, sectionId: HomeSectionId) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (!inPageNavigation) {
+      event.preventDefault();
+      window.sessionStorage.setItem(PENDING_SECTION_STORAGE_KEY, sectionId);
+      window.location.assign(homePath);
+      return;
+    }
+
+    const target = document.getElementById(sectionId);
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    const behavior: ScrollBehavior = isReducedMotionPreferred() ? 'auto' : 'smooth';
+    target.scrollIntoView({ behavior, block: 'start' });
+    window.history.replaceState(window.history.state, '', homePath);
+    setActiveSection(sectionId);
+  }
+
+  return (
+    <nav className="site-header__section-nav" aria-label={label}>
+      {links.map((link) => (
+        <a
+          key={link.anchor}
+          className="site-header__section-link"
+          href={getSectionHref(homePath, link.anchor)}
+          onClick={(event) => handleSectionClick(event, link.anchor)}
+          aria-current={inPageNavigation && activeSection === link.anchor ? 'location' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  );
+}

@@ -50,9 +50,9 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText('Validation with NAC coordinators')).toBeInTheDocument();
     expect(screen.getByText('Validation with consultants')).toBeInTheDocument();
     expect(screen.getByText('Validation with the Canal do Consultor tribe')).toBeInTheDocument();
-    expect(screen.getByText(/front-end and back-end alignment/i)).toBeInTheDocument();
+    expect(screen.getByText(/front-end and back-end teams worked from/i)).toBeInTheDocument();
     expect(screen.getByText(/interface and api decisions/i)).toBeInTheDocument();
-    expect(screen.getByText(/supporting alignment before delivery discussions/i)).toBeInTheDocument();
+    expect(screen.getByText(/ensuring coordinated decisions before delivery discussions/i)).toBeInTheDocument();
     expect(screen.getAllByText(/existing pilot/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/generated input for future backlog definition/i)).toBeInTheDocument();
 
@@ -101,7 +101,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText('3 NACs visitados — RJ, SP e Brasília')).toBeInTheDocument();
     expect(screen.getByText('4 sistemas analisados')).toBeInTheDocument();
     expect(screen.getByText('Canal do Consultor, MV Soul, Feegow e Tasy')).toBeInTheDocument();
-    expect(screen.getByText('290 quotes de pesquisa mapeados')).toBeInTheDocument();
+    expect(screen.getByText('290 trechos de pesquisa mapeados')).toBeInTheDocument();
     expect(screen.getByText('57 regras de negócio e funcionalidades mapeadas')).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /diagramas de discovery e artefatos de s[ií]ntese/i })).toBeInTheDocument();

@@ -118,7 +118,7 @@ export const dasaCanalDoConsultorCaseContent = {
           '3 NACs visitados — RJ, SP e Brasília',
           '4 sistemas analisados',
           'Canal do Consultor, MV Soul, Feegow e Tasy',
-          '290 quotes de pesquisa mapeados',
+          '290 trechos de pesquisa mapeados',
           '57 regras de negócio e funcionalidades mapeadas',
         ],
       },
@@ -153,7 +153,7 @@ export const dasaCanalDoConsultorCaseContent = {
         ],
       },
       rulesToDelivery: {
-        title: 'Da pesquisa para regras e do discovery para delivery',
+        title: 'Da pesquisa às regras, do Discovery ao Delivery',
         intro: 'O principal resultado foi uma estrutura de decisão navegável conectando achados de discovery a prioridades de implementação.',
         paragraph01:
           'O alinhamento entre Front-end e Back-end foi construído por uma camada compartilhada de priorização para decisões de interface e API, apoiando alinhamento antes das discussões de entrega.',
@@ -161,7 +161,7 @@ export const dasaCanalDoConsultorCaseContent = {
       },
       confidentiality: {
         title: 'Confidencialidade e limites de publicação',
-        intro: 'Este case evita intencionalmente expor interfaces finais confidenciais de produto.',
+        intro: 'Este projeto evita intencionalmente expor interfaces finais confidenciais de produto.',
         paragraph:
           'Todos os visuais desta página são representações editoriais ou artefatos de síntese preparados para comunicação em portfólio e não revelam telas de UI de produção.',
       },
@@ -240,12 +240,12 @@ export const dasaCanalDoConsultorCaseContent = {
         title: 'From research to rules, then from discovery to delivery',
         intro: 'The core outcome was a navigable decision structure that connected discovery findings to implementation priorities.',
         paragraph01:
-          'Front-end and back-end alignment was built through a shared prioritization layer for interface and API decisions, supporting alignment before delivery discussions.',
+          'Front-end and back-end teams worked from a shared prioritization layer for interface and API decisions, ensuring coordinated decisions before delivery discussions.',
         paragraph02: 'The structure supported an existing pilot and generated input for future backlog definition.',
       },
       confidentiality: {
         title: 'Confidentiality and publication boundaries',
-        intro: 'This case intentionally avoids exposing confidential final-product interfaces.',
+        intro: 'This project intentionally avoids exposing confidential final-product interfaces.',
         paragraph:
           'All visuals on this page are editorial representations or synthesis artifacts prepared for portfolio communication and do not reveal production UI screens.',
       },

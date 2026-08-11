@@ -232,7 +232,7 @@ export const subiterCaseContent = {
         intro:
           'O trabalho ajudou a consolidar uma base digital mais estruturada para as operações de inspeção da Subiter, conectando experiência de produto, relatórios, rastreabilidade e IA em ambiente de produção.',
         paragraph:
-          'A contribuição também foi formalmente reconhecida pela empresa pela organização, atenção aos detalhes, colaboração e apoio à continuidade do produto.',
+          'A contribuição também foi formalmente reconhecida pela empresa por sua organização, atenção aos detalhes, colaboração e apoio à continuidade do produto.',
       },
       publishedPerspective: {
         title: 'Escrevendo sobre o produto',

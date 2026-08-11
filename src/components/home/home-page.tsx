@@ -76,7 +76,7 @@ export function HomePage({ locale }: HomePageProps) {
                     placeholderLabel={common.mediaPlaceholders.cover}
                     actionLabel={content.featuredCases.actionLabel}
                     actionAriaLabel={
-                      locale === 'pt-BR' ? `Ver case ${facts.projectName}` : `View ${facts.projectName} case study`
+                      locale === 'pt-BR' ? `Ver projeto ${facts.projectName}` : `View ${facts.projectName} project`
                     }
                   />
                 );

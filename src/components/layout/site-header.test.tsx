@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { WHATSAPP_CONTACT_URL } from '@/content/contact';
 import { enCommon, ptBRCommon } from '@/content/i18n';
@@ -139,5 +139,66 @@ describe('SiteHeader', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
 
     expect(css).toMatch(/\.site-header__cta-label\s*\{[^}]*display:\s*none/);
+  });
+
+  it('N3LX scrolls to top (smooth) when clicked on Home PT-BR', () => {
+    usePathnameMock.mockReturnValue('/');
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: false }));
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
+    fireEvent.click(screen.getByRole('link', { name: 'Página inicial — N3LX' }));
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+  });
+
+  it('N3LX scrolls to top (smooth) when clicked on Home EN', () => {
+    usePathnameMock.mockReturnValue('/en');
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: false }));
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+    fireEvent.click(screen.getByRole('link', { name: 'N3LX home' }));
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+  });
+
+  it('N3LX uses instant scroll when reduced motion is preferred', () => {
+    usePathnameMock.mockReturnValue('/en');
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: true }));
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+    fireEvent.click(screen.getByRole('link', { name: 'N3LX home' }));
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' });
+  });
+
+  it('N3LX does not call scrollTo when clicked from a project page', () => {
+    usePathnameMock.mockReturnValue('/en/projects/horizon-his');
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<SiteHeader content={enCommon} locale="en" routeId="horizon-his" />);
+    fireEvent.click(screen.getByRole('link', { name: 'N3LX home' }));
+
+    expect(scrollTo).not.toHaveBeenCalled();
+  });
+
+  it('N3LX brand link href is Home PT-BR and preserves accessible name', () => {
+    render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
+
+    const brandLink = screen.getByRole('link', { name: 'Página inicial — N3LX' });
+    expect(brandLink).toHaveAttribute('href', '/');
+  });
+
+  it('N3LX brand link href is Home EN and preserves accessible name', () => {
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+
+    const brandLink = screen.getByRole('link', { name: 'N3LX home' });
+    expect(brandLink).toHaveAttribute('href', '/en');
   });
 });

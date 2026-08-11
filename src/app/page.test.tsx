@@ -18,7 +18,7 @@ describe('HomePage', () => {
   it('renders the new header, hero and featured cases composition', () => {
     render(<HomePage locale="en" />);
 
-    const hero = screen.getByRole('region', { name: /hero/i });
+    const hero = screen.getByRole('region', { name: /introduction/i });
     const featuredCases = screen.getByRole('region', { name: /featured projects/i });
     const analyticsConsentSlot = document.querySelector('[data-analytics-consent-slot="true"]');
     expect(document.querySelectorAll('#cases')).toHaveLength(0);
@@ -55,11 +55,11 @@ describe('HomePage', () => {
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
     expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
-    expect(within(featuredCases).getByRole('link', { name: 'View HORIZON HIS case study' })).toHaveAttribute('href', '/en/projects/horizon-his');
-    expect(within(featuredCases).getByRole('link', { name: 'View SUBITER case study' })).toHaveAttribute('href', '/en/projects/subiter');
-    expect(within(featuredCases).getByRole('link', { name: 'View REDE DCC 1.0 case study' })).toHaveAttribute('href', '/en/projects/rede-dcc');
-    expect(within(featuredCases).getByRole('link', { name: 'View DASA — Canal do Consultor case study' })).toHaveAttribute('href', '/en/projects/dasa-canal-do-consultor');
-    expect(within(featuredCases).getAllByText('View case')).toHaveLength(4);
+    expect(within(featuredCases).getByRole('link', { name: 'View HORIZON HIS project' })).toHaveAttribute('href', '/en/projects/horizon-his');
+    expect(within(featuredCases).getByRole('link', { name: 'View SUBITER project' })).toHaveAttribute('href', '/en/projects/subiter');
+    expect(within(featuredCases).getByRole('link', { name: 'View REDE DCC 1.0 project' })).toHaveAttribute('href', '/en/projects/rede-dcc');
+    expect(within(featuredCases).getByRole('link', { name: 'View DASA \u2014 Canal do Consultor project' })).toHaveAttribute('href', '/en/projects/dasa-canal-do-consultor');
+    expect(within(featuredCases).getAllByText('View project')).toHaveLength(4);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual(['HORIZON HIS', 'SUBITER', 'REDE DCC 1.0', 'DASA — Canal do Consultor']);
     expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(4);
     expect(screen.getByText(/discovery-led product design translating research/i)).toBeInTheDocument();
@@ -146,11 +146,11 @@ describe('HomePage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en');
     expect(screen.getByRole('link', { name: /horizon his/i })).toHaveAttribute('href', '/projetos/horizon-his');
     expect(screen.getByRole('link', { name: /subiter/i })).toHaveAttribute('href', '/projetos/subiter');
-    expect(screen.getAllByText('Ver case')).toHaveLength(4);
-    expect(screen.getByRole('link', { name: 'Ver case HORIZON HIS' })).toHaveAttribute('href', '/projetos/horizon-his');
-    expect(screen.getByRole('link', { name: 'Ver case SUBITER' })).toHaveAttribute('href', '/projetos/subiter');
-    expect(screen.getByRole('link', { name: 'Ver case REDE DCC 1.0' })).toHaveAttribute('href', '/projetos/rede-dcc');
-    expect(screen.getByRole('link', { name: 'Ver case DASA — Canal do Consultor' })).toHaveAttribute('href', '/projetos/dasa-canal-do-consultor');
+    expect(screen.getAllByText('Ver projeto')).toHaveLength(4);
+    expect(screen.getByRole('link', { name: 'Ver projeto HORIZON HIS' })).toHaveAttribute('href', '/projetos/horizon-his');
+    expect(screen.getByRole('link', { name: 'Ver projeto SUBITER' })).toHaveAttribute('href', '/projetos/subiter');
+    expect(screen.getByRole('link', { name: 'Ver projeto REDE DCC 1.0' })).toHaveAttribute('href', '/projetos/rede-dcc');
+    expect(screen.getByRole('link', { name: 'Ver projeto DASA \u2014 Canal do Consultor' })).toHaveAttribute('href', '/projetos/dasa-canal-do-consultor');
     expect(screen.getByText('Representação editorial')).toBeInTheDocument();
     const aboutSection = screen.getByRole('region', { name: /sobre/i });
     expect(within(aboutSection).getByText('Perfil profissional')).toBeInTheDocument();

@@ -14,7 +14,7 @@ export const enHome = {
   },
   featuredCases: {
     title: 'Featured projects',
-    actionLabel: 'View case',
+    actionLabel: 'View project',
     projects: [
       {
         routeId: 'horizon-his',
@@ -98,7 +98,7 @@ export const enHome = {
   },
   accessibility: {
     home: 'N3LX home', mainNavigation: 'Main navigation', caseNavigation: 'Case study navigation',
-    featuredCases: 'Featured projects', secondaryContactLinks: 'Secondary contact links', hero: 'Hero',
+    featuredCases: 'Featured projects', secondaryContactLinks: 'Secondary contact links', hero: 'Introduction',
     professionalDisciplines: 'Professional disciplines', selectedWorkTags: 'ConnectCar / Freeflow tags',
     seniority: 'Seniority and value proposition', about: 'About', contact: 'Contact',
   },

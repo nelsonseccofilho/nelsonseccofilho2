@@ -7,7 +7,7 @@ describe('Hero', () => {
   it('renders the editorial hero composition', () => {
     render(<Hero />);
 
-    const section = screen.getByRole('region', { name: /hero/i });
+    const section = screen.getByRole('region', { name: /introduction/i });
     expect(section).toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByRole('heading', { level: 1, name: /designing digital products for complex systems\./i })).toBeInTheDocument();

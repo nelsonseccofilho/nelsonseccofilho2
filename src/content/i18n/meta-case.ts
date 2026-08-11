@@ -202,7 +202,7 @@ const en: PortfolioMetaCaseContent = {
     title: 'Building this portfolio | Nelson Secco',
     description: 'A meta-case about Product Design, Engineering, AI-assisted development, and production validation.',
   },
-  eyebrow: 'Authored meta-case',
+  eyebrow: 'Meta case study',
   title: 'Building this portfolio',
   subtitle: 'Product Design × Engineering × AI-assisted development',
   intro: 'This portfolio began as a positioning problem. The hypothesis was that the product itself could demonstrate, rather than merely describe, my ability to connect Design, Product, and Engineering.',

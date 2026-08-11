@@ -19,33 +19,6 @@ export const dasaCanalDoConsultorSharedFacts = {
     researchQuotesMapped: 290,
     businessRulesAndFeaturesMapped: 57,
   },
-  heroImage: {
-    width: 1920,
-    height: 1080,
-    light: {
-      640: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-640.webp',
-      1024: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1024.webp',
-      1440: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1440.webp',
-      1920: '/assets/projects/dasa-canal-do-consultor/cover/light/cover-1920.webp',
-    },
-    dark: {
-      640: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-640.webp',
-      1024: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1024.webp',
-      1440: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1440.webp',
-      1920: '/assets/projects/dasa-canal-do-consultor/cover/dark/cover-1920.webp',
-    },
-  },
-  assets: {
-    evidenceBoard: '/assets/projects/dasa-canal-do-consultor/evidence/discovery-editorial-board-1536.webp',
-    diagram01Ecosystem: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/01-ecosystem.svg',
-    diagram02ResearchScale: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/02-research-scale.svg',
-    diagram03DiscoveryProcess: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/03-discovery-process.svg',
-    diagram04ResearchToRules: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/04-research-to-rules.svg',
-    diagram05InformationFragmentation: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/05-information-fragmentation.svg',
-    diagram06ThemeMap: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/06-theme-map.svg',
-    diagram07ComplexityExamples: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/07-complexity-examples.svg',
-    diagram08DiscoveryDelivery: '/assets/projects/dasa-canal-do-consultor/evidence/diagrams/08-discovery-delivery.svg',
-  },
 } as const;
 
 type DasaCanalDoConsultorCaseLocalizedContent = {

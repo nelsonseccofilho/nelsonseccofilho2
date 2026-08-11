@@ -11,29 +11,6 @@ export const redeDccSharedFacts = {
   languages: 'Portuguese / English',
   deliverable: 'End-to-end transaction journey',
   status: 'Implemented in REDE\'s product',
-  heroImage: {
-    width: 1920,
-    height: 1080,
-    light: {
-      640: '/assets/projects/rede-dcc/cover/light/cover-640.webp',
-      1024: '/assets/projects/rede-dcc/cover/light/cover-1024.webp',
-      1440: '/assets/projects/rede-dcc/cover/light/cover-1440.webp',
-      1920: '/assets/projects/rede-dcc/cover/light/cover-1920.webp',
-    },
-    dark: {
-      640: '/assets/projects/rede-dcc/cover/dark/cover-640.webp',
-      1024: '/assets/projects/rede-dcc/cover/dark/cover-1024.webp',
-      1440: '/assets/projects/rede-dcc/cover/dark/cover-1440.webp',
-      1920: '/assets/projects/rede-dcc/cover/dark/cover-1920.webp',
-    },
-  },
-  assets: {
-    transactionStateSequence: '/assets/projects/rede-dcc/evidence/transaction-state-sequence-1600.webp',
-    currencyChoice: '/assets/projects/rede-dcc/evidence/currency-choice-800.webp',
-    pinEntry: '/assets/projects/rede-dcc/evidence/pin-entry-800.webp',
-    processing: '/assets/projects/rede-dcc/evidence/processing-800.webp',
-    approvalReceipt: '/assets/projects/rede-dcc/evidence/approval-receipt-800.webp',
-  },
 } as const;
 
 type RedeDccCaseLocalizedContent = {

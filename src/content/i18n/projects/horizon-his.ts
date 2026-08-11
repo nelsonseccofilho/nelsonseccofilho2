@@ -7,32 +7,6 @@ export const horizonHisSharedFacts = {
   year: '2025',
   eventName: 'Hospitalar 2025',
   establishedPlatforms: ['MV', 'Tasy'] as const,
-  heroImage: {
-    width: 1920,
-    height: 1080,
-    light: {
-      640: '/assets/projects/horizon-his/cover/light/cover-640.webp',
-      1024: '/assets/projects/horizon-his/cover/light/cover-1024.webp',
-      1440: '/assets/projects/horizon-his/cover/light/cover-1440.webp',
-      1920: '/assets/projects/horizon-his/cover/light/cover-1920.webp',
-    },
-    dark: {
-      640: '/assets/projects/horizon-his/cover/dark/cover-640.webp',
-      1024: '/assets/projects/horizon-his/cover/dark/cover-1024.webp',
-      1440: '/assets/projects/horizon-his/cover/dark/cover-1440.webp',
-      1920: '/assets/projects/horizon-his/cover/dark/cover-1920.webp',
-    },
-  },
-  assets: {
-    journeyOverview: '/assets/projects/horizon-his/evidence/journey-map-overview-2048.webp',
-    journeyDetail01: '/assets/projects/horizon-his/evidence/journey-map-detail-01-1536.webp',
-    journeyDetail02: '/assets/projects/horizon-his/evidence/journey-map-detail-02-1536.webp',
-    journeyDetail03: '/assets/projects/horizon-his/evidence/journey-map-detail-03-1536.webp',
-    journeyDetail04: '/assets/projects/horizon-his/evidence/journey-map-detail-04-1536.webp',
-    triagePrototype: '/assets/projects/horizon-his/evidence/triage-prototype-1600.webp',
-    caseResultsSlide: '/assets/projects/horizon-his/evidence/case-results-slide-1280.webp',
-    prototypeAndInteractionMap: '/assets/projects/horizon-his/evidence/prototype-and-interaction-map-1600.webp',
-  },
 } as const;
 
 type HorizonHisCaseLocalizedContent = {

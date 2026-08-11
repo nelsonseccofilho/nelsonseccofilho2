@@ -1,313 +1,453 @@
-# Nelson Secco - Product Design Portfolio
+# N3LX Portfolio / Nelson Secco Portfolio
 
-Senior Product Designer and UX Consultant portfolio built as a real product through Design x Product x Engineering practices, with AI-assisted execution and human-led quality decisions.
+Production portfolio for a Senior Product Designer and UX Consultant with a software-development background.
+The project is built as a real digital product, at the intersection of Product Design, UX, Engineering, and AI-assisted development with human validation.
 
 ## Live
 
 - Production: https://nelsonsecco.netlify.app/
-- Meta-case (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
-- Meta-case (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
+- Building This Portfolio (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
+- Construindo este portfólio (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
 
-## About the project
+## What this project demonstrates
 
-This repository contains a bilingual professional portfolio with:
+- Product Design and UX applied to real delivery constraints
+- Product discovery and evidence-led decision making
+- Complex systems and interaction design
+- Design-system thinking and reusable UI architecture
+- Accessibility and responsive implementation
+- Engineering collaboration through typed contracts and test gates
+- AI-assisted workflow with explicit human review and final responsibility
+- Evidence-led case-study storytelling with publication boundaries
 
-- Canonical PT-BR experience at `/` and `/projetos/...`
-- Equivalent EN experience at `/en` and `/en/projects/...`
-- Product case studies with evidence boundaries and publication controls
-- An authored meta-case documenting how the portfolio itself was conceived, built, validated, and published
+## Featured work
 
-## Stack
+- HORIZON HIS
+- SUBITER
+- REDE DCC 1.0
+- DASA — Canal do Consultor
+- ConnectCar / Freeflow (Home-only presentation)
+- Building This Portfolio (meta-case)
 
-- Next.js App Router
-- React
+## Tech stack
+
+- Next.js 16 (App Router)
+- React 19
 - TypeScript
-- Tailwind CSS
-- Radix UI primitives (currently `@radix-ui/react-dialog`)
-- Vitest
-- React Testing Library
-- jsdom
-- ESLint
-- Microsoft Clarity
-- Netlify
-- Node.js 22
+- Tailwind CSS 4
+- Radix UI primitive (`@radix-ui/react-dialog`)
+- Vitest + React Testing Library + jsdom
+- ESLint (Next.js core-web-vitals + TypeScript config)
+- Microsoft Clarity (consent and production-host gated)
+- Netlify (deployment target)
 
-## Product architecture
+## Requirements / prerequisites
 
-- Typed localized route map for PT-BR and EN path parity
-- Typed dictionaries for localized content
-- Locale-neutral shared project facts
-- Shared UI/components with semantic tokens
-- Evidence/placeholder strategy for publication-safe visuals
+- Node.js 22 (see [.nvmrc](.nvmrc))
+- npm (bundled with Node.js)
+- Git
 
-## Localization
-
-- PT-BR is canonical and public default (no `/pt` prefix)
-- EN is secondary at `/en`
-- Localized project routes are explicitly mapped (`/projetos/...` <-> `/en/projects/...`)
-
-## AI-assisted workflow
-
-Execution used ChatGPT, Codex, and GitHub Copilot in different phases according to task complexity, availability, and operating constraints.
-
-Human responsibility remained with:
-
-- Scope control
-- Product and UX decisions
-- Critical review
-- Factual validation
-- Visual QA
-- Accessibility review
-- Release approval
-
-## UX observability
-
-Microsoft Clarity is configured as a production behavioral-observation layer with strict consent and environment gating:
-
-- No tracking on localhost
-- No tracking without explicit consent
-- Tracking only in approved production host conditions
-
-Clarity is used to support future evidence-informed UX refinements, not to claim findings that are not yet validated.
-
-## Accessibility and UX quality
-
-Quality reviews use NN/g guidance as reference and include WCAG-oriented checks where relevant, including:
-
-- Keyboard/focus behavior
-- Contrast review
-- Responsive QA
-- Reduced-motion behavior
-
-No certification or external endorsement is claimed.
-
-## Quality gates
-
-Run the same gates used in the repository workflow:
+## Installation
 
 ```bash
-npm test
-npm run typecheck
-npm run lint
-npm run build
-```
-
-## Responsive targets
-
-Intentional review contexts include:
-
-- 1920+
-- 1366
-- Tablet
-- Mobile
-
-## Styling conventions
-
-- BEM remains valid in legacy/custom CSS areas
-- Tailwind is the current utility foundation for new/migrated UI
-- Radix primitives are used selectively where they improve interaction/accessibility
-
-## Development
-
-### Requirements
-
-- Node.js 22 (see `.nvmrc`)
-
-### Install
-
-```bash
+git clone https://github.com/nelsonseccofilho/nelsonseccofilho2.git
+cd nelsonseccofilho2
 npm install
 ```
 
-### Run locally
+`npm ci` can be used in CI or reproducible clean installs when a lockfile-strict install is required.
+
+## Environment configuration
+
+This project can run locally without required private secrets.
+
+Optional public variable (analytics only):
+
+- `NEXT_PUBLIC_CLARITY_PROJECT_ID`
+
+Create local env file if needed:
+
+```bash
+cp .env.example .env.local
+```
+
+On Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+## Running locally
 
 ```bash
 npm run dev
 ```
 
-### Optional public client configuration
+Default local URL: http://localhost:3000
 
-- `NEXT_PUBLIC_CLARITY_PROJECT_ID`
+## Production build
 
-Clarity remains consent-gated and hostname-gated by code.
+```bash
+npm run build
+npm run start
+```
+
+## Quality commands
+
+- `npm test`: runs unit/component tests with Vitest
+- `npm run typecheck`: validates TypeScript contracts
+- `npm run lint`: runs ESLint checks
+- `npm run build`: validates production build generation
+
+## Project structure
+
+```text
+src/
+	app/              # localized routes and layouts (PT-BR canonical + EN)
+	components/       # UI and page components
+	content/          # typed localized copy and project facts
+	i18n/             # locale definitions and typed route map
+
+public/
+	assets/
+		projects/       # published portfolio media by project
+
+planning/           # product, QA, process and governance docs
+provenance/         # asset provenance and publication status records
+```
+
+Approved project-asset convention:
+
+`public/assets/projects/<project-id>/`
+
+- `cover/`
+- `hero/`
+- `narrative/`
+- `evidence/`
+
+Only categories required by each project need to exist.
+
+## Internationalization
+
+- Canonical locale: `pt-BR`
+- English locale: `/en`
+- Localized project routes preserve equivalent content via typed route mapping
+- There is no `/pt` public route
+
+## Theme
+
+- Light theme by default
+- Dark theme available through the shared theme controls
+- Theme state is persisted in local storage and reflected through `data-theme`
+
+## Responsive strategy
+
+Validated reference viewports:
+
+- 1920 × 1080 (wide desktop)
+- 1366 × 768 (laptop)
+- 820 × 1180 (tablet)
+- 440 × 956 (mobile)
+
+These are QA checkpoints, not an exhaustive device certification list.
+
+## Accessibility and UX quality
+
+Current quality approach includes:
+
+- semantic HTML landmarks and heading hierarchy
+- keyboard navigation and visible focus behavior
+- contrast checks
+- reduced-motion support where applicable
+- responsive UX review in defined QA presets
+
+NN/g guidance is used as a quality reference. No formal WCAG certification is claimed.
+
+## Testing and validation
+
+Automated quality gates are defined by repository scripts and CI-compatible commands.
+Prefer documenting the commands above rather than hardcoding volatile test counts.
+
+## Assets and evidence policy
+
+- Portfolio imagery is evidence-led and publication-controlled
+- Approved project media lives under `public/assets/projects/`
+- `cover`, `hero`, `narrative`, and `evidence` organize production-ready story assets
+- No fabricated product evidence is allowed
+- Confidentiality restrictions are respected
+- DASA case uses confidentiality-safe editorial representations
+- ConnectCar / Freeflow remains intentionally Home-only
+- Internal source exports, contact sheets, and ZIP packages are archival/support material and not product UI media
+
+## Image performance
+
+The current architecture uses existing Next.js + Netlify delivery.
+Responsive image behavior is handled by the current implementation paths and rendered asset variants already present in the repository.
+
+## Privacy / analytics
+
+- Microsoft Clarity is integrated behind explicit user consent
+- No analytics on localhost
+- Analytics only initializes in production mode with approved host and configured project ID
+- Privacy pages are available at `/privacidade` and `/en/privacy`
+
+## Footer and routing architecture
+
+- Normal localized pages render the shared shell with global `SiteFooter`
+- Short normal pages keep sticky-footer behavior (content area expands before footer)
+- Not-found presentation intentionally renders without footer landmarks
 
 ## Deployment
 
-Deployment target is Netlify, with Node 22 runtime alignment.
+Primary release flow:
 
-This repository does not publish private account settings or operational secrets.
+GitHub -> Netlify -> Next.js production build
 
-## Repository and asset policy
+This repository does not expose private Netlify settings or secrets.
 
-- Some project visuals derive from professional/client-context work
-- Publication is controlled through provenance and asset review documentation
-- Unresolved assets are not published
-- Placeholders may intentionally replace visuals pending reconstruction/approval
+## Conventions
 
-See `provenance/` and `planning/` for process constraints and evidence boundaries.
+- Conventional Commits
+- BEM in legacy/custom CSS areas
+- Tailwind utilities for current/migrated UI
+- shadcn/ui conventions where local UI primitives are used
+- Radix usage where interaction/accessibility benefits are clear
+- Feature changes should include tests and responsive validation
 
-## License and usage
+## Repository / author
 
-Copyright (c) Nelson Secco.
+Portfolio project authored by Nelson Secco under N3LX Digital Business.
 
-All rights reserved for portfolio content and case-study material.
+Repository: https://github.com/nelsonseccofilho/nelsonseccofilho2
 
-No blanket open-source license is currently declared for the full repository content.
+## Rights
+
+© 2026 N3LX Digital Business. All rights reserved.
 
 ---
 
-# Nelson Secco - Portfólio de Product Design
+# N3LX Portfolio / Portfólio Nelson Secco
 
-Portfólio de Senior Product Designer e UX Consultant construído como produto real, integrando Design x Produto x Engenharia, com execução assistida por IA e decisões de qualidade conduzidas por revisão humana.
+Portfólio de produção para um Senior Product Designer e UX Consultant com background em desenvolvimento de software.
+O projeto foi construído como produto digital real, na interseção entre Product Design, UX, Engenharia e desenvolvimento assistido por IA com validação humana.
 
 ## Live
 
 - Produção: https://nelsonsecco.netlify.app/
-- Meta-case (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
-- Meta-case (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
+- Building This Portfolio (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
+- Construindo este portfólio (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
 
-## Sobre o projeto
+## O que este projeto demonstra
 
-Este repositório contém um portfólio profissional bilíngue com:
+- Product Design e UX aplicados a restrições reais de entrega
+- Product discovery e tomada de decisão guiada por evidências
+- Sistemas complexos e interaction design
+- Pensamento de design system e arquitetura de UI reutilizável
+- Acessibilidade e implementação responsiva
+- Colaboração com engenharia por contratos tipados e gates de teste
+- Workflow assistido por IA com revisão humana explícita e responsabilidade final humana
+- Storytelling de case studies guiado por evidências e limites de publicação
 
-- Experiência canônica em PT-BR em `/` e `/projetos/...`
-- Experiência equivalente em EN em `/en` e `/en/projects/...`
-- Estudos de caso com limites de evidência e controles de publicação
-- Um meta-case autoral que documenta como o próprio portfólio foi concebido, construído, validado e publicado
+## Trabalhos em destaque
 
-## Stack
+- HORIZON HIS
+- SUBITER
+- REDE DCC 1.0
+- DASA — Canal do Consultor
+- ConnectCar / Freeflow (apresentação apenas na Home)
+- Building This Portfolio (meta-case)
 
-- Next.js App Router
-- React
+## Stack técnico
+
+- Next.js 16 (App Router)
+- React 19
 - TypeScript
-- Tailwind CSS
-- Primitivas Radix UI (atualmente `@radix-ui/react-dialog`)
-- Vitest
-- React Testing Library
-- jsdom
-- ESLint
-- Microsoft Clarity
-- Netlify
-- Node.js 22
+- Tailwind CSS 4
+- Primitiva Radix UI (`@radix-ui/react-dialog`)
+- Vitest + React Testing Library + jsdom
+- ESLint (config Next.js core-web-vitals + TypeScript)
+- Microsoft Clarity (com gate de consentimento e host de produção)
+- Netlify (alvo de deploy)
 
-## Arquitetura de produto
+## Requisitos / pré-requisitos
 
-- Mapa de rotas localizadas tipado para paridade PT-BR e EN
-- Dicionários tipados para conteúdo localizado
-- Fatos de projeto compartilhados e neutros por idioma
-- UI/componentes compartilhados com tokens semânticos
-- Estratégia de evidência/placeholder para visuais seguros para publicação
+- Node.js 22 (ver [.nvmrc](.nvmrc))
+- npm (distribuído com Node.js)
+- Git
 
-## Localização
-
-- PT-BR é canônico e padrão público (sem prefixo `/pt`)
-- EN é secundário em `/en`
-- Rotas localizadas de projeto são mapeadas explicitamente (`/projetos/...` <-> `/en/projects/...`)
-
-## Workflow assistido por IA
-
-A execução utilizou ChatGPT, Codex e GitHub Copilot em fases diferentes, conforme complexidade da tarefa, disponibilidade e restrições operacionais.
-
-A responsabilidade humana permaneceu em:
-
-- Controle de escopo
-- Decisões de Produto e UX
-- Revisão crítica
-- Validação factual
-- QA visual
-- Revisão de acessibilidade
-- Aprovação de release
-
-## Observabilidade de UX
-
-Microsoft Clarity é configurado como camada de observação comportamental em produção, com gating estrito de consentimento e ambiente:
-
-- Sem rastreamento em localhost
-- Sem rastreamento sem consentimento explícito
-- Rastreamento apenas em condições de host de produção aprovado
-
-Clarity é usado para apoiar refinamentos futuros de UX baseados em evidências, sem alegar resultados ainda não validados.
-
-## Acessibilidade e qualidade de UX
-
-As revisões usam referências da NN/g e incluem verificações orientadas por WCAG quando relevantes, incluindo:
-
-- Comportamento de teclado/foco
-- Revisão de contraste
-- QA responsivo
-- Comportamento com movimento reduzido
-
-Não há alegação de certificação ou endosso externo.
-
-## Gates de qualidade
-
-Execute os mesmos gates usados no workflow do repositório:
+## Instalação
 
 ```bash
-npm test
-npm run typecheck
-npm run lint
-npm run build
-```
-
-## Alvos de responsividade
-
-Os contextos de revisão intencional incluem:
-
-- 1920+
-- 1366
-- Tablet
-- Mobile
-
-## Convenções de estilo
-
-- BEM permanece válido em áreas legadas/customizadas de CSS
-- Tailwind é a base utilitária atual para UI nova/migrada
-- Primitivas Radix são usadas de forma seletiva quando melhoram interação/acessibilidade
-
-## Desenvolvimento
-
-### Requisitos
-
-- Node.js 22 (ver `.nvmrc`)
-
-### Instalação
-
-```bash
+git clone https://github.com/nelsonseccofilho/nelsonseccofilho2.git
+cd nelsonseccofilho2
 npm install
 ```
 
-### Execução local
+`npm ci` pode ser usado em CI ou em instalação limpa reprodutível quando for necessário seguir estritamente o lockfile.
+
+## Configuração de ambiente
+
+O projeto roda localmente sem segredos privados obrigatórios.
+
+Variável pública opcional (somente analytics):
+
+- `NEXT_PUBLIC_CLARITY_PROJECT_ID`
+
+Crie o arquivo local se necessário:
+
+```bash
+cp .env.example .env.local
+```
+
+No PowerShell (Windows):
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+## Execução local
 
 ```bash
 npm run dev
 ```
 
-### Configuração cliente pública opcional
+URL local padrão: http://localhost:3000
 
-- `NEXT_PUBLIC_CLARITY_PROJECT_ID`
+## Build de produção
 
-Clarity permanece condicionado por consentimento e hostname em código.
+```bash
+npm run build
+npm run start
+```
+
+## Comandos de qualidade
+
+- `npm test`: executa testes unitários/de componentes com Vitest
+- `npm run typecheck`: valida contratos TypeScript
+- `npm run lint`: executa verificações de ESLint
+- `npm run build`: valida geração do build de produção
+
+## Estrutura do projeto
+
+```text
+src/
+	app/              # rotas e layouts localizados (PT-BR canônico + EN)
+	components/       # componentes de UI e páginas
+	content/          # conteúdo localizado tipado e fatos de projeto
+	i18n/             # definições de locale e mapa tipado de rotas
+
+public/
+	assets/
+		projects/       # mídia publicada por projeto
+
+planning/           # documentação de produto, QA, processo e governança
+provenance/         # proveniência de assets e status de publicação
+```
+
+Convenção aprovada de assets por projeto:
+
+`public/assets/projects/<project-id>/`
+
+- `cover/`
+- `hero/`
+- `narrative/`
+- `evidence/`
+
+Somente as categorias necessárias para cada projeto precisam existir.
+
+## Internacionalização
+
+- Locale canônico: `pt-BR`
+- Locale em inglês: `/en`
+- Rotas localizadas de projetos preservam conteúdo equivalente por mapa tipado
+- Não existe rota pública `/pt`
+
+## Tema
+
+- Tema claro por padrão
+- Tema escuro disponível nos controles compartilhados
+- Estado de tema persistido em local storage e refletido em `data-theme`
+
+## Estratégia responsiva
+
+Viewports de referência validados:
+
+- 1920 × 1080 (desktop amplo)
+- 1366 × 768 (laptop)
+- 820 × 1180 (tablet)
+- 440 × 956 (mobile)
+
+Esses tamanhos são checkpoints de QA, não uma certificação exaustiva por dispositivo.
+
+## Acessibilidade e qualidade de UX
+
+A abordagem atual de qualidade inclui:
+
+- landmarks semânticos e hierarquia de headings
+- navegação por teclado e foco visível
+- revisão de contraste
+- suporte a movimento reduzido quando aplicável
+- revisão de UX responsiva nos presets de QA definidos
+
+As diretrizes da NN/g são usadas como referência de qualidade. Não há alegação de certificação formal WCAG.
+
+## Testes e validação
+
+Os gates automatizados de qualidade são definidos pelos scripts do repositório e comandos compatíveis com CI.
+Prefira documentar os comandos acima em vez de fixar contagens de teste voláteis.
+
+## Política de assets e evidências
+
+- A imagética do portfólio é guiada por evidências e controlada para publicação
+- A mídia aprovada fica em `public/assets/projects/`
+- `cover`, `hero`, `narrative` e `evidence` organizam assets de storytelling prontos para produção
+- Evidências de produto não podem ser fabricadas
+- Restrições de confidencialidade são respeitadas
+- O case DASA usa representações editoriais seguras para confidencialidade
+- ConnectCar / Freeflow permanece intencionalmente apenas na Home
+- Source exports internos, contact sheets e pacotes ZIP são material de suporte/arquivo e não mídia de UI de produto
+
+## Performance de imagem
+
+A arquitetura atual usa a entrega existente com Next.js + Netlify.
+O comportamento responsivo de imagem é tratado pelos paths atuais de implementação e variantes de assets já presentes no repositório.
+
+## Privacidade / analytics
+
+- Microsoft Clarity integrado com consentimento explícito do usuário
+- Sem analytics em localhost
+- Analytics só inicializa em modo de produção com host aprovado e project ID configurado
+- Páginas de privacidade disponíveis em `/privacidade` e `/en/privacy`
+
+## Arquitetura de footer e rotas
+
+- Páginas localizadas normais renderizam shell compartilhado com `SiteFooter` global
+- Páginas normais curtas mantêm comportamento sticky-footer (área de conteúdo expande antes do footer)
+- Not-found renderiza intencionalmente sem landmark de footer
 
 ## Deploy
 
-O alvo de deploy é Netlify, com alinhamento de runtime em Node 22.
+Fluxo principal de publicação:
 
-Este repositório não publica configurações privadas de conta nem segredos operacionais.
+GitHub -> Netlify -> build de produção Next.js
 
-## Política de repositório e assets
+Este repositório não expõe configurações privadas do Netlify nem segredos.
 
-- Parte dos visuais de projeto deriva de contexto profissional/de clientes
-- A publicação é controlada por documentação de proveniência e revisão de assets
-- Assets não resolvidos não são publicados
-- Placeholders podem substituir visuais intencionalmente até reconstrução/aprovação
+## Convenções
 
-Consulte `provenance/` e `planning/` para restrições de processo e limites de evidência.
+- Conventional Commits
+- BEM em áreas legadas/customizadas de CSS
+- Tailwind utilities para UI atual/migrada
+- convenções de shadcn/ui onde primitivas locais de UI são usadas
+- Uso de Radix quando há benefício claro de interação/acessibilidade
+- Mudanças de feature devem incluir testes e validação responsiva
 
-## Licença e uso
+## Repositório / autoria
 
-Copyright (c) Nelson Secco.
+Projeto de portfólio de autoria de Nelson Secco sob identidade N3LX Digital Business.
 
-Todos os direitos reservados para conteúdo de portfólio e material de estudos de caso.
+Repositório: https://github.com/nelsonseccofilho/nelsonseccofilho2
 
-No momento, não há licença open-source ampla declarada para todo o conteúdo do repositório.
+## Direitos
+
+© 2026 N3LX Digital Business. Todos os direitos reservados.

@@ -132,7 +132,7 @@ React showed server/client differences in ThemeToggle, including theme-dependent
 - aria-pressed;
 - rendered SVG/icon.
 
-A warning related to the script injected by next-themes through ThemeProvider was also shown.
+A warning related to the theme initialization script and provider boundary was also shown.
 
 ### Expected
 
@@ -166,13 +166,13 @@ The diff includes differences in:
 
 First investigate the current ThemeToggle implementation.
 
-The solution should follow the official next-themes recommendation to avoid rendering theme/resolvedTheme-dependent UI before the component is mounted on the client.
+The solution should avoid rendering theme/resolvedTheme-dependent UI before the component is mounted on the client.
 
 Do not apply suppressHydrationWarning on ThemeToggle to hide the problem.
 
 Do not remove accessible attributes.
 
-Do not replace next-themes without investigation.
+Do not replace the current theme architecture without investigation.
 
 The specific ThemeScript warning should be evaluated separately if it remains after ThemeToggle hydration mismatch is resolved.
 
@@ -201,6 +201,58 @@ Primary checkpoints:
 ### Verification
 
 Pending runtime hydration and theme regression retest.
+
+### Related commit
+
+Pending.
+
+## QA-004 — Footer shell behavior on normal pages vs not-found
+
+**Status:** Verified
+
+**Severity:** Medium
+
+**Area:** Global layout shell / footer semantics / routing
+
+**Found during:** Pre-publication manual QA and structural route review
+
+**Affected viewports:**
+
+- 1920 × 1080
+- 1366 × 768
+- 820 × 1180
+- 440 × 956
+
+### Description
+
+The global footer had to remain present on normal pages while being excluded from not-found/error presentation.
+
+### Expected
+
+- Normal pages: Header + Main + Footer
+- Short normal pages: sticky-footer behavior
+- Not-found pages: Header + Main only, no footer landmark
+
+### Actual
+
+Footer rendering was split by route boundary so normal pages keep the shared footer and not-found renders without `<footer>`.
+
+### Verification
+
+Validated in PT-BR and EN across the official presets:
+
+- Privacy pages keep footer visible and anchored by sticky-footer behavior on short content.
+- Home and case-study pages keep footer after main content.
+- Not-found routes (`/rota-inexistente`, `/en/unknown-route`) render with `footerCount = 0` and one `main` landmark.
+- No horizontal overflow observed in validated presets.
+- Light and Dark modes remained stable.
+
+Technical validation after the correction:
+
+- `npm test` passed
+- `npm run typecheck` passed
+- `npm run lint` passed
+- `npm run build` passed
 
 ### Related commit
 

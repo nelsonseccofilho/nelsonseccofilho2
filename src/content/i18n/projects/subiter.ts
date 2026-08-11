@@ -15,27 +15,6 @@ export const subiterSharedFacts = {
   operationLocation: 'Ecuador',
   operationAssetName: 'National Geographic Delfina',
   operationRegion: 'Galápagos',
-  heroImage: {
-    width: 1920,
-    height: 1080,
-    light: {
-      640: '/assets/projects/subiter/cover/light/cover-640.webp',
-      1024: '/assets/projects/subiter/cover/light/cover-1024.webp',
-      1440: '/assets/projects/subiter/cover/light/cover-1440.webp',
-      1920: '/assets/projects/subiter/cover/light/cover-1920.webp',
-    },
-    dark: {
-      640: '/assets/projects/subiter/cover/dark/cover-640.webp',
-      1024: '/assets/projects/subiter/cover/dark/cover-1024.webp',
-      1440: '/assets/projects/subiter/cover/dark/cover-1440.webp',
-      1920: '/assets/projects/subiter/cover/dark/cover-1920.webp',
-    },
-  },
-  assets: {
-    inspectionMap: '/assets/projects/subiter/editorial/inspection-map-1400.webp',
-    postInspectionFlow: '/assets/projects/subiter/editorial/post-inspection-flow-1400.webp',
-    aiReview: '/assets/projects/subiter/editorial/ai-review-1400.webp',
-  },
 } as const;
 
 type SubiterCaseLocalizedContent = {

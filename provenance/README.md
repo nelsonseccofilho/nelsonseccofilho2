@@ -20,7 +20,13 @@ The active manifests only list files that remain in the current repository. The 
 | `review` | `public/assets/projects/subiter/cover/cover-1024.webp` | Legacy, unthemed editorial representation based on inspected Figma nodes. | Not used by the current application or approved as active publication evidence. |
 | `review` | `public/assets/projects/subiter/cover/cover-1440.webp` | Legacy, unthemed editorial representation based on inspected Figma nodes. | Not used by the current application or approved as active publication evidence. |
 | `review` | `public/assets/projects/subiter/cover/cover-1920.webp` | Legacy, unthemed editorial representation based on inspected Figma nodes. | Not used by the current application or approved as active publication evidence. |
-| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-640.webp` | Editorial representation based on responsive-component evidence. | Publication authorization was not sufficiently documented, and the current product uses a reconstruction placeholder. |
-| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1024.webp` | Editorial representation based on responsive-component evidence. | Publication authorization was not sufficiently documented, and the current product uses a reconstruction placeholder. |
-| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1440.webp` | Editorial representation based on responsive-component evidence. | Publication authorization was not sufficiently documented, and the current product uses a reconstruction placeholder. |
-| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1920.webp` | Editorial representation based on responsive-component evidence. | Publication authorization was not sufficiently documented, and the current product uses a reconstruction placeholder. |
+| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-640.webp` | Editorial representation based on responsive-component evidence. | This retired batch is kept as historical audit only and is not the current approved Home publication set. |
+| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1024.webp` | Editorial representation based on responsive-component evidence. | This retired batch is kept as historical audit only and is not the current approved Home publication set. |
+| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1440.webp` | Editorial representation based on responsive-component evidence. | This retired batch is kept as historical audit only and is not the current approved Home publication set. |
+| `review` | `public/assets/projects/connectcar-freeflow/cover/cover-1920.webp` | Editorial representation based on responsive-component evidence. | This retired batch is kept as historical audit only and is not the current approved Home publication set. |
+
+## Current publication scope notes
+
+- ConnectCar / Freeflow remains a Home-only presentation and is not exposed as a dedicated public case route.
+- `source-exports/`, contact sheets, and ZIP packages are archival/support material; they are not product UI media claims.
+- DASA publication remains confidentiality-safe and avoids final product interface disclosure.

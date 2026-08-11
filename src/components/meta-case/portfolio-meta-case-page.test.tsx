@@ -23,6 +23,8 @@ describe('PortfolioMetaCasePage', () => {
     expect(screen.getByText(/referências publicadas pela Nielsen Norman Group \(NN\/g\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Microsoft Clarity como camada de observação comportamental/i)).toHaveTextContent(/analytics condicionado à escolha do visitante/i);
     expect(screen.getByText(/observação comportamental → refinamento/i)).toBeInTheDocument();
+    expect(screen.getByText(/ordem dos projetos/i)).toBeInTheDocument();
+    expect(screen.getByText(/link contextual “← Portfólio”/i)).toBeInTheDocument();
     const aiCollaboration = screen.getByRole('heading', { level: 2, name: 'Colaboração assistida por IA' }).closest('section');
     const aiOperations = screen.getByRole('heading', { level: 2, name: 'Operando o workflow de IA' }).closest('section');
     expect(aiCollaboration).not.toBeNull();
@@ -33,9 +35,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiCollaboration!).getByText(/aprovação final continuaram sob minha responsabilidade/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/Configurei ChatGPT Plus, VS Code, Codex, Git, GitHub e GitHub Copilot Pro\+/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/A escolha do agente e do nível de capacidade também fez parte da operação do projeto/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/57 commits · 4 dias de atividade · ~22h de trabalho identificável/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/atividade Git entre 7 e 10 de agosto de 2026/i)).toHaveTextContent(/implementação, refinamento e validação/i);
-    expect(within(aiOperations!).getByText(/não representa o esforço intelectual total do projeto/i)).toHaveTextContent(/fase futura de imagem\/art direction definida na D-022/i);
+    expect(within(aiOperations!).getByText(/70 commits · 5 dias de atividade · ~22h de trabalho identificável até 10 de agosto/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/histórico Git entre 7 e 11 de agosto de 2026/i)).toHaveTextContent(/estimativa de horas permanece limitada.*10 de agosto/i);
+    expect(within(aiOperations!).getByText(/não representa o esforço intelectual total do projeto/i)).toHaveTextContent(/trabalho de imagem\/art direction definido na D-022/i);
     expect(screen.getByRole('heading', { level: 2, name: 'Custo operacional do experimento' })).toBeInTheDocument();
     expect(screen.getByText(/Hospedagem: Netlify, no ambiente atual de produção\./i)).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /workspace com vs code, localhost, terminal e colaboração assistida por ia/i })).toBeInTheDocument();
@@ -54,6 +56,8 @@ describe('PortfolioMetaCasePage', () => {
     expect(screen.getByText(/research published by Nielsen Norman Group \(NN\/g\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Microsoft Clarity became a behavioral-observation layer/i)).toHaveTextContent(/analytics remains conditional on the visitor’s choice/i);
     expect(screen.getByText(/behavioral observation → refinement/i)).toBeInTheDocument();
+    expect(screen.getByText(/project ordering/i)).toBeInTheDocument();
+    expect(screen.getByText(/contextual “← Portfolio” link/i)).toBeInTheDocument();
     const aiCollaboration = screen.getByRole('heading', { level: 2, name: 'AI-assisted collaboration' }).closest('section');
     const aiOperations = screen.getByRole('heading', { level: 2, name: 'Operating the AI-assisted workflow' }).closest('section');
     expect(aiCollaboration).not.toBeNull();
@@ -64,9 +68,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(within(aiCollaboration!).getByText(/final approval remained my responsibility/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/configured ChatGPT Plus, VS Code, Codex, Git, GitHub, and GitHub Copilot Pro\+/i)).toBeInTheDocument();
     expect(within(aiOperations!).getByText(/Choosing the agent and capability level also became part of the project operation/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/57 commits · 4 days of activity · ~22 hours of identifiable work/i)).toBeInTheDocument();
-    expect(within(aiOperations!).getByText(/Git activity between August 7–10, 2026/i)).toHaveTextContent(/implementation, refinement, and validation/i);
-    expect(within(aiOperations!).getByText(/not a claim for the project’s total intellectual effort/i)).toHaveTextContent(/future imagery\/art-direction phase defined in D-022/i);
+    expect(within(aiOperations!).getByText(/70 commits · 5 days of activity · ~22 hours of identifiable work through August 10/i)).toBeInTheDocument();
+    expect(within(aiOperations!).getByText(/Git history covering August 7 through 11, 2026/i)).toHaveTextContent(/hours estimate remains limited.*August 10/i);
+    expect(within(aiOperations!).getByText(/not a claim for the project’s total intellectual effort/i)).toHaveTextContent(/imagery\/art-direction work defined in D-022/i);
     expect(within(aiOperations!).getByText(/responsibility for deciding what to do.*remains human/i)).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /workspace evidence with vs code, localhost, terminal, and ai-assisted collaboration/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /project decision log evidence used as a source for conventions and implementation governance/i })).toBeInTheDocument();
@@ -92,7 +96,7 @@ describe('PortfolioMetaCasePage', () => {
     expect(publishedCopy).not.toMatch(/GitHub Copilot Pro(?!\+)/);
     expect(publishedCopy).toMatch(/Hospedagem: Netlify, no ambiente atual de produção\.|Hosting: Netlify, for the current production environment\./);
     expect(publishedCopy).not.toMatch(/US\$ 0|USD 0|USD 10|USD 29|USD 59|OPENAI|GITHUB INC/i);
-    expect(publishedCopy).toMatch(/57 commits · 4 dias de atividade · ~22h de trabalho identificável\.|57 commits · 4 days of activity · ~22 hours of identifiable work\./);
-    expect(publishedCopy).toMatch(/atividade Git entre 7 e 10 de agosto de 2026|Git activity between August 7–10, 2026/);
+    expect(publishedCopy).toMatch(/70 commits · 5 dias de atividade · ~22h de trabalho identificável até 10 de agosto\.|70 commits · 5 days of activity · ~22 hours of identifiable work through August 10\./);
+    expect(publishedCopy).toMatch(/histórico Git entre 7 e 11 de agosto de 2026|Git history covering August 7 through 11, 2026/);
   });
 });

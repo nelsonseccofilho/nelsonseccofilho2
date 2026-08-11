@@ -557,3 +557,45 @@ Consistency must not come from forcing all cases into the same mockup template. 
 
 **Future Note**
 After portfolio completion, revisit this decision and image-production process as source material for a LinkedIn article about Product Storytelling, art direction for Product Design case studies, moving beyond generic portfolio mockups, responsible use of generative AI, and maintaining factual integrity while creating editorial imagery.
+
+---
+
+## D-023 — Visual Asset Packaging and Directory Convention
+
+**Date:** 2026-08-10  
+**Status:** Approved  
+**Decision approved by:** Nelson Secco
+
+**AI-assisted collaboration:** The operational structure was proposed through AI-assisted collaboration and approved by Nelson Secco for the portfolio workflow.
+
+### Context
+
+The portfolio is entering its dedicated visual production phase after the technical baseline was completed.
+
+Final case-study imagery will be created progressively under D-022 — Visual Art Direction — Editorial Product Storytelling.
+
+The project needs a consistent convention for organizing, reviewing, exporting, packaging, and integrating visual assets without mixing final public imagery with working references, Figma source material, unpublished evidence, or assets without confirmed publication clearance.
+
+The convention must support:
+
+- Featured Project covers on the Home page;
+- richer case-study hero imagery;
+- narrative imagery that supports storytelling;
+- evidence imagery when publication is appropriate;
+- responsive image derivatives;
+- the portfolio meta-case itself;
+- direct extraction of approved asset packages into the repository.
+
+### Decision
+
+`public/assets/projects/` remains the canonical root for public, approved project imagery.
+
+Each project may use the following directory structure when the corresponding asset category exists:
+
+```text
+public/assets/projects/
+└── <project-id>/
+    ├── cover/
+    ├── hero/
+    ├── narrative/
+    └── evidence/

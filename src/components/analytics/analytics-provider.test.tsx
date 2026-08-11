@@ -28,7 +28,10 @@ function renderProvider(locale: 'pt-BR' | 'en' = 'pt-BR') {
         <AnalyticsConsentSurface />
         <section aria-label="Featured projects">Projects</section>
       </main>
-      <PrivacyPreferencesButton label={common.privacy.manageLabel} />
+      <PrivacyPreferencesButton
+        label={common.privacy.manageLabel}
+        closeLabel={locale === 'pt-BR' ? 'Fechar preferências de privacidade' : 'Close privacy preferences'}
+      />
     </AnalyticsProvider>,
   );
 }
@@ -79,13 +82,22 @@ describe('AnalyticsProvider consent UX', () => {
     expect(clarityMock.consentV2).not.toHaveBeenCalled();
   });
 
-  it('reopens a stored preference from the secondary public control', async () => {
+  it('reopens a stored preference in a dialog and restores focus when it closes', async () => {
     window.localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'declined');
     renderProvider();
 
     await waitFor(() => expect(screen.queryByRole('heading', { name: 'Privacidade e experiência' })).not.toBeInTheDocument());
-    fireEvent.click(screen.getByRole('button', { name: 'Privacidade' }));
-    expect(await screen.findByRole('heading', { name: 'Privacidade e experiência' })).toBeInTheDocument();
+    const trigger = screen.getByRole('button', { name: 'Privacidade' });
+    trigger.focus();
+    fireEvent.click(trigger);
+
+    const dialog = await screen.findByRole('dialog', { name: 'Privacidade e experiência' });
+    expect(dialog).toHaveTextContent(/analytics só é ativado se você permitir/i);
+    expect(clarityMock.init).not.toHaveBeenCalled();
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(trigger).toHaveFocus();
   });
 
   it('renders semantic English copy', async () => {

@@ -20,7 +20,8 @@ import {
 type AnalyticsContextValue = {
   chooseConsent: (consent: Exclude<AnalyticsConsent, 'unknown'>) => void;
   copy: CommonContent['privacy'] | undefined;
-  openPrivacyPreferences: () => void;
+  isPrivacyPreferencesOpen: boolean;
+  setPrivacyPreferencesOpen: (open: boolean) => void;
   shouldShowPreferences: boolean;
   trackEvent: (eventName: PortfolioAnalyticsEvent) => void;
 };
@@ -28,7 +29,8 @@ type AnalyticsContextValue = {
 const AnalyticsContext = createContext<AnalyticsContextValue>({
   chooseConsent: () => {},
   copy: undefined,
-  openPrivacyPreferences: () => {},
+  isPrivacyPreferencesOpen: false,
+  setPrivacyPreferencesOpen: () => {},
   shouldShowPreferences: false,
   trackEvent: () => {},
 });
@@ -114,24 +116,20 @@ export function AnalyticsProvider({ children, copy, locale }: AnalyticsProviderP
     if (requiresReload) window.location.reload();
   }, []);
 
-  const openPrivacyPreferences = useCallback(() => {
-    setIsPreferenceOpen(true);
-
-    const revealPreferences = () => {
-      const preferences = document.getElementById('analytics-consent-preferences');
-      preferences?.focus({ preventScroll: true });
-      preferences?.scrollIntoView?.({ block: 'center' });
-    };
-
-    if (typeof window.requestAnimationFrame === 'function') window.requestAnimationFrame(revealPreferences);
-    else window.setTimeout(revealPreferences, 0);
-  }, []);
+  const setPrivacyPreferencesOpen = useCallback((open: boolean) => setIsPreferenceOpen(open), []);
   const trackEvent = useCallback((eventName: PortfolioAnalyticsEvent) => trackClarityEvent(eventName), []);
 
-  const shouldShowPreferences = isPreferenceLoaded && (consent === 'unknown' || isPreferenceOpen);
+  const shouldShowPreferences = isPreferenceLoaded && consent === 'unknown' && !isPreferenceOpen;
   const contextValue = useMemo(
-    () => ({ chooseConsent, copy, openPrivacyPreferences, shouldShowPreferences, trackEvent }),
-    [chooseConsent, copy, openPrivacyPreferences, shouldShowPreferences, trackEvent],
+    () => ({
+      chooseConsent,
+      copy,
+      isPrivacyPreferencesOpen: isPreferenceOpen,
+      setPrivacyPreferencesOpen,
+      shouldShowPreferences,
+      trackEvent,
+    }),
+    [chooseConsent, copy, isPreferenceOpen, setPrivacyPreferencesOpen, shouldShowPreferences, trackEvent],
   );
 
   return <AnalyticsContext.Provider value={contextValue}>{children}</AnalyticsContext.Provider>;

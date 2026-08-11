@@ -1,10 +1,9 @@
-import Link from 'next/link';
+import { PrivacyPreferencesButton } from '@/components/analytics/privacy-preferences-button';
 import { Separator } from '@/components/ui/separator';
 import { ResumeDialog } from '@/components/ui/resume-dialog';
 import { CONTACT_EMAIL, CONTACT_EMAIL_URL, GITHUB_PROFILE_URL, LINKEDIN_CONTACT_URL } from '@/content/contact';
 import { commonContent } from '@/content/i18n';
 import type { Locale } from '@/i18n/locales';
-import { getLocalizedPath } from '@/i18n/routes';
 
 type SiteFooterProps = {
   locale: Locale;
@@ -59,9 +58,10 @@ export function SiteFooter({ locale }: SiteFooterProps) {
                 loadingLabel: content.resumeDialog.loadingLabel,
               }}
             />
-            <Link className="contact__secondary-link" href={getLocalizedPath('privacy', locale)}>
-              {locale === 'pt-BR' ? 'Privacidade' : 'Privacy'}
-            </Link>
+            <PrivacyPreferencesButton
+              label={locale === 'pt-BR' ? 'Privacidade' : 'Privacy'}
+              closeLabel={locale === 'pt-BR' ? 'Fechar preferências de privacidade' : 'Close privacy preferences'}
+            />
           </nav>
           <p className="m-0 text-center text-sm text-[var(--color-text-secondary)]">{copyright}</p>
         </div>

@@ -6,6 +6,7 @@ The project is built as a real digital product, at the intersection of Product D
 ## Live
 
 - Production: https://nelsonsecco.netlify.app/
+- Home (EN): https://nelsonsecco.netlify.app/en
 - Building This Portfolio (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
 - Construindo este portfólio (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
 
@@ -195,7 +196,7 @@ Responsive image behavior is handled by the current implementation paths and ren
 - In Netlify, configure the variable under **Project configuration → Environment variables**; Netlify supplies it at build time
 - Creating or changing any `NEXT_PUBLIC_*` value requires a new build and deploy
 - Google Ads, Google Analytics, and Google Tag Manager are optional integrations and are not required for basic Clarity operation
-- Privacy pages are available at `/privacidade` and `/en/privacy`
+- `Privacy` in the footer opens the analytics preferences dialog; `/en/privacy` remains available for direct access and as a fallback
 
 Production validation — 2026-08-11: `clarity.js → collect → HTTP 204 → live session/replay confirmed`
 
@@ -242,6 +243,7 @@ O projeto foi construído como produto digital real, na interseção entre Produ
 ## Live
 
 - Produção: https://nelsonsecco.netlify.app/
+- Home (EN): https://nelsonsecco.netlify.app/en
 - Building This Portfolio (EN): https://nelsonsecco.netlify.app/en/building-this-portfolio
 - Construindo este portfólio (PT-BR): https://nelsonsecco.netlify.app/construindo-este-portfolio
 
@@ -431,7 +433,7 @@ O comportamento responsivo de imagem é tratado pelos paths atuais de implementa
 - Na Netlify, configure a variável em **Project configuration → Environment variables**; a Netlify a fornece durante o build
 - Criar ou alterar qualquer valor `NEXT_PUBLIC_*` exige um novo build e deploy
 - Google Ads, Google Analytics e Google Tag Manager são integrações opcionais e não são necessários para o funcionamento básico do Clarity
-- Páginas de privacidade disponíveis em `/privacidade` e `/en/privacy`
+- `Privacidade` no footer abre o dialog de preferências de analytics; `/privacidade` permanece disponível para acesso direto e como fallback
 
 Validação em produção — 2026-08-11: `clarity.js → collect → HTTP 204 → sessão ao vivo/replay confirmados`
 

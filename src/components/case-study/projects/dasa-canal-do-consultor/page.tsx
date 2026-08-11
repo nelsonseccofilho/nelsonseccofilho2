@@ -1,77 +1,46 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
+import { PortfolioReturnNavigation } from '@/components/navigation/portfolio-return-navigation';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
 import { commonContent } from '@/content/i18n';
-import { dasaCanalDoConsultorCaseContent, dasaCanalDoConsultorSharedFacts } from '@/content/i18n/projects/dasa-canal-do-consultor';
+import { dasaCanalDoConsultorCaseContent } from '@/content/i18n/projects/dasa-canal-do-consultor';
 import type { Locale } from '@/i18n/locales';
 import { SiteHeader } from '@/components/layout/site-header';
 
-export const metadata: Metadata = {
-  title: 'DASA — Canal do Consultor — Product Design Case Study | Nelson Secco',
-  description:
-    'Discovery-led Product Design case study on translating healthcare consultation research into business rules, priorities and implementation direction.',
+export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
+  'pt-BR': {
+    title: 'DASA — Canal do Consultor — Case de Product Design | Nelson Secco',
+    description: 'Case de Product Design orientado por Discovery sobre a tradução de pesquisa em saúde em regras de negócio, prioridades e direcionamento para implementação.',
+  },
+  en: {
+    title: 'DASA — Canal do Consultor — Product Design Case Study | Nelson Secco',
+    description: 'Discovery-led Product Design case study on translating healthcare consultation research into business rules, priorities and implementation direction.',
+  },
 };
 
 export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = dasaCanalDoConsultorCaseContent[locale];
-  const diagrams = [
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram01Ecosystem,
-      alt: content.sections.diagrams.diagram01EcosystemAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram02ResearchScale,
-      alt: content.sections.diagrams.diagram02ResearchScaleAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram03DiscoveryProcess,
-      alt: content.sections.diagrams.diagram03DiscoveryProcessAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram04ResearchToRules,
-      alt: content.sections.diagrams.diagram04ResearchToRulesAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram05InformationFragmentation,
-      alt: content.sections.diagrams.diagram05InformationFragmentationAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram06ThemeMap,
-      alt: content.sections.diagrams.diagram06ThemeMapAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram07ComplexityExamples,
-      alt: content.sections.diagrams.diagram07ComplexityExamplesAlt,
-    },
-    {
-      src: dasaCanalDoConsultorSharedFacts.assets.diagram08DiscoveryDelivery,
-      alt: content.sections.diagrams.diagram08DiscoveryDeliveryAlt,
-    },
-  ].map((image) => ({ image }));
+  const diagrams = Array.from({ length: 8 }, (_, index) => ({
+    id: `dasa-diagram-${index + 1}`,
+    placeholderLabel: common.mediaPlaceholders.evidence,
+  }));
 
   return (
     <>
       <SiteHeader content={common} locale={locale} routeId="dasa-canal-do-consultor" />
       <main className="case-study">
-        <CaseCollectionLink locale={locale} />
+        <PortfolioReturnNavigation locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          image={{
-            alt: content.hero.imageAlt,
-            width: dasaCanalDoConsultorSharedFacts.heroImage.width,
-            height: dasaCanalDoConsultorSharedFacts.heroImage.height,
-            light: dasaCanalDoConsultorSharedFacts.heroImage.light,
-            dark: dasaCanalDoConsultorSharedFacts.heroImage.dark,
-          }}
+          placeholderLabel={common.mediaPlaceholders.cover}
         />
 
         <CaseSection
@@ -104,10 +73,7 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           intro={content.sections.evidenceBoard.intro}
         >
           <CaseMedia
-            image={{
-              src: dasaCanalDoConsultorSharedFacts.assets.evidenceBoard,
-              alt: content.sections.evidenceBoard.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.evidenceBoard.caption}
             viewerLabels={common.evidenceViewer}
           />

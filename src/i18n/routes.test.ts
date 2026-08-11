@@ -3,7 +3,6 @@ import { SUPPORTED_LOCALES } from './locales';
 import {
   ROUTE_IDS,
   findLocalizedRoute,
-  getHomeCasesPath,
   getLocaleFromPath,
   getLocalizedPath,
   resolveEquivalentPath,
@@ -16,12 +15,8 @@ describe('localized route map', () => {
     expect(resolveEquivalentPath('/en', 'pt-BR')).toBe('/');
   });
 
-  it('resolves the localized Featured Cases anchor without duplicating locale paths', () => {
-    expect(getHomeCasesPath('pt-BR')).toBe('/#cases');
-    expect(getHomeCasesPath('en')).toBe('/en#cases');
-  });
-
   it.each([
+    ['building-portfolio', '/construindo-este-portfolio', '/en/building-this-portfolio'],
     ['horizon-his', '/projetos/horizon-his', '/en/projects/horizon-his'],
     ['subiter', '/projetos/subiter', '/en/projects/subiter'],
     ['rede-dcc', '/projetos/rede-dcc', '/en/projects/rede-dcc'],

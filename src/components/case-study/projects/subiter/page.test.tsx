@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import SubiterPage from './page';
 
-vi.mock('next-themes', () => ({
+vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
@@ -23,9 +23,7 @@ describe('SubiterPage', () => {
     const hero = screen.getByRole('region', { name: /turning operational complexity into a structured inspection experience/i });
     expect(within(hero).getByText('UX Lead / Senior Product Designer')).toBeInTheDocument();
     expect(within(hero).getByText('Production')).toBeInTheDocument();
-    expect(
-      await within(hero).findByRole('img', { name: /editorial interface composition with inspection workflow grid, trend line and review summary panels/i }),
-    ).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: 'Cover being rebuilt' })).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /introducing marina — ai inside the product/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /supporting a real international inspection operation/i })).toBeInTheDocument();
@@ -41,9 +39,8 @@ describe('SubiterPage', () => {
     expect(screen.getByText(/i wrote an article for subiter presenting the product vision/i)).toBeInTheDocument();
     expect(screen.queryByText(/production adoption is presented/i)).not.toBeInTheDocument();
     expect(screen.getByText('Editorial representation, not a literal product screenshot.')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /editorial representation of an inspection map with industrial assets/i })).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /editorial representation of ai-assisted review integrated into inspection operations/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(3);
+    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(3);
+    expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
 
     const delfinaLink = screen.getByRole('link', { name: /view national geographic delfina/i });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');
@@ -60,8 +57,8 @@ describe('SubiterPage', () => {
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
 
     const navigation = screen.getByRole('navigation', { name: /case study navigation/i });
-    const backLink = within(navigation).getByRole('link', { name: /← all projects/i });
-    expect(backLink).toHaveAttribute('href', '/en#cases');
+    const backLink = within(navigation).getByRole('link', { name: 'Portfolio' });
+    expect(backLink).toHaveAttribute('href', '/en');
 
     expect(screen.queryByText(/inspectly/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/altuseye/i)).not.toBeInTheDocument();
@@ -79,7 +76,7 @@ describe('SubiterPage', () => {
     const hero = screen.getByRole('region', { name: /transformando complexidade operacional em uma experi[eê]ncia estruturada de inspe[cç][aã]o/i });
     expect(within(hero).getByText('UX Lead / Senior Product Designer')).toBeInTheDocument();
     expect(within(hero).getByText('Produção')).toBeInTheDocument();
-    expect(await within(hero).findByRole('img', { name: /composi[cç][aã]o editorial de interface com grade de fluxo de inspe[cç][aã]o/i })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: 'Capa em reconstrução' })).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /introduzindo marina — ia dentro do produto/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /apoiando uma opera[cç][aã]o internacional real de inspe[cç][aã]o/i })).toBeInTheDocument();
@@ -93,8 +90,7 @@ describe('SubiterPage', () => {
     expect(screen.getByText(/a contribui[cç][aã]o tamb[eé]m foi formalmente reconhecida pela empresa/i)).toBeInTheDocument();
     expect(screen.getByText(/escrevi um artigo para a subiter apresentando a vis[aã]o de produto/i)).toBeInTheDocument();
     expect(screen.getByText('Representação editorial, não uma captura literal do produto.')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /representa[cç][aã]o editorial de um mapa de inspe[cç][aã]o/i })).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /representa[cç][aã]o editorial de revis[aã]o assistida por ia/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(3);
 
     const delfinaLink = screen.getByRole('link', { name: /ver national geographic delfina/i });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');
@@ -111,8 +107,8 @@ describe('SubiterPage', () => {
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/subiter');
 
     const navigation = screen.getByRole('navigation', { name: /navega[cç][aã]o do estudo de caso/i });
-    const backLink = within(navigation).getByRole('link', { name: /← todos os projetos/i });
-    expect(backLink).toHaveAttribute('href', '/#cases');
+    const backLink = within(navigation).getByRole('link', { name: 'Portfólio' });
+    expect(backLink).toHaveAttribute('href', '/');
 
     expect(screen.queryByText(/read the article on subiter's website/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/editorial representation, not a literal product screenshot/i)).not.toBeInTheDocument();

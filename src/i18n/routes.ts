@@ -1,10 +1,9 @@
 import { SUPPORTED_LOCALES, type Locale } from './locales';
 
-export const ROUTE_IDS = ['home', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const;
+export const ROUTE_IDS = ['home', 'building-portfolio', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const;
 
 export type RouteId = (typeof ROUTE_IDS)[number];
 export type LocalizedPath = '/' | `/${string}`;
-export type LocalizedHashPath = `${LocalizedPath}#${string}`;
 export type LocalizedRoute = Readonly<Record<Locale, LocalizedPath>>;
 export type RouteMap = Readonly<Record<RouteId, LocalizedRoute>>;
 
@@ -12,6 +11,10 @@ export const routeMap = {
   home: {
     'pt-BR': '/',
     en: '/en',
+  },
+  'building-portfolio': {
+    'pt-BR': '/construindo-este-portfolio',
+    en: '/en/building-this-portfolio',
   },
   'horizon-his': {
     'pt-BR': '/projetos/horizon-his',
@@ -33,10 +36,6 @@ export const routeMap = {
 
 export function getLocalizedPath(routeId: RouteId, locale: Locale): LocalizedPath {
   return routeMap[routeId][locale];
-}
-
-export function getHomeCasesPath(locale: Locale): LocalizedHashPath {
-  return `${getLocalizedPath('home', locale)}#cases`;
 }
 
 export function findLocalizedRoute(pathname: string): { routeId: RouteId; locale: Locale } | null {

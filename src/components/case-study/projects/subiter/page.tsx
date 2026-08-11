@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
+import { PortfolioReturnNavigation } from '@/components/navigation/portfolio-return-navigation';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
@@ -10,10 +10,15 @@ import { subiterCaseContent, subiterSharedFacts } from '@/content/i18n/projects/
 import type { Locale } from '@/i18n/locales';
 import { SiteHeader } from '@/components/layout/site-header';
 
-export const metadata: Metadata = {
-  title: 'SUBITER — Product Design Case Study | Nelson Secco',
-  description:
-    'Product Design case study about structuring Subiter Web Portal inspection operations with traceability, AI assistance and production delivery.',
+export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
+  'pt-BR': {
+    title: 'SUBITER — Case de Product Design | Nelson Secco',
+    description: 'Case de Product Design sobre a estruturação das operações de inspeção do Subiter Web Portal com rastreabilidade, assistência por IA e entrega em produção.',
+  },
+  en: {
+    title: 'SUBITER — Product Design Case Study | Nelson Secco',
+    description: 'Product Design case study about structuring Subiter Web Portal inspection operations with traceability, AI assistance and production delivery.',
+  },
 };
 
 export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
@@ -24,19 +29,13 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
     <>
       <SiteHeader content={common} locale={locale} routeId="subiter" />
       <main className="case-study subiter-case">
-        <CaseCollectionLink locale={locale} />
+        <PortfolioReturnNavigation locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          image={{
-            alt: content.hero.imageAlt,
-            width: subiterSharedFacts.heroImage.width,
-            height: subiterSharedFacts.heroImage.height,
-            light: subiterSharedFacts.heroImage.light,
-            dark: subiterSharedFacts.heroImage.dark,
-          }}
+          placeholderLabel={common.mediaPlaceholders.cover}
         />
 
         <CaseSection
@@ -96,10 +95,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.productStructure.intro}
         >
           <CaseMedia
-            image={{
-              src: subiterSharedFacts.assets.inspectionMap,
-              alt: content.sections.productStructure.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.productStructure.caption}
             viewerLabels={common.evidenceViewer}
           />
@@ -111,10 +107,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.inspectionLifecycle.intro}
         >
           <CaseMedia
-            image={{
-              src: subiterSharedFacts.assets.postInspectionFlow,
-              alt: content.sections.inspectionLifecycle.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.inspectionLifecycle.caption}
             viewerLabels={common.evidenceViewer}
           />
@@ -128,10 +121,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           <div className="case-section__stack">
             <p className="case-section__copy">{content.sections.marina.paragraph}</p>
             <CaseMedia
-              image={{
-                src: subiterSharedFacts.assets.aiReview,
-                alt: content.sections.marina.imageAlt,
-              }}
+              placeholderLabel={common.mediaPlaceholders.evidence}
               caption={content.sections.marina.caption}
               viewerLabels={common.evidenceViewer}
             />

@@ -1,61 +1,46 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
+import { PortfolioReturnNavigation } from '@/components/navigation/portfolio-return-navigation';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
 import { commonContent } from '@/content/i18n';
-import { redeDccCaseContent, redeDccSharedFacts } from '@/content/i18n/projects/rede-dcc';
+import { redeDccCaseContent } from '@/content/i18n/projects/rede-dcc';
 import type { Locale } from '@/i18n/locales';
 import { SiteHeader } from '@/components/layout/site-header';
 
-export const metadata: Metadata = {
-  title: 'REDE DCC 1.0 — Product Design Case Study | Nelson Secco',
-  description:
-    'Interaction Design case study for a Dynamic Currency Conversion payment journey implemented in REDE’s product.',
+export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
+  'pt-BR': {
+    title: 'REDE DCC 1.0 — Case de Product Design | Nelson Secco',
+    description: 'Case de Design de Interação para uma jornada de pagamento com Conversão Dinâmica de Moeda implementada no produto da REDE.',
+  },
+  en: {
+    title: 'REDE DCC 1.0 — Product Design Case Study | Nelson Secco',
+    description: 'Interaction Design case study for a Dynamic Currency Conversion payment journey implemented in REDE’s product.',
+  },
 };
 
 export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = redeDccCaseContent[locale];
-  const transactionStates = [
-    {
-      src: redeDccSharedFacts.assets.currencyChoice,
-      alt: content.sections.clarityBeforeProgression.currencyChoiceAlt,
-    },
-    {
-      src: redeDccSharedFacts.assets.pinEntry,
-      alt: content.sections.clarityBeforeProgression.pinEntryAlt,
-    },
-    {
-      src: redeDccSharedFacts.assets.processing,
-      alt: content.sections.clarityBeforeProgression.processingAlt,
-    },
-    {
-      src: redeDccSharedFacts.assets.approvalReceipt,
-      alt: content.sections.clarityBeforeProgression.approvalReceiptAlt,
-    },
-  ].map((image) => ({ image }));
+  const transactionStates = Array.from({ length: 4 }, (_, index) => ({
+    id: `rede-transaction-${index + 1}`,
+    placeholderLabel: common.mediaPlaceholders.evidence,
+  }));
 
   return (
     <>
       <SiteHeader content={common} locale={locale} routeId="rede-dcc" />
       <main className="case-study">
-        <CaseCollectionLink locale={locale} />
+        <PortfolioReturnNavigation locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          image={{
-            alt: content.hero.imageAlt,
-            width: redeDccSharedFacts.heroImage.width,
-            height: redeDccSharedFacts.heroImage.height,
-            light: redeDccSharedFacts.heroImage.light,
-            dark: redeDccSharedFacts.heroImage.dark,
-          }}
+          placeholderLabel={common.mediaPlaceholders.cover}
         />
 
         <CaseSection
@@ -114,10 +99,7 @@ export default function RedeDccPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.transactionStates.intro}
         >
           <CaseMedia
-            image={{
-              src: redeDccSharedFacts.assets.transactionStateSequence,
-              alt: content.sections.transactionStates.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.transactionStates.caption}
             viewerLabels={common.evidenceViewer}
           />

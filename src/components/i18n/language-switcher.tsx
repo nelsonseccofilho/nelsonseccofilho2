@@ -26,7 +26,7 @@ export function LanguageSwitcher({ content, locale, routeId }: LanguageSwitcherP
           aria-current={targetLocale === locale ? 'page' : undefined}
           aria-label={content[localeLabels[targetLocale]]}
         >
-          {targetLocale === 'pt-BR' ? 'PT' : 'EN'}
+          {targetLocale === 'pt-BR' ? 'PT-BR' : 'EN'}
         </Link>
       ))}
     </nav>

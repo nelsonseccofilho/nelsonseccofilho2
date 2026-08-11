@@ -13,7 +13,7 @@ vi.mock('next/navigation', () => ({
   notFound: notFoundMock,
 }));
 
-vi.mock('next-themes', () => ({
+vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
@@ -30,7 +30,7 @@ describe('localized project page registry', () => {
   });
 
   it('rejects invalid project IDs', () => {
-    expect(() => getProjectMetadata('invalid-project')).toThrow('NEXT_NOT_FOUND');
+    expect(() => getProjectMetadata('invalid-project', 'en')).toThrow('NEXT_NOT_FOUND');
     expect(notFoundMock).toHaveBeenCalledOnce();
   });
 
@@ -42,14 +42,21 @@ describe('localized project page registry', () => {
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/horizon-his');
     const caseNavigation = screen.getByRole('navigation', { name: 'Navegação do estudo de caso' });
-    expect(within(caseNavigation).getByRole('link', { name: '← Todos os projetos' })).toHaveAttribute('href', '/#cases');
+    expect(within(caseNavigation).getByRole('link', { name: 'Portfólio' })).toHaveAttribute('href', '/');
+  });
+
+  it('returns locale-specific case metadata', () => {
+    expect(getProjectMetadata('horizon-his', 'pt-BR').title).toMatch(/Case de Product Design/);
+    expect(getProjectMetadata('horizon-his', 'en').title).toMatch(/Product Design Case Study/);
+    expect(getProjectMetadata('dasa-canal-do-consultor', 'pt-BR').description).toMatch(/pesquisa em saúde/);
+    expect(getProjectMetadata('dasa-canal-do-consultor', 'en').description).toMatch(/healthcare consultation research/);
   });
 
   it.each(projectRouteIds)('uses the shared collection link without artificial hierarchy for %s', (projectId) => {
     render(<ProjectPage locale="en" projectId={projectId} />);
 
-    const collectionNavigation = screen.getByRole('navigation', { name: 'Case collection' });
-    expect(within(collectionNavigation).getByRole('link', { name: '← All projects' })).toHaveAttribute('href', '/en#cases');
+    const collectionNavigation = screen.getByRole('navigation', { name: 'Portfolio navigation' });
+    expect(within(collectionNavigation).getByRole('link', { name: 'Portfolio' })).toHaveAttribute('href', '/en');
     expect(within(collectionNavigation).queryByRole('list')).not.toBeInTheDocument();
     expect(collectionNavigation.querySelector('[aria-current]')).not.toBeInTheDocument();
     expect(within(collectionNavigation).queryByText(projectFacts[projectId].projectName)).not.toBeInTheDocument();

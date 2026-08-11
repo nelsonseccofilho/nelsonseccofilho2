@@ -12,15 +12,26 @@ export const ptBRCommon = {
     activateDarkLabel: 'Ativar tema escuro',
   },
   languageSwitcher: { label: 'Idioma', portugueseLabel: 'Português', englishLabel: 'Inglês' },
-  caseCollectionLink: { accessibilityLabel: 'Coleção de projetos' },
-  caseNavigation: { allProjectsLabel: '← Todos os projetos', nextCaseLabel: 'Próximo case' },
+  portfolioReturn: { accessibilityLabel: 'Navegação para o portfólio', label: 'Portfólio' },
+  caseNavigation: { nextProjectLabel: 'Próximo projeto' },
   backToTop: { label: '↑ Topo', accessibilityLabel: 'Voltar ao topo' },
+  routeLoading: { label: 'Carregando conteúdo…' },
+  notFound: {
+    code: '404',
+    title: 'Não encontramos esta página.',
+    description: 'O endereço pode ter mudado ou esta página pode não existir mais.',
+  },
   evidenceViewer: {
     openImageLabel: 'Abrir imagem ampliada',
     closeImageLabel: 'Fechar imagem',
     enlargedImageLabel: 'Imagem ampliada',
     viewAllArtifactsLabel: 'Ver todos os artefatos',
     showLessLabel: 'Mostrar menos',
+  },
+  mediaPlaceholders: {
+    cover: 'Capa em reconstrução',
+    visual: 'Imagem em reconstrução',
+    evidence: 'Evidência visual em reconstrução',
   },
   accessibility: {
     home: 'Página inicial — N3LX',

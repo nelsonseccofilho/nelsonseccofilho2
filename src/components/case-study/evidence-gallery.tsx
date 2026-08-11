@@ -2,10 +2,9 @@
 
 import { useId, useState } from 'react';
 import { EvidenceViewer, type EvidenceImage, type EvidenceViewerLabels } from '@/components/case-study/evidence-viewer';
+import { MediaPlaceholder } from '@/components/media/media-placeholder';
 
-export type EvidenceGalleryItem = {
-  image: EvidenceImage;
-};
+export type EvidenceGalleryItem = { image: EvidenceImage } | { id: string; placeholderLabel: string };
 
 type EvidenceGalleryProps = {
   items: readonly EvidenceGalleryItem[];
@@ -26,8 +25,12 @@ export function EvidenceGallery({ items, labels, initiallyVisibleCount = items.l
     <div className="grid gap-4">
       <ul id={galleryId} className="m-0 grid list-none grid-cols-2 gap-3 p-0 sm:gap-4 xl:grid-cols-4">
         {visibleItems.map((item) => (
-          <li key={item.image.src} className="min-w-0">
-            <EvidenceViewer image={item.image} labels={labels} compact />
+          <li key={'image' in item ? item.image.src : item.id} className="min-w-0">
+            {'image' in item ? (
+              <EvidenceViewer image={item.image} labels={labels} compact />
+            ) : (
+              <MediaPlaceholder label={item.placeholderLabel} variant="gallery" />
+            )}
           </li>
         ))}
       </ul>

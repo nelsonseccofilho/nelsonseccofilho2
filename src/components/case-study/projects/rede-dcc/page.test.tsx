@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { HomePage } from '@/components/home/home-page';
 import RedeDccPage from './page';
 
-vi.mock('next-themes', () => ({
+vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
@@ -26,7 +26,7 @@ describe('RedeDccPage', () => {
     expect(within(hero).getByText('2023')).toBeInTheDocument();
     expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
     expect(within(hero).getByText(/Implemented in REDE[’']s product/i)).toBeInTheDocument();
-    expect(await within(hero).findByRole('img', { name: /payment interface composition showing transaction flow states and confirmation screens/i })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: 'Cover being rebuilt' })).toBeInTheDocument();
 
     expect(screen.getByText(/international mastercard and visa cardholders using rede payment terminals in brazil/i)).toBeInTheDocument();
     expect(screen.getByText(/international cardholders using cards linked to foreign accounts/i)).toBeInTheDocument();
@@ -35,16 +35,16 @@ describe('RedeDccPage', () => {
     expect(screen.getByText(/a navigable prototype was not necessary for this delivery/i)).toBeInTheDocument();
     expect(screen.getByText(/implemented within rede[’']s existing payment ecosystem/i)).toBeInTheDocument();
     expect(screen.getByText('Curated transaction-state sequence used to review the complete journey.')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /curated sequence of rede dcc transaction states from currency selection to completion/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(5);
+    expect(screen.getAllByRole('img', { name: 'Evidence visual being rebuilt' })).toHaveLength(5);
+    expect(screen.queryByRole('button', { name: /^Open enlarged image:/ })).not.toBeInTheDocument();
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/rede-dcc');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/rede-dcc');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
 
     const navigation = screen.getByRole('navigation', { name: /case study navigation/i });
-    const backLink = within(navigation).getByRole('link', { name: /← all projects/i });
-    expect(backLink).toHaveAttribute('href', '/en#cases');
+    const backLink = within(navigation).getByRole('link', { name: 'Portfolio' });
+    expect(backLink).toHaveAttribute('href', '/en');
 
     expect(screen.queryByText(/roi/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/conversion uplift/i)).not.toBeInTheDocument();
@@ -64,7 +64,7 @@ describe('RedeDccPage', () => {
     expect(within(hero).getByText('2023')).toBeInTheDocument();
     expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
     expect(within(hero).getByText('Implementado no produto da REDE')).toBeInTheDocument();
-    expect(await within(hero).findByRole('img', { name: /composi[cç][aã]o de interfaces de pagamento mostrando estados do fluxo/i })).toBeInTheDocument();
+    expect(within(hero).getByRole('img', { name: 'Capa em reconstrução' })).toBeInTheDocument();
 
     expect(screen.getByText(/mastercard e visa usando terminais de pagamento da rede no brasil/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /orquestrando os estados transacionais/i })).toBeInTheDocument();
@@ -72,15 +72,15 @@ describe('RedeDccPage', () => {
     expect(screen.getByText(/um prot[oó]tipo naveg[aá]vel n[aã]o era necess[aá]rio para esta entrega/i)).toBeInTheDocument();
     expect(screen.getByText(/implementada dentro do ecossistema de pagamentos j[aá] existente da rede/i)).toBeInTheDocument();
     expect(screen.getByText('Sequência curada de estados transacionais usada para revisar a jornada completa.')).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /sequ[eê]ncia curada de estados transacionais do dcc da rede/i })).toBeInTheDocument();
+    expect(screen.getAllByRole('img', { name: 'Evidência visual em reconstrução' })).toHaveLength(5);
 
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('href', '/projetos/rede-dcc');
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Inglês' })).toHaveAttribute('href', '/en/projects/rede-dcc');
 
     const navigation = screen.getByRole('navigation', { name: /navega[cç][aã]o do estudo de caso/i });
-    const backLink = within(navigation).getByRole('link', { name: /← todos os projetos/i });
-    expect(backLink).toHaveAttribute('href', '/#cases');
+    const backLink = within(navigation).getByRole('link', { name: 'Portfólio' });
+    expect(backLink).toHaveAttribute('href', '/');
 
     expect(screen.queryByText(/curated transaction-state sequence used to review the complete journey/i)).not.toBeInTheDocument();
   });
@@ -88,7 +88,7 @@ describe('RedeDccPage', () => {
   it('wires the Home REDE card to the REDE DCC case route', () => {
     render(<HomePage locale="en" />);
 
-    const featuredCases = screen.getByRole('region', { name: /featured cases/i });
+    const featuredCases = screen.getByRole('region', { name: /featured projects/i });
     const redeDccLink = within(featuredCases).getByRole('link', { name: /rede dcc 1\.0/i });
     expect(redeDccLink).toHaveAttribute('href', '/en/projects/rede-dcc');
   });

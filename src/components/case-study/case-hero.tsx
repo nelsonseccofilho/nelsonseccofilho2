@@ -1,7 +1,5 @@
 import { CaseMetadata } from './case-metadata';
-import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
-
-type ResponsiveSources = Record<number, string>;
+import { MediaPlaceholder } from '@/components/media/media-placeholder';
 
 type CaseHeroProps = {
   eyebrow: string;
@@ -11,26 +9,17 @@ type CaseHeroProps = {
     label: string;
     value: string;
   }>;
-  image: {
-    alt: string;
-    width: number;
-    height: number;
-    light: ResponsiveSources;
-    dark: ResponsiveSources;
-  };
+  placeholderLabel: string;
 };
 
-export function CaseHero({ eyebrow, title, description, metadata, image }: CaseHeroProps) {
+export function CaseHero({ eyebrow, title, description, metadata, placeholderLabel }: CaseHeroProps) {
   const titleId = 'case-hero-title';
 
   return (
     <section className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby={titleId}>
       <div className="layout-container grid gap-8 md:gap-10 xl:gap-12">
         <div className="aspect-video overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface)]">
-          <ThemeAwareProjectImage
-            image={image}
-            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 92vw, (max-width: 1599px) 88vw, 1600px"
-          />
+          <MediaPlaceholder label={placeholderLabel} variant="hero" />
         </div>
         <div className="grid gap-5 md:gap-6">
           <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase">{eyebrow}</p>

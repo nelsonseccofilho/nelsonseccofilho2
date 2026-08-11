@@ -12,15 +12,26 @@ export const enCommon = {
     activateDarkLabel: 'Activate dark theme',
   },
   languageSwitcher: { label: 'Language', portugueseLabel: 'Portuguese', englishLabel: 'English' },
-  caseCollectionLink: { accessibilityLabel: 'Case collection' },
-  caseNavigation: { allProjectsLabel: '← All projects', nextCaseLabel: 'Next case' },
+  portfolioReturn: { accessibilityLabel: 'Portfolio navigation', label: 'Portfolio' },
+  caseNavigation: { nextProjectLabel: 'Next project' },
   backToTop: { label: '↑ Top', accessibilityLabel: 'Back to top' },
+  routeLoading: { label: 'Loading content…' },
+  notFound: {
+    code: '404',
+    title: "We couldn't find this page.",
+    description: 'The address may have changed, or this page may no longer exist.',
+  },
   evidenceViewer: {
     openImageLabel: 'Open enlarged image',
     closeImageLabel: 'Close image',
     enlargedImageLabel: 'Enlarged image',
     viewAllArtifactsLabel: 'View all artifacts',
     showLessLabel: 'Show less',
+  },
+  mediaPlaceholders: {
+    cover: 'Cover being rebuilt',
+    visual: 'Visual being rebuilt',
+    evidence: 'Evidence visual being rebuilt',
   },
   accessibility: {
     home: 'N3LX home',

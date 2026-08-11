@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/locales';
 import type { RouteId } from '@/i18n/routes';
 
 export type DictionaryByLocale<Dictionary> = Readonly<Record<Locale, Dictionary>>;
-export type ProjectRouteId = Exclude<RouteId, 'home'>;
+export type ProjectRouteId = Exclude<RouteId, 'home' | 'building-portfolio'>;
 
 export type MetadataContent = {
   title: string;
@@ -32,16 +32,24 @@ export type CommonContent = {
     portugueseLabel: string;
     englishLabel: string;
   };
-  caseCollectionLink: {
+  portfolioReturn: {
     accessibilityLabel: string;
+    label: string;
   };
   caseNavigation: {
-    allProjectsLabel: string;
-    nextCaseLabel: string;
+    nextProjectLabel: string;
   };
   backToTop: {
     label: string;
     accessibilityLabel: string;
+  };
+  routeLoading: {
+    label: string;
+  };
+  notFound: {
+    code: string;
+    title: string;
+    description: string;
   };
   evidenceViewer: {
     openImageLabel: string;
@@ -49,6 +57,11 @@ export type CommonContent = {
     enlargedImageLabel: string;
     viewAllArtifactsLabel: string;
     showLessLabel: string;
+  };
+  mediaPlaceholders: {
+    cover: string;
+    visual: string;
+    evidence: string;
   };
   accessibility: AccessibilityLabels;
 };

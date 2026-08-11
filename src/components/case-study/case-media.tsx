@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { EvidenceViewer, type EvidenceViewerLabels } from '@/components/case-study/evidence-viewer';
 import { ThemeAwareProjectImage } from '@/components/home/theme-aware-project-image';
+import { MediaPlaceholder } from '@/components/media/media-placeholder';
 
 type ResponsiveSources = Record<number, string>;
 
@@ -18,7 +19,8 @@ type StaticImage = {
 };
 
 type CaseMediaProps = {
-  image: ThemeAwareImage | StaticImage;
+  image?: ThemeAwareImage | StaticImage;
+  placeholderLabel?: string;
   caption?: ReactNode;
   className?: string;
   scrollable?: boolean;
@@ -26,9 +28,22 @@ type CaseMediaProps = {
   viewerLabels?: EvidenceViewerLabels;
 };
 
-export function CaseMedia({ image, caption, className, scrollable = false, sizes = '100vw', viewerLabels }: CaseMediaProps) {
+export function CaseMedia({ image, placeholderLabel, caption, className, scrollable = false, sizes = '100vw', viewerLabels }: CaseMediaProps) {
   const mediaClassName = [scrollable ? 'case-media--scrollable' : '', className].filter(Boolean).join(' ');
   const figureClassName = ['case-media', mediaClassName].filter(Boolean).join(' ');
+
+  if (placeholderLabel) {
+    return (
+      <figure className={figureClassName} data-placeholder-media>
+        <div className="case-media__frame">
+          <MediaPlaceholder label={placeholderLabel} variant="evidence" />
+        </div>
+        {caption ? <figcaption className="case-media__caption">{caption}</figcaption> : null}
+      </figure>
+    );
+  }
+
+  if (!image) return null;
 
   if (!('light' in image) && viewerLabels) {
     return <EvidenceViewer image={image} labels={viewerLabels} caption={caption} className={mediaClassName} />;

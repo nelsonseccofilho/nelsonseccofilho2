@@ -1,49 +1,46 @@
 import type { Metadata } from 'next';
 import { BackToTop } from '@/components/case-study/back-to-top';
-import { CaseCollectionLink } from '@/components/case-study/case-collection-link';
+import { PortfolioReturnNavigation } from '@/components/navigation/portfolio-return-navigation';
 import { SiteHeader } from '@/components/layout/site-header';
 import { CaseHero } from '@/components/case-study/case-hero';
 import { EvidenceGallery } from '@/components/case-study/evidence-gallery';
 import { CaseMedia } from '@/components/case-study/case-media';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { CaseSection } from '@/components/case-study/case-section';
-import { horizonHisCaseContent, horizonHisSharedFacts } from '@/content/i18n/projects/horizon-his';
+import { horizonHisCaseContent } from '@/content/i18n/projects/horizon-his';
 import { commonContent } from '@/content/i18n';
 import type { Locale } from '@/i18n/locales';
 
-export const metadata: Metadata = {
-  title: 'HORIZON HIS — Product Design Case Study | Nelson Secco',
-  description:
-    'Product Design case study showing how SALUX’s HORIZON HIS vision became a high-fidelity navigable prototype presented at Hospitalar 2025.',
+export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
+  'pt-BR': {
+    title: 'HORIZON HIS — Case de Product Design | Nelson Secco',
+    description: 'Case de Product Design sobre a transformação da visão do HORIZON HIS da SALUX em um protótipo navegável de alta fidelidade apresentado na Hospitalar 2025.',
+  },
+  en: {
+    title: 'HORIZON HIS — Product Design Case Study | Nelson Secco',
+    description: 'Product Design case study showing how SALUX’s HORIZON HIS vision became a high-fidelity navigable prototype presented at Hospitalar 2025.',
+  },
 };
 
 export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
   const common = commonContent[locale];
   const content = horizonHisCaseContent[locale];
-  const journeyDetails = [
-    horizonHisSharedFacts.assets.journeyDetail01,
-    horizonHisSharedFacts.assets.journeyDetail02,
-    horizonHisSharedFacts.assets.journeyDetail03,
-    horizonHisSharedFacts.assets.journeyDetail04,
-  ].map((src) => ({ image: { src, alt: content.sections.journeys.detailAlt } }));
+  const journeyDetails = Array.from({ length: 4 }, (_, index) => ({
+    id: `horizon-journey-${index + 1}`,
+    placeholderLabel: common.mediaPlaceholders.evidence,
+  }));
 
   return (
     <>
       <SiteHeader content={common} locale={locale} routeId="horizon-his" />
       <main className="case-study">
-        <CaseCollectionLink locale={locale} />
+        <PortfolioReturnNavigation locale={locale} />
         <CaseHero
           eyebrow={content.hero.eyebrow}
           title={content.hero.title}
           description={content.hero.description}
           metadata={[...content.hero.metadata]}
-          image={{
-            alt: content.hero.imageAlt,
-            width: horizonHisSharedFacts.heroImage.width,
-            height: horizonHisSharedFacts.heroImage.height,
-            light: horizonHisSharedFacts.heroImage.light,
-            dark: horizonHisSharedFacts.heroImage.dark,
-          }}
+          placeholderLabel={common.mediaPlaceholders.cover}
         />
 
         <CaseSection
@@ -88,10 +85,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
         >
           <div className="case-section__stack">
             <CaseMedia
-              image={{
-                src: horizonHisSharedFacts.assets.journeyOverview,
-                alt: content.sections.journeys.overviewAlt,
-              }}
+              placeholderLabel={common.mediaPlaceholders.evidence}
               caption={content.sections.journeys.overviewCaption}
               viewerLabels={common.evidenceViewer}
             />
@@ -116,10 +110,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.prototype.intro}
         >
           <CaseMedia
-            image={{
-              src: horizonHisSharedFacts.assets.triagePrototype,
-              alt: content.sections.prototype.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             viewerLabels={common.evidenceViewer}
           />
         </CaseSection>
@@ -130,10 +121,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.validation.intro}
         >
           <CaseMedia
-            image={{
-              src: horizonHisSharedFacts.assets.caseResultsSlide,
-              alt: content.sections.validation.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.validation.caption}
             viewerLabels={common.evidenceViewer}
           />
@@ -145,10 +133,7 @@ export default function HorizonHisPage({ locale = 'en' }: { locale?: Locale }) {
           intro={content.sections.hospitalar.intro}
         >
           <CaseMedia
-            image={{
-              src: horizonHisSharedFacts.assets.prototypeAndInteractionMap,
-              alt: content.sections.hospitalar.imageAlt,
-            }}
+            placeholderLabel={common.mediaPlaceholders.evidence}
             caption={content.sections.hospitalar.caption}
             viewerLabels={common.evidenceViewer}
           />

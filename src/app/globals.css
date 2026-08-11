@@ -118,6 +118,41 @@ img {
   height: auto;
 }
 
+@keyframes route-loading-breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.route-loading {
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: var(--spacing-5);
+  background: var(--color-background);
+}
+
+.route-loading__mark {
+  width: 44px;
+  height: 44px;
+  animation: route-loading-breathe 1.6s ease-in-out infinite;
+}
+
+.route-loading__mark rect {
+  fill: var(--color-brand);
+}
+
+.route-loading__mark path {
+  fill: var(--color-text-inverse);
+}
+
 ::selection {
   background: var(--color-brand);
   color: var(--color-text-inverse);
@@ -665,5 +700,9 @@ img {
     transition-property: none;
     transition-duration: 0s;
     transition-delay: 0s;
+  }
+
+  .route-loading__mark {
+    animation: none;
   }
 }

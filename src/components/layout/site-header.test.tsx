@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom/vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { WHATSAPP_CONTACT_URL } from '@/content/contact';
+import { getWhatsAppContactUrl } from '@/content/contact';
 import { enCommon, ptBRCommon } from '@/content/i18n';
 import { SiteHeader } from './site-header';
 
@@ -20,11 +20,15 @@ vi.mock('@/components/theme/theme-toggle', () => ({
 describe('SiteHeader', () => {
   afterEach(() => {
     cleanup();
+    vi.unstubAllGlobals();
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
+    document.body.innerHTML = '';
   });
 
   beforeEach(() => {
     vi.clearAllMocks();
     usePathnameMock.mockReturnValue('/en');
+    window.sessionStorage.clear();
   });
 
   it('renders English Header labels and localized Home links', () => {
@@ -36,12 +40,13 @@ describe('SiteHeader', () => {
     expect(homeLink).toHaveAttribute('href', '/en');
     expect(within(homeLink).getByText('3LX')).toBeInTheDocument();
     expect(homeLink.querySelector('.site-header__brand-mark')).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+    expect(contactLink).toHaveAttribute('href', getWhatsAppContactUrl('en'));
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Language' })).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Home sections' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/en#projects');
     expect(screen.getByRole('link', { name: 'How I work' })).toHaveAttribute('href', '/en#work-process');
+    expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('href', '/en#portfolio');
     expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/en#about');
     expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/en#contact');
     expect(screen.queryByRole('link', { name: "Open Nelson Secco's resume in English" })).not.toBeInTheDocument();
@@ -60,12 +65,13 @@ describe('SiteHeader', () => {
 
     expect(screen.getByRole('link', { name: 'Página inicial — N3LX' })).toHaveAttribute('href', '/');
     const contactLink = screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' });
-    expect(contactLink).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+    expect(contactLink).toHaveAttribute('href', getWhatsAppContactUrl('pt-BR'));
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Idioma' })).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Seções da Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Projetos' })).toHaveAttribute('href', '/#projects');
     expect(screen.getByRole('link', { name: 'Como trabalho' })).toHaveAttribute('href', '/#work-process');
+    expect(screen.getByRole('link', { name: 'Este portfólio' })).toHaveAttribute('href', '/#portfolio');
     expect(screen.getByRole('link', { name: 'Sobre' })).toHaveAttribute('href', '/#about');
     expect(screen.getByRole('link', { name: 'Contato' })).toHaveAttribute('href', '/#contact');
     expect(screen.queryByRole('link', { name: 'Abrir currículo de Nelson Secco em português' })).not.toBeInTheDocument();
@@ -114,7 +120,7 @@ describe('SiteHeader', () => {
     render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
 
     const cta = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
-    expect(cta).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+    expect(cta).toHaveAttribute('href', getWhatsAppContactUrl('en'));
     expect(cta.querySelector('.site-header__cta-icon')).toBeInTheDocument();
   });
 
@@ -122,7 +128,7 @@ describe('SiteHeader', () => {
     render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
 
     const cta = screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' });
-    expect(cta).toHaveAttribute('href', WHATSAPP_CONTACT_URL);
+    expect(cta).toHaveAttribute('href', getWhatsAppContactUrl('pt-BR'));
   });
 
   it('CTA label text has site-header__cta-label class for mobile hide CSS', () => {
@@ -165,6 +171,51 @@ describe('SiteHeader', () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
   });
 
+  it('N3LX clears the active section at the top without receiving active semantics', () => {
+    usePathnameMock.mockReturnValue('/en');
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 640 });
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: false }));
+
+    const workProcess = document.createElement('section');
+    workProcess.id = 'work-process';
+    document.body.appendChild(workProcess);
+
+    let intersectionObserverCallback: IntersectionObserverCallback | undefined;
+    class MockIntersectionObserver {
+      constructor(callback: IntersectionObserverCallback) {
+        intersectionObserverCallback = callback;
+      }
+
+      observe = vi.fn();
+      disconnect = vi.fn();
+    }
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver as unknown as typeof IntersectionObserver);
+
+    const scrollTo = vi.fn(() => {
+      Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
+      fireEvent.scroll(window);
+    });
+    vi.stubGlobal('scrollTo', scrollTo);
+
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+    const sectionNav = screen.getByRole('navigation', { name: 'Home sections' });
+    const brandLink = screen.getByRole('link', { name: 'N3LX home' });
+
+    act(() => {
+      intersectionObserverCallback?.([
+        { isIntersecting: true, intersectionRatio: 0.7, target: workProcess } as unknown as IntersectionObserverEntry,
+      ], {} as IntersectionObserver);
+    });
+    expect(screen.getByRole('link', { name: 'How I work' })).toHaveAttribute('aria-current', 'location');
+
+    fireEvent.click(brandLink);
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'smooth' });
+    expect(sectionNav.querySelector('[aria-current]')).not.toBeInTheDocument();
+    expect(brandLink).not.toHaveAttribute('aria-current');
+    expect(brandLink).toHaveAttribute('href', '/en');
+  });
+
   it('N3LX uses instant scroll when reduced motion is preferred', () => {
     usePathnameMock.mockReturnValue('/en');
     vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: true }));
@@ -200,5 +251,40 @@ describe('SiteHeader', () => {
 
     const brandLink = screen.getByRole('link', { name: 'N3LX home' });
     expect(brandLink).toHaveAttribute('href', '/en');
+  });
+
+  it('nav order is Projects → How I work → This portfolio → About → Contact (EN)', () => {
+    render(<SiteHeader content={enCommon} locale="en" routeId="home" />);
+
+    const nav = screen.getByRole('navigation', { name: 'Home sections' });
+    const links = Array.from(nav.querySelectorAll('a')).map((a) => a.textContent);
+    expect(links).toEqual(['Projects', 'How I work', 'This portfolio', 'About', 'Contact']);
+  });
+
+  it('nav order is Projetos → Como trabalho → Este portfólio → Sobre → Contato (PT-BR)', () => {
+    usePathnameMock.mockReturnValue('/');
+    render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="home" />);
+
+    const nav = screen.getByRole('navigation', { name: 'Seções da Home' });
+    const links = Array.from(nav.querySelectorAll('a')).map((a) => a.textContent);
+    expect(links).toEqual(['Projetos', 'Como trabalho', 'Este portfólio', 'Sobre', 'Contato']);
+  });
+
+  it('"This portfolio" remains a Home section link on the EN meta-case page', () => {
+    usePathnameMock.mockReturnValue('/en/building-this-portfolio');
+    render(<SiteHeader content={enCommon} locale="en" routeId="building-portfolio" />);
+
+    const portfolioLink = screen.getByRole('link', { name: 'This portfolio' });
+    expect(portfolioLink).toHaveAttribute('href', '/en#portfolio');
+    expect(portfolioLink).not.toHaveAttribute('aria-current');
+  });
+
+  it('"Este portfólio" remains a Home section link on the PT-BR meta-case page', () => {
+    usePathnameMock.mockReturnValue('/construindo-este-portfolio');
+    render(<SiteHeader content={ptBRCommon} locale="pt-BR" routeId="building-portfolio" />);
+
+    const portfolioLink = screen.getByRole('link', { name: 'Este portfólio' });
+    expect(portfolioLink).toHaveAttribute('href', '/#portfolio');
+    expect(portfolioLink).not.toHaveAttribute('aria-current');
   });
 });

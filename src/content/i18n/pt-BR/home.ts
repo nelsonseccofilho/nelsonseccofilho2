@@ -71,7 +71,7 @@ export const ptBRHome = {
     positioning: [
       { title: 'Senior Product Designer', description: 'Produtos digitais e sistemas complexos com atuação hands-on em entrega.' },
       { title: 'UX Consultant', description: 'Projetos independentes com foco em estratégia de UX, discovery e direção de produto.' },
-      { title: 'Design × Produto × Engenharia', description: 'Continuidade entre decisões de produto e implementação com times multidisciplinares.' },
+      { title: 'Produto × Engenharia', description: 'Continuidade entre decisões de produto e implementação com times multidisciplinares.' },
     ],
     highlights: ['Senior Product Designer', 'UX Consultant em projetos independentes', 'Design × Produto × Engenharia'],
     paragraphs: [
@@ -79,7 +79,7 @@ export const ptBRHome = {
       'Atuo de forma hands-on em produtos e sistemas complexos: investigo contextos, estruturo fluxos e regras, desenho interfaces e colaboro de perto com Engenharia até a implementação. Meu papel não é substituir especialidades, mas criar continuidade entre decisões de produto, qualidade da experiência e viabilidade técnica.',
       'Hoje também exploro uma forma de trabalho em que Design e implementação acontecem cada vez mais próximos, usando IA para apoiar análise, prototipação, desenvolvimento e validação. As ferramentas aceleram a execução, mas decisões, revisão crítica e critérios de qualidade continuam humanos. Este próprio portfólio foi construído dessa forma e é uma evidência prática de como trabalho hoje.',
     ],
-    businessContext: 'Minha trajetória inclui produtos para Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como TerraMagna e NOALVO, posteriormente reconhecidas entre as 100 Startups to Watch. N3LX Digital Business é a estrutura empresarial pela qual conduzo projetos independentes de Product Design e consultoria em UX.',
+    businessContext: 'Minha trajetória inclui produtos para Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como Subiter, TerraMagna e NOALVO, reconhecidas no 100 Startups to Watch, da revista PEGN. N3LX Digital Business é a estrutura empresarial pela qual conduzo projetos independentes de Product Design e consultoria em UX.',
     artisticEyebrow: 'Além de produto e tecnologia',
     artisticCopy: 'Fora do trabalho com produtos digitais, também componho e produzo música autoral como N3LX — outro espaço onde exploro criatividade, experimentação e construção.',
     artisticActionLabel: 'Ouvir N3LX no Spotify ↗',

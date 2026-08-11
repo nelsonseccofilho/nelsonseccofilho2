@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext } from '@/lib/section-navigation';
 import { HeaderSectionNav } from './header-section-nav';
@@ -13,19 +13,26 @@ vi.mock('next/navigation', () => ({
 const links = [
   { label: 'Projects', anchor: 'projects' as const },
   { label: 'How I work', anchor: 'work-process' as const },
+  { label: 'This portfolio', anchor: 'portfolio' as const },
   { label: 'About', anchor: 'about' as const },
   { label: 'Contact', anchor: 'contact' as const },
 ];
 
 describe('HeaderSectionNav', () => {
   const disconnectMock = vi.fn();
+  let intersectionObserverCallback: IntersectionObserverCallback | undefined;
 
   beforeEach(() => {
     usePathnameMock.mockReturnValue('/en');
     disconnectMock.mockReset();
+    intersectionObserverCallback = undefined;
     window.sessionStorage.clear();
 
     class MockIntersectionObserver {
+      constructor(callback: IntersectionObserverCallback) {
+        intersectionObserverCallback = callback;
+      }
+
       observe = vi.fn();
       disconnect = disconnectMock;
     }
@@ -42,6 +49,7 @@ describe('HeaderSectionNav', () => {
   afterEach(() => {
     cleanup();
     vi.restoreAllMocks();
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
     document.body.innerHTML = '';
   });
 
@@ -49,6 +57,7 @@ describe('HeaderSectionNav', () => {
     render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
 
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/en#projects');
+    expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('href', '/en#portfolio');
     expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/en#contact');
   });
 
@@ -68,6 +77,43 @@ describe('HeaderSectionNav', () => {
     expect(replaceState).toHaveBeenCalledWith(window.history.state, '', '/en');
   });
 
+  it('uses the shared section behavior and active state for This portfolio', () => {
+    const target = document.createElement('section');
+    target.id = 'portfolio';
+    target.scrollIntoView = vi.fn();
+    document.body.appendChild(target);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+
+    fireEvent.click(screen.getByRole('link', { name: 'This portfolio' }));
+
+    expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
+    expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('aria-current', 'location');
+  });
+
+  it('clears section active state when the observer reports no monitored section', () => {
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 640 });
+    const target = document.createElement('section');
+    target.id = 'portfolio';
+    document.body.appendChild(target);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+
+    act(() => {
+      intersectionObserverCallback?.([
+        { isIntersecting: true, intersectionRatio: 0.7, target } as unknown as IntersectionObserverEntry,
+      ], {} as IntersectionObserver);
+    });
+    expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('aria-current', 'location');
+
+    act(() => {
+      intersectionObserverCallback?.([
+        { isIntersecting: false, intersectionRatio: 0, target } as unknown as IntersectionObserverEntry,
+      ], {} as IntersectionObserver);
+    });
+    expect(screen.getByRole('navigation', { name: 'Home sections' }).querySelector('[aria-current]')).not.toBeInTheDocument();
+  });
+
   it('uses immediate scroll when reduced motion is enabled', () => {
     vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: true }));
 
@@ -83,14 +129,16 @@ describe('HeaderSectionNav', () => {
     expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'auto', block: 'start' });
   });
 
-  it('navigates case pages to home without hash and stores pending section', () => {
+  it('navigates case pages to the localized Home and stores This portfolio as the pending section', () => {
     usePathnameMock.mockReturnValue('/en/projects/horizon-his');
 
     render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
 
-    fireEvent.click(screen.getByRole('link', { name: 'About' }));
+    const portfolioLink = screen.getByRole('link', { name: 'This portfolio' });
+    expect(portfolioLink).toHaveAttribute('href', '/en#portfolio');
+    fireEvent.click(portfolioLink);
 
-    expect(window.sessionStorage.getItem('n3lx:pending-home-section')).toBe('about');
+    expect(window.sessionStorage.getItem('n3lx:pending-home-section')).toBe('portfolio');
   });
 
   it('restores the temporary locale scroll context on Home without leaving a hash', () => {
@@ -149,12 +197,14 @@ describe('HeaderSectionNav', () => {
     projects.id = 'projects';
     const workProcess = document.createElement('section');
     workProcess.id = 'work-process';
+    const portfolio = document.createElement('section');
+    portfolio.id = 'portfolio';
     const about = document.createElement('section');
     about.id = 'about';
     const contact = document.createElement('section');
     contact.id = 'contact';
 
-    document.body.append(projects, workProcess, about, contact);
+    document.body.append(projects, workProcess, portfolio, about, contact);
 
     const { unmount } = render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
     unmount();

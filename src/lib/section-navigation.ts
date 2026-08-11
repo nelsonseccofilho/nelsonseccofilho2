@@ -1,4 +1,4 @@
-export const HOME_SECTION_IDS = ['projects', 'work-process', 'about', 'contact'] as const;
+export const HOME_SECTION_IDS = ['projects', 'work-process', 'portfolio', 'about', 'contact'] as const;
 
 export type HomeSectionId = (typeof HOME_SECTION_IDS)[number];
 

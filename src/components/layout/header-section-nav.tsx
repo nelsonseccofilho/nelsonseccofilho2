@@ -14,10 +14,7 @@ import {
   type HomeSectionId,
 } from '@/lib/section-navigation';
 
-type HeaderSectionNavLink = {
-  label: string;
-  anchor: HomeSectionId;
-};
+type HeaderSectionNavLink = { label: string; anchor: HomeSectionId };
 
 type HeaderSectionNavProps = {
   links: readonly HeaderSectionNavLink[];
@@ -45,19 +42,45 @@ export function HeaderSectionNav({ links, homePath, label }: HeaderSectionNavPro
       return;
     }
 
+    const visibleSections = new Map<HomeSectionId, number>();
     const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      entries.forEach((entry) => {
+        const sectionId = entry.target.id as HomeSectionId;
+        if (!HOME_SECTION_IDS.includes(sectionId)) {
+          return;
+        }
 
-      if (visible?.target.id && HOME_SECTION_IDS.includes(visible.target.id as HomeSectionId)) {
-        setActiveSection(visible.target.id as HomeSectionId);
-      }
+        if (entry.isIntersecting) {
+          visibleSections.set(sectionId, entry.intersectionRatio);
+        } else {
+          visibleSections.delete(sectionId);
+        }
+      });
+
+      const visibleSection = [...visibleSections.entries()].sort((a, b) => b[1] - a[1])[0];
+      setActiveSection(window.scrollY <= 1 ? null : visibleSection?.[0] ?? null);
     }, SECTION_OBSERVER_OPTIONS);
 
     targets.forEach((target) => observer.observe(target));
 
     return () => observer.disconnect();
+  }, [inPageNavigation]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !inPageNavigation) {
+      return;
+    }
+
+    const clearActiveSectionAtTop = () => {
+      if (window.scrollY <= 1) {
+        setActiveSection(null);
+      }
+    };
+
+    clearActiveSectionAtTop();
+    window.addEventListener('scroll', clearActiveSectionAtTop, { passive: true });
+
+    return () => window.removeEventListener('scroll', clearActiveSectionAtTop);
   }, [inPageNavigation]);
 
   useEffect(() => {

@@ -9,7 +9,7 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { SendIcon } from '@/components/ui/send-icon';
 import {
   N3LX_SPOTIFY_URL,
-  WHATSAPP_CONTACT_URL,
+  getWhatsAppContactUrl,
 } from '@/content/contact';
 import { selectedWork } from '@/content/home-shared';
 import { commonContent, homeContent } from '@/content/i18n';
@@ -147,15 +147,17 @@ export function HomePage({ locale }: HomePageProps) {
             </ol>
           </div>
         </section>
-        <section className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby="portfolio-meta-case-title">
+        <section id="portfolio" className="scroll-mt-24 py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby="portfolio-meta-case-title">
           <div className="layout-container">
-            <div className="grid max-w-[70rem] gap-5 border-y border-[var(--color-border)] py-[clamp(2.5rem,5vw,4.5rem)] md:grid-cols-12 md:gap-8">
-              <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase md:col-span-4">{content.metaCase.eyebrow}</p>
-              <div className="grid gap-5 md:col-span-8">
-                <h2 id="portfolio-meta-case-title" className="m-0 max-w-[15ch] text-[clamp(2rem,4vw,3.75rem)] leading-none font-bold tracking-[-0.035em] text-[var(--color-text-primary)]">
+            <div className="editorial-grid py-[clamp(2.5rem,5vw,4.5rem)]">
+              <div className="editorial-grid__aside">
+                <p className="editorial-grid__eyebrow">{content.metaCase.eyebrow}</p>
+              </div>
+              <div className="editorial-grid__main">
+                <h2 id="portfolio-meta-case-title" className="editorial-grid__title">
                   {content.metaCase.title}
                 </h2>
-                <p className="m-0 max-w-[48rem] text-[clamp(1rem,1.5vw,1.15rem)] leading-[1.7] text-[var(--color-text-secondary)]">{content.metaCase.description}</p>
+                <p className="editorial-grid__description">{content.metaCase.description}</p>
                 <Link className="contact__secondary-link min-h-11 w-fit items-center" href={getLocalizedPath('building-portfolio', locale)}>
                   {content.metaCase.primaryActionLabel}
                 </Link>
@@ -164,8 +166,8 @@ export function HomePage({ locale }: HomePageProps) {
           </div>
         </section>
         <section id="about" className="about scroll-mt-24" aria-labelledby="about-title" aria-label={content.accessibility.about}>
-          <div className="layout-container about__inner">
-            <div className="about__grid">
+          <div className="layout-container">
+            <div className="editorial-grid about__grid">
               <div className="about__aside">
                 <p className="about__eyebrow">{content.about.eyebrow}</p>
                 <h2 id="about-title" className="about__heading">
@@ -201,26 +203,30 @@ export function HomePage({ locale }: HomePageProps) {
           </div>
         </section>
         <section id="contact" className="contact scroll-mt-24" aria-labelledby="contact-title" aria-label={content.accessibility.contact}>
-          <div className="layout-container contact__inner">
-            <div className="contact__content">
-              <p className="contact__eyebrow">{content.contact.eyebrow}</p>
-              <h2 id="contact-title" className="contact__heading">
-                {content.contact.title}
-              </h2>
-              <p className="contact__copy">{content.contact.description}</p>
-              <div className="contact__actions">
-                <AnalyticsLink
-                  className="whatsapp-action contact__primary-link"
-                  href={WHATSAPP_CONTACT_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={content.contact.primaryActionLabel}
-                  eventName="contact_whatsapp_click"
-                  data-clarity-mask="true"
-                >
-                  <SendIcon className="contact__primary-icon" />
-                  <span>{content.contact.primaryActionLabel}</span>
-                </AnalyticsLink>
+          <div className="layout-container">
+            <div className="editorial-grid contact__grid">
+              <div className="editorial-grid__aside">
+                <p className="editorial-grid__eyebrow">{content.contact.eyebrow}</p>
+              </div>
+              <div className="editorial-grid__main">
+                <h2 id="contact-title" className="editorial-grid__title">
+                  {content.contact.title}
+                </h2>
+                <p className="editorial-grid__description">{content.contact.description}</p>
+                <div className="contact__actions">
+                  <AnalyticsLink
+                    className="whatsapp-action contact__primary-link"
+                    href={getWhatsAppContactUrl(locale)}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={content.contact.primaryActionLabel}
+                    eventName="contact_whatsapp_click"
+                    data-clarity-mask="true"
+                  >
+                    <SendIcon className="contact__primary-icon" />
+                    <span>{content.contact.primaryActionLabel}</span>
+                  </AnalyticsLink>
+                </div>
               </div>
             </div>
           </div>

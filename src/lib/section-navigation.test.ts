@@ -50,7 +50,7 @@ describe('section-navigation', () => {
   });
 
   it('keeps the expected home section IDs in order', () => {
-    expect(HOME_SECTION_IDS).toEqual(['projects', 'work-process', 'about', 'contact']);
+    expect(HOME_SECTION_IDS).toEqual(['projects', 'work-process', 'portfolio', 'about', 'contact']);
   });
 
   it('serializes and parses locale scroll context safely', () => {
@@ -109,6 +109,7 @@ describe('section-navigation', () => {
 
   it('builds semantic anchor hrefs for progressive enhancement', () => {
     expect(getSectionHref('/en', 'about')).toBe('/en#about');
+    expect(getSectionHref('/en', 'portfolio')).toBe('/en#portfolio');
     expect(getSectionHref('/', 'contact')).toBe('/#contact');
   });
 

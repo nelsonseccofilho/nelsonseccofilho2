@@ -27,7 +27,7 @@ export type CommonContent = {
     sectionsNavLabel: string;
     sectionLinks: readonly {
       label: string;
-      anchor: 'projects' | 'work-process' | 'about' | 'contact';
+      anchor: 'projects' | 'work-process' | 'portfolio' | 'about' | 'contact';
     }[];
   };
   themeToggle: {

@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { getWhatsAppContactUrl } from '@/content/contact';
 import { HomePage } from '@/components/home/home-page';
 
 function setScrollY(value: number) {
@@ -91,7 +92,7 @@ describe('HomePage', () => {
     expect(within(aboutSection).getByText('Professional profile')).toBeInTheDocument();
     expect(within(aboutSection).getByText('Senior Product Designer')).toBeInTheDocument();
     expect(within(aboutSection).getByText('UX Consultant')).toBeInTheDocument();
-    expect(within(aboutSection).getByText('Design × Product × Engineering')).toBeInTheDocument();
+    expect(within(aboutSection).getByText('Product × Engineering')).toBeInTheDocument();
     expect(within(aboutSection).getByText(/digital products and complex systems with hands-on delivery focus/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/independent engagements focused on ux strategy/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/connecting product decisions to implementation continuity/i)).toBeInTheDocument();
@@ -113,7 +114,7 @@ describe('HomePage', () => {
     expect(within(contactSection).getByRole('heading', { level: 2, name: /let['’]s build something meaningful/i })).toBeInTheDocument();
     expect(within(contactSection).getByText(/a Product Design opportunity, or a UX consulting project/i)).toBeInTheDocument();
     const whatsappLink = within(contactSection).getByRole('link', { name: /talk to me on whatsapp/i });
-    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5512981241764?text=Olá%20Nelson%2C%20vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.');
+    expect(whatsappLink).toHaveAttribute('href', getWhatsAppContactUrl('en'));
     expect(whatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     const headerWhatsappLink = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
     expect(headerWhatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
@@ -156,7 +157,7 @@ describe('HomePage', () => {
     expect(within(aboutSection).getByText('Perfil profissional')).toBeInTheDocument();
     expect(within(aboutSection).getByText('Senior Product Designer')).toBeInTheDocument();
     expect(within(aboutSection).getByText('UX Consultant')).toBeInTheDocument();
-    expect(within(aboutSection).getByText('Design × Produto × Engenharia')).toBeInTheDocument();
+    expect(within(aboutSection).getByText('Produto × Engenharia')).toBeInTheDocument();
     expect(within(aboutSection).getByText(/produtos digitais e sistemas complexos com atuação hands-on em entrega/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/projetos independentes com foco em estratégia de ux/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/continuidade entre decisões de produto e implementação/i)).toBeInTheDocument();
@@ -168,6 +169,7 @@ describe('HomePage', () => {
     const contactSection = screen.getByRole('region', { name: /vamos construir algo relevante/i });
     expect(within(contactSection).getByText(/uma oportunidade em Product Design ou um projeto de consultoria em UX/i)).toBeInTheDocument();
     const whatsappLink = within(contactSection).getByRole('link', { name: 'Fale comigo pelo WhatsApp' });
+    expect(whatsappLink).toHaveAttribute('href', getWhatsAppContactUrl('pt-BR'));
     expect(whatsappLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' }).querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(document.querySelectorAll('[data-icon="send"]')).toHaveLength(2);
@@ -199,5 +201,37 @@ describe('HomePage', () => {
     fireEvent.click(backToTop);
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
     expect(window.location.href).toBe(initialLocation);
+  });
+
+  it('WhatsApp CTA message is localized to Portuguese in PT-BR Home', () => {
+    render(<HomePage locale="pt-BR" />);
+
+    const headerWhatsappLink = screen.getByRole('link', { name: 'Vamos conversar pelo WhatsApp' });
+    const contactWhatsappLink = screen.getByRole('link', { name: 'Fale comigo pelo WhatsApp' });
+
+    // Both Header and Contact use the same phone number
+    expect(headerWhatsappLink.getAttribute('href')).toContain('5512981241764');
+    expect(contactWhatsappLink.getAttribute('href')).toContain('5512981241764');
+
+    // Both contain the Portuguese message (decoded)
+    const ptMessage = 'Olá Nelson, vi seu portfólio e gostaria de conversar sobre um projeto.';
+    expect(decodeURIComponent(new URL(headerWhatsappLink.getAttribute('href')!).searchParams.get('text')!)).toBe(ptMessage);
+    expect(decodeURIComponent(new URL(contactWhatsappLink.getAttribute('href')!).searchParams.get('text')!)).toBe(ptMessage);
+  });
+
+  it('WhatsApp CTA message is localized to English in EN Home', () => {
+    render(<HomePage locale="en" />);
+
+    const headerWhatsappLink = screen.getByRole('link', { name: "Let\u2019s talk on WhatsApp" });
+    const contactWhatsappLink = screen.getByRole('link', { name: /talk to me on whatsapp/i });
+
+    // Both Header and Contact use the same phone number
+    expect(headerWhatsappLink.getAttribute('href')).toContain('5512981241764');
+    expect(contactWhatsappLink.getAttribute('href')).toContain('5512981241764');
+
+    // Both contain the English message (decoded)
+    const enMessage = "Hi Nelson, I saw your portfolio and I'd like to talk about a project.";
+    expect(decodeURIComponent(new URL(headerWhatsappLink.getAttribute('href')!).searchParams.get('text')!)).toBe(enMessage);
+    expect(decodeURIComponent(new URL(contactWhatsappLink.getAttribute('href')!).searchParams.get('text')!)).toBe(enMessage);
   });
 });

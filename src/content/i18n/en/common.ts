@@ -14,6 +14,7 @@ export const enCommon = {
     sectionLinks: [
       { label: 'Projects', anchor: 'projects' },
       { label: 'How I work', anchor: 'work-process' },
+      { label: 'This portfolio', anchor: 'portfolio' },
       { label: 'About', anchor: 'about' },
       { label: 'Contact', anchor: 'contact' },
     ],

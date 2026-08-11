@@ -14,6 +14,7 @@ export const ptBRCommon = {
     sectionLinks: [
       { label: 'Projetos', anchor: 'projects' },
       { label: 'Como trabalho', anchor: 'work-process' },
+      { label: 'Este portfólio', anchor: 'portfolio' },
       { label: 'Sobre', anchor: 'about' },
       { label: 'Contato', anchor: 'contact' },
     ],

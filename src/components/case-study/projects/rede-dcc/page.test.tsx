@@ -61,7 +61,7 @@ describe('RedeDccPage', () => {
     const hero = screen.getByRole('region', { name: /projetando clareza em uma jornada de pagamento com m[uú]ltiplos estados/i });
     expect(within(hero).getByText('Senior Product Designer')).toBeInTheDocument();
     expect(within(hero).getByText('2023')).toBeInTheDocument();
-    expect(within(hero).getByText('Portuguese / English')).toBeInTheDocument();
+    expect(within(hero).getByText('Português / Inglês')).toBeInTheDocument();
     expect(within(hero).getByText('Implementado no produto da REDE')).toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /composição de interfaces de pagamento mostrando estados do fluxo de transação e telas de confirmação/i })).toBeInTheDocument();
 

@@ -41,5 +41,9 @@ portfolio-build-kit-v1.0.zip
 COVERS-PREVIEW.jpg
 PACKAGE-INVENTORY.tsv
 SHA256SUMS.txt
+
+# Local source/working asset packages (never served from public/)
+source-assets/
+
 # Local MCP credentials
 .vscode/mcp.json

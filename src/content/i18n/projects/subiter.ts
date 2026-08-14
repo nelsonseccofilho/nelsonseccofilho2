@@ -225,7 +225,7 @@ export const subiterCaseContent = {
           'Com a evolução das capacidades digitais e operacionais da Subiter, a empresa avançou para operações mais complexas, incluindo uma operação internacional no Ecuador envolvendo a inspeção do National Geographic Delfina.',
         paragraph:
           'O trabalho conectou o produto digital a um contexto real de inspeção além do Brasil, envolvendo um catamarã de expedição de luxo em operação nas Galápagos.',
-        linkLabel: 'Ver National Geographic Delfina →',
+        linkLabel: 'Ver National Geographic Delfina ↗',
       },
       outcome: {
         title: 'Uma base digital mais sólida para operações cada vez mais complexas',
@@ -239,7 +239,7 @@ export const subiterCaseContent = {
         intro:
           'Escrevi um artigo para a Subiter apresentando a visão de produto por trás do Web Portal e como dados de inspeção, rastreabilidade, experiência do usuário e IA se conectam na plataforma.',
         articleTitle: subiterSharedFacts.articleTitle,
-        linkLabel: 'Ler o artigo no site da Subiter →',
+        linkLabel: 'Ler o artigo no site da Subiter ↗',
       },
       learning: {
         title: 'Projetar onde produtos digitais encontram operações físicas',
@@ -361,7 +361,7 @@ export const subiterCaseContent = {
           'As Subiter\'s digital and operational capabilities evolved, the company expanded into more complex engagements, including an international operation in Ecuador involving the inspection of the National Geographic Delfina.',
         paragraph:
           'The engagement connected the digital product work to a real-world inspection context beyond Brazil, involving a luxury expedition catamaran operating in the Galápagos.',
-        linkLabel: 'View National Geographic Delfina →',
+        linkLabel: 'View National Geographic Delfina ↗',
       },
       outcome: {
         title: 'A stronger digital foundation for increasingly complex operations',
@@ -375,7 +375,7 @@ export const subiterCaseContent = {
         intro:
           'I wrote an article for Subiter presenting the product vision behind the Web Portal and how inspection data, traceability, user experience and AI come together within the platform.',
         articleTitle: subiterSharedFacts.articleTitle,
-        linkLabel: 'Read the article on Subiter\'s website →',
+        linkLabel: 'Read the article on Subiter\'s website ↗',
       },
       learning: {
         title: 'Designing where digital products meet physical operations',

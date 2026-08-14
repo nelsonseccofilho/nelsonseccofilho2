@@ -40,14 +40,22 @@ describe('SiteFooter', () => {
 
     const footer = screen.getByRole('contentinfo');
     const nav = within(footer).getByRole('navigation', { name: 'Footer navigation' });
+    const emailLink = within(nav).getByRole('link', { name: /nelsonseccofilho@gmail.com/i });
+    const linkedInLink = within(nav).getByRole('link', { name: 'LinkedIn' });
+    const githubLink = within(nav).getByRole('link', { name: 'GitHub' });
+    const resumeTrigger = within(nav).getByRole('button', { name: "Open Nelson Secco's resume in English" });
+    const privacyTrigger = within(nav).getByRole('button', { name: 'Privacy' });
 
-    expect(within(nav).getByRole('link', { name: /nelsonseccofilho@gmail.com/i })).toHaveAttribute('href', 'mailto:nelsonseccofilho@gmail.com');
-    expect(within(nav).getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/nelsonseccofilho/');
-    expect(within(nav).getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/nelsonseccofilho');
+    expect(emailLink).toHaveAttribute('href', 'mailto:nelsonseccofilho@gmail.com');
+    expect(linkedInLink).toHaveAttribute('href', 'https://www.linkedin.com/in/nelsonseccofilho/');
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho');
+    [emailLink, linkedInLink, githubLink, resumeTrigger, privacyTrigger].forEach((action) => {
+      expect(action).toHaveClass('text-link', 'text-link--hit-area');
+      expect(action).not.toHaveClass('site-footer__secondary-action');
+    });
     expect(within(nav).queryByRole('link', { name: 'Privacy' })).not.toBeInTheDocument();
     expect(screen.getByText(/N3LX Digital Business\. All rights reserved\./i)).toBeInTheDocument();
 
-    const privacyTrigger = within(nav).getByRole('button', { name: 'Privacy' });
     const pathnameBeforeClick = window.location.pathname;
     fireEvent.click(privacyTrigger);
 
@@ -58,7 +66,6 @@ describe('SiteFooter', () => {
     expect(window.location.pathname).toBe(pathnameBeforeClick);
     fireEvent.click(screen.getByRole('button', { name: 'Close privacy preferences' }));
 
-    const resumeTrigger = within(nav).getByRole('button', { name: "Open Nelson Secco's resume in English" });
     expect(resumeTrigger).toBeInTheDocument();
     expect(resumeTrigger).toHaveTextContent('Resume');
     fireEvent.click(resumeTrigger);

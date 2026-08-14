@@ -19,7 +19,9 @@ describe('PortfolioMetaCasePage', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Construindo este portfólio' })).toBeInTheDocument();
     expect(screen.getByText('Product Design × Engineering × AI-assisted development')).toBeInTheDocument();
     expect(screen.getByText(/o arquivo .nvmrc passou a declarar node 22 no commit 588996f/i)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Ver repositório no GitHub ↗' })).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');
+    const repositoryLink = screen.getByRole('link', { name: 'Ver repositório no GitHub ↗' });
+    expect(repositoryLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');
+    expect(repositoryLink).toHaveClass('text-link', 'text-link--hit-area');
     expect(screen.getByText(/referências publicadas pela Nielsen Norman Group \(NN\/g\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Microsoft Clarity como camada de observação comportamental/i)).toHaveTextContent(/analytics condicionado à escolha do visitante/i);
     expect(screen.getByText(/observação comportamental → refinamento/i)).toBeInTheDocument();
@@ -76,6 +78,7 @@ describe('PortfolioMetaCasePage', () => {
     expect(screen.getByRole('img', { name: /project decision log evidence used as a source for conventions and implementation governance/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Operational cost of the experiment' })).toBeInTheDocument();
     expect(screen.getByText(/Hosting: Netlify, for the current production environment\./i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'View repository on GitHub ↗' })).toHaveClass('text-link', 'text-link--hit-area');
     expect(screen.getByRole('link', { name: 'View repository on GitHub ↗' })).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');
     expect(screen.getByRole('link', { name: 'Portfolio' })).toHaveAttribute('href', '/en');
     expect(screen.queryByText(/Go to portfolio|Back to portfolio/i)).not.toBeInTheDocument();

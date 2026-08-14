@@ -438,26 +438,8 @@ img {
 .hero__resume-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  color: var(--color-text-secondary);
   font-size: 0.88rem;
   font-weight: 600;
-  text-decoration: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid var(--color-border);
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  transition: color var(--transition-fast) ease, border-color var(--transition-fast) ease;
-}
-
-.hero__resume-link:hover,
-.hero__resume-link:focus-visible {
-  color: var(--color-brand-text);
-  border-color: var(--color-brand);
 }
 
 @media (max-width: 480px) {
@@ -902,30 +884,49 @@ img {
   gap: var(--spacing-4);
 }
 
-.contact__secondary-link {
+.text-link,
+.text-link:visited {
+  font: inherit;
   color: var(--color-text-primary);
-  text-decoration: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid var(--color-border);
-  background: none;
-  padding-bottom: 0.15rem;
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-border);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  background: transparent;
+  transition: color var(--transition-fast) ease, text-decoration-color var(--transition-fast) ease;
+}
+
+button.text-link {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  transition: color var(--transition-fast) ease, border-color var(--transition-fast) ease;
+  font: inherit;
 }
 
-.contact__secondary-link:hover,
-.contact__secondary-link:focus-visible {
+button.text-link.hero__resume-link {
+  margin-block: calc((1lh - 44px) / 2);
+}
+
+.text-link:hover,
+.text-link:focus-visible {
   color: var(--color-brand-text);
-  border-color: var(--color-brand);
+  text-decoration-color: var(--color-brand);
 }
 
-.case-study .contact__secondary-link:active {
-  color: var(--color-brand-text-active);
-  border-color: var(--color-brand-active);
+.text-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.text-link--hit-area {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  width: fit-content;
 }
 
 @media (min-width: 768px) {
@@ -960,7 +961,7 @@ img {
   .site-header__section-link::after,
   .site-header__cta,
   .contact__primary-link,
-  .contact__secondary-link,
+  .text-link,
   .case-navigation__back {
     transition-property: none;
     transition-duration: 0s;

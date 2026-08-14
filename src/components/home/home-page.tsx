@@ -158,7 +158,7 @@ export function HomePage({ locale }: HomePageProps) {
                   {content.metaCase.title}
                 </h2>
                 <p className="editorial-grid__description">{content.metaCase.description}</p>
-                <Link className="contact__secondary-link min-h-11 w-fit items-center" href={getLocalizedPath('building-portfolio', locale)}>
+                <Link className="text-link text-link--hit-area" href={getLocalizedPath('building-portfolio', locale)}>
                   {content.metaCase.primaryActionLabel}
                 </Link>
               </div>
@@ -194,7 +194,7 @@ export function HomePage({ locale }: HomePageProps) {
                 <div className="about__secondary">
                   <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
                   <p className="about__copy">{content.about.artisticCopy}</p>
-                  <a className="contact__secondary-link min-h-11 w-fit items-center" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
+                  <a className="text-link text-link--hit-area" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
                     {content.about.artisticActionLabel}
                   </a>
                 </div>

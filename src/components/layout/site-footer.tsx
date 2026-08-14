@@ -25,11 +25,11 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       <div className="layout-container py-[clamp(2rem,4vw,3.25rem)]">
         <div className="grid justify-items-center gap-5">
           <nav aria-label={navLabel} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-            <a className="contact__secondary-link" href={CONTACT_EMAIL_URL} data-clarity-mask="true">
+            <a className="text-link text-link--hit-area" href={CONTACT_EMAIL_URL} data-clarity-mask="true">
               {CONTACT_EMAIL}
             </a>
             <a
-              className="contact__secondary-link"
+              className="text-link text-link--hit-area"
               href={LINKEDIN_CONTACT_URL}
               target="_blank"
               rel="noreferrer"
@@ -38,7 +38,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               LinkedIn
             </a>
             <a
-              className="contact__secondary-link"
+              className="text-link text-link--hit-area"
               href={GITHUB_PROFILE_URL}
               target="_blank"
               rel="noreferrer"
@@ -48,7 +48,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             </a>
             <ResumeDialog
               pdfHref={resumeHref}
-              triggerClassName="contact__secondary-link"
+              triggerClassName="text-link text-link--hit-area"
               labels={{
                 triggerLabel: content.header.resumeLabel,
                 triggerAriaLabel: content.header.resumeAriaLabel,
@@ -61,6 +61,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             <PrivacyPreferencesButton
               label={locale === 'pt-BR' ? 'Privacidade' : 'Privacy'}
               closeLabel={locale === 'pt-BR' ? 'Fechar preferências de privacidade' : 'Close privacy preferences'}
+              triggerClassName="text-link text-link--hit-area"
             />
           </nav>
           <p className="m-0 text-center text-sm text-[var(--color-text-secondary)]">{copyright}</p>

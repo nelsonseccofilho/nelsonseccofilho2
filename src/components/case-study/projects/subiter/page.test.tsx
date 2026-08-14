@@ -42,15 +42,17 @@ describe('SubiterPage', () => {
     expect(screen.queryByRole('img', { name: 'Evidence visual being rebuilt' })).not.toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(3);
 
-    const delfinaLink = screen.getByRole('link', { name: /view national geographic delfina/i });
+    const delfinaLink = screen.getByRole('link', { name: 'View National Geographic Delfina ↗' });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');
     expect(delfinaLink).toHaveAttribute('target', '_blank');
     expect(delfinaLink).toHaveAttribute('rel', 'noreferrer');
+    expect(delfinaLink).toHaveClass('text-link', 'text-link--hit-area');
 
-    const articleLink = screen.getByRole('link', { name: /read the article on subiter[’']s website/i });
+    const articleLink = screen.getByRole('link', { name: "Read the article on Subiter's website ↗" });
     expect(articleLink).toHaveAttribute('href', 'https://www.subiter.com/post/portal-web-da-subiter-rastreabilidade-e-intelig%C3%AAncia-na-ind%C3%BAstria-4-0');
     expect(articleLink).toHaveAttribute('target', '_blank');
     expect(articleLink).toHaveAttribute('rel', 'noreferrer');
+    expect(articleLink).toHaveClass('text-link', 'text-link--hit-area');
 
     expect(screen.getByRole('link', { name: 'Portuguese' })).toHaveAttribute('href', '/projetos/subiter');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/projects/subiter');
@@ -93,15 +95,17 @@ describe('SubiterPage', () => {
     expect(screen.queryByRole('img', { name: 'Evidência visual em reconstrução' })).not.toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(3);
 
-    const delfinaLink = screen.getByRole('link', { name: /ver national geographic delfina/i });
+    const delfinaLink = screen.getByRole('link', { name: 'Ver National Geographic Delfina ↗' });
     expect(delfinaLink).toHaveAttribute('href', 'https://www.expeditions.com/ships/national-geographic-delfina');
     expect(delfinaLink).toHaveAttribute('target', '_blank');
     expect(delfinaLink).toHaveAttribute('rel', 'noreferrer');
+    expect(delfinaLink).toHaveClass('text-link', 'text-link--hit-area');
 
-    const articleLink = screen.getByRole('link', { name: /ler o artigo no site da subiter/i });
+    const articleLink = screen.getByRole('link', { name: 'Ler o artigo no site da Subiter ↗' });
     expect(articleLink).toHaveAttribute('href', 'https://www.subiter.com/post/portal-web-da-subiter-rastreabilidade-e-intelig%C3%AAncia-na-ind%C3%BAstria-4-0');
     expect(articleLink).toHaveAttribute('target', '_blank');
     expect(articleLink).toHaveAttribute('rel', 'noreferrer');
+    expect(articleLink).toHaveClass('text-link', 'text-link--hit-area');
 
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('href', '/projetos/subiter');
     expect(screen.getByRole('link', { name: 'Português' })).toHaveAttribute('aria-current', 'page');

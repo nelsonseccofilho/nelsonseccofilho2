@@ -79,7 +79,7 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
                   </div>
                 ) : null}
                 <AnalyticsLink
-                  className="contact__secondary-link inline-flex min-h-11 w-fit items-center"
+                  className="text-link text-link--hit-area"
                   href={GITHUB_PORTFOLIO_REPOSITORY_URL}
                   target="_blank"
                   rel="noreferrer"

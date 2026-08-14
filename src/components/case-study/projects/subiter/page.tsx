@@ -180,7 +180,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
           <div className="case-section__text-block">
             <p className="case-section__copy">{content.sections.internationalOperation.paragraph}</p>
             <p className="case-section__copy">
-              <a className="contact__secondary-link" href={subiterSharedFacts.delfinaUrl} target="_blank" rel="noreferrer">
+              <a className="text-link text-link--hit-area" href={subiterSharedFacts.delfinaUrl} target="_blank" rel="noreferrer">
                 {content.sections.internationalOperation.linkLabel}
               </a>
             </p>
@@ -206,7 +206,7 @@ export default function SubiterPage({ locale = 'en' }: { locale?: Locale }) {
             <p className="case-section__copy">{content.sections.publishedPerspective.articleTitle}</p>
             <p className="case-section__copy">
               <a
-                className="contact__secondary-link"
+                className="text-link text-link--hit-area"
                 href={subiterSharedFacts.articleUrl}
                 target="_blank"
                 rel="noreferrer"

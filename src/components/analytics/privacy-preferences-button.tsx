@@ -13,6 +13,7 @@ import { useAnalytics } from './analytics-provider';
 type PrivacyPreferencesButtonProps = {
   closeLabel: string;
   label: string;
+  triggerClassName?: string;
 };
 
 function CloseIcon() {
@@ -23,7 +24,7 @@ function CloseIcon() {
   );
 }
 
-export function PrivacyPreferencesButton({ closeLabel, label }: PrivacyPreferencesButtonProps) {
+export function PrivacyPreferencesButton({ closeLabel, label, triggerClassName }: PrivacyPreferencesButtonProps) {
   const { chooseConsent, copy, isPrivacyPreferencesOpen, setPrivacyPreferencesOpen } = useAnalytics();
 
   return (
@@ -31,7 +32,7 @@ export function PrivacyPreferencesButton({ closeLabel, label }: PrivacyPreferenc
       <DialogTrigger asChild>
         <button
           type="button"
-          className="contact__secondary-link inline-flex min-h-11 cursor-pointer items-center border-x-0 border-t-0 bg-transparent px-0 text-base font-[inherit]"
+          className={triggerClassName ?? 'text-link text-link--hit-area'}
         >
           {label}
         </button>

@@ -1,7 +1,13 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ResumeDialog } from './resume-dialog';
+
+const trackEventMock = vi.hoisted(() => vi.fn());
+
+vi.mock('@/components/analytics/analytics-provider', () => ({
+  useAnalytics: () => ({ trackEvent: trackEventMock }),
+}));
 
 const ptLabels = {
   triggerLabel: 'Currículo',
@@ -24,11 +30,12 @@ const enLabels = {
 const ptHref = '/assets/resume/N3LX_PT-BR.pdf';
 const enHref = '/assets/resume/N3LX_EN.pdf';
 
+beforeEach(() => trackEventMock.mockClear());
 afterEach(cleanup);
 
 describe('ResumeDialog', () => {
   it('renders PT-BR trigger with correct accessible label', () => {
-    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} />);
+    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} surface="hero" />);
 
     const trigger = screen.getByRole('button', { name: ptLabels.triggerAriaLabel });
     expect(trigger).toBeInTheDocument();
@@ -36,7 +43,7 @@ describe('ResumeDialog', () => {
   });
 
   it('renders EN trigger with correct accessible label', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     const trigger = screen.getByRole('button', { name: enLabels.triggerAriaLabel });
     expect(trigger).toBeInTheDocument();
@@ -44,7 +51,7 @@ describe('ResumeDialog', () => {
   });
 
   it('opens PT-BR modal with correct title when trigger is clicked', () => {
-    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} />);
+    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: ptLabels.triggerAriaLabel }));
 
@@ -53,7 +60,7 @@ describe('ResumeDialog', () => {
   });
 
   it('opens EN modal with correct title when trigger is clicked', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
 
@@ -62,7 +69,7 @@ describe('ResumeDialog', () => {
   });
 
   it('uses the correct PT-BR PDF path in the iframe', () => {
-    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} />);
+    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: ptLabels.triggerAriaLabel }));
 
@@ -71,7 +78,7 @@ describe('ResumeDialog', () => {
   });
 
   it('uses the correct EN PDF path in the iframe', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
 
@@ -80,7 +87,7 @@ describe('ResumeDialog', () => {
   });
 
   it('provides a download link with the correct PDF path', () => {
-    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} />);
+    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: ptLabels.triggerAriaLabel }));
 
@@ -90,7 +97,7 @@ describe('ResumeDialog', () => {
   });
 
   it('closes the modal when the close button is clicked', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -101,7 +108,7 @@ describe('ResumeDialog', () => {
   });
 
   it('closes the modal when Escape is pressed', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -112,7 +119,7 @@ describe('ResumeDialog', () => {
   });
 
   it('returns focus to the trigger after the dialog closes', async () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     const trigger = screen.getByRole('button', { name: enLabels.triggerAriaLabel });
     fireEvent.click(trigger);
@@ -124,7 +131,7 @@ describe('ResumeDialog', () => {
   });
 
   it('does not navigate away — trigger is a button, not a link', () => {
-    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} />);
+    render(<ResumeDialog pdfHref={ptHref} labels={ptLabels} surface="hero" />);
 
     const trigger = screen.getByRole('button', { name: ptLabels.triggerAriaLabel });
     expect(trigger.tagName).toBe('BUTTON');
@@ -132,7 +139,7 @@ describe('ResumeDialog', () => {
   });
 
   it('shows loading label before iframe fires onLoad', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
 
@@ -140,8 +147,43 @@ describe('ResumeDialog', () => {
   });
 
   it('applies custom trigger className', () => {
-    render(<ResumeDialog pdfHref={enHref} labels={enLabels} triggerClassName="hero__resume-link" />);
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" triggerClassName="hero__resume-link" />);
 
     expect(screen.getByRole('button', { name: enLabels.triggerAriaLabel })).toHaveClass('hero__resume-link');
+  });
+
+  it.each([
+    ['hero', 'resume_open:hero', 'resume_download:hero'],
+    ['footer', 'resume_open:footer', 'resume_download:footer'],
+  ] as const)('tracks one open and one download for the %s surface', (surface, openEvent, downloadEvent) => {
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface={surface} />);
+
+    fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
+    expect(trackEventMock).toHaveBeenCalledTimes(1);
+    expect(trackEventMock).toHaveBeenLastCalledWith(openEvent);
+
+    const downloadLink = screen.getByRole('link', { name: enLabels.downloadLabel });
+    expect(downloadLink).toHaveAttribute('href', enHref);
+    expect(downloadLink).toHaveAttribute('download');
+    fireEvent.click(downloadLink);
+
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+    expect(trackEventMock).toHaveBeenLastCalledWith(downloadEvent);
+
+    fireEvent.click(screen.getByRole('button', { name: enLabels.closeLabel }));
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('tracks a new Resume intention after closing and reopening', () => {
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
+
+    const trigger = screen.getByRole('button', { name: enLabels.triggerAriaLabel });
+    fireEvent.click(trigger);
+    fireEvent.click(screen.getByRole('button', { name: enLabels.closeLabel }));
+    fireEvent.click(trigger);
+
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+    expect(trackEventMock).toHaveBeenNthCalledWith(1, 'resume_open:hero');
+    expect(trackEventMock).toHaveBeenNthCalledWith(2, 'resume_open:hero');
   });
 });

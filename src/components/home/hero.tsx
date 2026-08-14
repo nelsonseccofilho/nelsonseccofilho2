@@ -31,6 +31,7 @@ export function Hero({ content = enHome.hero, accessibility = enHome.accessibili
                 </span>
                 <ResumeDialog
                   pdfHref={resume.href}
+                  surface="hero"
                   triggerClassName="text-link text-link--hit-area hero__resume-link"
                   labels={{
                     triggerLabel: resume.label,

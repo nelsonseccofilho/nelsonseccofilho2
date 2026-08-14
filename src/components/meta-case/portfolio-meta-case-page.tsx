@@ -103,7 +103,7 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
                   href={GITHUB_PORTFOLIO_REPOSITORY_URL}
                   target="_blank"
                   rel="noreferrer"
-                  eventName="github_repository_click"
+                  eventName="github_click:meta-case-repository"
                 >
                   {content.deployment.productionLabel}
                 </AnalyticsLink>

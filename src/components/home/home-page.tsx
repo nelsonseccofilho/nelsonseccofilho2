@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { AnalyticsConsentSurface } from '@/components/analytics/analytics-provider';
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
+import { getFeaturedProjectOpenEvent, getWhatsAppClickEvent } from '@/components/analytics/clarity';
 import { BackToTop } from '@/components/case-study/back-to-top';
 import { Hero } from '@/components/home/hero';
 import { ProjectCard } from '@/components/home/project-card';
@@ -78,6 +79,7 @@ export function HomePage({ locale }: HomePageProps) {
                     actionAriaLabel={
                       locale === 'pt-BR' ? `Ver projeto ${facts.projectName}` : `View ${facts.projectName} project`
                     }
+                    analyticsEvent={getFeaturedProjectOpenEvent(project.routeId)}
                   />
                 );
               })}
@@ -220,7 +222,7 @@ export function HomePage({ locale }: HomePageProps) {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={content.contact.primaryActionLabel}
-                    eventName="contact_whatsapp_click"
+                    eventName={getWhatsAppClickEvent('contact')}
                     data-clarity-mask="true"
                   >
                     <SendIcon className="contact__primary-icon" />

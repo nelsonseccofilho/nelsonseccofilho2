@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { AnalyticsNavigationLink } from '@/components/analytics/analytics-link';
+import type { PortfolioAnalyticsEvent } from '@/components/analytics/clarity';
 import { cn } from '@/lib/utils';
 import { MediaPlaceholder } from '@/components/media/media-placeholder';
 
@@ -16,6 +18,7 @@ type ProjectCardProps = {
   href?: string;
   actionLabel?: string;
   actionAriaLabel?: string;
+  analyticsEvent?: PortfolioAnalyticsEvent;
 };
 
 const itemLayout: Record<string, string> = {
@@ -36,6 +39,7 @@ export function ProjectCard({
   href,
   actionLabel,
   actionAriaLabel,
+  analyticsEvent,
 }: ProjectCardProps) {
   const titleId = `${id}-title`;
 
@@ -83,7 +87,16 @@ export function ProjectCard({
 
   return (
     <li className={cn('min-w-0', itemLayout[id])}>
-      {href ? (
+      {href && analyticsEvent ? (
+        <AnalyticsNavigationLink
+          href={href}
+          eventName={analyticsEvent}
+          aria-label={actionAriaLabel}
+          className="group block h-full rounded-[var(--radius-xl)] text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]"
+        >
+          {card}
+        </AnalyticsNavigationLink>
+      ) : href ? (
         <Link
           href={href}
           aria-label={actionAriaLabel}
@@ -91,9 +104,7 @@ export function ProjectCard({
         >
           {card}
         </Link>
-      ) : (
-        card
-      )}
+      ) : card}
     </li>
   );
 }

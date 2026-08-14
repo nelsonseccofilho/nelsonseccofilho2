@@ -1,3 +1,4 @@
+import { AnalyticsLink } from '@/components/analytics/analytics-link';
 import { PrivacyPreferencesButton } from '@/components/analytics/privacy-preferences-button';
 import { Separator } from '@/components/ui/separator';
 import { ResumeDialog } from '@/components/ui/resume-dialog';
@@ -25,29 +26,37 @@ export function SiteFooter({ locale }: SiteFooterProps) {
       <div className="layout-container py-[clamp(2rem,4vw,3.25rem)]">
         <div className="grid justify-items-center gap-5">
           <nav aria-label={navLabel} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-            <a className="text-link text-link--hit-area" href={CONTACT_EMAIL_URL} data-clarity-mask="true">
+            <AnalyticsLink
+              className="text-link text-link--hit-area"
+              href={CONTACT_EMAIL_URL}
+              eventName="contact_email_click:footer"
+              data-clarity-mask="true"
+            >
               {CONTACT_EMAIL}
-            </a>
-            <a
+            </AnalyticsLink>
+            <AnalyticsLink
               className="text-link text-link--hit-area"
               href={LINKEDIN_CONTACT_URL}
               target="_blank"
               rel="noreferrer"
+              eventName="linkedin_click:footer"
               data-clarity-mask="true"
             >
               LinkedIn
-            </a>
-            <a
+            </AnalyticsLink>
+            <AnalyticsLink
               className="text-link text-link--hit-area"
               href={GITHUB_PROFILE_URL}
               target="_blank"
               rel="noreferrer"
+              eventName="github_click:footer-profile"
               data-clarity-mask="true"
             >
               GitHub
-            </a>
+            </AnalyticsLink>
             <ResumeDialog
               pdfHref={resumeHref}
+              surface="footer"
               triggerClassName="text-link text-link--hit-area"
               labels={{
                 triggerLabel: content.header.resumeLabel,

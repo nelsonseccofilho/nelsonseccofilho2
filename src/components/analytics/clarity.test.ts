@@ -37,12 +37,66 @@ describe('Clarity production contract', () => {
 
     setClarityContextTag('locale', 'pt-BR');
     trackClarityEvent('portfolio_case_open');
-    trackClarityEvent('contact_github_click');
-    trackClarityEvent('github_repository_click');
+    trackClarityEvent('contact_email_click:footer');
+    trackClarityEvent('github_click:meta-case-repository');
     expect(clarityMock.setTag).toHaveBeenCalledWith('locale', 'pt-BR');
     expect(clarityMock.event).toHaveBeenCalledWith('portfolio_case_open');
-    expect(clarityMock.event).toHaveBeenCalledWith('contact_github_click');
-    expect(clarityMock.event).toHaveBeenCalledWith('github_repository_click');
+    expect(clarityMock.event).toHaveBeenCalledWith('contact_email_click:footer');
+    expect(clarityMock.event).toHaveBeenCalledWith('github_click:meta-case-repository');
+  });
+
+  it('builds the approved contextual event names exactly', async () => {
+    const {
+      getCaseNavigationProjectOpenEvent,
+      getFeaturedProjectOpenEvent,
+      getMobileNavSelectEvent,
+      getResumeDownloadEvent,
+      getResumeOpenEvent,
+      getWhatsAppClickEvent,
+    } = await import('./clarity');
+
+    expect((['hero', 'footer'] as const).map(getResumeOpenEvent)).toEqual(['resume_open:hero', 'resume_open:footer']);
+    expect((['hero', 'footer'] as const).map(getResumeDownloadEvent)).toEqual(['resume_download:hero', 'resume_download:footer']);
+    expect((['header', 'contact'] as const).map(getWhatsAppClickEvent)).toEqual([
+      'contact_whatsapp_click:header',
+      'contact_whatsapp_click:contact',
+    ]);
+    expect((['projects', 'work-process', 'portfolio', 'about', 'contact'] as const).map(getMobileNavSelectEvent)).toEqual([
+      'mobile_nav_select:projects',
+      'mobile_nav_select:work-process',
+      'mobile_nav_select:portfolio',
+      'mobile_nav_select:about',
+      'mobile_nav_select:contact',
+    ]);
+    expect((['horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const).map(getFeaturedProjectOpenEvent)).toEqual([
+      'project_open:horizon-his:featured-projects',
+      'project_open:subiter:featured-projects',
+      'project_open:rede-dcc:featured-projects',
+      'project_open:dasa-canal-do-consultor:featured-projects',
+    ]);
+    expect((['subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const).map(getCaseNavigationProjectOpenEvent)).toEqual([
+      'project_open:subiter:case-navigation',
+      'project_open:rede-dcc:case-navigation',
+      'project_open:dasa-canal-do-consultor:case-navigation',
+    ]);
+  });
+
+  it('keeps event tracking as a no-op before initialization', async () => {
+    const { trackClarityEvent } = await import('./clarity');
+
+    trackClarityEvent('mobile_nav_open');
+
+    expect(clarityMock.event).not.toHaveBeenCalled();
+  });
+
+  it('keeps event tracking as a no-op after an ineligible initialization attempt', async () => {
+    const { initializeClarity, trackClarityEvent } = await import('./clarity');
+
+    expect(initializeClarity({ ...productionEnvironment, hostname: 'localhost' })).toBe(false);
+    trackClarityEvent('contact_whatsapp_click:header');
+
+    expect(clarityMock.init).not.toHaveBeenCalled();
+    expect(clarityMock.event).not.toHaveBeenCalled();
   });
 
   it.each([

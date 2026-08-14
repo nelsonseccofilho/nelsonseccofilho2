@@ -1,6 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useAnalytics } from '@/components/analytics/analytics-provider';
+import {
+  getResumeDownloadEvent,
+  getResumeOpenEvent,
+  type ResumeAnalyticsSurface,
+} from '@/components/analytics/clarity';
 import {
   Dialog,
   DialogClose,
@@ -21,6 +27,7 @@ export type ResumeDialogLabels = {
 type ResumeDialogProps = {
   pdfHref: string;
   labels: ResumeDialogLabels;
+  surface: ResumeAnalyticsSurface;
   triggerClassName?: string;
 };
 
@@ -32,11 +39,22 @@ function CloseIcon() {
   );
 }
 
-export function ResumeDialog({ pdfHref, labels, triggerClassName }: ResumeDialogProps) {
+export function ResumeDialog({ pdfHref, labels, surface, triggerClassName }: ResumeDialogProps) {
+  const { trackEvent } = useAnalytics();
   const [loaded, setLoaded] = useState(false);
+  const isOpenRef = useRef(false);
+
+  function handleOpenChange(open: boolean) {
+    if (open && !isOpenRef.current) {
+      trackEvent(getResumeOpenEvent(surface));
+    }
+
+    isOpenRef.current = open;
+    if (!open) setLoaded(false);
+  }
 
   return (
-    <Dialog onOpenChange={(open) => { if (!open) setLoaded(false); }}>
+    <Dialog onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <button type="button" className={triggerClassName} aria-label={labels.triggerAriaLabel}>
           {labels.triggerLabel}
@@ -53,6 +71,7 @@ export function ResumeDialog({ pdfHref, labels, triggerClassName }: ResumeDialog
             <a
               href={pdfHref}
               download
+              onClick={() => trackEvent(getResumeDownloadEvent(surface))}
               className="inline-flex items-center rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none sm:text-sm"
             >
               {labels.downloadLabel}

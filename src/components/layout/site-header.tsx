@@ -4,6 +4,7 @@ import { type MouseEvent } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
+import { getWhatsAppClickEvent } from '@/components/analytics/clarity';
 import { HeaderSectionNav } from '@/components/layout/header-section-nav';
 import { LanguageSwitcher } from '@/components/i18n/language-switcher';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
@@ -58,7 +59,7 @@ export function SiteHeader({ content = enCommon, locale = 'en', routeId = 'home'
             href={getWhatsAppContactUrl(locale)}
             target="_blank"
             rel="noreferrer"
-            eventName="contact_whatsapp_click"
+            eventName={getWhatsAppClickEvent('header')}
             data-clarity-mask="true"
             aria-label={content.header.contactAriaLabel}
           >

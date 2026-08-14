@@ -5,6 +5,11 @@ import { LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext } from 
 import { HeaderSectionNav } from './header-section-nav';
 
 const usePathnameMock = vi.fn();
+const trackEventMock = vi.hoisted(() => vi.fn());
+
+vi.mock('@/components/analytics/analytics-provider', () => ({
+  useAnalytics: () => ({ trackEvent: trackEventMock }),
+}));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => usePathnameMock(),
@@ -29,6 +34,7 @@ describe('HeaderSectionNav', () => {
 
   beforeEach(() => {
     usePathnameMock.mockReturnValue('/en');
+    trackEventMock.mockClear();
     disconnectMock.mockReset();
     intersectionObserverCallback = undefined;
     window.sessionStorage.clear();
@@ -85,6 +91,70 @@ describe('HeaderSectionNav', () => {
       'About',
       'Contact',
     ]);
+    expect(trackEventMock).toHaveBeenCalledOnce();
+    expect(trackEventMock).toHaveBeenCalledWith('mobile_nav_open');
+  });
+
+  it('tracks only false-to-true mobile dialog transitions', () => {
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+
+    const trigger = screen.getByRole('button', { name: 'Open navigation' });
+    fireEvent.click(trigger);
+    fireEvent.click(screen.getByRole('button', { name: 'Close navigation' }));
+
+    expect(trackEventMock).toHaveBeenCalledTimes(1);
+    expect(trackEventMock).toHaveBeenLastCalledWith('mobile_nav_open');
+
+    fireEvent.click(trigger);
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+    expect(trackEventMock).toHaveBeenLastCalledWith('mobile_nav_open');
+
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape', code: 'Escape' });
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+  });
+
+  it.each(links)('tracks the mobile destination $anchor with a locale-independent key', ({ anchor, label: linkLabel }) => {
+    const target = document.createElement('section');
+    target.id = anchor;
+    target.scrollIntoView = vi.fn();
+    document.body.appendChild(target);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+    const dialog = screen.getByRole('dialog', { name: 'Home sections' });
+    fireEvent.click(within(dialog).getByRole('link', { name: linkLabel }));
+
+    expect(trackEventMock).toHaveBeenCalledTimes(2);
+    expect(trackEventMock).toHaveBeenNthCalledWith(1, 'mobile_nav_open');
+    expect(trackEventMock).toHaveBeenNthCalledWith(2, `mobile_nav_select:${anchor}`);
+  });
+
+  it('uses the same mobile destination event for Portuguese labels', () => {
+    const portugueseLinks = [
+      { label: 'Projetos', anchor: 'projects' as const },
+      { label: 'Como trabalho', anchor: 'work-process' as const },
+      { label: 'Este portfólio', anchor: 'portfolio' as const },
+      { label: 'Sobre', anchor: 'about' as const },
+      { label: 'Contato', anchor: 'contact' as const },
+    ];
+    const target = document.createElement('section');
+    target.id = 'portfolio';
+    target.scrollIntoView = vi.fn();
+    document.body.appendChild(target);
+
+    render(
+      <HeaderSectionNav
+        links={portugueseLinks}
+        homePath="/"
+        label="Seções da Home"
+        openLabel="Abrir navegação"
+        closeLabel="Fechar navegação"
+      />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir navegação' }));
+    fireEvent.click(within(screen.getByRole('dialog', { name: 'Seções da Home' })).getByRole('link', { name: 'Este portfólio' }));
+
+    expect(trackEventMock).toHaveBeenNthCalledWith(2, 'mobile_nav_select:portfolio');
   });
 
   it('closes the mobile dialog and uses the existing in-page section navigation', () => {

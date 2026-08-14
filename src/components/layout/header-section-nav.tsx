@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useState, type MouseEvent } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
+import { useAnalytics } from '@/components/analytics/analytics-provider';
+import { getMobileNavSelectEvent } from '@/components/analytics/clarity';
 import {
   Dialog,
   DialogClose,
@@ -56,9 +58,11 @@ export function HeaderSectionNav({
   openLabel,
   closeLabel,
 }: HeaderSectionNavProps) {
+  const { trackEvent } = useAnalytics();
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<HomeSectionId | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileOpenRef = useRef(false);
   const inPageNavigation = shouldHandleInPageSectionNavigation(pathname, homePath);
 
   useEffect(() => {
@@ -200,8 +204,19 @@ export function HeaderSectionNav({
   }
 
   function handleMobileSectionClick(event: MouseEvent<HTMLAnchorElement>, sectionId: HomeSectionId) {
+    trackEvent(getMobileNavSelectEvent(sectionId));
+    mobileOpenRef.current = false;
     setMobileOpen(false);
     handleSectionClick(event, sectionId);
+  }
+
+  function handleMobileOpenChange(open: boolean) {
+    if (open && !mobileOpenRef.current) {
+      trackEvent('mobile_nav_open');
+    }
+
+    mobileOpenRef.current = open;
+    setMobileOpen(open);
   }
 
   return (
@@ -220,7 +235,7 @@ export function HeaderSectionNav({
         ))}
       </nav>
 
-      <Dialog open={mobileOpen} onOpenChange={setMobileOpen}>
+      <Dialog open={mobileOpen} onOpenChange={handleMobileOpenChange}>
         <DialogTrigger asChild>
           <button
             type="button"

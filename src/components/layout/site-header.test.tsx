@@ -8,6 +8,11 @@ import { enCommon, ptBRCommon } from '@/content/i18n';
 import { SiteHeader } from './site-header';
 
 const usePathnameMock = vi.fn();
+const trackEventMock = vi.hoisted(() => vi.fn());
+
+vi.mock('@/components/analytics/analytics-provider', () => ({
+  useAnalytics: () => ({ trackEvent: trackEventMock }),
+}));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => usePathnameMock(),
@@ -57,6 +62,10 @@ describe('SiteHeader', () => {
     expect(screen.getByRole('link', { name: 'English' })).toHaveTextContent('EN');
     expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('button', { name: /toggle theme/i })).toBeInTheDocument();
+
+    fireEvent.click(contactLink);
+    expect(trackEventMock).toHaveBeenCalledWith('contact_whatsapp_click:header');
+    expect(trackEventMock).not.toHaveBeenCalledWith('contact_whatsapp_click');
   });
 
   it('resolves Header and shared labels from Portuguese content', () => {

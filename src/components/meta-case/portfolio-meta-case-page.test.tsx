@@ -6,11 +6,20 @@ import { portfolioMetaCaseContent } from '@/content/i18n/meta-case';
 import { getLocalizedPath } from '@/i18n/routes';
 import { PortfolioMetaCasePage } from './portfolio-meta-case-page';
 
+const trackEventMock = vi.hoisted(() => vi.fn());
+
+vi.mock('@/components/analytics/analytics-provider', () => ({
+  useAnalytics: () => ({ trackEvent: trackEventMock }),
+}));
+
 vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  trackEventMock.mockClear();
+});
 
 describe('PortfolioMetaCasePage', () => {
   it('renders the authored Portuguese meta-case with verified production evidence', () => {
@@ -38,6 +47,10 @@ describe('PortfolioMetaCasePage', () => {
     const repositoryLink = screen.getByRole('link', { name: 'Ver repositório no GitHub ↗' });
     expect(repositoryLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');
     expect(repositoryLink).toHaveClass('text-link', 'text-link--hit-area');
+    repositoryLink.click();
+    expect(trackEventMock).toHaveBeenCalledOnce();
+    expect(trackEventMock).toHaveBeenCalledWith('github_click:meta-case-repository');
+    expect(trackEventMock).not.toHaveBeenCalledWith('github_repository_click');
     expect(screen.getByText(/referências publicadas pela Nielsen Norman Group \(NN\/g\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Microsoft Clarity como camada de observação comportamental/i)).toHaveTextContent(/analytics condicionado à escolha do visitante/i);
     expect(screen.getByText(/observação comportamental → refinamento/i)).toBeInTheDocument();

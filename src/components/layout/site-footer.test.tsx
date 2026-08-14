@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AnalyticsProvider } from '@/components/analytics/analytics-provider';
-import { ANALYTICS_CONSENT_STORAGE_KEY } from '@/components/analytics/clarity';
+import { ANALYTICS_CONSENT_STORAGE_KEY, initializeClarity } from '@/components/analytics/clarity';
 import { commonContent } from '@/content/i18n';
 import type { Locale } from '@/i18n/locales';
 import { SiteFooter } from './site-footer';
@@ -104,5 +104,45 @@ describe('SiteFooter', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     const iframe = screen.getByTitle('Curr\u00edculo \u2014 Nelson Secco');
     expect(iframe).toHaveAttribute('src', '/assets/resume/N3LX_PT-BR.pdf');
+  });
+
+  it('tracks footer contact and Resume intentions without changing link behavior', () => {
+    initializeClarity({
+      consent: 'granted',
+      hostname: 'nelsonsecco.netlify.app',
+      nodeEnv: 'production',
+      projectId: 'configured-project-id',
+    });
+    vi.clearAllMocks();
+    renderFooter('en');
+
+    const nav = screen.getByRole('navigation', { name: 'Footer navigation' });
+    const email = within(nav).getByRole('link', { name: 'nelsonseccofilho@gmail.com' });
+    const linkedIn = within(nav).getByRole('link', { name: 'LinkedIn' });
+    const github = within(nav).getByRole('link', { name: 'GitHub' });
+
+    expect(email).toHaveAttribute('href', 'mailto:nelsonseccofilho@gmail.com');
+    expect(linkedIn).toHaveAttribute('target', '_blank');
+    expect(linkedIn).toHaveAttribute('rel', 'noreferrer');
+    expect(github).toHaveAttribute('target', '_blank');
+    expect(github).toHaveAttribute('rel', 'noreferrer');
+    [email, linkedIn, github].forEach((link) => expect(link).toHaveAttribute('data-clarity-mask', 'true'));
+
+    fireEvent.click(email);
+    fireEvent.click(linkedIn);
+    fireEvent.click(github);
+    fireEvent.click(within(nav).getByRole('button', { name: "Open Nelson Secco's resume in English" }));
+    const download = screen.getByRole('link', { name: 'Download PDF' });
+    expect(download).toHaveAttribute('href', '/assets/resume/N3LX_EN.pdf');
+    expect(download).toHaveAttribute('download');
+    fireEvent.click(download);
+
+    expect(clarityMock.event.mock.calls).toEqual([
+      ['contact_email_click:footer'],
+      ['linkedin_click:footer'],
+      ['github_click:footer-profile'],
+      ['resume_open:footer'],
+      ['resume_download:footer'],
+    ]);
   });
 });

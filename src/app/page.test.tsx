@@ -1,8 +1,18 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getWhatsAppContactUrl } from '@/content/contact';
 import { HomePage } from '@/components/home/home-page';
+
+const trackEventMock = vi.hoisted(() => vi.fn());
+
+vi.mock('@/components/analytics/analytics-provider', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/components/analytics/analytics-provider')>();
+  return {
+    ...actual,
+    useAnalytics: () => ({ trackEvent: trackEventMock }),
+  };
+});
 
 function setScrollY(value: number) {
   Object.defineProperty(window, 'scrollY', { configurable: true, value });
@@ -10,6 +20,8 @@ function setScrollY(value: number) {
 }
 
 describe('HomePage', () => {
+  beforeEach(() => trackEventMock.mockClear());
+
   afterEach(() => {
     cleanup();
     Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
@@ -138,6 +150,34 @@ describe('HomePage', () => {
     expect(within(contactSection).queryByRole('link', { name: 'Privacy' })).not.toBeInTheDocument();
 
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it('tracks Contact WhatsApp and all four Featured Project intentions with exact keys', () => {
+    render(<HomePage locale="en" />);
+
+    const contactSection = screen.getByRole('heading', { level: 2, name: /let’s build something meaningful/i }).closest('section');
+    expect(contactSection).not.toBeNull();
+    fireEvent.click(within(contactSection!).getByRole('link', { name: 'Talk to me on WhatsApp' }));
+    expect(trackEventMock).toHaveBeenLastCalledWith('contact_whatsapp_click:contact');
+    expect(trackEventMock).not.toHaveBeenCalledWith('contact_whatsapp_click');
+
+    trackEventMock.mockClear();
+    const featuredProjects = screen.getByRole('region', { name: 'Featured projects' });
+    const projectLinks = [
+      ['View HORIZON HIS project', 'project_open:horizon-his:featured-projects'],
+      ['View SUBITER project', 'project_open:subiter:featured-projects'],
+      ['View REDE DCC 1.0 project', 'project_open:rede-dcc:featured-projects'],
+      ['View DASA — Canal do Consultor project', 'project_open:dasa-canal-do-consultor:featured-projects'],
+    ] as const;
+
+    projectLinks.forEach(([accessibleName, eventName]) => {
+      const link = within(featuredProjects).getByRole('link', { name: accessibleName });
+      expect(link).toHaveAttribute('href');
+      fireEvent.click(link);
+      expect(trackEventMock).toHaveBeenLastCalledWith(eventName);
+    });
+
+    expect(trackEventMock).toHaveBeenCalledTimes(4);
   });
 
   it('renders canonical Portuguese content and localized project links', () => {

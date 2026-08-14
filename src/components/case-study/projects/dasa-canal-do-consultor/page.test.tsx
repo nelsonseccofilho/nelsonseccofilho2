@@ -31,7 +31,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(within(hero).getByText('Existing pilot and future backlog input')).toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /editorial composition of the canal do consultor discovery work with maps, synthesis, and business rules/i })).toBeInTheDocument();
 
-    expect(screen.getByText('37 participants interviewed')).toBeInTheDocument();
+    expect(screen.getByText('37 people interviewed')).toBeInTheDocument();
     expect(screen.getByText('3 NACs visited — RJ, SP and Brasília')).toBeInTheDocument();
     expect(screen.getByText('4 systems analyzed')).toBeInTheDocument();
     expect(screen.getByText('Canal do Consultor, MV Soul, Feegow and Tasy')).toBeInTheDocument();
@@ -55,6 +55,29 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText(/ensuring coordinated decisions before delivery discussions/i)).toBeInTheDocument();
     expect(screen.getAllByText(/existing pilot/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/generated input for future backlog definition/i)).toBeInTheDocument();
+
+    const rulesToDeliverySection = screen
+      .getByRole('heading', { level: 2, name: /from research to rules, then from discovery to delivery/i })
+      .closest('section');
+    expect(rulesToDeliverySection).not.toBeNull();
+    const evidenceChain = rulesToDeliverySection?.querySelector('dl');
+    expect(evidenceChain).not.toBeNull();
+    expect(evidenceChain?.querySelectorAll('dt')).toHaveLength(4);
+    expect(evidenceChain?.querySelectorAll('dd')).toHaveLength(4);
+    const evidenceChainContent = within(evidenceChain as HTMLElement);
+    expect(evidenceChainContent.getByText('Evidence')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Synthesis')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Rules')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Product decision')).toBeInTheDocument();
+    expect(
+      evidenceChainContent.getByText(
+        'The immersion included interviews with 37 people, visits to 3 NACs, analysis of 4 systems, and 290 mapped research excerpts.',
+      ),
+    ).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/57 rules and features/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/business validation was still in progress/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/future pilot backlogs/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/interface and api prioritization/i)).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /confidentiality and publication boundaries/i })).toBeInTheDocument();
     expect(screen.getByText(/all visuals on this page/i)).toBeInTheDocument();
@@ -97,7 +120,7 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(within(hero).getByText('Piloto existente e insumos para backlog futuro')).toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /composição editorial do trabalho de discovery do canal do consultor com mapas, síntese e regras de negócio/i })).toBeInTheDocument();
 
-    expect(screen.getByText('37 participantes entrevistados')).toBeInTheDocument();
+    expect(screen.getByText('37 entrevistados')).toBeInTheDocument();
     expect(screen.getByText('3 NACs visitados — RJ, SP e Brasília')).toBeInTheDocument();
     expect(screen.getByText('4 sistemas analisados')).toBeInTheDocument();
     expect(screen.getByText('Canal do Consultor, MV Soul, Feegow e Tasy')).toBeInTheDocument();
@@ -121,6 +144,26 @@ describe('DasaCanalDoConsultorPage', () => {
     expect(screen.getByText(/decis[oõ]es de interface e api/i)).toBeInTheDocument();
     expect(screen.getByText(/apoiando alinhamento antes das discuss[oõ]es de entrega/i)).toBeInTheDocument();
     expect(screen.getByText(/gerou insumos para defini[cç][aã]o de backlog futuro/i)).toBeInTheDocument();
+
+    const rulesToDeliverySection = screen
+      .getByRole('heading', { level: 2, name: /da pesquisa [aà]s regras, do discovery ao delivery/i })
+      .closest('section');
+    expect(rulesToDeliverySection).not.toBeNull();
+    const evidenceChain = rulesToDeliverySection?.querySelector('dl');
+    expect(evidenceChain).not.toBeNull();
+    expect(evidenceChain?.querySelectorAll('dt')).toHaveLength(4);
+    expect(evidenceChain?.querySelectorAll('dd')).toHaveLength(4);
+    const evidenceChainContent = within(evidenceChain as HTMLElement);
+    expect(evidenceChainContent.getByText('Evidência')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Síntese')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Regras')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText('Decisão de produto')).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/37 entrevistados/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/290 trechos de pesquisa/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/57 regras e features/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/valida[cç][aã]o com o neg[oó]cio ainda estava em andamento/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/backlogs do piloto/i)).toBeInTheDocument();
+    expect(evidenceChainContent.getByText(/interfaces e apis/i)).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /confidencialidade e limites de publica[cç][aã]o/i })).toBeInTheDocument();
     expect(screen.getByText(/n[aã]o revelam telas de ui de produ[cç][aã]o/i)).toBeInTheDocument();

@@ -73,6 +73,10 @@ type DasaCanalDoConsultorCaseLocalizedContent = {
       intro: string;
       paragraph01: string;
       paragraph02: string;
+      evidenceChain: readonly {
+        label: string;
+        description: string;
+      }[];
     };
     confidentiality: {
       title: string;
@@ -114,7 +118,7 @@ export const dasaCanalDoConsultorCaseContent = {
         intro: 'O Discovery combinou mapeamento qualitativo e estrutural para estabelecer uma base defensável para decisões de produto.',
         bulletsLabel: 'Escala do discovery da DASA',
         bullets: [
-          '37 participantes entrevistados',
+          '37 entrevistados',
           '3 NACs visitados — RJ, SP e Brasília',
           '4 sistemas analisados',
           'Canal do Consultor, MV Soul, Feegow e Tasy',
@@ -158,6 +162,28 @@ export const dasaCanalDoConsultorCaseContent = {
         paragraph01:
           'O alinhamento entre Front-end e Back-end foi construído por uma camada compartilhada de priorização para decisões de interface e API, apoiando alinhamento antes das discussões de entrega.',
         paragraph02: 'A estrutura apoiou um piloto existente e gerou insumos para definição de backlog futuro.',
+        evidenceChain: [
+          {
+            label: 'Evidência',
+            description:
+              'A imersão reuniu 37 entrevistados, visitas a 3 NACs, a análise de 4 sistemas e o mapeamento de 290 trechos de pesquisa.',
+          },
+          {
+            label: 'Síntese',
+            description:
+              'As dores e informações coletadas foram agrupadas em temas, que serviram de insumo para estruturar as regras necessárias à marcação de consultas.',
+          },
+          {
+            label: 'Regras',
+            description:
+              'O Discovery resultou no mapeamento de 57 regras e features, revisadas com coordenadores e consultores dos NACs e com a tribo do Canal do Consultor. A validação com o negócio ainda estava em andamento.',
+          },
+          {
+            label: 'Decisão de produto',
+            description:
+              'As regras passaram a compor o material previsto para os backlogs do piloto e, no alinhamento com o Canal do Consultor de Diagnósticos, serviram de insumo para a priorização de interfaces e APIs.',
+          },
+        ],
       },
       confidentiality: {
         title: 'Confidencialidade e limites de publicação',
@@ -198,7 +224,7 @@ export const dasaCanalDoConsultorCaseContent = {
         intro: 'Discovery combined qualitative and structural mapping to establish a defensible baseline for product decisions.',
         bulletsLabel: 'DASA discovery scale',
         bullets: [
-          '37 participants interviewed',
+          '37 people interviewed',
           '3 NACs visited — RJ, SP and Brasília',
           '4 systems analyzed',
           'Canal do Consultor, MV Soul, Feegow and Tasy',
@@ -242,6 +268,28 @@ export const dasaCanalDoConsultorCaseContent = {
         paragraph01:
           'Front-end and back-end teams worked from a shared prioritization layer for interface and API decisions, ensuring coordinated decisions before delivery discussions.',
         paragraph02: 'The structure supported an existing pilot and generated input for future backlog definition.',
+        evidenceChain: [
+          {
+            label: 'Evidence',
+            description:
+              'The immersion included interviews with 37 people, visits to 3 NACs, analysis of 4 systems, and 290 mapped research excerpts.',
+          },
+          {
+            label: 'Synthesis',
+            description:
+              'The pain points and information collected were grouped into themes, which became inputs for structuring the rules required for appointment scheduling.',
+          },
+          {
+            label: 'Rules',
+            description:
+              'Discovery produced a map of 57 rules and features, reviewed with NAC coordinators and consultants and with the Canal do Consultor team. Business validation was still in progress.',
+          },
+          {
+            label: 'Product decision',
+            description:
+              'The mapped rules were intended for future pilot backlogs and, through alignment with the Diagnostics Canal do Consultor team, provided input into interface and API prioritization.',
+          },
+        ],
       },
       confidentiality: {
         title: 'Confidentiality and publication boundaries',

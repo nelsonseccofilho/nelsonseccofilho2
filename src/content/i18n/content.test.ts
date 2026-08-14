@@ -93,6 +93,12 @@ describe('Home and shared localized content', () => {
     expect(horizonHisCaseContent['pt-BR'].hero.metadata.find((item) => item.label === 'Ano')?.value).toBe(horizonHisSharedFacts.year);
     expect(horizonHisCaseContent.en.hero.eyebrow).toBe(horizonHisSharedFacts.projectName);
     expect(horizonHisCaseContent['pt-BR'].hero.eyebrow).toBe(horizonHisSharedFacts.projectName);
+    expect(homeContent.en.featuredCases.projects.find((project) => project.routeId === 'horizon-his')?.description).toBe(
+      'High-fidelity navigable prototype for a complex hospital information system, reviewed with the CEO and presented at Hospitalar 2025.',
+    );
+    expect(homeContent['pt-BR'].featuredCases.projects.find((project) => project.routeId === 'horizon-his')?.description).toBe(
+      'Protótipo navegável de alta fidelidade para um sistema de informação hospitalar complexo, revisado com o CEO e apresentado na Hospitalar 2025.',
+    );
   });
 
   it('keeps SUBITER locale structure equivalent and shared factual identifiers immutable', () => {
@@ -134,6 +140,12 @@ describe('Home and shared localized content', () => {
     expect(redeDccCaseContent['pt-BR'].hero.eyebrow).toBe(redeDccSharedFacts.projectName);
     expect(redeDccCaseContent.en.hero.metadata.find((item) => item.label === 'Year')?.value).toBe(redeDccSharedFacts.year);
     expect(redeDccCaseContent['pt-BR'].hero.metadata.find((item) => item.label === 'Ano')?.value).toBe(redeDccSharedFacts.year);
+    expect(redeDccCaseContent.en.sections.review.paragraph).toBe(
+      'Stakeholder review confirmed continuity across the full payment sequence.',
+    );
+    expect(redeDccCaseContent['pt-BR'].sections.review.paragraph).toBe(
+      'A revisão com stakeholders confirmou a continuidade em toda a sequência de pagamento.',
+    );
   });
 
   it('keeps DASA locale structure equivalent and preserves research numbers exactly', () => {

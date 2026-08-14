@@ -26,10 +26,12 @@ describe('HorizonHisPage', () => {
     expect(within(hero).getByText('Healthtech / Hospital Information System')).toBeInTheDocument();
     expect(within(hero).getByText('2025')).toBeInTheDocument();
     expect(within(hero).getByText('Presented at Hospitalar 2025')).toBeInTheDocument();
+    expect(within(hero).getByText('Presented and reviewed')).toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /editorial composition featuring the horizon his prototype interface in a clinical journey/i })).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /salux's next hospital information system/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /the product experience at hospitalar 2025/i })).toBeInTheDocument();
+    expect(screen.getByText(/presented to and reviewed with the CEO/i)).toHaveTextContent(/materialized and discussed/i);
     expect(screen.getByText('High-fidelity prototype and interaction-map evidence.')).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(6);
     expect(screen.queryByRole('img', { name: 'Evidence visual being rebuilt' })).not.toBeInTheDocument();
@@ -43,6 +45,7 @@ describe('HorizonHisPage', () => {
     expect(within(navigation).getByRole('link', { name: 'Portfolio' })).toHaveAttribute('href', '/en');
     expect(within(navigation).getByRole('link', { name: /next project.*subiter/i })).toHaveAttribute('href', '/en/projects/subiter');
     expect(screen.queryByText(/3 months/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validated|validation/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/approved by the presidency/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/roi/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/production deployment/i)).not.toBeInTheDocument();
@@ -61,10 +64,12 @@ describe('HorizonHisPage', () => {
     expect(within(hero).getByText('Healthtech / Sistema de Informação Hospitalar')).toBeInTheDocument();
     expect(within(hero).getByText('2025')).toBeInTheDocument();
     expect(within(hero).getByText('Apresentado na Hospitalar 2025')).toBeInTheDocument();
+    expect(within(hero).getByText('Protótipo apresentado e revisado')).toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /composição editorial com a interface do protótipo horizon his em uma jornada clínica/i })).toBeInTheDocument();
 
     expect(screen.getByRole('heading', { level: 2, name: /pr[oó]ximo sistema de informa[cç][aã]o hospitalar da salux/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /a experi[eê]ncia de produto na hospitalar 2025/i })).toBeInTheDocument();
+    expect(screen.getByText(/apresentados e revisados com o CEO/i)).toHaveTextContent(/materializada e discutida/i);
     expect(screen.getByText('Evidência do protótipo de alta fidelidade e do mapa de interação.')).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(6);
     expect(screen.queryByRole('img', { name: 'Evidência visual em reconstrução' })).not.toBeInTheDocument();
@@ -78,6 +83,7 @@ describe('HorizonHisPage', () => {
     expect(within(navigation).getByRole('link', { name: 'Portfólio' })).toHaveAttribute('href', '/');
 
     expect(screen.queryByText(/executive presentation evidence/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validado|validada|validação|validar/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/high-fidelity prototype and interaction-map evidence/i)).not.toBeInTheDocument();
   });
 });

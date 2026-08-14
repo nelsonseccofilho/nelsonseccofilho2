@@ -18,7 +18,7 @@ export const ptBRHome = {
     projects: [
       {
         routeId: 'horizon-his',
-        description: 'Protótipo navegável de alta fidelidade para um sistema de informação hospitalar complexo, validado com stakeholders clínicos e especialistas do domínio e apresentado na Hospitalar 2025.',
+        description: 'Protótipo navegável de alta fidelidade para um sistema de informação hospitalar complexo, revisado com o CEO e apresentado na Hospitalar 2025.',
         tags: ['UX Lead / Product Designer', 'Healthtech', 'Estratégia de Produto'],
         tagsLabel: 'Tags do HORIZON HIS',
         image: { alt: 'Interface do protótipo de um sistema de informação hospitalar mostrando o fluxo de triagem e painéis com dados clínicos gerados.' },

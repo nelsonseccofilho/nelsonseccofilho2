@@ -93,7 +93,7 @@ export const horizonHisCaseContent = {
         { label: 'Ano', value: horizonHisSharedFacts.year },
         { label: 'Entregável', value: 'Protótipo navegável de alta fidelidade' },
         { label: 'Contexto', value: 'Apresentado na Hospitalar 2025' },
-        { label: 'Status', value: 'Protótipo validado' },
+        { label: 'Status', value: 'Protótipo apresentado e revisado' },
       ],
       imageAlt: 'Composição editorial com a interface do protótipo HORIZON HIS em uma jornada clínica.',
     },
@@ -101,7 +101,7 @@ export const horizonHisCaseContent = {
       context: {
         title: 'Próximo Sistema de Informação Hospitalar da SALUX',
         intro:
-          'A SALUX precisava materializar sua visão para um novo Sistema de Informação Hospitalar em um mercado com plataformas estabelecidas, como MV e Tasy. O objetivo desta fase era tornar essa visão tangível o suficiente para ser experimentada, discutida, validada e apresentada antes do compromisso com uma implementação completa em produção.',
+          'A SALUX precisava materializar sua visão para um novo Sistema de Informação Hospitalar em um mercado com plataformas estabelecidas, como MV e Tasy. O objetivo desta fase era tornar essa visão tangível o suficiente para ser experimentada, discutida e apresentada antes do compromisso com uma implementação completa em produção.',
         paragraph: 'O trabalho começou com uma pergunta estratégica de produto, não com um roadmap de produção.',
       },
       challenge: {
@@ -144,13 +144,13 @@ export const horizonHisCaseContent = {
       prototype: {
         title: 'Projetando o produto antes de comprometer a construção',
         intro:
-          'O protótipo navegável de alta fidelidade tornou o HIS futuro tangível. Ele apoiou a experiência dos fluxos propostos, a compreensão dos comportamentos, a discussão da direção de produto e a validação da experiência antes da implementação completa.',
+          'O protótipo navegável de alta fidelidade tornou o HIS futuro tangível. Ele apoiou a experiência dos fluxos propostos, a compreensão dos comportamentos, a revisão e a discussão da direção de produto antes da implementação completa.',
         imageAlt: 'Tela do protótipo de triagem do HORIZON HIS com recepção, sinais vitais e dados gerados.',
       },
       validation: {
         title: 'Apresentado ao CEO como a experiência proposta para a Hospitalar',
         intro:
-          'A abordagem e o protótipo foram apresentados ao CEO como a direção de Product Design prevista para a Hospitalar 2025. O objetivo foi demonstrar que a experiência pretendida poderia ser materializada e validada sem tornar a implementação completa o primeiro passo.',
+          'A abordagem e o protótipo foram apresentados e revisados com o CEO como a direção de Product Design prevista para a Hospitalar 2025. O objetivo foi demonstrar que a experiência pretendida poderia ser materializada e discutida sem tornar a implementação completa o primeiro passo.',
         imageAlt: 'Slide de resultados do case HORIZON HIS mostrando o protótipo e a narrativa de apoio.',
         caption: 'Evidência da apresentação executiva.',
       },
@@ -158,13 +158,13 @@ export const horizonHisCaseContent = {
         title: 'A experiência de produto na Hospitalar 2025',
         intro:
           'O HORIZON foi apresentado na Hospitalar 2025. A SALUX posicionou o HORIZON como produto principal no evento, e os visitantes do espaço da SALUX puderam experimentar a visão de produto.',
-        imageAlt: 'Protótipo de alta fidelidade e mapa de interação usados para validar a visão do HORIZON HIS.',
+        imageAlt: 'Protótipo de alta fidelidade e mapa de interação usados para apresentar a visão do HORIZON HIS.',
         caption: 'Evidência do protótipo de alta fidelidade e do mapa de interação.',
       },
       outcome: {
         title: 'Da visão abstrata para uma experiência de produto navegável',
         intro:
-          'A SALUX passou de uma ambição abstrata de HIS para uma experiência de produto concreta, que podia ser navegada, discutida, validada e apresentada.',
+          'A SALUX passou de uma ambição abstrata de HIS para uma experiência de produto concreta, que podia ser navegada, discutida, revisada e apresentada.',
         highlightsLabel: 'Principais resultados do HORIZON',
         bullets: [
           'Jornadas selecionadas estruturadas',
@@ -194,7 +194,7 @@ export const horizonHisCaseContent = {
         { label: 'Year', value: horizonHisSharedFacts.year },
         { label: 'Deliverable', value: 'High-fidelity navigable prototype' },
         { label: 'Context', value: 'Presented at Hospitalar 2025' },
-        { label: 'Status', value: 'Validated prototype' },
+        { label: 'Status', value: 'Presented and reviewed' },
       ],
       imageAlt: 'Editorial composition featuring the HORIZON HIS prototype interface in a clinical journey.',
     },
@@ -202,7 +202,7 @@ export const horizonHisCaseContent = {
       context: {
         title: 'SALUX\'s next Hospital Information System',
         intro:
-          'SALUX wanted to materialize its vision for a new Hospital Information System in a market with established platforms such as MV and Tasy. The goal of this phase was to make that vision tangible enough to experience, discuss, validate and present before committing to a complete production implementation.',
+          'SALUX wanted to materialize its vision for a new Hospital Information System in a market with established platforms such as MV and Tasy. The goal of this phase was to make that vision tangible enough to experience, discuss and present before committing to a complete production implementation.',
         paragraph: 'The work started from a strategic product question, not from a production roadmap.',
       },
       challenge: {
@@ -245,13 +245,13 @@ export const horizonHisCaseContent = {
       prototype: {
         title: 'Designing the product before committing to building it',
         intro:
-          'The high-fidelity navigable prototype made the future HIS tangible. It supported experiencing proposed flows, understanding behavior, discussing product direction, and validating the experience before full implementation.',
+          'The high-fidelity navigable prototype made the future HIS tangible. It supported experiencing proposed flows, understanding behavior, and reviewing and discussing product direction before full implementation.',
         imageAlt: 'HORIZON HIS triage prototype screen with intake, vital signs, and generated data.',
       },
       validation: {
         title: 'Presented to the CEO as the proposed Hospitalar experience',
         intro:
-          'The approach and prototype were presented to the CEO as the Product Design direction intended for Hospitalar 2025. The purpose was to demonstrate that the intended experience could be materialized and validated without making full implementation the first step.',
+          'The approach and prototype were presented to and reviewed with the CEO as the Product Design direction intended for Hospitalar 2025. The purpose was to demonstrate that the intended experience could be materialized and discussed without making full implementation the first step.',
         imageAlt: 'HORIZON HIS case results slide showing the prototype and supporting narrative.',
         caption: 'Executive presentation evidence.',
       },
@@ -259,12 +259,12 @@ export const horizonHisCaseContent = {
         title: 'The product experience at Hospitalar 2025',
         intro:
           'HORIZON was presented at Hospitalar 2025. SALUX positioned HORIZON as its main product at the event, and visitors at the SALUX presence could experience the product vision.',
-        imageAlt: 'High-fidelity prototype and interaction map used to validate the HORIZON HIS vision.',
+        imageAlt: 'High-fidelity prototype and interaction map used to present the HORIZON HIS vision.',
         caption: 'High-fidelity prototype and interaction-map evidence.',
       },
       outcome: {
         title: 'From abstract vision to navigable product experience',
-        intro: 'SALUX moved from an abstract HIS ambition to a concrete product experience that could be navigated, discussed, validated and presented.',
+        intro: 'SALUX moved from an abstract HIS ambition to a concrete product experience that could be navigated, discussed, reviewed and presented.',
         highlightsLabel: 'HORIZON outcome highlights',
         bullets: [
           'Selected journeys structured',

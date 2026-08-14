@@ -163,7 +163,7 @@ export const redeDccCaseContent = {
       noPrototype: {
         title: 'Saber quando não prototipar',
         intro:
-          'Um protótipo navegável não era necessário para esta entrega. O modelo de interação podia ser suficientemente revisado por meio dos estados transacionais estruturados, interfaces finais e validação com stakeholders.',
+          'Um protótipo navegável não era necessário para esta entrega. O modelo de interação podia ser suficientemente revisado por meio dos estados transacionais estruturados, interfaces finais e revisão com stakeholders.',
         paragraph:
           'Evitar prototipação desnecessária manteve o trabalho focado nos artefatos necessários para levar a jornada à implementação.',
       },
@@ -171,7 +171,7 @@ export const redeDccCaseContent = {
         title: 'Revisão da jornada transacional completa',
         intro:
           'A experiência proposta, os estados e as interfaces foram apresentados e revisados com stakeholders antes da entrega, permitindo avaliar a sequência transacional completa como um sistema coerente, e não como telas isoladas.',
-        paragraph: 'A revisão com stakeholders validou a continuidade em toda a sequência de pagamento.',
+        paragraph: 'A revisão com stakeholders confirmou a continuidade em toda a sequência de pagamento.',
       },
       delivery: {
         title: 'Dos estados de interação ao produto final',
@@ -184,7 +184,7 @@ export const redeDccCaseContent = {
         intro:
           'O trabalho transformou um novo requisito de conversão de moeda em uma jornada de pagamento bilíngue e estruturada, cobrindo toda a interação da escolha de moeda até a conclusão da transação.',
         paragraph:
-          'O resultado foi uma experiência validada e documentada, implementada dentro do ecossistema de pagamentos já existente da REDE.',
+          'O resultado foi uma experiência revisada e documentada, implementada dentro do ecossistema de pagamentos já existente da REDE.',
       },
       learning: {
         title: 'Projetar os momentos entre decisões',
@@ -265,7 +265,7 @@ export const redeDccCaseContent = {
       noPrototype: {
         title: 'Knowing when not to prototype',
         intro:
-          'A navigable prototype was not necessary for this delivery. The interaction model could be sufficiently reviewed through the structured transaction states, final interfaces and stakeholder validation.',
+          'A navigable prototype was not necessary for this delivery. The interaction model could be sufficiently reviewed through the structured transaction states, final interfaces and stakeholder review.',
         paragraph:
           'Avoiding unnecessary prototyping kept the work focused on the artifacts required to move the journey toward implementation.',
       },
@@ -273,7 +273,7 @@ export const redeDccCaseContent = {
         title: 'Reviewing the complete transaction journey',
         intro:
           'The proposed experience, states and interfaces were presented and reviewed with stakeholders before delivery, allowing the complete transaction sequence to be evaluated as a coherent system rather than as isolated screens.',
-        paragraph: 'Stakeholder review validated continuity across the full payment sequence.',
+        paragraph: 'Stakeholder review confirmed continuity across the full payment sequence.',
       },
       delivery: {
         title: 'From interaction states to the final product',
@@ -285,7 +285,7 @@ export const redeDccCaseContent = {
         title: 'A complete journey for a new payment capability',
         intro:
           'The work transformed a new currency-conversion requirement into a structured, bilingual payment journey covering the complete interaction from currency choice through transaction completion.',
-        paragraph: 'The result was a validated and documented experience implemented within REDE\'s existing payment ecosystem.',
+        paragraph: 'The result was a reviewed and documented experience implemented within REDE\'s existing payment ecosystem.',
       },
       learning: {
         title: 'Designing the moments between decisions',

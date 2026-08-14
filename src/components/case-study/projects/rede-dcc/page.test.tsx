@@ -33,6 +33,8 @@ describe('RedeDccPage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /orchestrating the transaction states/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /knowing when not to prototype/i })).toBeInTheDocument();
     expect(screen.getByText(/a navigable prototype was not necessary for this delivery/i)).toBeInTheDocument();
+    expect(screen.getByText(/stakeholder review confirmed continuity/i)).toBeInTheDocument();
+    expect(screen.getByText(/reviewed and documented experience implemented within rede[’']s existing payment ecosystem/i)).toBeInTheDocument();
     expect(screen.getByText(/implemented within rede[’']s existing payment ecosystem/i)).toBeInTheDocument();
     expect(screen.getByText('Curated transaction-state sequence used to review the complete journey.')).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Open enlarged image:/ })).toHaveLength(5);
@@ -49,6 +51,7 @@ describe('RedeDccPage', () => {
     expect(screen.queryByText(/conversion uplift/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/revenue impact/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/terminal replacement-rate reduction/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validated|validation/i)).not.toBeInTheDocument();
   });
 
   it('renders the Portuguese REDE DCC editorial case without English fallback', async () => {
@@ -69,6 +72,8 @@ describe('RedeDccPage', () => {
     expect(screen.getByRole('heading', { level: 2, name: /orquestrando os estados transacionais/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /saber quando n[aã]o prototipar/i })).toBeInTheDocument();
     expect(screen.getByText(/um prot[oó]tipo naveg[aá]vel n[aã]o era necess[aá]rio para esta entrega/i)).toBeInTheDocument();
+    expect(screen.getByText(/revisão com stakeholders confirmou a continuidade/i)).toBeInTheDocument();
+    expect(screen.getByText(/experiência revisada e documentada, implementada dentro do ecossistema de pagamentos/i)).toBeInTheDocument();
     expect(screen.getByText(/implementada dentro do ecossistema de pagamentos j[aá] existente da rede/i)).toBeInTheDocument();
     expect(screen.getByText('Sequência curada de estados transacionais usada para revisar a jornada completa.')).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Abrir imagem ampliada:/ })).toHaveLength(5);
@@ -82,6 +87,7 @@ describe('RedeDccPage', () => {
     expect(backLink).toHaveAttribute('href', '/');
 
     expect(screen.queryByText(/curated transaction-state sequence used to review the complete journey/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validou|validado|validada|validação/i)).not.toBeInTheDocument();
   });
 
   it('wires the Home REDE card to the REDE DCC case route', () => {

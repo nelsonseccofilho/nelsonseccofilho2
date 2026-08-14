@@ -11,6 +11,7 @@ const { notFoundMock } = vi.hoisted(() => ({
 
 vi.mock('next/navigation', () => ({
   notFound: notFoundMock,
+  usePathname: () => '/',
 }));
 
 vi.mock('@/components/theme/theme-provider', () => ({

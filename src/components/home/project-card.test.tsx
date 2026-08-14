@@ -12,7 +12,7 @@ const horizonCard = (
     id="horizon-his"
     title="HORIZON HIS"
     description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
-    tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
+    tags={['UX Lead / Product Designer', 'Healthtech', 'Product Strategy']}
     placeholderLabel="Cover being rebuilt"
   />
 );
@@ -37,9 +37,7 @@ describe('ProjectCard', () => {
 
     expect(screen.getByRole('heading', { level: 3, name: 'HORIZON HIS' })).toBeInTheDocument();
     expect(screen.getByText(/high-fidelity navigable prototype for a complex hospital information system/i)).toBeInTheDocument();
-    expect(screen.getByText('Healthtech')).toBeInTheDocument();
-    expect(screen.getByText('UX Leadership')).toBeInTheDocument();
-    expect(screen.getByText('Product Strategy')).toBeInTheDocument();
+    expect(screen.getByText('UX Lead / Product Designer · Healthtech · Product Strategy')).toBeInTheDocument();
     expect(screen.getByRole('img', { name: 'Cover being rebuilt' })).toHaveAttribute('data-placeholder-variant', 'project-card');
   });
 
@@ -56,18 +54,19 @@ describe('ProjectCard', () => {
           id="horizon-his"
           title="HORIZON HIS"
           description="High-fidelity navigable prototype for a complex hospital information system, validated with clinical and domain stakeholders and presented at Hospitalar 2025."
-          tags={['Healthtech', 'UX Leadership', 'Product Strategy']}
+          tags={['UX Lead / Product Designer', 'Healthtech', 'Product Strategy']}
           href="/en/projects/horizon-his"
-          actionLabel="View project →"
+          actionLabel="View project"
+          actionAriaLabel="View HORIZON HIS project"
           placeholderLabel="Cover being rebuilt"
         />
       </ul>,
     );
 
-    const link = screen.getByRole('link', { name: /horizon his/i });
+    const link = screen.getByRole('link', { name: 'View HORIZON HIS project' });
 
     expect(link).toHaveAttribute('href', '/en/projects/horizon-his');
-    expect(screen.getByText('View project →')).toBeInTheDocument();
+    expect(screen.getByText('View project')).toBeInTheDocument();
     expect(link.querySelectorAll('a')).toHaveLength(0);
   });
 

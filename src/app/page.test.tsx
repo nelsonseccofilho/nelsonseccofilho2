@@ -82,6 +82,11 @@ describe('HomePage', () => {
     expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Complex Systems' })).toBeInTheDocument();
     expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Design Systems' })).toBeInTheDocument();
     expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Delivery' })).toBeInTheDocument();
+    const pillarList = within(senioritySection).getByRole('list');
+    expect(pillarList.tagName).toBe('OL');
+    const visualOrderNumbers = Array.from(pillarList.querySelectorAll(':scope > li > span'));
+    expect(visualOrderNumbers.map((number) => number.textContent)).toEqual(['01', '02', '03', '04', '05']);
+    visualOrderNumbers.forEach((number) => expect(number).toHaveAttribute('aria-hidden', 'true'));
     const pillarNames = within(senioritySection).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
     expect(pillarNames).toEqual(['Discovery', 'Strategy', 'Complex Systems', 'Design Systems', 'Delivery']);
     expect(within(senioritySection).getAllByRole('heading', { level: 3 })).toHaveLength(5);

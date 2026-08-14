@@ -146,6 +146,14 @@ export default function DasaCanalDoConsultorPage({ locale = 'en' }: { locale?: L
           title={content.sections.rulesToDelivery.title}
           intro={content.sections.rulesToDelivery.intro}
         >
+          <dl className="dasa-evidence-chain">
+            {content.sections.rulesToDelivery.evidenceChain.map((step) => (
+              <div key={step.label} className="dasa-evidence-chain__item">
+                <dt className="dasa-evidence-chain__label">{step.label}</dt>
+                <dd className="dasa-evidence-chain__description">{step.description}</dd>
+              </div>
+            ))}
+          </dl>
           <div className="case-section__text-block">
             <p className="case-section__copy">{content.sections.rulesToDelivery.paragraph01}</p>
             <p className="case-section__copy">{content.sections.rulesToDelivery.paragraph02}</p>

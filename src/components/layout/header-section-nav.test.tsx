@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { LOCALE_SCROLL_CONTEXT_STORAGE_KEY, serializeLocaleScrollContext } from '@/lib/section-navigation';
 import { HeaderSectionNav } from './header-section-nav';
@@ -17,6 +17,11 @@ const links = [
   { label: 'About', anchor: 'about' as const },
   { label: 'Contact', anchor: 'contact' as const },
 ];
+
+const navigationLabels = {
+  openLabel: 'Open navigation',
+  closeLabel: 'Close navigation',
+};
 
 describe('HeaderSectionNav', () => {
   const disconnectMock = vi.fn();
@@ -54,11 +59,91 @@ describe('HeaderSectionNav', () => {
   });
 
   it('keeps semantic anchor hrefs for progressive enhancement', () => {
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/en#projects');
     expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('href', '/en#portfolio');
     expect(screen.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/en#contact');
+  });
+
+  it('opens a mobile dialog containing the same five section destinations', () => {
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+
+    const trigger = screen.getByRole('button', { name: 'Open navigation' });
+    expect(trigger).toHaveClass('site-header__mobile-nav-trigger');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    fireEvent.click(trigger);
+
+    const dialog = screen.getByRole('dialog', { name: 'Home sections' });
+    expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    expect(trigger).toHaveAccessibleName('Close navigation');
+    expect(within(dialog).getAllByRole('link').map((link) => link.textContent)).toEqual([
+      'Projects',
+      'How I work',
+      'This portfolio',
+      'About',
+      'Contact',
+    ]);
+  });
+
+  it('closes the mobile dialog and uses the existing in-page section navigation', () => {
+    const target = document.createElement('section');
+    target.id = 'about';
+    target.scrollIntoView = vi.fn();
+    document.body.appendChild(target);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+    const dialog = screen.getByRole('dialog', { name: 'Home sections' });
+
+    fireEvent.click(within(dialog).getByRole('link', { name: 'About' }));
+
+    expect(screen.queryByRole('dialog', { name: 'Home sections' })).not.toBeInTheDocument();
+    expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
+  });
+
+  it('closes on Escape and restores focus to the mobile trigger', async () => {
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+    const trigger = screen.getByRole('button', { name: 'Open navigation' });
+    fireEvent.click(trigger);
+
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape', code: 'Escape' });
+
+    expect(screen.queryByRole('dialog', { name: 'Home sections' })).not.toBeInTheDocument();
+    await waitFor(() => expect(trigger).toHaveFocus());
+  });
+
+  it('shares the observed active section with the mobile menu without another observer', () => {
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 640 });
+    const target = document.createElement('section');
+    target.id = 'portfolio';
+    document.body.appendChild(target);
+
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+    act(() => {
+      intersectionObserverCallback?.([
+        { isIntersecting: true, intersectionRatio: 0.7, target } as unknown as IntersectionObserverEntry,
+      ], {} as IntersectionObserver);
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+
+    const dialog = screen.getByRole('dialog', { name: 'Home sections' });
+    expect(within(dialog).getByRole('link', { name: 'This portfolio' })).toHaveAttribute('aria-current', 'location');
+  });
+
+  it('keeps the localized Home destination when a mobile item is selected from an internal route', () => {
+    usePathnameMock.mockReturnValue('/en/projects/horizon-his');
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+    const dialog = screen.getByRole('dialog', { name: 'Home sections' });
+    const portfolioLink = within(dialog).getByRole('link', { name: 'This portfolio' });
+
+    expect(portfolioLink).toHaveAttribute('href', '/en#portfolio');
+    fireEvent.click(portfolioLink);
+
+    expect(screen.queryByRole('dialog', { name: 'Home sections' })).not.toBeInTheDocument();
+    expect(window.sessionStorage.getItem('n3lx:pending-home-section')).toBe('portfolio');
   });
 
   it('uses in-page scroll and preserves hash-free URL on same-page navigation', () => {
@@ -69,7 +154,7 @@ describe('HeaderSectionNav', () => {
 
     const replaceState = vi.spyOn(window.history, 'replaceState');
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     fireEvent.click(screen.getByRole('link', { name: 'About' }));
 
@@ -83,7 +168,7 @@ describe('HeaderSectionNav', () => {
     target.scrollIntoView = vi.fn();
     document.body.appendChild(target);
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     fireEvent.click(screen.getByRole('link', { name: 'This portfolio' }));
 
@@ -97,7 +182,7 @@ describe('HeaderSectionNav', () => {
     target.id = 'portfolio';
     document.body.appendChild(target);
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     act(() => {
       intersectionObserverCallback?.([
@@ -122,7 +207,7 @@ describe('HeaderSectionNav', () => {
     target.scrollIntoView = vi.fn();
     document.body.appendChild(target);
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     fireEvent.click(screen.getByRole('link', { name: 'Contact' }));
 
@@ -132,7 +217,7 @@ describe('HeaderSectionNav', () => {
   it('navigates case pages to the localized Home and stores This portfolio as the pending section', () => {
     usePathnameMock.mockReturnValue('/en/projects/horizon-his');
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     const portfolioLink = screen.getByRole('link', { name: 'This portfolio' });
     expect(portfolioLink).toHaveAttribute('href', '/en#portfolio');
@@ -162,7 +247,7 @@ describe('HeaderSectionNav', () => {
     vi.stubGlobal('scrollTo', scrollTo);
     const replaceState = vi.spyOn(window.history, 'replaceState');
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     expect(scrollTo).toHaveBeenCalledWith({ top: 4200, behavior: 'auto' });
     expect(window.sessionStorage.getItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY)).toBeNull();
@@ -186,7 +271,7 @@ describe('HeaderSectionNav', () => {
     const scrollTo = vi.fn();
     vi.stubGlobal('scrollTo', scrollTo);
 
-    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
 
     expect(scrollTo).not.toHaveBeenCalled();
     expect(window.sessionStorage.getItem(LOCALE_SCROLL_CONTEXT_STORAGE_KEY)).toBeNull();
@@ -206,7 +291,7 @@ describe('HeaderSectionNav', () => {
 
     document.body.append(projects, workProcess, portfolio, about, contact);
 
-    const { unmount } = render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" />);
+    const { unmount } = render(<HeaderSectionNav links={links} homePath="/en" label="Home sections" {...navigationLabels} />);
     unmount();
 
     expect(disconnectMock).toHaveBeenCalledTimes(1);

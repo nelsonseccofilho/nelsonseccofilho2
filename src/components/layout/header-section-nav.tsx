@@ -3,6 +3,13 @@
 import { useEffect, useState, type MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {
   clearLocaleScrollContext,
   getLocaleScrollTarget,
   getSectionHref,
@@ -20,13 +27,38 @@ type HeaderSectionNavProps = {
   links: readonly HeaderSectionNavLink[];
   homePath: string;
   label: string;
+  openLabel: string;
+  closeLabel: string;
 };
 
 const PENDING_SECTION_STORAGE_KEY = 'n3lx:pending-home-section';
 
-export function HeaderSectionNav({ links, homePath, label }: HeaderSectionNavProps) {
+function MenuIcon() {
+  return (
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </svg>
+  );
+}
+
+export function HeaderSectionNav({
+  links,
+  homePath,
+  label,
+  openLabel,
+  closeLabel,
+}: HeaderSectionNavProps) {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<HomeSectionId | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const inPageNavigation = shouldHandleInPageSectionNavigation(pathname, homePath);
 
   useEffect(() => {
@@ -167,19 +199,62 @@ export function HeaderSectionNav({ links, homePath, label }: HeaderSectionNavPro
     setActiveSection(sectionId);
   }
 
+  function handleMobileSectionClick(event: MouseEvent<HTMLAnchorElement>, sectionId: HomeSectionId) {
+    setMobileOpen(false);
+    handleSectionClick(event, sectionId);
+  }
+
   return (
-    <nav className="site-header__section-nav" aria-label={label}>
-      {links.map((link) => (
-        <a
-          key={link.anchor}
-          className="site-header__section-link"
-          href={getSectionHref(homePath, link.anchor)}
-          onClick={(event) => handleSectionClick(event, link.anchor)}
-          aria-current={inPageNavigation && activeSection === link.anchor ? 'location' : undefined}
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
+    <>
+      <nav className="site-header__section-nav" aria-label={label}>
+        {links.map((link) => (
+          <a
+            key={link.anchor}
+            className="site-header__section-link"
+            href={getSectionHref(homePath, link.anchor)}
+            onClick={(event) => handleSectionClick(event, link.anchor)}
+            aria-current={inPageNavigation && activeSection === link.anchor ? 'location' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <Dialog open={mobileOpen} onOpenChange={setMobileOpen}>
+        <DialogTrigger asChild>
+          <button
+            type="button"
+            className="site-header__mobile-nav-trigger"
+            aria-label={mobileOpen ? closeLabel : openLabel}
+            aria-expanded={mobileOpen}
+          >
+            <MenuIcon />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="site-header__mobile-nav-dialog !translate-x-0 !translate-y-0">
+          <div className="site-header__mobile-nav-heading">
+            <DialogTitle className="site-header__mobile-nav-title">{label}</DialogTitle>
+            <DialogClose asChild>
+              <button type="button" className="site-header__mobile-nav-close" aria-label={closeLabel}>
+                <CloseIcon />
+              </button>
+            </DialogClose>
+          </div>
+          <nav className="site-header__mobile-section-nav" aria-label={label}>
+            {links.map((link) => (
+              <a
+                key={link.anchor}
+                className="site-header__mobile-section-link"
+                href={getSectionHref(homePath, link.anchor)}
+                onClick={(event) => handleMobileSectionClick(event, link.anchor)}
+                aria-current={inPageNavigation && activeSection === link.anchor ? 'location' : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

@@ -11,6 +11,8 @@ export const ptBRCommon = {
     resumeLabel: 'Currículo',
     resumeAriaLabel: 'Abrir currículo de Nelson Secco em português',
     sectionsNavLabel: 'Seções da Home',
+    openNavigationLabel: 'Abrir navegação',
+    closeNavigationLabel: 'Fechar navegação',
     sectionLinks: [
       { label: 'Projetos', anchor: 'projects' },
       { label: 'Como trabalho', anchor: 'work-process' },

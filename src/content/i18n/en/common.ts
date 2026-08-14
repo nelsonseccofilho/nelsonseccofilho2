@@ -11,6 +11,8 @@ export const enCommon = {
     resumeLabel: 'Resume',
     resumeAriaLabel: "Open Nelson Secco's resume in English",
     sectionsNavLabel: 'Home sections',
+    openNavigationLabel: 'Open navigation',
+    closeNavigationLabel: 'Close navigation',
     sectionLinks: [
       { label: 'Projects', anchor: 'projects' },
       { label: 'How I work', anchor: 'work-process' },

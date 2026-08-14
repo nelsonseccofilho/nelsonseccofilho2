@@ -44,6 +44,7 @@ describe('SiteHeader', () => {
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Language' })).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Home sections' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Open navigation' })).toHaveAttribute('aria-expanded', 'false');
     expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/en#projects');
     expect(screen.getByRole('link', { name: 'How I work' })).toHaveAttribute('href', '/en#work-process');
     expect(screen.getByRole('link', { name: 'This portfolio' })).toHaveAttribute('href', '/en#portfolio');
@@ -69,6 +70,7 @@ describe('SiteHeader', () => {
     expect(contactLink.querySelector('[data-icon="send"]')).toHaveAttribute('aria-hidden', 'true');
     expect(screen.getByRole('navigation', { name: 'Idioma' })).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Seções da Home' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Abrir navegação' })).toHaveAttribute('aria-expanded', 'false');
     expect(screen.getByRole('link', { name: 'Projetos' })).toHaveAttribute('href', '/#projects');
     expect(screen.getByRole('link', { name: 'Como trabalho' })).toHaveAttribute('href', '/#work-process');
     expect(screen.getByRole('link', { name: 'Este portfólio' })).toHaveAttribute('href', '/#portfolio');
@@ -145,6 +147,15 @@ describe('SiteHeader', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
 
     expect(css).toMatch(/\.site-header__cta-label\s*\{[^}]*display:\s*none/);
+  });
+
+  it('switches from the mobile trigger to the existing horizontal nav at 1024px', () => {
+    const css = readFileSync(resolve(process.cwd(), 'src/app/globals.css'), 'utf8');
+
+    expect(css).toMatch(/\.site-header__mobile-nav-trigger,[\s\S]*?display:\s*inline-flex/);
+    expect(css).toMatch(
+      /@media \(min-width: 1024px\)\s*\{\s*\.site-header__section-nav\s*\{[^}]*display:\s*inline-flex;[^}]*\}\s*\.site-header__mobile-nav-trigger\s*\{[^}]*display:\s*none;/,
+    );
   });
 
   it('N3LX scrolls to top (smooth) when clicked on Home PT-BR', () => {

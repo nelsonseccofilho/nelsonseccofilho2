@@ -43,7 +43,13 @@ export function SiteHeader({ content = enCommon, locale = 'en', routeId = 'home'
             </svg>
             <span className="site-header__brand-type">3LX</span>
           </Link>
-          <HeaderSectionNav links={content.header.sectionLinks} homePath={homePath} label={content.header.sectionsNavLabel} />
+          <HeaderSectionNav
+            links={content.header.sectionLinks}
+            homePath={homePath}
+            label={content.header.sectionsNavLabel}
+            openLabel={content.header.openNavigationLabel}
+            closeLabel={content.header.closeNavigationLabel}
+          />
         </div>
         <div className="site-header__actions">
           <LanguageSwitcher content={content.languageSwitcher} locale={locale} routeId={routeId} />

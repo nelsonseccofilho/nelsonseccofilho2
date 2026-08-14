@@ -25,6 +25,8 @@ export type CommonContent = {
     resumeLabel: string;
     resumeAriaLabel: string;
     sectionsNavLabel: string;
+    openNavigationLabel: string;
+    closeNavigationLabel: string;
     sectionLinks: readonly {
       label: string;
       anchor: 'projects' | 'work-process' | 'portfolio' | 'about' | 'contact';

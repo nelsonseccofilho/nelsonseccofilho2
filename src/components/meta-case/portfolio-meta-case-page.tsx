@@ -30,6 +30,26 @@ export function PortfolioMetaCasePage({ locale }: { locale: Locale }) {
             placeholderLabel={common.mediaPlaceholders.visual}
           />
 
+          <section id="executive-entry" className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby="executive-entry-title">
+            <div className="layout-container grid gap-6 border-t border-[var(--color-border)] pt-[clamp(2rem,4vw,3.5rem)] md:grid-cols-12 md:gap-8">
+              <h2 id="executive-entry-title" className="m-0 text-[clamp(1.6rem,2.8vw,2.5rem)] leading-[1.08] font-bold text-[var(--color-text-primary)] md:col-span-4">
+                {content.executiveEntry.title}
+              </h2>
+              <dl className="m-0 grid max-w-[52rem] border-b border-[var(--color-border)] md:col-span-8">
+                {content.executiveEntry.items.map((item) => (
+                  <div key={item.label} className="grid gap-2 border-t border-[var(--color-border)] py-4 first:border-t-0 first:pt-0 last:pb-0 sm:grid-cols-[minmax(7rem,9rem)_minmax(0,1fr)] sm:gap-5">
+                    <dt className="text-sm leading-[1.5] font-semibold tracking-[0.12em] text-[var(--color-brand-text)] uppercase">
+                      {item.label}
+                    </dt>
+                    <dd className="m-0 max-w-[44rem] text-[1rem] leading-[1.7] text-[var(--color-text-secondary)]">
+                      {item.description}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
+
           {content.sections.map((section, index) => (
             <section key={section.id} id={section.id} className="py-[clamp(2.5rem,5vw,5rem)]" aria-labelledby={`${section.id}-title`}>
               <div className="layout-container grid gap-6 border-t border-[var(--color-border)] pt-[clamp(2rem,4vw,3.5rem)] md:grid-cols-12 md:gap-8">

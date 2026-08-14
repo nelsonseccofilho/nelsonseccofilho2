@@ -10,6 +10,13 @@ export type PortfolioMetaCaseContent = {
     src: string;
     alt: string;
   };
+  executiveEntry: {
+    title: string;
+    items: readonly {
+      label: string;
+      description: string;
+    }[];
+  };
   sections: readonly {
     id: string;
     title: string;
@@ -52,6 +59,31 @@ const ptBR: PortfolioMetaCaseContent = {
   heroMedia: {
     src: '/assets/projects/building-this-portfolio/hero/hero-building-this-portfolio-workspace.png',
     alt: 'Workspace com VS Code, localhost, terminal e colaboração assistida por IA durante a construção do portfólio.',
+  },
+  executiveEntry: {
+    title: 'Em resumo',
+    items: [
+      {
+        label: 'Problema',
+        description: 'O portfólio anterior já não representava um modo de trabalho que integra Produto, Design, Engenharia e fluxos assistidos por IA.',
+      },
+      {
+        label: 'Hipótese',
+        description: 'O próprio portfólio poderia tornar essa continuidade visível por meio de suas decisões e evidências, em vez de apenas descrevê-la.',
+      },
+      {
+        label: 'Abordagem',
+        description: 'Conteúdo primeiro, experiência bilíngue e acessível, tratada como produto e implementada como um sistema evolutivo.',
+      },
+      {
+        label: 'Evidência',
+        description: 'Decisões registradas, QA responsivo, testes automatizados, lint, typecheck, build de produção e verificação do deploy público.',
+      },
+      {
+        label: 'Resultado',
+        description: 'Um portfólio público, bilíngue e responsivo que documenta decisões, implementação e evidências do próprio processo de construção.',
+      },
+    ],
   },
   sections: [
     {
@@ -209,6 +241,31 @@ const en: PortfolioMetaCaseContent = {
   heroMedia: {
     src: '/assets/projects/building-this-portfolio/hero/hero-building-this-portfolio-workspace.png',
     alt: 'Workspace evidence with VS Code, localhost, terminal, and AI-assisted collaboration during portfolio development.',
+  },
+  executiveEntry: {
+    title: 'At a glance',
+    items: [
+      {
+        label: 'Problem',
+        description: 'The previous portfolio no longer represented a way of working that integrates Product, Design, Engineering, and AI-assisted workflows.',
+      },
+      {
+        label: 'Hypothesis',
+        description: 'The portfolio itself could make that continuity visible through its decisions and evidence instead of merely describing it.',
+      },
+      {
+        label: 'Approach',
+        description: 'A content-first, bilingual, and accessible experience, treated as a product and implemented as an evolving system.',
+      },
+      {
+        label: 'Evidence',
+        description: 'Documented decisions, responsive QA, automated tests, lint, type checking, a production build, and public deployment verification.',
+      },
+      {
+        label: 'Result',
+        description: 'A public, bilingual, responsive portfolio that documents the decisions, implementation, and evidence behind its own construction.',
+      },
+    ],
   },
   sections: [
     { id: 'why-rebuild', title: 'Why rebuild the portfolio', paragraphs: ['The previous presentation no longer fully represented my current convergence of Product Design, UX, software-development knowledge, Engineering collaboration, implementation, and AI-assisted workflows. The goal was no longer just to show projects: it was to make visible how I think, structure decisions, build, and validate.'] },

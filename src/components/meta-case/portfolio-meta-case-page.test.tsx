@@ -18,6 +18,22 @@ describe('PortfolioMetaCasePage', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Construindo este portfólio' })).toBeInTheDocument();
     expect(screen.getByText('Product Design × Engineering × AI-assisted development')).toBeInTheDocument();
+    const hero = screen.getByRole('region', { name: 'Construindo este portfólio' });
+    const executiveEntry = screen.getByRole('heading', { level: 2, name: 'Em resumo' }).closest('section');
+    const firstDetailedSection = screen.getByRole('heading', { level: 2, name: 'Por que reconstruir o portfólio' }).closest('section');
+    expect(executiveEntry).not.toBeNull();
+    expect(Array.from(executiveEntry!.querySelectorAll('dt')).map((term) => term.textContent)).toEqual([
+      'Problema',
+      'Hipótese',
+      'Abordagem',
+      'Evidência',
+      'Resultado',
+    ]);
+    expect(Array.from(executiveEntry!.querySelectorAll('dd')).map((definition) => definition.textContent)).toEqual(
+      portfolioMetaCaseContent['pt-BR'].executiveEntry.items.map((item) => item.description),
+    );
+    expect(hero.compareDocumentPosition(executiveEntry!) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(executiveEntry!.compareDocumentPosition(firstDetailedSection!) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(screen.getByText(/o arquivo .nvmrc passou a declarar node 22 no commit 588996f/i)).toBeInTheDocument();
     const repositoryLink = screen.getByRole('link', { name: 'Ver repositório no GitHub ↗' });
     expect(repositoryLink).toHaveAttribute('href', 'https://github.com/nelsonseccofilho/nelsonseccofilho2');
@@ -54,6 +70,22 @@ describe('PortfolioMetaCasePage', () => {
     render(<PortfolioMetaCasePage locale="en" />);
 
     expect(screen.getByRole('heading', { level: 1, name: 'Building this portfolio' })).toBeInTheDocument();
+    const hero = screen.getByRole('region', { name: 'Building this portfolio' });
+    const executiveEntry = screen.getByRole('heading', { level: 2, name: 'At a glance' }).closest('section');
+    const firstDetailedSection = screen.getByRole('heading', { level: 2, name: 'Why rebuild the portfolio' }).closest('section');
+    expect(executiveEntry).not.toBeNull();
+    expect(Array.from(executiveEntry!.querySelectorAll('dt')).map((term) => term.textContent)).toEqual([
+      'Problem',
+      'Hypothesis',
+      'Approach',
+      'Evidence',
+      'Result',
+    ]);
+    expect(Array.from(executiveEntry!.querySelectorAll('dd')).map((definition) => definition.textContent)).toEqual(
+      portfolioMetaCaseContent.en.executiveEntry.items.map((item) => item.description),
+    );
+    expect(hero.compareDocumentPosition(executiveEntry!) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(executiveEntry!.compareDocumentPosition(firstDetailedSection!) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     expect(screen.getByRole('heading', { level: 2, name: 'From localhost to production' })).toBeInTheDocument();
     expect(screen.getByText(/research published by Nielsen Norman Group \(NN\/g\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Microsoft Clarity became a behavioral-observation layer/i)).toHaveTextContent(/analytics remains conditional on the visitor’s choice/i);
@@ -90,6 +122,22 @@ describe('PortfolioMetaCasePage', () => {
     expect(portfolioMetaCaseContent.en.metadata.title).toBe('Building this portfolio | Nelson Secco');
     expect(getLocalizedPath('building-portfolio', 'pt-BR')).toBe('/construindo-este-portfolio');
     expect(getLocalizedPath('building-portfolio', 'en')).toBe('/en/building-this-portfolio');
+  });
+
+  it('keeps the five-dimension executive entry structurally equivalent without changing detailed sections', () => {
+    const portugueseEntry = portfolioMetaCaseContent['pt-BR'].executiveEntry;
+    const englishEntry = portfolioMetaCaseContent.en.executiveEntry;
+
+    expect(portugueseEntry.items).toHaveLength(5);
+    expect(englishEntry.items).toHaveLength(5);
+    expect(portugueseEntry.items.map((item) => Object.keys(item))).toEqual(
+      englishEntry.items.map((item) => Object.keys(item)),
+    );
+    expect(portfolioMetaCaseContent['pt-BR'].sections).toHaveLength(12);
+    expect(portfolioMetaCaseContent.en.sections).toHaveLength(12);
+    expect(portfolioMetaCaseContent['pt-BR'].sections.map((section) => section.id)).toEqual(
+      portfolioMetaCaseContent.en.sections.map((section) => section.id),
+    );
   });
 
   it('keeps the AI product and point-in-time capacity facts precise', () => {

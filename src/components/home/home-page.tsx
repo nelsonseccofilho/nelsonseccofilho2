@@ -15,8 +15,19 @@ import {
 import { selectedWork } from '@/content/home-shared';
 import { commonContent, homeContent } from '@/content/i18n';
 import { projectFacts } from '@/content/project-facts';
+import type { ProjectRouteId } from '@/content/i18n/types';
 import type { Locale } from '@/i18n/locales';
 import { getLocalizedPath } from '@/i18n/routes';
+
+const featuredProductIds = ['horizon-his', 'subiter'] as const satisfies readonly ProjectRouteId[];
+const additionalProductIds = ['dasa-canal-do-consultor', 'rede-dcc'] as const satisfies readonly ProjectRouteId[];
+
+const projectCoverByRouteId = {
+  'horizon-his': '/assets/projects/horizon-his/cover/cover-home-horizon-his.png',
+  subiter: '/assets/projects/subiter/cover/cover-master.webp',
+  'dasa-canal-do-consultor': '/assets/projects/dasa-canal-do-consultor/cover/cover-home-dasa-canal-consultor.jpg',
+  'rede-dcc': '/assets/projects/rede-dcc/cover/cover-home-rede-dcc.png',
+} satisfies Partial<Record<ProjectRouteId, string>>;
 
 type HomePageProps = {
   locale: Locale;
@@ -26,6 +37,38 @@ export function HomePage({ locale }: HomePageProps) {
   const common = commonContent[locale];
   const content = homeContent[locale];
   const resumeHref = locale === 'pt-BR' ? '/assets/resume/N3LX_PT-BR.pdf' : '/assets/resume/N3LX_EN.pdf';
+  const renderProjectCards = (routeIds: readonly ProjectRouteId[]) =>
+    routeIds.map((routeId) => {
+      const project = content.featuredCases.projects.find((item) => item.routeId === routeId);
+      if (!project) {
+        throw new Error(`Missing Home project content for route "${routeId}".`);
+      }
+
+      const facts = projectFacts[project.routeId];
+      const imageSrc = projectCoverByRouteId[project.routeId];
+      if (!imageSrc) {
+        throw new Error(`Missing Home cover for route "${project.routeId}".`);
+      }
+
+      return (
+        <ProjectCard
+          key={project.routeId}
+          id={project.routeId}
+          title={facts.projectName}
+          description={project.description}
+          tags={project.tags}
+          tagsLabel={project.tagsLabel}
+          image={{ src: imageSrc, alt: project.image.alt }}
+          href={getLocalizedPath(project.routeId, locale)}
+          placeholderLabel={common.mediaPlaceholders.cover}
+          actionLabel={content.featuredCases.actionLabel}
+          actionAriaLabel={
+            locale === 'pt-BR' ? `Ver projeto ${facts.projectName}` : `View ${facts.projectName} project`
+          }
+          analyticsEvent={getFeaturedProjectOpenEvent(project.routeId)}
+        />
+      );
+    });
 
   return (
     <>
@@ -50,40 +93,15 @@ export function HomePage({ locale }: HomePageProps) {
             <h2 id="featured-projects-title" className="m-0 text-[clamp(2rem,3.5vw,3.5rem)] leading-none font-bold text-[var(--color-text-primary)]">
               {content.featuredCases.title}
             </h2>
-            <ProjectGrid>
-              {content.featuredCases.projects.map((project) => {
-                const facts = projectFacts[project.routeId];
-                const featuredImage =
-                  project.routeId === 'horizon-his'
-                    ? { src: '/assets/projects/horizon-his/cover/cover-home-horizon-his.png', alt: project.image.alt }
-                    : project.routeId === 'subiter'
-                      ? { src: '/assets/projects/subiter/cover/cover-master.webp', alt: project.image.alt }
-                      : project.routeId === 'rede-dcc'
-                    ? { src: '/assets/projects/rede-dcc/cover/cover-home-rede-dcc.png', alt: project.image.alt }
-                    : project.routeId === 'dasa-canal-do-consultor'
-                      ? { src: '/assets/projects/dasa-canal-do-consultor/cover/cover-home-dasa-canal-consultor.jpg', alt: project.image.alt }
-                      : undefined;
-
-                return (
-                  <ProjectCard
-                    key={project.routeId}
-                    id={project.routeId}
-                    title={facts.projectName}
-                    description={project.description}
-                    tags={project.tags}
-                    tagsLabel={project.tagsLabel}
-                    image={featuredImage}
-                    href={getLocalizedPath(project.routeId, locale)}
-                    placeholderLabel={common.mediaPlaceholders.cover}
-                    actionLabel={content.featuredCases.actionLabel}
-                    actionAriaLabel={
-                      locale === 'pt-BR' ? `Ver projeto ${facts.projectName}` : `View ${facts.projectName} project`
-                    }
-                    analyticsEvent={getFeaturedProjectOpenEvent(project.routeId)}
-                  />
-                );
-              })}
-            </ProjectGrid>
+            <div className="grid gap-8">
+              <ProjectGrid>{renderProjectCards(featuredProductIds)}</ProjectGrid>
+              <div className="grid gap-4">
+                <h3 className="m-0 text-[clamp(1.2rem,2vw,1.6rem)] leading-[1.1] font-bold text-[var(--color-text-primary)]">
+                  {content.featuredCases.additionalProductWorkTitle}
+                </h3>
+                <ProjectGrid>{renderProjectCards(additionalProductIds)}</ProjectGrid>
+              </div>
+            </div>
           </div>
         </section>
         <section className="pt-[clamp(1.5rem,2.5vw,2.5rem)] pb-[clamp(2rem,4vw,3rem)]" aria-labelledby="selected-work-title">

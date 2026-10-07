@@ -15,6 +15,7 @@ export const ptBRHome = {
   featuredCases: {
     title: 'Projetos em destaque',
     actionLabel: 'Ver projeto',
+    additionalProductWorkTitle: 'Trabalho de produto adicional',
     projects: [
       {
         routeId: 'horizon-his',

@@ -15,6 +15,7 @@ export const enHome = {
   featuredCases: {
     title: 'Featured projects',
     actionLabel: 'View project',
+    additionalProductWorkTitle: 'Additional product work',
     projects: [
       {
         routeId: 'horizon-his',

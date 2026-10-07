@@ -123,6 +123,7 @@ export type HomeContent = {
   featuredCases: {
     title: string;
     actionLabel: string;
+    additionalProductWorkTitle: string;
     projects: readonly HomeProjectCardContent[];
   };
   selectedWork: {

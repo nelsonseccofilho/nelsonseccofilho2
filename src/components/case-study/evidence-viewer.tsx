@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type CSSProperties, type ReactNode, type SyntheticEvent } from 'react';
+import { useState, type ComponentProps, type CSSProperties, type ReactNode, type SyntheticEvent } from 'react';
 import {
   Dialog,
   DialogClose,
@@ -14,6 +14,13 @@ import { cn } from '@/lib/utils';
 export type EvidenceImage = {
   alt: string;
   src: string;
+  responsive?: {
+    srcSet: string;
+    sizes: string;
+    width: number;
+    height: number;
+    mobile: { src: string; width: number; height: number; media: string };
+  };
 };
 
 export type EvidenceViewerLabels = {
@@ -30,6 +37,22 @@ type EvidenceViewerProps = {
   compact?: boolean;
   loading?: 'eager' | 'lazy';
 };
+
+function EvidencePicture({ image, ...props }: { image: EvidenceImage } & ComponentProps<'img'>) {
+  const responsive = image.responsive;
+  const img = (
+    // Native sources preserve approved evidence without image transformation.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img {...props} src={image.src} alt={image.alt} srcSet={responsive?.srcSet} sizes={responsive?.sizes} width={responsive?.width} height={responsive?.height} />
+  );
+  if (!responsive) return img;
+  return (
+    <picture className="contents">
+      <source media={responsive.mobile.media} srcSet={responsive.mobile.src} width={responsive.mobile.width} height={responsive.mobile.height} />
+      {img}
+    </picture>
+  );
+}
 
 function ExpandIcon() {
   return (
@@ -64,6 +87,12 @@ export function EvidenceViewer({ image, labels, caption, className, compact = fa
     ? `min(calc(100vw - 2rem), ${intrinsicSize.width + 48}px, calc((100dvh - 7rem) * ${intrinsicSize.width / intrinsicSize.height} + 3rem))`
     : 'calc(100vw - 2rem)';
   const dialogStyle = { '--evidence-dialog-width': dialogWidth } as CSSProperties;
+  const frameStyle = image.responsive && !compact
+    ? {
+        '--evidence-aspect-mobile': image.responsive.mobile.width + ' / ' + image.responsive.mobile.height,
+        '--evidence-aspect-desktop': image.responsive.width + ' / ' + image.responsive.height,
+      } as CSSProperties
+    : undefined;
 
   return (
     <Dialog>
@@ -78,14 +107,13 @@ export function EvidenceViewer({ image, labels, caption, className, compact = fa
               className={cn(
                 'case-media__frame relative block transition-colors group-hover:border-primary group-focus-visible:border-primary',
                 compact && 'aspect-[4/3] !rounded-[var(--radius-lg)]',
+                image.responsive && !compact && 'aspect-[var(--evidence-aspect-mobile)] md:aspect-[var(--evidence-aspect-desktop)]',
               )}
+              style={frameStyle}
             >
-              {/* Native images keep SVG and raster evidence at its source fidelity. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <EvidencePicture
                 className={cn('case-media__image', compact && '!h-full !w-full object-contain p-2 sm:p-3')}
-                src={image.src}
-                alt={image.alt}
+                image={image}
                 loading={loading}
                 onLoad={handleImageLoad}
               />
@@ -108,11 +136,9 @@ export function EvidenceViewer({ image, labels, caption, className, compact = fa
         <DialogTitle className="sr-only">{labels.enlargedImageLabel}</DialogTitle>
         <DialogDescription className="sr-only">{typeof caption === 'string' ? caption : image.alt}</DialogDescription>
         <div className="mx-auto min-h-0 w-fit max-w-full overflow-auto overscroll-contain rounded-[var(--radius-md)] bg-secondary p-1 [touch-action:pinch-zoom] sm:p-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <EvidencePicture
             className="mx-auto max-h-[calc(100dvh-7rem)] w-auto max-w-[calc(100vw-3rem)] object-contain sm:max-w-[calc(100vw-5rem)]"
-            src={image.src}
-            alt={image.alt}
+            image={image}
             onLoad={handleImageLoad}
           />
         </div>

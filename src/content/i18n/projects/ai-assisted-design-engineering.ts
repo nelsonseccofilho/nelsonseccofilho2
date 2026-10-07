@@ -13,6 +13,17 @@ type BulletSection = NarrativeSection & { bullets: readonly string[] };
 type StepSection = NarrativeSection & { steps: readonly string[] };
 
 export type AiAssistedDesignEngineeringCaseLocalizedContent = {
+  evidence: {
+    establishesLabel: string;
+    doesNotEstablishLabel: string;
+    items: Readonly<Record<'ingestion' | 'runtime' | 'readme' | 'commit', { title: string; alt: string; establishes: string; doesNotEstablish: string }>>;
+  };
+  diagramLabels: {
+    workflowPhases: readonly [string, string, string, string];
+    evidenceStates: readonly [string, string, string, string, string];
+    artifactReturn: string;
+    trustLayers: readonly [string, string, string];
+  };
   metadata: MetadataContent;
   hero: {
     eyebrow: string;
@@ -53,6 +64,57 @@ export type AiAssistedDesignEngineeringCaseLocalizedContent = {
 
 export const aiAssistedDesignEngineeringCaseContent = {
   "pt-BR": {
+    "evidence": {
+      "establishesLabel": "O que esta evidência comprova",
+      "doesNotEstablishLabel": "O que ela não comprova",
+      "items": {
+        "ingestion": {
+          "title": "Ingestão de evidências no framework público",
+          "alt": "Documento público de ingestão de evidências com as distinções entre gravação, transcrição, requisito, implementação e conclusão validada.",
+          "establishes": "O framework público documenta estados distintos de evidência e exige preservação da proveniência em cada transição.",
+          "doesNotEstablish": "Não comprova ingestão ou aprovação em projetos privados de clientes, nem transforma transcrição automática em verdade."
+        },
+        "runtime": {
+          "title": "Estrutura persistente de Project Runtime",
+          "alt": "Árvore pública de runtime com diretórios de evidências, sessões, workstreams e registros operacionais.",
+          "establishes": "O repositório documenta uma estrutura persistente de runtime com evidências, sessões, workstreams, relatórios e operadores, além do README ou de um prompt.",
+          "doesNotEstablish": "Não expõe nem comprova conteúdos, configurações ou operações de runtimes privados de clientes."
+        },
+        "readme": {
+          "title": "README do repositório público",
+          "alt": "README do framework público mostrando a versão e a pergunta central sobre continuidade no trabalho de produto assistido por IA.",
+          "establishes": "O repositório público de Nelson apresenta a proposta do framework, a versão registrada na captura e a pergunta central sobre preservar intenção, contexto, evidência, responsabilidade, qualidade e continuidade entre sessões temporárias.",
+          "doesNotEstablish": "Não comprova de forma independente adoção ou operações confidenciais de clientes; a versão mostrada é um registro da captura, não uma declaração sobre a versão atual."
+        },
+        "commit": {
+          "title": "Evolução versionada — commit 291015",
+          "alt": "Commit público 291015 com alterações no README e na documentação de ingestão de evidências e transcrição local.",
+          "establishes": "O commit 2910154799ed28416475a359a9ea536599f38451 registra alterações reais e versionadas no framework e em sua documentação.",
+          "doesNotEstablish": "Não comprova hosted CI PASS, ganho de produtividade ou execução de operações privadas de clientes."
+        }
+      }
+    },
+    "diagramLabels": {
+      "workflowPhases": [
+        "Origem",
+        "Evidência e decisão",
+        "Design e execução",
+        "Validação e continuidade"
+      ],
+      "evidenceStates": [
+        "Gravação",
+        "Transcrição",
+        "Requisito aprovado",
+        "Implementação",
+        "Conclusão validada"
+      ],
+      "artifactReturn": "QA → retornar à inspeção do artefato",
+      "trustLayers": [
+        "Framework público",
+        "Runtime privado",
+        "Fontes vivas"
+      ]
+    },
     "metadata": {
       "title": "AI-Assisted Design Engineering Operating System — Case de Product Design | Nelson Secco",
       "description": "Um modelo operacional persistente e orientado por evidências para Product Designers e agentes de IA, usado como base de trabalho na N3LX Digital Business."
@@ -234,6 +296,57 @@ export const aiAssistedDesignEngineeringCaseContent = {
     }
   },
   "en": {
+    "evidence": {
+      "establishesLabel": "What this evidence establishes",
+      "doesNotEstablishLabel": "What it does not establish",
+      "items": {
+        "ingestion": {
+          "title": "Evidence ingestion in the public framework",
+          "alt": "Public evidence-ingestion document distinguishing recording, transcript, requirement, implementation, and validated completion.",
+          "establishes": "The public framework documents distinct evidence states and requires provenance to be preserved at every transition.",
+          "doesNotEstablish": "It does not prove ingestion or approval in private client projects, or turn machine transcription into truth."
+        },
+        "runtime": {
+          "title": "Persistent Project Runtime structure",
+          "alt": "Public runtime tree with directories for evidence, sessions, workstreams, and operational records.",
+          "establishes": "The repository documents a persistent runtime structure with evidence, sessions, workstreams, reports, and operators beyond a README or prompt.",
+          "doesNotEstablish": "It neither exposes nor proves the contents, configurations, or operations of private client runtimes."
+        },
+        "readme": {
+          "title": "Public repository README",
+          "alt": "Public framework README showing its version and central question about continuity in AI-assisted product work.",
+          "establishes": "Nelson’s public repository presents the framework proposition, the version recorded in the capture, and the central question about preserving intent, context, evidence, ownership, quality, and continuity across temporary sessions.",
+          "doesNotEstablish": "It does not independently prove adoption or confidential client operations; the displayed version is a capture record, not a statement about the current version."
+        },
+        "commit": {
+          "title": "Versioned evolution — commit 291015",
+          "alt": "Public commit 291015 showing changes to the README and evidence-ingestion and local-transcription documentation.",
+          "establishes": "Commit 2910154799ed28416475a359a9ea536599f38451 records real, versioned changes to the framework and its documentation.",
+          "doesNotEstablish": "It does not prove hosted CI PASS, productivity gains, or execution of private client operations."
+        }
+      }
+    },
+    "diagramLabels": {
+      "workflowPhases": [
+        "Source",
+        "Evidence & decision",
+        "Design & execution",
+        "Validation & continuity"
+      ],
+      "evidenceStates": [
+        "Recording",
+        "Transcript",
+        "Approved requirement",
+        "Implementation",
+        "Validated completion"
+      ],
+      "artifactReturn": "QA → return to artifact inspection",
+      "trustLayers": [
+        "Public framework",
+        "Private runtime",
+        "Live sources"
+      ]
+    },
     "metadata": {
       "title": "AI-Assisted Design Engineering Operating System — Product Design Case Study | Nelson Secco",
       "description": "A persistent, evidence-driven operating model for Product Designers and AI agents, used as an operational baseline through N3LX Digital Business."

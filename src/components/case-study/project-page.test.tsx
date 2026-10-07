@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/vitest';
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { projectFacts } from '@/content/project-facts';
+import { aiAssistedDesignEngineeringCaseContent } from '@/content/i18n/projects/ai-assisted-design-engineering';
 
 const { notFoundMock } = vi.hoisted(() => ({
   notFoundMock: vi.fn(() => {
@@ -81,13 +82,109 @@ describe('AI-assisted Design Engineering registry integration', () => {
   it.each([
     ['pt-BR', 'Sessões de IA são temporárias. O trabalho de produto não é.', 'Português', 'Inglês'],
     ['en', 'AI sessions are temporary. Product work isn’t.', 'Portuguese', 'English'],
-  ] as const)('renders the minimal %s case with equivalent locale links', (locale, thesis, portugueseLabel, englishLabel) => {
+  ] as const)('renders the structured %s case with equivalent locale links', (locale, thesis, portugueseLabel, englishLabel) => {
     render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
-    expect(screen.getByRole('heading', { level: 1, name: 'AI-Assisted Design Engineering Operating System' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: thesis })).toBeInTheDocument();
     expect(screen.getByText(thesis)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: portugueseLabel })).toHaveAttribute('href', '/projetos/ai-assisted-design-engineering');
     expect(screen.getByRole('link', { name: englishLabel })).toHaveAttribute('href', '/en/projects/ai-assisted-design-engineering');
     expect(getProjectMetadata('ai-assisted-design-engineering', locale).title).toMatch(/AI-Assisted Design Engineering Operating System/);
-    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(screen.getAllByRole('img')).toHaveLength(4);
+  });
+
+  it.each(['pt-BR', 'en'] as const)('preserves the approved narrative order, CTAs and both navigation mechanisms in %s', (locale) => {
+    const content = aiAssistedDesignEngineeringCaseContent[locale];
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    const main = screen.getByRole('main');
+    expect(within(main).getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    expect(within(main).getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
+      ...Object.values(content.sections).map((section) => section.title),
+      content.cta.title,
+    ]);
+    for (const section of Object.values(content.sections)) {
+      const region = within(main).getByRole('region', { name: section.title });
+      expect(within(region).getByText(section.intro)).toBeInTheDocument();
+    }
+    for (const key of ['workflow', 'artifactWork'] as const) {
+      const section = content.sections[key];
+      const region = within(main).getByRole('region', { name: section.title });
+      const lists = within(region).getAllByRole('list');
+      for (const list of lists) expect(list.tagName).toBe('OL');
+      const nodes = section.steps.map((step) => within(region).getByText(step));
+      for (let index = 1; index < nodes.length; index += 1) {
+        expect(nodes[index - 1].compareDocumentPosition(nodes[index]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      }
+    }
+    expect(within(main).getByText(content.hero.context)).toBeInTheDocument();
+    expect(within(main).getByText(content.hero.consultingContext)).toBeInTheDocument();
+    expect(within(main).getByRole('link', { name: content.cta.githubLabel })).toHaveAttribute('href', projectFacts['ai-assisted-design-engineering'].externalUrls.repository);
+    expect(within(main).getByRole('link', { name: content.cta.consultingLabel })).toHaveAttribute('href', locale === 'pt-BR' ? '/#contact' : '/en#contact');
+    const returnLabel = locale === 'pt-BR' ? 'Portfólio' : 'Portfolio';
+    const returnLinks = within(main).getAllByRole('link', { name: returnLabel });
+    expect(returnLinks).toHaveLength(2);
+    for (const link of returnLinks) expect(link).toHaveAttribute('href', locale === 'pt-BR' ? '/' : '/en');
+    expect(within(main).getAllByRole('navigation')).toHaveLength(2);
+    expect(within(main).getAllByRole('img')).toHaveLength(4);
+    expect(main.querySelectorAll('picture')).toHaveLength(4);
+  });
+
+  it.each(['pt-BR', 'en'] as const)('renders the four semantic system diagrams in %s', (locale) => {
+    const content = aiAssistedDesignEngineeringCaseContent[locale];
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    const workflow = screen.getByRole('region', { name: content.sections.workflow.title });
+    const lists = within(workflow).getAllByRole('list');
+    expect(lists).toHaveLength(4);
+    content.diagramLabels.workflowPhases.forEach((phase, index) => {
+      expect(within(workflow).getByText(phase)).toBeInTheDocument();
+      expect(lists[index]).toHaveAccessibleName(phase);
+      expect(within(lists[index]).getAllByRole('listitem').map((item) => item.textContent)).toEqual(content.sections.workflow.steps.slice(index * 3, index * 3 + 3));
+    });
+    const evidence = screen.getByRole('region', { name: content.sections.evidenceBeforeDesign.title });
+    expect(within(evidence).getAllByRole('listitem')).toHaveLength(5);
+    for (const text of [...content.diagramLabels.evidenceStates, ...content.sections.evidenceBeforeDesign.distinctions, content.sections.evidenceBeforeDesign.provenance]) {
+      expect(within(evidence).getByText(text)).toBeInTheDocument();
+    }
+    const artifact = screen.getByRole('region', { name: content.sections.artifactWork.title });
+    expect(within(artifact).getAllByRole('listitem')).toHaveLength(7);
+    expect(within(artifact).getByText(content.diagramLabels.artifactReturn, { exact: false })).toBeInTheDocument();
+    const trust = screen.getByRole('region', { name: content.sections.trustBoundaries.title });
+    expect(within(trust).getAllByRole('term')).toHaveLength(3);
+    expect(within(trust).getAllByRole('definition')).toHaveLength(3);
+    for (const label of content.diagramLabels.trustLayers) expect(within(trust).getByText(label)).toBeInTheDocument();
+    for (const layer of content.sections.trustBoundaries.layers) expect(within(trust).getByText(layer.description)).toBeInTheDocument();
+    expect(within(trust).getByText(content.sections.trustBoundaries.publicationRule)).toBeInTheDocument();
+    expect(screen.getAllByRole('img')).toHaveLength(4);
+    expect(document.querySelectorAll('picture')).toHaveLength(4);
+  });
+
+  it.each(['pt-BR', 'en'] as const)('places approved responsive public evidence next to its supporting claim in %s', (locale) => {
+    const content = aiAssistedDesignEngineeringCaseContent[locale];
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    const placements = [
+      ['ingestion', 'evidenceBeforeDesign', 'github-evidence-ingestion'],
+      ['runtime', 'runtime', 'github-runtime-tree'],
+      ['readme', 'publicFramework', 'github-readme'],
+      ['commit', 'versionedEvolution', 'github-commit-291015'],
+    ] as const;
+    for (const [family, sectionKey, filename] of placements) {
+      const item = content.evidence.items[family];
+      const region = screen.getByRole('region', { name: content.sections[sectionKey].title });
+      expect(item.alt.trim()).not.toBe('');
+      const img = within(region).getByRole('img', { name: item.alt });
+      const prefix = '/assets/projects/ai-assisted-design-engineering/evidence/' + filename;
+      expect(img).toHaveAttribute('src', prefix + '-1920.webp');
+      expect(img).toHaveAttribute('width', '1920');
+      expect(img).toHaveAttribute('height', '1080');
+      for (const width of [640, 1024, 1440, 1920]) expect(img.getAttribute('srcset')).toContain(prefix + '-' + width + '.webp ' + width + 'w');
+      expect(img.getAttribute('sizes')).toBeTruthy();
+      const source = img.closest('picture')?.querySelector('source');
+      expect(source).toHaveAttribute('srcset', prefix + '-mobile-640.webp');
+      expect(source).toHaveAttribute('media', '(max-width: 767px)');
+      expect(source).toHaveAttribute('width', '640');
+      expect(source).toHaveAttribute('height', '800');
+      for (const text of [item.title, item.establishes, item.doesNotEstablish, content.evidence.establishesLabel, content.evidence.doesNotEstablishLabel]) expect(within(region).getByText(text)).toBeInTheDocument();
+    }
+    const main = screen.getByRole('main');
+    expect(main.innerHTML).not.toMatch(/source-exports|\.png|figma\.com/i);
   });
 });

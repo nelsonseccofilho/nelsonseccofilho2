@@ -1,0 +1,54 @@
+.workflow,
+.ladder,
+.artifact,
+.trust {
+  min-width: 0;
+  margin: 0;
+  color: var(--color-text-primary);
+  line-height: 1.65;
+}
+
+.workflow { display: grid; gap: var(--spacing-6); }
+.phase { position: relative; min-width: 0; border-top: 2px solid var(--color-brand); padding-top: var(--spacing-4); }
+.label { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.phaseSteps { display: grid; gap: var(--spacing-3); margin: var(--spacing-4) 0 0; padding-left: 1.6rem; color: var(--color-text-secondary); }
+.phaseSteps li { padding-left: var(--spacing-1, 4px); }
+.phaseConnector { display: block; margin-top: var(--spacing-4); color: var(--color-text-secondary); }
+
+.ladder { max-width: 48rem; padding: 0; list-style: none; }
+.rung { min-width: 0; }
+.state { display: block; border-left: 2px solid var(--color-brand); background: var(--color-surface); padding: var(--spacing-4); font-size: 1.15rem; font-weight: 600; }
+.transition { display: flex; align-items: center; gap: var(--spacing-4); padding: var(--spacing-3) var(--spacing-4); color: var(--color-text-secondary); }
+.transition p { margin: 0; }
+.connector { flex-shrink: 0; }
+
+.loopSteps { display: grid; gap: var(--spacing-4); margin: 0; padding: 0; list-style: none; }
+.loopSteps li { position: relative; display: grid; min-width: 0; gap: var(--spacing-2); border-top: 1px solid var(--color-border); padding-top: var(--spacing-3); }
+.number { font-size: 0.78rem; font-weight: 600; color: var(--color-text-secondary); }
+.stepConnector { color: var(--color-text-secondary); }
+.loopReturn { display: flex; align-items: center; gap: var(--spacing-3); margin: var(--spacing-4) 0 0; border-left: 2px solid var(--color-brand); border-bottom: 2px solid var(--color-brand); padding: var(--spacing-4); font-weight: 600; }
+
+.trust { display: grid; max-width: 60rem; gap: var(--spacing-6); }
+.trustLayer { position: relative; min-width: 0; border: 1px solid var(--color-border); border-left: 2px solid var(--color-brand); padding: var(--spacing-4); background: var(--color-surface-elevated); }
+.trustLayer dd { margin: var(--spacing-2) 0 0; max-width: 48rem; color: var(--color-text-secondary); }
+.trustConnector { position: absolute; top: calc(-1 * var(--spacing-6)); left: var(--spacing-4); height: var(--spacing-6); color: var(--color-text-secondary); }
+
+@media (min-width: 768px) {
+  .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phaseConnector { position: absolute; top: 0; right: 0; margin: 0; }
+  .phaseConnector::before { content: '→'; }
+  .phaseConnector { font-size: 0; }
+  .phaseConnector::before { font-size: 1rem; }
+  .phase:nth-child(2) .phaseConnector::before { content: '↙'; }
+  .loopSteps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stepConnector { display: none; }
+}
+
+@media (min-width: 1200px) {
+  .workflow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .phase:nth-child(2) .phaseConnector::before { content: '→'; }
+  .loopSteps { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--spacing-5); }
+  .stepConnector { display: block; font-size: 0; }
+  .stepConnector::before { content: '→'; font-size: 1rem; }
+  .loopReturn { border-right: 2px solid var(--color-brand); justify-content: center; }
+}

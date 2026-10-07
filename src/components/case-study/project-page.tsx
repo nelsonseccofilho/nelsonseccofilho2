@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AiAssistedDesignEngineeringPage, { metadataByLocale as aiAssistedMetadata } from './projects/ai-assisted-design-engineering/page';
 import { notFound } from 'next/navigation';
 import DasaCanalDoConsultorPage, { metadataByLocale as dasaMetadata } from './projects/dasa-canal-do-consultor/page';
 import HorizonHisPage, { metadataByLocale as horizonMetadata } from './projects/horizon-his/page';
@@ -11,6 +12,7 @@ import type { ProjectRouteId } from '@/content/i18n/types';
 type ProjectComponent = (props: { locale?: Locale }) => React.ReactNode;
 
 const projectPages: Readonly<Record<ProjectRouteId, { component: ProjectComponent; metadata: Readonly<Record<Locale, Metadata>> }>> = {
+  'ai-assisted-design-engineering': { component: AiAssistedDesignEngineeringPage, metadata: aiAssistedMetadata },
   'horizon-his': { component: HorizonHisPage, metadata: horizonMetadata },
   subiter: { component: SubiterPage, metadata: subiterMetadata },
   'rede-dcc': { component: RedeDccPage, metadata: redeDccMetadata },

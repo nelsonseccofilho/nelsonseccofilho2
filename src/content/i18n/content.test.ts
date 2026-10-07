@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { aiAssistedDesignEngineeringCaseContent, aiAssistedDesignEngineeringSharedFacts } from '@/content/i18n/projects/ai-assisted-design-engineering';
 import { dasaCanalDoConsultorCaseContent, dasaCanalDoConsultorSharedFacts } from '@/content/i18n/projects/dasa-canal-do-consultor';
 import { projectFacts } from '@/content/project-facts';
 import { horizonHisCaseContent, horizonHisSharedFacts } from '@/content/i18n/projects/horizon-his';
@@ -70,7 +71,8 @@ describe('Home and shared localized content', () => {
     const portugueseRouteIds = homeContent['pt-BR'].featuredCases.projects.map((project) => project.routeId);
 
     expect(portugueseRouteIds).toEqual(englishRouteIds);
-    expect(englishRouteIds).toEqual(Object.keys(projectFacts));
+    expect(englishRouteIds).toEqual(['horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor']);
+    expect(englishRouteIds.every((routeId) => Object.hasOwn(projectFacts, routeId))).toBe(true);
     expect(englishRouteIds.map((routeId) => projectFacts[routeId].projectName)).toEqual([
       'HORIZON HIS',
       'SUBITER',
@@ -170,5 +172,38 @@ describe('Home and shared localized content', () => {
     expect(dasaCanalDoConsultorCaseContent['pt-BR'].hero.eyebrow).toBe(dasaCanalDoConsultorSharedFacts.projectName);
     expect(dasaCanalDoConsultorCaseContent.en.hero.metadata.find((item) => item.label === 'Year')?.value).toBe(dasaCanalDoConsultorSharedFacts.year);
     expect(dasaCanalDoConsultorCaseContent['pt-BR'].hero.metadata.find((item) => item.label === 'Ano')?.value).toBe(dasaCanalDoConsultorSharedFacts.year);
+  });
+});
+
+
+describe('AI-assisted Design Engineering case contract', () => {
+  it('keeps both locales complete and structurally equivalent', () => {
+    expect(getStructure(aiAssistedDesignEngineeringCaseContent.en)).toEqual(getStructure(aiAssistedDesignEngineeringCaseContent['pt-BR']));
+    for (const content of Object.values(aiAssistedDesignEngineeringCaseContent)) {
+      expect(getStringValues(content).every((value) => value.trim().length > 0)).toBe(true);
+      expect(Object.keys(content.sections)).toHaveLength(14);
+      expect(content.sections.workflow.steps).toHaveLength(12);
+      expect(content.sections.evidenceBeforeDesign.distinctions).toHaveLength(4);
+      expect(content.sections.driftDetection.states.map((state) => state.status)).toEqual(['PASS', 'FOUND', 'PENDING']);
+      expect(content.sections.operatingPrinciples.items.map((item) => item.code)).toEqual([
+        'FACT ≠ INFERENCE ≠ ASSUMPTION', 'PARITY BEFORE UX EVOLUTION', 'REUSE → COMPOSE → EVOLVE → CREATE',
+      ]);
+      expect(content.sections.trustBoundaries.layers.map((layer) => layer.id)).toEqual(['public-framework', 'private-runtime', 'live-sources']);
+      expect(getStringValues(content).join(' ')).not.toMatch(/\d+\s*%|https:\/\/(?:www\.)?figma\.com/);
+    }
+  });
+
+  it('preserves the canonical thesis and public evidence reference without invented KPIs', () => {
+    expect(aiAssistedDesignEngineeringCaseContent['pt-BR'].hero.title).toBe('Sessões de IA são temporárias. O trabalho de produto não é.');
+    expect(aiAssistedDesignEngineeringCaseContent.en.hero.title).toBe('AI sessions are temporary. Product work isn’t.');
+    expect(aiAssistedDesignEngineeringCaseContent.en.hero.consultingContext).toContain('adapted to each engagement');
+    expect(aiAssistedDesignEngineeringCaseContent.en.sections.publicFramework.evidenceBoundary).toContain('do not independently prove');
+    expect(aiAssistedDesignEngineeringSharedFacts.routeId).toBe('ai-assisted-design-engineering');
+    expect(aiAssistedDesignEngineeringSharedFacts.projectName).toBe(projectFacts['ai-assisted-design-engineering'].projectName);
+    expect(aiAssistedDesignEngineeringSharedFacts.commitSha).toBe('2910154799ed28416475a359a9ea536599f38451');
+    expect(aiAssistedDesignEngineeringSharedFacts.externalUrls.commit).toBe(
+      'https://github.com/nelsonseccofilho/ai-assisted-design-engineering-operating-system/commit/2910154799ed28416475a359a9ea536599f38451',
+    );
+    expect(projectFacts['ai-assisted-design-engineering']).not.toHaveProperty('metrics');
   });
 });

@@ -18,7 +18,9 @@ vi.mock('@/components/theme/theme-provider', () => ({
   useTheme: () => ({ resolvedTheme: 'light' }),
 }));
 
-import { getProjectMetadata, ProjectPage, projectRouteIds } from './project-page';
+import { getProjectMetadata, isProjectRouteId, ProjectPage, projectRouteIds } from './project-page';
+import { generateStaticParams as portugueseProjectParams, generateMetadata as portugueseProjectMetadata } from '@/app/(pt-BR)/(with-footer)/projetos/[project]/page';
+import { generateStaticParams as englishProjectParams, generateMetadata as englishProjectMetadata } from '@/app/(en)/(with-footer)/en/projects/[project]/page';
 
 afterEach(() => {
   cleanup();
@@ -61,5 +63,31 @@ describe('localized project page registry', () => {
     expect(within(collectionNavigation).queryByRole('list')).not.toBeInTheDocument();
     expect(collectionNavigation.querySelector('[aria-current]')).not.toBeInTheDocument();
     expect(within(collectionNavigation).queryByText(projectFacts[projectId].projectName)).not.toBeInTheDocument();
+  });
+});
+
+
+describe('AI-assisted Design Engineering registry integration', () => {
+  it('registers the new case in both existing dynamic route generators', async () => {
+    const project = 'ai-assisted-design-engineering';
+    expect(isProjectRouteId(project)).toBe(true);
+    expect(projectRouteIds).toContain(project);
+    expect(portugueseProjectParams()).toContainEqual({ project });
+    expect(englishProjectParams()).toContainEqual({ project });
+    expect(await portugueseProjectMetadata({ params: Promise.resolve({ project }) })).toEqual(getProjectMetadata(project, 'pt-BR'));
+    expect(await englishProjectMetadata({ params: Promise.resolve({ project }) })).toEqual(getProjectMetadata(project, 'en'));
+  });
+
+  it.each([
+    ['pt-BR', 'Sessões de IA são temporárias. O trabalho de produto não é.', 'Português', 'Inglês'],
+    ['en', 'AI sessions are temporary. Product work isn’t.', 'Portuguese', 'English'],
+  ] as const)('renders the minimal %s case with equivalent locale links', (locale, thesis, portugueseLabel, englishLabel) => {
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    expect(screen.getByRole('heading', { level: 1, name: 'AI-Assisted Design Engineering Operating System' })).toBeInTheDocument();
+    expect(screen.getByText(thesis)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: portugueseLabel })).toHaveAttribute('href', '/projetos/ai-assisted-design-engineering');
+    expect(screen.getByRole('link', { name: englishLabel })).toHaveAttribute('href', '/en/projects/ai-assisted-design-engineering');
+    expect(getProjectMetadata('ai-assisted-design-engineering', locale).title).toMatch(/AI-Assisted Design Engineering Operating System/);
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 });

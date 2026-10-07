@@ -1,6 +1,6 @@
 import { SUPPORTED_LOCALES, type Locale } from './locales';
 
-export const ROUTE_IDS = ['home', 'building-portfolio', 'privacy', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor'] as const;
+export const ROUTE_IDS = ['home', 'building-portfolio', 'privacy', 'horizon-his', 'subiter', 'rede-dcc', 'dasa-canal-do-consultor', 'ai-assisted-design-engineering'] as const;
 
 export type RouteId = (typeof ROUTE_IDS)[number];
 export type LocalizedPath = '/' | `/${string}`;
@@ -35,6 +35,10 @@ export const routeMap = {
   'dasa-canal-do-consultor': {
     'pt-BR': '/projetos/dasa-canal-do-consultor',
     en: '/en/projects/dasa-canal-do-consultor',
+  },
+  'ai-assisted-design-engineering': {
+    'pt-BR': '/projetos/ai-assisted-design-engineering',
+    en: '/en/projects/ai-assisted-design-engineering',
   },
 } as const satisfies RouteMap;
 

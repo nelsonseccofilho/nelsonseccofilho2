@@ -20,6 +20,7 @@ describe('localized route map', () => {
     ['privacy', '/privacidade', '/en/privacy'],
     ['horizon-his', '/projetos/horizon-his', '/en/projects/horizon-his'],
     ['subiter', '/projetos/subiter', '/en/projects/subiter'],
+    ['ai-assisted-design-engineering', '/projetos/ai-assisted-design-engineering', '/en/projects/ai-assisted-design-engineering'],
     ['rede-dcc', '/projetos/rede-dcc', '/en/projects/rede-dcc'],
     ['dasa-canal-do-consultor', '/projetos/dasa-canal-do-consultor', '/en/projects/dasa-canal-do-consultor'],
   ] as const)('maps %s between its equivalent Portuguese and English routes', (routeId, portuguesePath, englishPath) => {

@@ -1,4 +1,7 @@
-import type { ProjectRouteId } from './i18n/types';
+import type { ptBRHome } from './i18n/pt-BR/home';
+
+// Cover completeness follows the featured selection, not every registered case.
+type FeaturedProjectRouteId = (typeof ptBRHome.featuredCases.projects)[number]['routeId'];
 
 type ResponsiveSources = Readonly<Record<number, string>>;
 
@@ -30,7 +33,7 @@ function createCover(projectSlug: string): HomeProjectImage {
   };
 }
 
-export const homeProjectImages: Readonly<Record<ProjectRouteId, HomeProjectImage>> = {
+export const homeProjectImages: Readonly<Record<FeaturedProjectRouteId, HomeProjectImage>> = {
   'horizon-his': createCover('horizon-his'),
   subiter: createCover('subiter'),
   'rede-dcc': createCover('rede-dcc'),

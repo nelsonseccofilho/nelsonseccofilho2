@@ -52,3 +52,13 @@
   .stepConnector::before { content: '→'; font-size: 1rem; }
   .loopReturn { border-right: 2px solid var(--color-brand); justify-content: center; }
 }
+
+.evidence__description {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Match section introductions to the existing narrative reading measure. */
+.editorial section > div > header > p {
+  max-width: 48rem;
+}

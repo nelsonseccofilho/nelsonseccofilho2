@@ -1,3 +1,4 @@
+import styles from './case.module.css';
 import { WorkflowDiagram, EvidenceLadder, ArtifactLoop, TrustArchitecture } from './system-diagrams';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -50,11 +51,11 @@ function PublicEvidence({ family, locale }: { family: keyof typeof evidenceFamil
       <dl className="m-0 grid max-w-[48rem] gap-4">
         <div className="grid gap-1">
           <dt className="font-semibold text-[var(--color-text-primary)]">{evidence.establishesLabel}</dt>
-          <dd className="case-section__copy">{item.establishes}</dd>
+          <dd className={`case-section__copy ${styles.evidence__description}`}>{item.establishes}</dd>
         </div>
         <div className="grid gap-1">
           <dt className="font-semibold text-[var(--color-text-primary)]">{evidence.doesNotEstablishLabel}</dt>
-          <dd className="case-section__copy">{item.doesNotEstablish}</dd>
+          <dd className={`case-section__copy ${styles.evidence__description}`}>{item.doesNotEstablish}</dd>
         </div>
       </dl>
     </div>
@@ -77,14 +78,14 @@ export default function AiAssistedDesignEngineeringPage({ locale = 'pt-BR' }: { 
   return (
     <>
       <SiteHeader content={commonContent[locale]} locale={locale} routeId="ai-assisted-design-engineering" />
-      <main className="case-study">
+      <main className={`case-study ${styles.editorial}`}>
         <PortfolioReturnNavigation locale={locale} />
         <header className="py-[clamp(2.5rem,5vw,5rem)]">
           <div className="layout-container grid gap-8 md:gap-10">
             <div className="grid gap-5 md:gap-6">
               <p className="m-0 text-sm font-semibold tracking-[0.18em] text-[var(--color-brand-text)] uppercase">{content.hero.eyebrow}</p>
               <h1 className="m-0 max-w-[20ch] text-[clamp(2.5rem,5vw,5rem)] leading-[1.02] font-bold tracking-[-0.05em] text-[var(--color-text-primary)]">{content.hero.title}</h1>
-              <p className="m-0 max-w-[60rem] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-[1.65] text-[var(--color-text-secondary)]">{content.hero.description}</p>
+              <p className="m-0 max-w-[48rem] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-[1.65] text-[var(--color-text-secondary)]">{content.hero.description}</p>
             </div>
             <div className="case-section__text-block">
               <p className="case-section__copy">{content.hero.context}</p>

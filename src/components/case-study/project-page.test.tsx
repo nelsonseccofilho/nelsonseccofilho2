@@ -170,6 +170,9 @@ describe('AI-assisted Design Engineering registry integration', () => {
       const item = content.evidence.items[family];
       const region = screen.getByRole('region', { name: content.sections[sectionKey].title });
       expect(item.alt.trim()).not.toBe('');
+      if (family === 'commit') {
+        expect(within(region).getByText(item.establishes)).toHaveTextContent('2910154799ed28416475a359a9ea536599f38451');
+      }
       const img = within(region).getByRole('img', { name: item.alt });
       const prefix = '/assets/projects/ai-assisted-design-engineering/evidence/' + filename;
       expect(img).toHaveAttribute('src', prefix + '-1920.webp');

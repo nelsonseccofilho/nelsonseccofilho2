@@ -81,3 +81,16 @@ Acceptance criteria:
 - Performance impact documented before implementation is considered complete.
 
 Note: the current single HORIZON cover is acceptable for the present Phase 2 implementation. This task is intentionally deferred so it does not block Featured Cases development.
+
+
+## AI-Assisted Design Engineering Operating System
+
+- Public GitHub screenshots are real evidence from Nelson's authored public framework repository: https://github.com/nelsonseccofilho/ai-assisted-design-engineering-operating-system. The evidence reference is commit `2910154799ed28416475a359a9ea536599f38451`.
+- High-resolution PNG captures remain immutable archival/support evidence under `public/assets/projects/ai-assisted-design-engineering/source-exports/`; they are not active case publication media.
+- Public case UI must use optimized WebP derivatives from `public/assets/projects/ai-assisted-design-engineering/evidence/`, not PNG masters. Landscape evidence uses 1920 / 1440 / 1024 / 640 variants with a 16:9 ratio.
+- Mobile uses dedicated 640 × 800 (4:5) editorial crops when reducing landscape evidence would make technical content unreadable. Crops must come from real captures; never manually reconstruct content to make it fit. The README mobile master uses native GitHub responsive reflow, not manually reflowed text.
+- Real screenshots prove existence. Native diagrams explain systems. Editorial representations protect confidential work. Native HTML/CSS/SVG diagrams should explain systems and workflows; essential explanatory copy remains HTML rather than baked into raster evidence.
+- Never publish private client screenshots, stakeholder identities, private Figma URLs, file keys, node IDs, proprietary recordings/transcripts, or private runtime content.
+- An Evidence Viewer may expose larger technical evidence when useful. Validate responsive evidence visually rather than treating it as simple proportional downsizing; tight crops may omit secondary context or truncate long supporting lines.
+
+These publication rules apply to this project; they do not introduce a new permanent global repository rule.

@@ -47,6 +47,18 @@ export const enHome = {
       },
     ],
   },
+  featuredPractice: {
+    eyebrow: 'Featured practice',
+    title: 'AI-Assisted Design Engineering Operating System',
+    description: 'Turns temporary AI sessions into persistent product work guided by evidence and explicit decisions.',
+    steps: [
+      { title: 'Evidence', description: 'Capture useful context' },
+      { title: 'Decision', description: 'Choose with clear criteria' },
+      { title: 'Artifact + QA', description: 'Implement and validate' },
+      { title: 'Continuity', description: 'Preserve what was learned' },
+    ],
+    actionLabel: 'Explore the practice',
+  },
   selectedWork: {
     eyebrow: 'Selected work',
     title: 'Design systems for mobility',

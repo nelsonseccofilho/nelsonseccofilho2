@@ -126,6 +126,16 @@ export type HomeContent = {
     additionalProductWorkTitle: string;
     projects: readonly HomeProjectCardContent[];
   };
+  featuredPractice: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    steps: readonly {
+      title: string;
+      description: string;
+    }[];
+    actionLabel: string;
+  };
   selectedWork: {
     eyebrow: string;
     title: string;

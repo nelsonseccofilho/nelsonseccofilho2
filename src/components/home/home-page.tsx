@@ -3,6 +3,7 @@ import { AnalyticsConsentSurface } from '@/components/analytics/analytics-provid
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
 import { getFeaturedProjectOpenEvent, getWhatsAppClickEvent } from '@/components/analytics/clarity';
 import { BackToTop } from '@/components/case-study/back-to-top';
+import { FeaturedPractice } from '@/components/home/featured-practice';
 import { Hero } from '@/components/home/hero';
 import { ProjectCard } from '@/components/home/project-card';
 import { ProjectGrid } from '@/components/home/project-grid';
@@ -95,6 +96,10 @@ export function HomePage({ locale }: HomePageProps) {
             </h2>
             <div className="grid gap-8">
               <ProjectGrid>{renderProjectCards(featuredProductIds)}</ProjectGrid>
+              <FeaturedPractice
+                content={content.featuredPractice}
+                href={getLocalizedPath('ai-assisted-design-engineering', locale)}
+              />
               <div className="grid gap-4">
                 <h3 className="m-0 text-[clamp(1.2rem,2vw,1.6rem)] leading-[1.1] font-bold text-[var(--color-text-primary)]">
                   {content.featuredCases.additionalProductWorkTitle}

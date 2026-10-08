@@ -47,6 +47,18 @@ export const ptBRHome = {
       },
     ],
   },
+  featuredPractice: {
+    eyebrow: 'Prática em destaque',
+    title: 'AI-Assisted Design Engineering Operating System',
+    description: 'Transforma sessões temporárias de IA em trabalho de produto persistente, guiado por evidências e decisões explícitas.',
+    steps: [
+      { title: 'Evidências', description: 'Capturar contexto útil' },
+      { title: 'Decisão', description: 'Escolher com critério' },
+      { title: 'Artefato + QA', description: 'Implementar e validar' },
+      { title: 'Continuidade', description: 'Preservar o que foi aprendido' },
+    ],
+    actionLabel: 'Conheça a prática',
+  },
   selectedWork: {
     eyebrow: 'Trabalho selecionado',
     title: 'Design systems para mobilidade',

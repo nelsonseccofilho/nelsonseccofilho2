@@ -56,7 +56,9 @@ describe('HomePage', () => {
     expect(screen.getByText(/ai-assisted product design/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /featured projects/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /additional product work/i })).toBeInTheDocument();
-    const projectGrids = within(featuredCases).getAllByRole('list');
+    const projectGrids = within(featuredCases)
+      .getAllByRole('list')
+      .filter((list) => list.tagName === 'UL');
     expect(projectGrids).toHaveLength(2);
     expect(within(projectGrids[0]).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual([
       'HORIZON HIS',
@@ -66,6 +68,14 @@ describe('HomePage', () => {
       'DASA — Canal do Consultor',
       'REDE DCC 1.0',
     ]);
+    const featuredPractice = screen.getByRole('article', {
+      name: 'AI-Assisted Design Engineering Operating System',
+    });
+    const featuredPracticeLink = within(featuredPractice).getByRole('link', { name: 'Explore the practice' });
+    expect(featuredPracticeLink).toHaveAttribute('href', '/en/projects/ai-assisted-design-engineering');
+    expect(
+      within(featuredPractice).getAllByRole('heading').map((heading) => heading.textContent),
+    ).toEqual(['AI-Assisted Design Engineering Operating System', 'Evidence', 'Decision', 'Artifact + QA', 'Continuity']);
     const horizonLink = within(featuredCases).getByRole('link', { name: /horizon his/i });
     expect(horizonLink).toHaveAttribute('href', '/en/projects/horizon-his');
     const subiterLink = within(featuredCases).getByRole('link', { name: /subiter/i });
@@ -85,7 +95,9 @@ describe('HomePage', () => {
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /subiter/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /rede dcc 1\.0/i })).toBeInTheDocument();
     expect(within(featuredCases).getByRole('heading', { level: 3, name: /dasa/i })).toBeInTheDocument();
-    expect(within(featuredCases).getAllByRole('link')).toHaveLength(4);
+    const productCardLinks = projectGrids.flatMap((grid) => within(grid).getAllByRole('link'));
+    expect(productCardLinks).toHaveLength(4);
+    expect(new Set(productCardLinks.map((link) => link.getAttribute('href'))).size).toBe(4);
     expect(within(featuredCases).getByRole('link', { name: 'View HORIZON HIS project' })).toHaveAttribute('href', '/en/projects/horizon-his');
     expect(within(featuredCases).getByRole('link', { name: 'View SUBITER project' })).toHaveAttribute('href', '/en/projects/subiter');
     expect(within(featuredCases).getByRole('link', { name: 'View REDE DCC 1.0 project' })).toHaveAttribute('href', '/en/projects/rede-dcc');
@@ -94,11 +106,12 @@ describe('HomePage', () => {
     expect(within(featuredCases).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent)).toEqual([
       'HORIZON HIS',
       'SUBITER',
+      'AI-Assisted Design Engineering Operating System',
       'Additional product work',
       'DASA — Canal do Consultor',
       'REDE DCC 1.0',
     ]);
-    expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(5);
+    expect(within(featuredCases).getAllByRole('heading', { level: 3 })).toHaveLength(6);
     expect(screen.getByText(/discovery-led product design translating research/i)).toBeInTheDocument();
     expect(screen.getByText('Product Designer · Healthtech · Discovery and Business Rules')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /design systems for mobility/i })).toBeInTheDocument();
@@ -174,6 +187,65 @@ describe('HomePage', () => {
     expect(within(contactSection).queryByRole('link', { name: 'Privacy' })).not.toBeInTheDocument();
 
     expect(hero.compareDocumentPosition(featuredCases) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+
+  it.each([
+    ['pt-BR', '/projetos/ai-assisted-design-engineering', 'Conheça a prática'],
+    ['en', '/en/projects/ai-assisted-design-engineering', 'Explore the practice'],
+  ] as const)('renders Featured Practice in the %s Home between product groups', (locale, href, actionLabel) => {
+    render(<HomePage locale={locale} />);
+
+    const featuredCases = screen.getByRole('region', {
+      name: locale === 'pt-BR' ? 'Projetos em destaque' : 'Featured projects',
+    });
+    const featuredPractice = screen.getByRole('article', {
+      name: 'AI-Assisted Design Engineering Operating System',
+    });
+    const productGrids = within(featuredCases)
+      .getAllByRole('list')
+      .filter((list) => list.tagName === 'UL');
+    const featuredProductHeadings = within(productGrids[0])
+      .getAllByRole('heading', { level: 3 })
+      .map((heading) => heading.textContent);
+    const additionalProductHeadings = within(productGrids[1])
+      .getAllByRole('heading', { level: 3 })
+      .map((heading) => heading.textContent);
+
+    expect(featuredProductHeadings).toEqual(['HORIZON HIS', 'SUBITER']);
+    expect(additionalProductHeadings).toEqual(['DASA — Canal do Consultor', 'REDE DCC 1.0']);
+    expect(within(featuredPractice).getByRole('link', { name: actionLabel })).toHaveAttribute('href', href);
+    expect(
+      within(featuredPractice).getByRole('heading', {
+        level: 3,
+        name: 'AI-Assisted Design Engineering Operating System',
+      }),
+    ).toBeInTheDocument();
+    expect(
+      within(productGrids[0]).queryByRole('heading', {
+        level: 3,
+        name: 'AI-Assisted Design Engineering Operating System',
+      }),
+    ).not.toBeInTheDocument();
+
+    const subiterHeading = within(productGrids[0]).getByRole('heading', { level: 3, name: 'SUBITER' });
+    const practiceHeading = within(featuredPractice).getByRole('heading', {
+      level: 3,
+      name: 'AI-Assisted Design Engineering Operating System',
+    });
+    const dasaHeading = within(productGrids[1]).getByRole('heading', {
+      level: 3,
+      name: 'DASA — Canal do Consultor',
+    });
+    expect(subiterHeading.compareDocumentPosition(practiceHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+    expect(practiceHeading.compareDocumentPosition(dasaHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+
+    const productLinks = productGrids.flatMap((grid) => within(grid).getAllByRole('link'));
+    expect(productLinks).toHaveLength(4);
+    expect(new Set(productLinks.map((link) => link.getAttribute('href'))).size).toBe(4);
   });
 
   it('tracks Contact WhatsApp and all four Featured Project intentions with exact keys', () => {

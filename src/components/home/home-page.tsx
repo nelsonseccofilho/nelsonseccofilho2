@@ -158,6 +158,9 @@ export function HomePage({ locale }: HomePageProps) {
               <h2 id="seniority-title" className="m-0 text-[clamp(1.6rem,2.6vw,2.2rem)] leading-[1.1] font-bold text-[var(--color-text-primary)]">
                 {content.seniority.title}
               </h2>
+              <p className="m-0 max-w-[48rem] text-[0.98rem] leading-[1.7] text-[var(--color-text-secondary)]">
+                {content.seniority.description}
+              </p>
             </div>
             <ol className="m-0 grid list-none border-b border-[var(--color-border)] p-0">
               {content.seniority.pillars.map((pillar, index) => (
@@ -200,7 +203,7 @@ export function HomePage({ locale }: HomePageProps) {
                 </h2>
               </div>
               <div className="about__main">
-                <ul className="about__positioning" aria-label="Professional positioning">
+                <ul className="about__positioning">
                   {content.about.positioning.map((item) => (
                     <li key={item.title} className="about__positioning-item">
                       <p className="about__positioning-title">{item.title}</p>

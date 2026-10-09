@@ -1,5 +1,21 @@
 # N3LX Portfolio — QA Findings
 
+## 2026-10-08 — AI-case navigation and storytelling follow-up
+
+**Status:** Implemented and verified locally within feature scope.
+
+Owner-reported missing back-to-top and generic consulting detour were corrected. The existing back-to-top component is now present, and consulting opens WhatsApp with a dedicated localized AI-consulting message and the established primary action behavior. How I Work now follows the AI practice's evidence-to-continuity sequence; the English-only About list label was removed (CU-001).
+
+206 tests across 32 files, typecheck, lint, and production build passed. Browser keyboard/navigation checks and inspected screenshots covered 1366×768 Light PT-BR, 820×1180 Light PT-BR, 440×956 Dark PT-BR, and 440×956 Light EN. WhatsApp navigation was intercepted; no message was sent. The full release matrix and external service availability are not claimed.
+
+See [D-027](./DECISIONS.md#d-027--ai-case-navigation-contextual-consulting-and-process-storytelling) and the [persisted follow-up evidence](./13-content-usability-review.md#owner-authorized-follow-up--navigation-and-ai-storytelling).
+
+## 2026-10-08 — Content and usability audit index
+
+**Status:** Source review recorded; rendered validation pending.
+
+The [content and usability review](./13-content-usability-review.md) records CU-001–CU-009, priorities, source evidence, proposed resolutions, and validation limitations. Confirmed source/documentation inconsistencies are distinguished from usability hypotheses. D-025 records the audit; D-026 records the proposed AI/Spotify secondary style. The static visual specimen is not rendered QA evidence. Existing focused suites passed 42 tests across four files; no UI fix or milestone approval is claimed.
+
 This document records issues, inconsistencies, risks, and refinement opportunities found during portfolio validations.
 
 Each finding receives a permanent identifier.

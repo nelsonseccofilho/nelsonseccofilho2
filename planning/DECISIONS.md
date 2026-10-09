@@ -599,6 +599,7 @@ public/assets/projects/
     ├── hero/
     ├── narrative/
     └── evidence/
+```
 
 ---
 
@@ -632,3 +633,82 @@ Nelson Secco
 
 ### AI Contribution Note
 The confirmation originated from Nelson Secco. AI-assisted analysis was used to structure and document the decision and to translate it into visual direction guidelines for the portfolio.
+
+---
+
+## D-025 — Content and usability review of the evolved portfolio
+
+**Date:** 2026-10-08
+**Status:** Review recorded; recommendations pending implementation decisions
+
+**Context**
+
+The owner requested a review of recent content evolution against existing project rules, documentation of decisions, and a secondary-action proposal for the AI practice and Spotify.
+
+**Decision**
+
+Record the inspected baseline, findings, preserved content contracts, evidence limitations, and recommended implementation order in [Content and Usability Review](./13-content-usability-review.md). Distinguish confirmed source/documentation findings from usability hypotheses and pending rendered validation.
+
+Preserve the current separation of product cases, AI practice, and artistic activity. Retain public/private evidence boundaries, the complete reference SHA, localized routes, and existing project-status claims. No new professional claim, metric, or permanent rule is introduced by this audit.
+
+**Rationale and consequences**
+
+The evolved project has documented drift in locale accessibility, QA presets, theme-stack policy, CSS exceptions, historical documentation formatting/language, and case progression. These require explicit scoped follow-up decisions; a passing component test suite does not establish visual or behavioral conformance.
+
+The missing closing fence in D-023 was repaired only to restore Markdown readability. D-024's original Portuguese text and owner attribution remain intact; its language-rule conflict is recorded in CU-004 rather than silently translated.
+
+**Validation**
+
+42 focused tests passed across Home, localized content, project pages, and case navigation. Local Home returned HTTP 200. Rendered visual QA remains pending because available browser tooling failed to produce usable evidence. This entry does not certify a milestone or release.
+
+---
+
+## D-026 — Outlined secondary actions for AI practice and Spotify
+
+**Date:** 2026-10-08
+**Status:** Proposed; not implemented or owner-approved
+
+**Context**
+
+Both Home actions currently use accessible-height text links. The owner requested a secondary style similar to the existing primary.
+
+**Proposed decision**
+
+Use an outlined secondary anchor with the current primary's pill radius, typography, token family, touch-target minimum, and visible focus treatment. Preserve the neutral filled primary's visual priority. Replace the existing action styling without duplicating destinations.
+
+Scope: the AI-practice link on Home and the Spotify link in About. Preserve typed internal AI routes and same-tab behavior; preserve Spotify's current external destination and new-tab behavior, with a localized accessible announcement.
+
+**Rationale**
+
+Shared geometry communicates a coherent action family; fill distinguishes the primary conversion action. Artistic content remains secondary to professional work, and the AI practice remains discoverable as its own case.
+
+**Consequences and validation gate**
+
+See the [specification](./13-content-usability-review.md#secondary-action-proposal) and [Light/Dark visual specimen](./secondary-action-proposal.svg). Neither is rendered application evidence. Implementation requires locale/route tests, keyboard/focus review, representative desktop/mobile Light/Dark validation, reduced motion, wrapping, and absence of unintended overflow. The proposal does not authorize global CTA restyling, case navigation changes, or new dependencies.
+
+---
+
+## D-027 — AI-case navigation, contextual consulting, and process storytelling
+
+**Date:** 2026-10-08
+**Status:** Implemented and validated locally; not committed or deployed
+
+**Context**
+
+The owner reported that the AI case lacked a working back-to-top action and that consulting did not behave like the portfolio's WhatsApp CTA. The owner also requested focusing How I Work on the AI case while preserving storytelling.
+
+**Decision**
+
+Reuse the existing localized back-to-top component in the AI case. Replace the consulting Home-anchor detour with the existing primary WhatsApp action family, same recipient, new-tab behavior, privacy masking, and consent-gated analytics. Select a dedicated localized `ai-consulting` message without changing general contact defaults.
+
+Make consulting the primary closing action and retain GitHub as the exploratory secondary. Revise both locales of How I Work into five connected stages: evidence/context, product decisions, design/implementation, review/QA, and continuity. State human direction, critical review, and accountability explicitly. Remove About's redundant English-only accessible list label.
+
+**Rationale**
+
+The AI narrative now connects demonstrated practice to a relevant next step without requiring a detour through generic contact. The process section explains how work progresses rather than repeating a capability inventory. Reuse preserves established interaction contracts and avoids adding dependencies or a new motion mechanism.
+
+**Validation and consequences**
+
+206 tests across 32 files, typecheck, lint, and production build passed. Browser checks covered representative desktop/tablet/mobile, PT/EN, and Light/Dark samples. Keyboard back-to-top returned to 0; consulting opened the expected intercepted WhatsApp URL in another tab; no horizontal overflow or page errors occurred in the checked scenarios. External WhatsApp delivery was not tested and no message was sent.
+
+The [follow-up review and evidence](./13-content-usability-review.md#owner-authorized-follow-up--navigation-and-ai-storytelling) record exact coverage and limitations. D-026 remains a proposal for the two Home secondary actions; this decision does not approve global CTA restyling, unresolved governance changes, or a release.

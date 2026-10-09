@@ -1,14 +1,21 @@
 import '@testing-library/jest-dom/vitest';
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { projectFacts } from '@/content/project-facts';
 import { aiAssistedDesignEngineeringCaseContent } from '@/content/i18n/projects/ai-assisted-design-engineering';
+import { getWhatsAppContactUrl } from '@/content/contact';
 
-const { notFoundMock } = vi.hoisted(() => ({
+const { notFoundMock, trackEventMock } = vi.hoisted(() => ({
+  trackEventMock: vi.fn(),
   notFoundMock: vi.fn(() => {
     throw new Error('NEXT_NOT_FOUND');
   }),
 }));
+
+vi.mock('@/components/analytics/analytics-provider', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/components/analytics/analytics-provider')>();
+  return { ...actual, useAnalytics: () => ({ trackEvent: trackEventMock }) };
+});
 
 vi.mock('next/navigation', () => ({
   notFound: notFoundMock,
@@ -26,6 +33,8 @@ import { generateStaticParams as englishProjectParams, generateMetadata as engli
 afterEach(() => {
   cleanup();
   vi.clearAllMocks();
+  vi.restoreAllMocks();
+  Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
 });
 
 describe('localized project page registry', () => {
@@ -118,7 +127,14 @@ describe('AI-assisted Design Engineering registry integration', () => {
     expect(within(main).getByText(content.hero.context)).toBeInTheDocument();
     expect(within(main).getByText(content.hero.consultingContext)).toBeInTheDocument();
     expect(within(main).getByRole('link', { name: content.cta.githubLabel })).toHaveAttribute('href', projectFacts['ai-assisted-design-engineering'].externalUrls.repository);
-    expect(within(main).getByRole('link', { name: content.cta.consultingLabel })).toHaveAttribute('href', locale === 'pt-BR' ? '/#contact' : '/en#contact');
+    const consultingLink = within(main).getByRole('link', { name: content.cta.consultingLabel });
+    expect(consultingLink).toHaveAttribute('href', getWhatsAppContactUrl(locale, 'ai-consulting'));
+    expect(consultingLink).toHaveAttribute('target', '_blank');
+    expect(consultingLink).toHaveAttribute('rel', 'noreferrer');
+    expect(consultingLink).toHaveAttribute('data-clarity-mask', 'true');
+    expect(consultingLink).toHaveClass('whatsapp-action');
+    fireEvent.click(consultingLink);
+    expect(trackEventMock).toHaveBeenLastCalledWith('contact_whatsapp_click:ai-consulting');
     const returnLabel = locale === 'pt-BR' ? 'Portfólio' : 'Portfolio';
     const returnLinks = within(main).getAllByRole('link', { name: returnLabel });
     expect(returnLinks).toHaveLength(2);
@@ -126,6 +142,19 @@ describe('AI-assisted Design Engineering registry integration', () => {
     expect(within(main).getAllByRole('navigation')).toHaveLength(2);
     expect(within(main).getAllByRole('img')).toHaveLength(4);
     expect(main.querySelectorAll('picture')).toHaveLength(4);
+  });
+
+  it.each([
+    ['pt-BR', 'Voltar ao topo'],
+    ['en', 'Back to top'],
+  ] as const)('provides a working localized back-to-top action in the %s AI case', (locale, label) => {
+    const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    expect(screen.queryByRole('button', { name: label })).not.toBeInTheDocument();
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 600 });
+    fireEvent.scroll(window);
+    fireEvent.click(screen.getByRole('button', { name: label }));
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
   });
 
   it.each(['pt-BR', 'en'] as const)('renders the four semantic system diagrams in %s', (locale) => {

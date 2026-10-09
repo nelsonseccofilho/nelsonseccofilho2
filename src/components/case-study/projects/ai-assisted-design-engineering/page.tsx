@@ -1,16 +1,19 @@
 import styles from './case.module.css';
 import { WorkflowDiagram, EvidenceLadder, ArtifactLoop, TrustArchitecture } from './system-diagrams';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { AnalyticsLink } from '@/components/analytics/analytics-link';
+import { getWhatsAppClickEvent } from '@/components/analytics/clarity';
+import { BackToTop } from '@/components/case-study/back-to-top';
 import { CaseNavigation } from '@/components/case-study/case-navigation';
 import { EvidenceViewer } from '@/components/case-study/evidence-viewer';
 import { CaseSection } from '@/components/case-study/case-section';
 import { SiteHeader } from '@/components/layout/site-header';
 import { PortfolioReturnNavigation } from '@/components/navigation/portfolio-return-navigation';
+import { SendIcon } from '@/components/ui/send-icon';
+import { getWhatsAppContactUrl } from '@/content/contact';
 import { commonContent } from '@/content/i18n';
 import { aiAssistedDesignEngineeringCaseContent, aiAssistedDesignEngineeringSharedFacts } from '@/content/i18n/projects/ai-assisted-design-engineering';
 import type { Locale } from '@/i18n/locales';
-import { getLocalizedPath } from '@/i18n/routes';
 
 export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
   'pt-BR': aiAssistedDesignEngineeringCaseContent['pt-BR'].metadata,
@@ -185,12 +188,23 @@ export default function AiAssistedDesignEngineeringPage({ locale = 'pt-BR' }: { 
 
         <CaseSection id="case-contact" title={content.cta.title} intro={content.cta.description}>
           <div className="flex flex-wrap items-center gap-4">
+            <AnalyticsLink
+              className="whatsapp-action contact__primary-link"
+              href={getWhatsAppContactUrl(locale, 'ai-consulting')}
+              target="_blank"
+              rel="noreferrer"
+              eventName={getWhatsAppClickEvent('ai-consulting')}
+              data-clarity-mask="true"
+            >
+              <SendIcon className="contact__primary-icon" />
+              <span>{content.cta.consultingLabel}</span>
+            </AnalyticsLink>
             <a className="text-link text-link--hit-area" href={aiAssistedDesignEngineeringSharedFacts.externalUrls.repository} target="_blank" rel="noreferrer">{content.cta.githubLabel}</a>
-            <Link className="text-link text-link--hit-area" href={`${getLocalizedPath('home', locale)}#contact`}>{content.cta.consultingLabel}</Link>
           </div>
         </CaseSection>
         <CaseNavigation locale={locale} projectId="ai-assisted-design-engineering" />
       </main>
+      <BackToTop label={commonContent[locale].backToTop.label} accessibilityLabel={commonContent[locale].backToTop.accessibilityLabel} />
     </>
   );
 }

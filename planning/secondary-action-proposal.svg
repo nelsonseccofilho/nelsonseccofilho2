@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="580" viewBox="0 0 1000 580" role="img" aria-labelledby="title description">
+  <title id="title">Secondary action proposal</title>
+  <desc id="description">Static Light and Dark specimens comparing the current filled WhatsApp primary with proposed outlined AI practice and Spotify links. This is a design proposal, not rendered application QA.</desc>
+  <rect width="1000" height="580" fill="#F6F8F5"/>
+  <g font-family="Arial, sans-serif">
+    <text x="32" y="42" font-size="24" font-weight="700" fill="#101311">Secondary actions · proposal</text>
+    <text x="32" y="70" font-size="14" fill="#626862">Same pill geometry and typography; outlined secondary; filled primary retains priority.</text>
+    <rect x="32" y="96" width="456" height="396" rx="24" fill="#FFFFFF" stroke="#DDE3DC"/>
+    <rect x="512" y="96" width="456" height="396" rx="24" fill="#0B0E0B" stroke="#303830"/>
+    <g transform="translate(56 128)" fill="#101311">
+      <text font-size="14" font-weight="700">LIGHT</text>
+      <text y="38" font-size="13" fill="#626862">Current primary · contact</text>
+      <rect y="54" width="260" height="48" rx="24" fill="#101311"/>
+      <text x="130" y="84" text-anchor="middle" font-size="15" font-weight="600" fill="#FFFFFF">Talk to me on WhatsApp</text>
+      <text y="138" font-size="13" fill="#626862">Proposed secondary · featured AI practice</text>
+      <rect y="154" width="230" height="48" rx="24" fill="none" stroke="#101311"/>
+      <text x="115" y="184" text-anchor="middle" font-size="15" font-weight="600">Explore the practice →</text>
+      <text y="238" font-size="13" fill="#626862">Proposed secondary · About / music</text>
+      <rect y="254" width="264" height="48" rx="24" fill="none" stroke="#101311"/>
+      <text x="132" y="284" text-anchor="middle" font-size="15" font-weight="600">Listen to N3LX on Spotify ↗</text>
+      <text y="338" font-size="13" fill="#626862">44px minimum target; label may wrap on mobile.</text>
+    </g>
+    <g transform="translate(536 128)" fill="#F4F7F4">
+      <text font-size="14" font-weight="700">DARK</text>
+      <text y="38" font-size="13" fill="#AAB3AA">Current primary · contact</text>
+      <rect y="54" width="260" height="48" rx="24" fill="#F4F7F4"/>
+      <text x="130" y="84" text-anchor="middle" font-size="15" font-weight="600" fill="#0B0E0B">Talk to me on WhatsApp</text>
+      <text y="138" font-size="13" fill="#AAB3AA">Proposed secondary · featured AI practice</text>
+      <rect y="154" width="230" height="48" rx="24" fill="none" stroke="#F4F7F4"/>
+      <text x="115" y="184" text-anchor="middle" font-size="15" font-weight="600">Explore the practice →</text>
+      <text y="238" font-size="13" fill="#AAB3AA">Proposed secondary · About / music</text>
+      <rect y="254" width="264" height="48" rx="24" fill="none" stroke="#F4F7F4"/>
+      <text x="132" y="284" text-anchor="middle" font-size="15" font-weight="600">Listen to N3LX on Spotify ↗</text>
+      <text y="338" font-size="13" fill="#AAB3AA">Existing theme tokens; neutral outline at rest.</text>
+    </g>
+    <text x="32" y="527" font-size="14" fill="#626862">Navigation remains an anchor. Internal AI link: same tab. Spotify: announce the new tab accessibly.</text>
+    <text x="32" y="554" font-size="13" fill="#626862">Review specimen only · placement, focus states, responsive fit, and rendered contrast remain to be validated.</text>
+  </g>
+</svg>

@@ -6,8 +6,13 @@ const WHATSAPP_MESSAGES = {
   en: "Hi Nelson, I saw your portfolio and I'd like to talk about a project.",
 } as const;
 
-export function getWhatsAppContactUrl(locale: Locale): string {
-  const message = WHATSAPP_MESSAGES[locale];
+const AI_CONSULTING_WHATSAPP_MESSAGES = {
+  'pt-BR': 'Olá Nelson, conheci sua prática de Design Engineering assistido por IA no portfólio e gostaria de conversar sobre uma consultoria para integrar IA ao processo de Product Design da minha equipe.',
+  en: "Hi Nelson, I explored your AI-assisted Design Engineering practice in your portfolio and would like to discuss consulting on integrating AI into my team's Product Design process.",
+} as const;
+
+export function getWhatsAppContactUrl(locale: Locale, context: 'general' | 'ai-consulting' = 'general'): string {
+  const message = context === 'ai-consulting' ? AI_CONSULTING_WHATSAPP_MESSAGES[locale] : WHATSAPP_MESSAGES[locale];
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
 }

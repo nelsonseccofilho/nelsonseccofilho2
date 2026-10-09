@@ -69,13 +69,14 @@ export const ptBRHome = {
   },
   seniority: {
     eyebrow: 'Como eu trabalho',
-    title: 'Da descoberta à entrega',
+    title: 'Da evidência à entrega, com IA',
+    description: 'Minha prática de Design Engineering assistido por IA conecta contexto, decisões, artefatos e validação. A IA apoia o trabalho; direção de produto, revisão crítica e responsabilidade continuam humanas.',
     pillars: [
-      { title: 'Discovery', description: 'Uso pesquisa, síntese e crítica para reduzir ambiguidades e aprimorar escolhas de produto.' },
-      { title: 'Estratégia', description: 'Alinho intenção de produto, contexto do serviço e necessidades das pessoas para orientar decisões de produto e interface.' },
-      { title: 'Sistemas Complexos', description: 'Traduzo fluxos intrincados em estruturas de produto coerentes e legíveis.' },
-      { title: 'Design Systems', description: 'Construo padrões reutilizáveis que escalam entre equipes, pontos de contato e evoluções futuras do produto.' },
-      { title: 'Entrega', description: 'Transformo conceitos em decisões prontas para entrega, com handoff claro e suporte à implementação.' },
+      { title: 'Evidência e contexto', description: 'Reúno pesquisa, fontes aprovadas e restrições do projeto para compreender o problema e preservar a origem de cada informação.' },
+      { title: 'Decisão de produto', description: 'Traduzo evidências em requisitos e prioridades, distinguindo fatos, inferências e hipóteses antes de orientar a solução.' },
+      { title: 'Design e implementação', description: 'Uso IA para apoiar análise, prototipação e implementação, reutilizando padrões e conectando intenção de produto aos artefatos.' },
+      { title: 'Revisão e QA', description: 'Reviso o resultado com critérios de experiência, acessibilidade e qualidade técnica. Registro o que foi verificado e o que ainda precisa de validação.' },
+      { title: 'Continuidade', description: 'Preservo decisões, evidências e próximos passos em registros persistentes para retomar o trabalho entre sessões com contexto e responsabilidade.' },
     ],
   },
   about: {

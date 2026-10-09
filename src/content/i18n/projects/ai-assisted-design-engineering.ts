@@ -289,10 +289,10 @@ export const aiAssistedDesignEngineeringCaseContent = {
       }
     },
     "cta": {
-      "title": "Explore o método ou converse sobre seu contexto",
-      "description": "Conheça o framework público ou converse sobre Product Design e consultoria em UX pela N3LX Digital Business.",
+      "title": "Vamos aplicar IA ao seu processo de produto?",
+      "description": "Converse sobre consultoria em Product Design assistido por IA pela N3LX Digital Business, considerando o contexto, as evidências e a confidencialidade da sua equipe. Se quiser explorar o método primeiro, o framework está disponível no GitHub.",
       "githubLabel": "Explorar o framework no GitHub",
-      "consultingLabel": "Conversar com a N3LX Digital Business"
+      "consultingLabel": "Conversar sobre consultoria com IA"
     }
   },
   "en": {
@@ -521,10 +521,10 @@ export const aiAssistedDesignEngineeringCaseContent = {
       }
     },
     "cta": {
-      "title": "Explore the method or discuss your context",
-      "description": "Explore the public framework or discuss Product Design and UX consulting through N3LX Digital Business.",
+      "title": "Shall we bring AI into your product process?",
+      "description": "Discuss AI-assisted Product Design consulting through N3LX Digital Business, grounded in your team's context, evidence, and confidentiality. To explore the method first, the framework is available on GitHub.",
       "githubLabel": "Explore the framework on GitHub",
-      "consultingLabel": "Contact N3LX Digital Business"
+      "consultingLabel": "Discuss AI consulting"
     }
   }
 } as const satisfies DictionaryByLocale<AiAssistedDesignEngineeringCaseLocalizedContent>;

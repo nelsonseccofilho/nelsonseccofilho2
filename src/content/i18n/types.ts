@@ -147,6 +147,7 @@ export type HomeContent = {
   seniority: {
     eyebrow: string;
     title: string;
+    description: string;
     pillars: readonly {
       title: string;
       description: string;

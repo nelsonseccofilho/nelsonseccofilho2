@@ -118,26 +118,22 @@ describe('HomePage', () => {
     expect(screen.getByRole('heading', { level: 3, name: /connectcar/i })).toBeInTheDocument();
     expect(screen.getByText(/responsive ui and design-system studies for connectcar \/ freeflow/i)).toBeInTheDocument();
     expect(screen.getByText('Editorial representation')).toBeInTheDocument();
-    expect(screen.getAllByText('Design Systems')).toHaveLength(3);
+    expect(screen.getAllByText('Design Systems')).toHaveLength(2);
     expect(screen.getByText('Mobility')).toBeInTheDocument();
     expect(screen.getByText('Responsive UI')).toBeInTheDocument();
 
-    const senioritySection = screen.getByRole('region', { name: /from discovery to delivery/i });
+    const senioritySection = screen.getByRole('region', { name: /from evidence to delivery, with ai/i });
     expect(senioritySection).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 2, name: /from discovery to delivery/i })).toBeInTheDocument();
+    expect(within(senioritySection).getByRole('heading', { level: 2, name: /from evidence to delivery, with ai/i })).toBeInTheDocument();
     expect(within(senioritySection).getByText(/how i work/i)).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Discovery' })).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Strategy' })).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Complex Systems' })).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Design Systems' })).toBeInTheDocument();
-    expect(within(senioritySection).getByRole('heading', { level: 3, name: 'Delivery' })).toBeInTheDocument();
+    expect(within(senioritySection).getByText(/product direction, critical review, and accountability remain human/i)).toBeInTheDocument();
     const pillarList = within(senioritySection).getByRole('list');
     expect(pillarList.tagName).toBe('OL');
     const visualOrderNumbers = Array.from(pillarList.querySelectorAll(':scope > li > span'));
     expect(visualOrderNumbers.map((number) => number.textContent)).toEqual(['01', '02', '03', '04', '05']);
     visualOrderNumbers.forEach((number) => expect(number).toHaveAttribute('aria-hidden', 'true'));
     const pillarNames = within(senioritySection).getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
-    expect(pillarNames).toEqual(['Discovery', 'Strategy', 'Complex Systems', 'Design Systems', 'Delivery']);
+    expect(pillarNames).toEqual(['Evidence and context', 'Product decisions', 'Design and implementation', 'Review and QA', 'Continuity']);
     expect(within(senioritySection).getAllByRole('heading', { level: 3 })).toHaveLength(5);
 
     const aboutSection = screen.getByRole('region', { name: /about/i });

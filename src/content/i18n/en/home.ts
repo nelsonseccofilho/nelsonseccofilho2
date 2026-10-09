@@ -69,13 +69,14 @@ export const enHome = {
   },
   seniority: {
     eyebrow: 'How I work',
-    title: 'From discovery to delivery',
+    title: 'From evidence to delivery, with AI',
+    description: 'My AI-assisted Design Engineering practice connects context, decisions, artifacts, and validation. AI supports the work; product direction, critical review, and accountability remain human.',
     pillars: [
-      { title: 'Discovery', description: 'Using research, synthesis and critique to reduce ambiguity and sharpen product choices.' },
-      { title: 'Strategy', description: 'Aligning product intent, service context and user needs to guide product and interface decisions.' },
-      { title: 'Complex Systems', description: 'Translating intricate workflows into coherent, legible product structures.' },
-      { title: 'Design Systems', description: 'Building reusable patterns that scale across teams, touchpoints and future product change.' },
-      { title: 'Delivery', description: 'Turning concepts into delivery-ready decisions with clear handoff and implementation support.' },
+      { title: 'Evidence and context', description: 'Gathering research, approved sources, and project constraints to understand the problem and preserve the origin of each piece of information.' },
+      { title: 'Product decisions', description: 'Turning evidence into requirements and priorities, distinguishing facts, inferences, and hypotheses before shaping the solution.' },
+      { title: 'Design and implementation', description: 'Using AI to support analysis, prototyping, and implementation, reusing patterns and connecting product intent to artifacts.' },
+      { title: 'Review and QA', description: 'Reviewing the result against experience, accessibility, and technical quality criteria. Recording what was checked and what still needs validation.' },
+      { title: 'Continuity', description: 'Preserving decisions, evidence, and next steps in persistent records to resume work across sessions with context and accountability.' },
     ],
   },
   about: {

@@ -7,7 +7,7 @@ export const ANALYTICS_CONSENT_STORAGE_KEY = 'portfolio.analytics-consent';
 export type AnalyticsConsent = 'unknown' | 'declined' | 'granted';
 export type ClarityContextTag = 'locale' | 'theme';
 export type ResumeAnalyticsSurface = 'hero' | 'footer';
-export type WhatsAppAnalyticsSurface = 'header' | 'contact';
+export type WhatsAppAnalyticsSurface = 'header' | 'contact' | 'ai-consulting';
 export type CaseNavigationProjectId = Exclude<ProjectRouteId, 'horizon-his'>;
 
 export type PortfolioAnalyticsEvent =

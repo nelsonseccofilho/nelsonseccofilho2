@@ -1,0 +1,40 @@
+{
+  "verifiedOn": "2026-10-20",
+  "sourceCommit": "f20ea00cd3afb65417b734a281eca5aec3242330",
+  "githubBranch": "main",
+  "githubRemoteHeadVerified": true,
+  "site": "https://nelsonsecco.netlify.app",
+  "method": "HTTPS fetch using curl --fail; inspect served HTML and compare downloaded PDF bytes against local assets from sourceCommit.",
+  "checks": [
+    {
+      "locale": "pt-BR",
+      "secondaryActions": 2,
+      "spotifyNewTabDisclosure": true,
+      "aiHref": true
+    },
+    {
+      "locale": "en",
+      "secondaryActions": 2,
+      "spotifyNewTabDisclosure": true,
+      "aiHref": true
+    },
+    {
+      "locale": "PT-BR",
+      "pdfHeader": "%PDF-",
+      "bytes": 110840,
+      "sha256": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+      "matchesPublishedCommitAsset": true
+    },
+    {
+      "locale": "EN",
+      "pdfHeader": "%PDF-",
+      "bytes": 8595,
+      "sha256": "9382ce6042ed4206995d24e8c72f1f72c0ba8e6f1123fbc107ba7f43e7a09abc",
+      "matchesPublishedCommitAsset": true
+    }
+  ],
+  "limitations": [
+    "HTTP content and PDF integrity were verified on the public site. Interactive visual QA used the local production build documented in results.json.",
+    "The isolated browser network was denied by the environment, so no new hosted-browser interaction or visual pass is claimed."
+  ]
+}

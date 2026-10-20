@@ -114,3 +114,10 @@ CU-001 remains resolved. CU-002, CU-003, CU-004, CU-005, CU-006, CU-008, CU-010,
 See [production-browser measurements and limits](./qa/2026-10-19-secondary-release/results.json). Screenshots are in the same folder. Validation logs are also retained there. This is feature-scoped local production-build evidence, not hosted CI PASS, formal accessibility certification, or a complete all-route/theme audit. Spotify requests were intercepted; no message was sent and external service availability is not claimed.
 
 Publication is owner-authorized. Only reviewed task files may be staged; the pre-existing AGENTS.md and CLAUDE.md remain untouched and excluded. GitHub publication and deployment must be verified separately from local checks.
+
+
+## Publication verification - 2026-10-20
+
+GitHub main was verified at f20ea00cd3afb65417b734a281eca5aec3242330. The public Portuguese and English Home responses each contain both secondary actions and the localized Spotify new-tab announcement. Both live PDF downloads exactly match the validated commit assets (Portuguese: 110840 bytes; English: 8595 bytes). The Portuguese download also retains the original source hash.
+
+[Publication evidence](./qa/2026-10-19-secondary-release/publication-2026-10-20.json) records the served content and PDF hashes. Public HTTP content and PDF integrity are confirmed; hosted interactive visual QA is not claimed because the isolated browser network was denied. The existing production-build interaction evidence remains the visual/behavioral validation.

@@ -1,6 +1,7 @@
 import type { CommonContent } from '../types';
 
 export const enCommon = {
+  newTabLabel: '(opens in a new tab)',
   metadata: {
     title: 'Nelson Secco — Senior Product Designer & UX Consultant',
     description: 'Senior Product Designer with a software-development background who also works as a UX Consultant across Design, Product, and Engineering.',
@@ -63,6 +64,8 @@ export const enCommon = {
     secondaryContactLinks: 'Secondary contact links',
   },
   resumeDialog: {
+    openLabel: 'Open PDF in a new tab',
+    previewHelpLabel: 'If the preview does not appear, open the PDF in a new tab or download it.',
     title: 'Resume — Nelson Secco',
     closeLabel: 'Close resume',
     downloadLabel: 'Download PDF',

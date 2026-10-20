@@ -65,6 +65,8 @@ export function SiteFooter({ locale }: SiteFooterProps) {
                 closeLabel: content.resumeDialog.closeLabel,
                 downloadLabel: content.resumeDialog.downloadLabel,
                 loadingLabel: content.resumeDialog.loadingLabel,
+                openLabel: content.resumeDialog.openLabel,
+                previewHelpLabel: content.resumeDialog.previewHelpLabel,
               }}
             />
             <PrivacyPreferencesButton

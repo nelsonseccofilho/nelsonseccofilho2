@@ -20,9 +20,9 @@ This includes planning files, project documentation, Markdown documentation, arc
 
 All source code and technical identifiers must remain in English, including variables, functions, components, interfaces, types, filenames, API names, test names, and technical comments.
 
-All files under planning/ MUST be written in English.
+All new files and records under planning/ MUST be written in English. The original Portuguese D-024 is retained verbatim as a historical exception; its English clarification is in D-029.
 
-If a planning file contains Portuguese, report it as a violation and do not automatically translate the repository during an unrelated task.
+If new planning prose is written in Portuguese, report it as a violation and do not automatically translate the repository during an unrelated task.
 
 Git commit messages must remain in English and follow Conventional Commits.
 
@@ -141,7 +141,7 @@ Examples:
 
 Rules:
 
-- no !important;
+- no !important, except the transient theme-transition suppression defined by D-029;
 - no inline style, unless technically justified;
 - avoid excessively specific selectors;
 - prioritize semantic tokens;
@@ -179,17 +179,11 @@ Light is default.
 
 Dark is optional.
 
-Theme Provider:
+Theme provider: the custom `AppThemeProvider` and `ThemeInitializationScript` (D-029).
 
-next-themes
+Use `data-theme`, persist the explicit choice under localStorage key `theme`, default to light, and do not follow the system theme.
 
-attribute:
-
-data-theme
-
-enableSystem:
-
-false
+The temporary transition-suppression style may use `!important` solely during a theme change and must be removed immediately afterward. This exception does not apply to ordinary component styles.
 
 Theme changes must not cause:
 
@@ -313,7 +307,7 @@ Current official stack:
 - Tailwind CSS 4
 - Vitest
 - React Testing Library
-- next-themes
+- custom AppThemeProvider (D-029)
 
 TypeScript must remain strict.
 

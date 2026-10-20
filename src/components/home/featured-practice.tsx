@@ -25,7 +25,7 @@ export function FeaturedPractice({ content, href }: FeaturedPracticeProps) {
         <p className="m-0 text-[clamp(0.95rem,1.25vw,1rem)] leading-[1.6] text-[var(--color-text-secondary)]">
           {content.description}
         </p>
-        <Link className="text-link text-link--hit-area w-fit" href={href}>
+        <Link className="secondary-action w-fit" href={href}>
           {content.actionLabel}
         </Link>
       </div>

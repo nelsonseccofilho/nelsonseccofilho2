@@ -1,6 +1,7 @@
 import type { CommonContent } from '../types';
 
 export const ptBRCommon = {
+  newTabLabel: '(abre em outra aba)',
   metadata: {
     title: 'Nelson Secco — Senior Product Designer & UX Consultant',
     description: 'Senior Product Designer com background em desenvolvimento de software, também atuando como UX Consultant entre Design, Produto e Engenharia.',
@@ -63,6 +64,8 @@ export const ptBRCommon = {
     secondaryContactLinks: 'Links secundários de contato',
   },
   resumeDialog: {
+    openLabel: 'Abrir PDF em outra aba',
+    previewHelpLabel: 'Se a prévia não aparecer, abra o PDF em outra aba ou faça o download.',
     title: 'Currículo — Nelson Secco',
     closeLabel: 'Fechar currículo',
     downloadLabel: 'Baixar PDF',

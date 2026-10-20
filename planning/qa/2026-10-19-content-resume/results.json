@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-19",
+  "baseline": "f364705",
+  "environment": "Local Next.js development server; headless Chrome; not release QA",
+  "resume": [
+    {
+      "locale": "pt-BR",
+      "path": "/",
+      "width": 1366,
+      "height": 768,
+      "theme": "light",
+      "home": {
+        "width": 1366,
+        "scrollWidth": 1366,
+        "theme": "light",
+        "headings": [
+          "Design de produtos digitais para sistemas complexos."
+        ],
+        "spotify": [
+          {
+            "text": "Ouvir N3LX no Spotify ↗",
+            "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+            "target": "_blank",
+            "aria": null
+          }
+        ]
+      },
+      "modal": {
+        "bounds": {
+          "x": 235,
+          "y": 32,
+          "width": 896,
+          "height": 704,
+          "top": 32,
+          "right": 1131,
+          "bottom": 736,
+          "left": 235
+        },
+        "download": {
+          "href": "/assets/resume/N3LX_PT-BR.pdf",
+          "bounds": {
+            "x": 971.96875,
+            "y": 57.265625,
+            "width": 94.03125,
+            "height": 34,
+            "top": 57.265625,
+            "right": 1066,
+            "bottom": 91.265625,
+            "left": 971.96875
+          }
+        },
+        "close": {
+          "label": "Fechar currículo",
+          "bounds": {
+            "x": 1074,
+            "y": 56.265625,
+            "width": 36,
+            "height": 36,
+            "top": 56.265625,
+            "right": 1110,
+            "bottom": 92.265625,
+            "left": 1074
+          }
+        },
+        "iframe": "/assets/resume/N3LX_PT-BR.pdf",
+        "loadingVisible": false
+      },
+      "downloadName": "N3LX_PT-BR.pdf",
+      "downloadHash": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+      "expectedHash": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+      "bytesEqual": true,
+      "focusReturned": true
+    },
+    {
+      "locale": "en",
+      "path": "/en",
+      "width": 440,
+      "height": 956,
+      "theme": "dark",
+      "home": {
+        "width": 440,
+        "scrollWidth": 440,
+        "theme": "dark",
+        "headings": [
+          "Designing digital products for complex systems."
+        ],
+        "spotify": [
+          {
+            "text": "Listen to N3LX on Spotify ↗",
+            "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+            "target": "_blank",
+            "aria": null
+          }
+        ]
+      },
+      "modal": {
+        "bounds": {
+          "x": 8,
+          "y": 16,
+          "width": 424,
+          "height": 924,
+          "top": 16,
+          "right": 432,
+          "bottom": 940,
+          "left": 8
+        },
+        "download": {
+          "href": "/assets/resume/N3LX_EN.pdf",
+          "bounds": {
+            "x": 264.53125,
+            "y": 35.609375,
+            "width": 106.46875,
+            "height": 30,
+            "top": 35.609375,
+            "right": 371,
+            "bottom": 65.609375,
+            "left": 264.53125
+          }
+        },
+        "close": {
+          "label": "Close resume",
+          "bounds": {
+            "x": 379,
+            "y": 32.609375,
+            "width": 36,
+            "height": 36,
+            "top": 32.609375,
+            "right": 415,
+            "bottom": 68.609375,
+            "left": 379
+          }
+        },
+        "iframe": "/assets/resume/N3LX_EN.pdf",
+        "loadingVisible": false
+      },
+      "downloadName": "N3LX_EN.pdf",
+      "downloadHash": "9382ce6042ed4206995d24e8c72f1f72c0ba8e6f1123fbc107ba7f43e7a09abc",
+      "expectedHash": "9382ce6042ed4206995d24e8c72f1f72c0ba8e6f1123fbc107ba7f43e7a09abc",
+      "bytesEqual": true,
+      "focusReturned": true
+    }
+  ],
+  "home": [
+    {
+      "locale": "pt-BR",
+      "path": "/",
+      "width": 1920,
+      "height": 1080,
+      "theme": "light",
+      "scrollWidth": 1920,
+      "aiAction": [
+        {
+          "text": "Conheça a prática",
+          "href": "/projetos/ai-assisted-design-engineering",
+          "bounds": {
+            "x": 281,
+            "y": 2286.328125,
+            "width": 126.140625,
+            "height": 44,
+            "top": 2286.328125,
+            "right": 407.140625,
+            "bottom": 2330.328125,
+            "left": 281
+          }
+        }
+      ],
+      "projectOrder": []
+    },
+    {
+      "locale": "pt-BR",
+      "path": "/",
+      "width": 1366,
+      "height": 768,
+      "theme": "light",
+      "scrollWidth": 1366,
+      "aiAction": [
+        {
+          "text": "Conheça a prática",
+          "href": "/projetos/ai-assisted-design-engineering",
+          "bounds": {
+            "x": 89,
+            "y": 2018.609375,
+            "width": 126.140625,
+            "height": 44,
+            "top": 2018.609375,
+            "right": 215.140625,
+            "bottom": 2062.609375,
+            "left": 89
+          }
+        }
+      ],
+      "projectOrder": []
+    },
+    {
+      "locale": "pt-BR",
+      "path": "/",
+      "width": 820,
+      "height": 1180,
+      "theme": "light",
+      "scrollWidth": 820,
+      "aiAction": [
+        {
+          "text": "Conheça a prática",
+          "href": "/projetos/ai-assisted-design-engineering",
+          "bounds": {
+            "x": 57.59375,
+            "y": 1779.90625,
+            "width": 126.140625,
+            "height": 44,
+            "top": 1779.90625,
+            "right": 183.734375,
+            "bottom": 1823.90625,
+            "left": 57.59375
+          }
+        }
+      ],
+      "projectOrder": []
+    },
+    {
+      "locale": "en",
+      "path": "/en",
+      "width": 440,
+      "height": 956,
+      "theme": "dark",
+      "scrollWidth": 440,
+      "aiAction": [
+        {
+          "text": "Explore the practice",
+          "href": "/en/projects/ai-assisted-design-engineering",
+          "bounds": {
+            "x": 41,
+            "y": 2202.875,
+            "width": 139.1875,
+            "height": 44,
+            "top": 2202.875,
+            "right": 180.1875,
+            "bottom": 2246.875,
+            "left": 41
+          }
+        }
+      ],
+      "projectOrder": []
+    }
+  ],
+  "followup": [
+    {
+      "locale": "pt-BR",
+      "path": "/",
+      "width": 1366,
+      "height": 768,
+      "homeOrder": [
+        "HORIZON HIS",
+        "SUBITER",
+        "AI-Assisted Design Engineering Operating System",
+        "DASA — Canal do Consultor",
+        "REDE DCC 1.0"
+      ],
+      "footerPdf": "/assets/resume/N3LX_PT-BR.pdf",
+      "aiCase": {
+        "width": 1366,
+        "scrollWidth": 1366,
+        "sections": 15,
+        "consulting": [
+          {
+            "label": "Conversar sobre consultoria com IA",
+            "href": "https://wa.me/5512981241764?text=Ol%C3%A1%20Nelson%2C%20conheci%20sua%20pr%C3%A1tica%20de%20Design%20Engineering%20assistido%20por%20IA%20no%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20consultoria%20para%20integrar%20IA%20ao%20processo%20de%20Product%20Design%20da%20minha%20equipe.",
+            "target": "_blank"
+          }
+        ],
+        "backToTop": []
+      }
+    },
+    {
+      "locale": "en",
+      "path": "/en",
+      "width": 440,
+      "height": 956,
+      "homeOrder": [
+        "HORIZON HIS",
+        "SUBITER",
+        "AI-Assisted Design Engineering Operating System",
+        "DASA — Canal do Consultor",
+        "REDE DCC 1.0"
+      ],
+      "footerPdf": "/assets/resume/N3LX_EN.pdf",
+      "aiCase": {
+        "width": 440,
+        "scrollWidth": 440,
+        "sections": 15,
+        "consulting": [
+          {
+            "label": "Discuss AI consulting",
+            "href": "https://wa.me/5512981241764?text=Hi%20Nelson%2C%20I%20explored%20your%20AI-assisted%20Design%20Engineering%20practice%20in%20your%20portfolio%20and%20would%20like%20to%20discuss%20consulting%20on%20integrating%20AI%20into%20my%20team%27s%20Product%20Design%20process.",
+            "target": "_blank"
+          }
+        ],
+        "backToTop": []
+      }
+    }
+  ],
+  "pageErrors": [],
+  "sourceHash": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+  "limitations": [
+    "Embedded PDF viewer was blank in headless screenshots; no in-browser document-rendering success is claimed. Both PDFs were independently rendered with Poppler and visually inspected.",
+    "No full route/theme/accessibility/reduced-motion matrix or external service validation."
+  ],
+  "tests": {
+    "files": 4,
+    "passed": 38,
+    "suites": [
+      "ResumeDialog",
+      "SiteFooter",
+      "Home",
+      "localized content"
+    ]
+  }
+}

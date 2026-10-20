@@ -18,6 +18,7 @@ export type AccessibilityLabels = {
 };
 
 export type CommonContent = {
+  newTabLabel: string;
   metadata: MetadataContent;
   header: {
     contactLabel: string;
@@ -86,6 +87,8 @@ export type CommonContent = {
     closeLabel: string;
     downloadLabel: string;
     loadingLabel: string;
+    openLabel: string;
+    previewHelpLabel: string;
   };
 };
 

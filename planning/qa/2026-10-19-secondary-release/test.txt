@@ -1,0 +1,91 @@
+
+ RUN  v4.1.10 D:/git/nelsonseccofilho2
+
+ ✓ src/components/case-study/evidence-viewer.test.tsx (5 tests) 1404ms
+     ✓ opens an accessible modal, closes with Escape, and restores trigger focus  773ms
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+ ✓ src/components/ui/resume-dialog.test.tsx (17 tests) 1966ms
+ ✓ src/components/layout/header-section-nav.test.tsx (21 tests) 2460ms
+     ✓ keeps semantic anchor hrefs for progressive enhancement  490ms
+     ✓ opens a mobile dialog containing the same five section destinations  316ms
+ ✓ src/components/case-study/projects/rede-dcc/page.test.tsx (3 tests) 2019ms
+     ✓ renders the English REDE DCC editorial case and locale-aware controls  1258ms
+     ✓ renders the Portuguese REDE DCC editorial case without English fallback  550ms
+ ✓ src/components/case-study/projects/horizon-his/page.test.tsx (2 tests) 1946ms
+     ✓ renders the English editorial case with localized controls and preserved factual boundaries  1371ms
+     ✓ renders the Portuguese editorial case without falling back to English  573ms
+Not implemented: navigation to another Document
+ ✓ src/components/layout/site-header.test.tsx (21 tests) 2398ms
+     ✓ renders English Header labels and localized Home links  929ms
+ ✓ src/components/meta-case/portfolio-meta-case-page.test.tsx (5 tests) 2260ms
+     ✓ renders the authored Portuguese meta-case with verified production evidence  1442ms
+     ✓ renders semantic English parity and keeps the meta-case outside client continuity  788ms
+ ✓ src/components/case-study/projects/subiter/page.test.tsx (2 tests) 2506ms
+     ✓ renders the English SUBITER editorial case with locale-aware navigation  1585ms
+     ✓ renders the Portuguese SUBITER editorial case without English fallback  918ms
+ ✓ src/components/case-study/projects/dasa-canal-do-consultor/page.test.tsx (3 tests) 2883ms
+     ✓ renders the English DASA discovery narrative with confidentiality-safe claims  1745ms
+     ✓ renders the Portuguese DASA editorial content without English fallback  992ms
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+ ✓ src/app/page.test.tsx (9 tests) 4875ms
+     ✓ renders the new header, hero and featured cases composition  2420ms
+     ✓ renders Featured Practice in the pt-BR Home between product groups  646ms
+     ✓ renders canonical Portuguese content and localized project links  744ms
+ ✓ src/components/analytics/analytics-provider.test.tsx (5 tests) 925ms
+     ✓ shows PT-BR preferences for unknown consent without initializing Clarity  507ms
+ ✓ src/components/case-study/project-page.test.tsx (20 tests) 5411ms
+     ✓ renders the same Horizon HIS identity with Portuguese route controls  852ms
+     ✓ renders the structured pt-BR case with equivalent locale links  707ms
+     ✓ renders the structured en case with equivalent locale links  361ms
+     ✓ preserves the approved narrative order, CTAs and both navigation mechanisms in pt-BR  677ms
+     ✓ preserves the approved narrative order, CTAs and both navigation mechanisms in en  680ms
+     ✓ renders the four semantic system diagrams in pt-BR  351ms
+     ✓ renders the four semantic system diagrams in en  324ms
+ ✓ src/components/home/theme-aware-project-image.test.tsx (3 tests) 467ms
+     ✓ renders the light theme image when resolvedTheme is light  371ms
+ ✓ src/components/home/project-card.test.tsx (5 tests) 769ms
+     ✓ renders a semantic list item with a named article  562ms
+ ✓ src/components/navigation/portfolio-return-link.test.tsx (2 tests) 399ms
+     ✓ returns Portuguese readers to the portfolio root with one decorative left arrow  317ms
+Not implemented: navigation to another Document
+ ✓ src/components/home/hero.test.tsx (2 tests) 898ms
+     ✓ renders the editorial hero composition  587ms
+     ✓ wires the Hero Resume surface to open and download intent events  308ms
+ ✓ src/components/theme/theme-toggle.test.tsx (6 tests) 530ms
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+ ✓ src/components/layout/site-footer.test.tsx (3 tests) 1623ms
+     ✓ opens English privacy preferences without navigating  987ms
+     ✓ opens Portuguese privacy preferences without navigating  360ms
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+ ✓ src/components/case-study/case-navigation.test.tsx (6 tests) 826ms
+     ✓ continues from horizon-his to the next project  438ms
+ ✓ src/components/layout/route-feedback.test.tsx (4 tests) 1023ms
+     ✓ exposes locale-aware loading labels with the decorative N mark  471ms
+     ✓ renders the Portuguese 404 with one explicit recovery action  381ms
+ ✓ src/app/privacy-pages.test.tsx (2 tests) 683ms
+     ✓ keeps the Portuguese privacy page available at /privacidade  640ms
+ ✓ src/content/i18n/content.test.ts (10 tests) 49ms
+ ✓ src/lib/section-navigation.test.ts (11 tests) 47ms
+ ✓ src/components/analytics/clarity.test.ts (12 tests) 35ms
+ ✓ src/i18n/routes.test.ts (12 tests) 32ms
+ ✓ src/components/theme/theme-initialization-script.test.tsx (1 test) 16ms
+ ✓ src/components/case-study/back-to-top.test.tsx (3 tests) 367ms
+     ✓ is hidden at the page start and appears after the scroll threshold  319ms
+ ✓ src/app/layout.test.ts (5 tests) 15ms
+ ✓ src/components/theme/theme-provider.test.tsx (3 tests) 293ms
+ ✓ src/components/home/project-grid.test.tsx (2 tests) 276ms
+ ✓ src/content/contact.test.ts (2 tests) 6ms
+ ✓ next.config.test.ts (1 test) 6ms
+
+ Test Files  32 passed (32)
+      Tests  208 passed (208)
+   Start at  23:51:16
+   Duration  16.20s (transform 7.30s, setup 0ms, import 31.86s, tests 39.41s, environment 77.10s)

@@ -149,9 +149,11 @@ describe('HomePage', () => {
     expect(within(aboutSection).getByText(/i’m nelson secco, a senior product designer who also works as a ux consultant/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/n3lx digital business is the business structure/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/outside of digital product work, i also write and produce original music as n3lx/i)).toBeInTheDocument();
-    const spotifyLink = within(aboutSection).getByRole('link', { name: 'Listen to N3LX on Spotify ↗' });
+    const spotifyLink = within(aboutSection).getByRole('link', { name: 'Listen to N3LX on Spotify (opens in a new tab)' });
     expect(spotifyLink).toHaveAttribute('href', 'https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE');
-    expect(spotifyLink).toHaveClass('text-link', 'text-link--hit-area');
+    expect(spotifyLink).toHaveClass('secondary-action');
+    expect(spotifyLink).toHaveAttribute('target', '_blank');
+    expect(spotifyLink).toHaveAttribute('rel', 'noreferrer');
     const metaCaseLink = screen.getByRole('link', { name: 'See how it was built →' });
     expect(metaCaseLink).toHaveAttribute('href', '/en/building-this-portfolio');
     expect(metaCaseLink).toHaveClass('text-link', 'text-link--hit-area');
@@ -209,7 +211,10 @@ describe('HomePage', () => {
 
     expect(featuredProductHeadings).toEqual(['HORIZON HIS', 'SUBITER']);
     expect(additionalProductHeadings).toEqual(['DASA — Canal do Consultor', 'REDE DCC 1.0']);
-    expect(within(featuredPractice).getByRole('link', { name: actionLabel })).toHaveAttribute('href', href);
+    const action = within(featuredPractice).getByRole('link', { name: actionLabel });
+    expect(action).toHaveAttribute('href', href);
+    expect(action).not.toHaveAttribute('target');
+    expect(within(featuredPractice).getAllByRole('link')).toHaveLength(1);
     expect(
       within(featuredPractice).getByRole('heading', {
         level: 3,
@@ -305,7 +310,7 @@ describe('HomePage', () => {
     expect(within(aboutSection).getByText(/sou nelson secco, senior product designer/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/também atuo como ux consultant em projetos independentes/i)).toBeInTheDocument();
     expect(within(aboutSection).getByText(/n3lx digital business é a estrutura empresarial/i)).toBeInTheDocument();
-    expect(within(aboutSection).getByRole('link', { name: 'Ouvir N3LX no Spotify ↗' })).toHaveClass('text-link', 'text-link--hit-area');
+    expect(within(aboutSection).getByRole('link', { name: 'Ouvir N3LX no Spotify (abre em outra aba)' })).toHaveClass('secondary-action');
     expect(screen.getByRole('link', { name: 'Ver como foi construído →' })).toHaveClass('text-link', 'text-link--hit-area');
     expect(screen.getByRole('link', { name: 'Ver como foi construído →' })).toHaveAttribute('href', '/construindo-este-portfolio');
     const contactSection = screen.getByRole('region', { name: /vamos construir algo relevante/i });

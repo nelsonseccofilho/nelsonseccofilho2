@@ -16,6 +16,8 @@ const ptLabels = {
   closeLabel: 'Fechar currículo',
   downloadLabel: 'Baixar PDF',
   loadingLabel: 'Carregando currículo…',
+  openLabel: 'Abrir PDF em outra aba',
+  previewHelpLabel: 'Se a prévia não aparecer, abra o PDF em outra aba ou faça o download.',
 };
 
 const enLabels = {
@@ -25,6 +27,8 @@ const enLabels = {
   closeLabel: 'Close resume',
   downloadLabel: 'Download PDF',
   loadingLabel: 'Loading resume…',
+  openLabel: 'Open PDF in a new tab',
+  previewHelpLabel: 'If the preview does not appear, open the PDF in a new tab or download it.',
 };
 
 const ptHref = '/assets/resume/N3LX_PT-BR.pdf';
@@ -143,6 +147,23 @@ describe('ResumeDialog', () => {
 
     fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
 
+    expect(screen.getByText(enLabels.loadingLabel)).toBeInTheDocument();
+  });
+
+  it('keeps a localized external fallback available before and after preview loading', () => {
+    render(<ResumeDialog pdfHref={enHref} labels={enLabels} surface="hero" />);
+    fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
+    const fallback = screen.getByRole('link', { name: enLabels.openLabel });
+    expect(fallback).toHaveAttribute('href', enHref);
+    expect(fallback).toHaveAttribute('target', '_blank');
+    expect(fallback).toHaveAttribute('rel', 'noreferrer');
+    expect(screen.getByText(enLabels.previewHelpLabel)).toBeInTheDocument();
+    fireEvent.load(screen.getByTitle(enLabels.dialogTitle));
+    expect(screen.queryByText(enLabels.loadingLabel)).not.toBeInTheDocument();
+    expect(fallback).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: enLabels.downloadLabel })).toHaveAttribute('download');
+    fireEvent.click(screen.getByRole('button', { name: enLabels.closeLabel }));
+    fireEvent.click(screen.getByRole('button', { name: enLabels.triggerAriaLabel }));
     expect(screen.getByText(enLabels.loadingLabel)).toBeInTheDocument();
   });
 

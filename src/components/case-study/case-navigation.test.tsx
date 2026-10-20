@@ -16,8 +16,8 @@ afterEach(cleanup);
 describe('CaseNavigation', () => {
   it.each([
     ['horizon-his', 'SUBITER', '/en/projects/subiter', 'project_open:subiter:case-navigation'],
-    ['subiter', 'REDE DCC 1.0', '/en/projects/rede-dcc', 'project_open:rede-dcc:case-navigation'],
-    ['rede-dcc', 'DASA — Canal do Consultor', '/en/projects/dasa-canal-do-consultor', 'project_open:dasa-canal-do-consultor:case-navigation'],
+    ['subiter', 'DASA — Canal do Consultor', '/en/projects/dasa-canal-do-consultor', 'project_open:dasa-canal-do-consultor:case-navigation'],
+    ['dasa-canal-do-consultor', 'REDE DCC 1.0', '/en/projects/rede-dcc', 'project_open:rede-dcc:case-navigation'],
   ] as const)('continues from %s to the next project', (projectId, nextProjectName, nextHref, eventName) => {
     render(<CaseNavigation locale="en" projectId={projectId} />);
 
@@ -39,8 +39,8 @@ describe('CaseNavigation', () => {
     expect(Array.from(navigation.querySelectorAll('a')).every((link) => !link.getAttribute('href')?.startsWith('/en'))).toBe(true);
   });
 
-  it('does not invent a next project after DASA', () => {
-    render(<CaseNavigation locale="en" projectId={'dasa-canal-do-consultor' satisfies ProjectRouteId} />);
+  it.each(['rede-dcc', 'ai-assisted-design-engineering'] as const)('does not invent a next project for %s', (projectId) => {
+    render(<CaseNavigation locale="en" projectId={projectId satisfies ProjectRouteId} />);
 
     const navigation = screen.getByRole('navigation', { name: 'Case study navigation' });
     expect(within(navigation).getByRole('link', { name: 'Portfolio' })).toHaveAttribute('href', '/en');

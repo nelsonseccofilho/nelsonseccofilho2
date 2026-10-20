@@ -1,0 +1,707 @@
+{
+  "date": "2026-10-19",
+  "baseline": "f364705",
+  "environment": "Next.js production build; headless Chrome; 127.0.0.1:3011",
+  "scenarios": [
+    {
+      "locale": "pt-BR",
+      "width": 1920,
+      "height": 1080,
+      "theme": "light",
+      "http": 200,
+      "home": {
+        "width": 1920,
+        "scrollWidth": 1920,
+        "theme": "light"
+      },
+      "ai": {
+        "width": 179.421875,
+        "height": 47,
+        "x": 281,
+        "y": 516.328125,
+        "right": 460.421875,
+        "bottom": 563.328125,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "http://127.0.0.1:3011/projetos/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 232.140625,
+        "height": 47,
+        "x": 757.328125,
+        "y": 516.9375,
+        "right": 989.46875,
+        "bottom": 563.9375,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 94.03125,
+          "height": 44,
+          "x": 1240.96875,
+          "y": 52.265625,
+          "right": 1335,
+          "bottom": 96.265625,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "0.15s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 1343,
+          "y": 52.265625,
+          "right": 1387,
+          "bottom": 96.265625,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgb(255, 255, 255)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(16, 52, 17)",
+          "transition": "0.15s"
+        },
+        "fallback": {
+          "width": 165.640625,
+          "height": 44,
+          "x": 529,
+          "y": 148.53125,
+          "right": 694.640625,
+          "bottom": 192.53125,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(16, 19, 17)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "0.16s, 0.16s"
+        },
+        "bounds": {
+          "x": 512,
+          "y": 32,
+          "width": 896,
+          "height": 1016
+        },
+        "pdf": "/assets/resume/N3LX_PT-BR.pdf",
+        "sha256": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+        "focusReturned": true
+      },
+      "menu": null,
+      "errors": []
+    },
+    {
+      "locale": "en",
+      "width": 1366,
+      "height": 768,
+      "theme": "dark",
+      "http": 200,
+      "home": {
+        "width": 1366,
+        "scrollWidth": 1366,
+        "theme": "dark"
+      },
+      "ai": {
+        "width": 193.765625,
+        "height": 47,
+        "x": 89,
+        "y": 360.296875,
+        "right": 282.765625,
+        "bottom": 407.296875,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "http://127.0.0.1:3011/en/projects/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 254.5625,
+        "height": 47,
+        "x": 498.640625,
+        "y": 360.921875,
+        "right": 753.203125,
+        "bottom": 407.921875,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 119.875,
+          "height": 44,
+          "x": 938.125,
+          "y": 52.265625,
+          "right": 1058,
+          "bottom": 96.265625,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.15s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 1066,
+          "y": 52.265625,
+          "right": 1110,
+          "bottom": 96.265625,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgb(11, 14, 11)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(102, 171, 102)",
+          "transition": "0.15s"
+        },
+        "fallback": {
+          "width": 161.828125,
+          "height": 44,
+          "x": 252,
+          "y": 148.53125,
+          "right": 413.828125,
+          "bottom": 192.53125,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(244, 247, 244)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.16s, 0.16s"
+        },
+        "bounds": {
+          "x": 235,
+          "y": 32,
+          "width": 896,
+          "height": 704
+        },
+        "pdf": "/assets/resume/N3LX_EN.pdf",
+        "sha256": "9382ce6042ed4206995d24e8c72f1f72c0ba8e6f1123fbc107ba7f43e7a09abc",
+        "focusReturned": true
+      },
+      "menu": null,
+      "errors": []
+    },
+    {
+      "locale": "pt-BR",
+      "width": 820,
+      "height": 1180,
+      "theme": "dark",
+      "http": 200,
+      "home": {
+        "width": 820,
+        "scrollWidth": 820,
+        "theme": "dark"
+      },
+      "ai": {
+        "width": 179.421875,
+        "height": 47,
+        "x": 57.59375,
+        "y": 566.90625,
+        "right": 237.015625,
+        "bottom": 613.90625,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "http://127.0.0.1:3011/projetos/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 232.140625,
+        "height": 47,
+        "x": 32,
+        "y": 568.078125,
+        "right": 264.140625,
+        "bottom": 615.078125,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 94.03125,
+          "height": 44,
+          "x": 628.96875,
+          "y": 52.265625,
+          "right": 723,
+          "bottom": 96.265625,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.15s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 731,
+          "y": 52.265625,
+          "right": 775,
+          "bottom": 96.265625,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgb(11, 14, 11)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(122, 181, 122)",
+          "transition": "0.15s"
+        },
+        "fallback": {
+          "width": 165.640625,
+          "height": 44,
+          "x": 41,
+          "y": 148.53125,
+          "right": 206.640625,
+          "bottom": 192.53125,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(244, 247, 244)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.16s, 0.16s"
+        },
+        "bounds": {
+          "x": 24,
+          "y": 32,
+          "width": 772,
+          "height": 1116
+        },
+        "pdf": "/assets/resume/N3LX_PT-BR.pdf",
+        "sha256": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+        "focusReturned": true
+      },
+      "menu": null,
+      "errors": []
+    },
+    {
+      "locale": "en",
+      "width": 440,
+      "height": 956,
+      "theme": "light",
+      "http": 200,
+      "home": {
+        "width": 440,
+        "scrollWidth": 440,
+        "theme": "light"
+      },
+      "ai": {
+        "width": 193.765625,
+        "height": 47,
+        "x": 41,
+        "y": 454.875,
+        "right": 234.765625,
+        "bottom": 501.875,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "http://127.0.0.1:3011/en/projects/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 254.5625,
+        "height": 47,
+        "x": 20,
+        "y": 454.90625,
+        "right": 274.5625,
+        "bottom": 501.90625,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 106.46875,
+          "height": 44,
+          "x": 256.53125,
+          "y": 29,
+          "right": 363,
+          "bottom": 73,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "0.15s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 371,
+          "y": 29,
+          "right": 415,
+          "bottom": 73,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgb(255, 255, 255)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(16, 64, 17)",
+          "transition": "0.15s"
+        },
+        "fallback": {
+          "width": 161.828125,
+          "height": 44,
+          "x": 25,
+          "y": 138,
+          "right": 186.828125,
+          "bottom": 182,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(16, 19, 17)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "0.16s, 0.16s"
+        },
+        "bounds": {
+          "x": 8,
+          "y": 16,
+          "width": 424,
+          "height": 924
+        },
+        "pdf": "/assets/resume/N3LX_EN.pdf",
+        "sha256": "9382ce6042ed4206995d24e8c72f1f72c0ba8e6f1123fbc107ba7f43e7a09abc",
+        "focusReturned": true
+      },
+      "menu": {
+        "x": 60,
+        "y": 0,
+        "width": 380,
+        "height": 956
+      },
+      "errors": []
+    },
+    {
+      "locale": "pt-BR",
+      "width": 440,
+      "height": 956,
+      "theme": "dark",
+      "http": 200,
+      "home": {
+        "width": 440,
+        "scrollWidth": 440,
+        "theme": "dark"
+      },
+      "ai": {
+        "width": 179.421875,
+        "height": 47,
+        "x": 41,
+        "y": 454.21875,
+        "right": 220.421875,
+        "bottom": 501.21875,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "http://127.0.0.1:3011/projetos/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 232.140625,
+        "height": 47,
+        "x": 20,
+        "y": 454.265625,
+        "right": 252.140625,
+        "bottom": 501.265625,
+        "color": "rgb(244, 247, 244)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(244, 247, 244)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 84.3125,
+          "height": 44,
+          "x": 278.6875,
+          "y": 29,
+          "right": 363,
+          "bottom": 73,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.15s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 371,
+          "y": 29,
+          "right": 415,
+          "bottom": 73,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgb(11, 14, 11)",
+          "border": "rgb(48, 56, 48)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(146, 194, 146)",
+          "transition": "0.15s"
+        },
+        "fallback": {
+          "width": 165.640625,
+          "height": 44,
+          "x": 25,
+          "y": 138,
+          "right": 190.640625,
+          "bottom": 182,
+          "color": "rgb(244, 247, 244)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(244, 247, 244)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(244, 247, 244)",
+          "transition": "0.16s, 0.16s"
+        },
+        "bounds": {
+          "x": 8,
+          "y": 16,
+          "width": 424,
+          "height": 924
+        },
+        "pdf": "/assets/resume/N3LX_PT-BR.pdf",
+        "sha256": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+        "focusReturned": true
+      },
+      "menu": {
+        "x": 60,
+        "y": 0,
+        "width": 380,
+        "height": 956
+      },
+      "errors": []
+    },
+    {
+      "locale": "pt-BR",
+      "width": 360,
+      "height": 800,
+      "theme": "light",
+      "reduced": true,
+      "http": 200,
+      "home": {
+        "width": 360,
+        "scrollWidth": 360,
+        "theme": "light"
+      },
+      "ai": {
+        "width": 179.421875,
+        "height": 47,
+        "x": 41,
+        "y": 376.375,
+        "right": 220.421875,
+        "bottom": 423.375,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0s",
+        "href": "http://127.0.0.1:3011/projetos/ai-assisted-design-engineering"
+      },
+      "spotify": {
+        "width": 232.140625,
+        "height": 47,
+        "x": 20,
+        "y": 376.296875,
+        "right": 252.140625,
+        "bottom": 423.296875,
+        "color": "rgb(16, 19, 17)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "rgb(16, 19, 17)",
+        "outline": "solid",
+        "outlineWidth": "2px",
+        "outlineColor": "rgb(16, 124, 16)",
+        "transition": "0s",
+        "href": "https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE",
+        "navigationIntercepted": true
+      },
+      "resume": {
+        "download": {
+          "width": 84.3125,
+          "height": 44,
+          "x": 25,
+          "y": 84.21875,
+          "right": 109.3125,
+          "bottom": 128.21875,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "1e-05s"
+        },
+        "close": {
+          "width": 44,
+          "height": 44,
+          "x": 117.3125,
+          "y": 84.21875,
+          "right": 161.3125,
+          "bottom": 128.21875,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgb(255, 255, 255)",
+          "border": "rgb(221, 227, 220)",
+          "outline": "solid",
+          "outlineWidth": "2px",
+          "outlineColor": "rgb(16, 124, 16)",
+          "transition": "1e-05s"
+        },
+        "fallback": {
+          "width": 165.640625,
+          "height": 44,
+          "x": 25,
+          "y": 193.21875,
+          "right": 190.640625,
+          "bottom": 237.21875,
+          "color": "rgb(16, 19, 17)",
+          "background": "rgba(0, 0, 0, 0)",
+          "border": "rgb(16, 19, 17)",
+          "outline": "none",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(16, 19, 17)",
+          "transition": "0s"
+        },
+        "bounds": {
+          "x": 8,
+          "y": 16,
+          "width": 344,
+          "height": 768
+        },
+        "pdf": "/assets/resume/N3LX_PT-BR.pdf",
+        "sha256": "75c6ea373ab20e512ef377ac8c04fc6c4c151aefd626f0ef51573ecb43da1a06",
+        "focusReturned": true
+      },
+      "menu": {
+        "x": 16,
+        "y": 0,
+        "width": 344,
+        "height": 800
+      },
+      "errors": []
+    }
+  ],
+  "theme": {
+    "systemPreference": "dark",
+    "initialTheme": "light",
+    "selectedThemeAfterReload": "dark"
+  },
+  "evidenceViewer": {
+    "bounds": {
+      "x": 8,
+      "y": 198.875,
+      "width": 424,
+      "height": 558.25
+    },
+    "image": {
+      "loaded": true,
+      "width": 640,
+      "height": 800
+    },
+    "escapeAndFocus": true
+  },
+  "caseNavigation": [
+    {
+      "path": "/projetos/subiter",
+      "links": [
+        "/",
+        "/projetos/dasa-canal-do-consultor"
+      ]
+    },
+    {
+      "path": "/en/projects/dasa-canal-do-consultor",
+      "links": [
+        "/en",
+        "/en/projects/rede-dcc"
+      ]
+    },
+    {
+      "path": "/en/projects/rede-dcc",
+      "links": [
+        "/en"
+      ]
+    },
+    {
+      "path": "/en/projects/ai-assisted-design-engineering",
+      "links": [
+        "/en"
+      ]
+    }
+  ],
+  "technical": {
+    "tests": {
+      "files": 32,
+      "passed": 208
+    },
+    "focusedRetests": {
+      "caseNavigation": 6,
+      "evidenceViewer": 5
+    },
+    "typecheck": 0,
+    "lint": 0,
+    "build": 0
+  },
+  "limitations": [
+    "No formal accessibility certification or complete all-route/theme matrix.",
+    "Headless embedded PDF preview is inconclusive; standalone PDF render QA and byte-verified downloads passed.",
+    "Spotify navigation intercepted; no external service availability claim.",
+    "AI section index remains an unproven hypothesis; no new adoption or benchmark authorship claims."
+  ]
+}

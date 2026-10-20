@@ -13,15 +13,14 @@ import {
   N3LX_SPOTIFY_URL,
   getWhatsAppContactUrl,
 } from '@/content/contact';
-import { selectedWork } from '@/content/home-shared';
+import { homeProductGroups, selectedWork } from '@/content/home-shared';
 import { commonContent, homeContent } from '@/content/i18n';
 import { projectFacts } from '@/content/project-facts';
 import type { ProjectRouteId } from '@/content/i18n/types';
 import type { Locale } from '@/i18n/locales';
 import { getLocalizedPath } from '@/i18n/routes';
 
-const featuredProductIds = ['horizon-his', 'subiter'] as const satisfies readonly ProjectRouteId[];
-const additionalProductIds = ['dasa-canal-do-consultor', 'rede-dcc'] as const satisfies readonly ProjectRouteId[];
+const { featured: featuredProductIds, additional: additionalProductIds } = homeProductGroups;
 
 const projectCoverByRouteId = {
   'horizon-his': '/assets/projects/horizon-his/cover/cover-home-horizon-his.png',
@@ -86,6 +85,8 @@ export function HomePage({ locale }: HomePageProps) {
             closeLabel: common.resumeDialog.closeLabel,
             downloadLabel: common.resumeDialog.downloadLabel,
             loadingLabel: common.resumeDialog.loadingLabel,
+            openLabel: common.resumeDialog.openLabel,
+            previewHelpLabel: common.resumeDialog.previewHelpLabel,
           }}
         />
         <AnalyticsConsentSurface />
@@ -222,8 +223,10 @@ export function HomePage({ locale }: HomePageProps) {
                 <div className="about__secondary">
                   <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
                   <p className="about__copy">{content.about.artisticCopy}</p>
-                  <a className="text-link text-link--hit-area" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer">
-                    {content.about.artisticActionLabel}
+                  <a className="secondary-action" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer" aria-label={`${content.about.artisticActionLabel} ${common.newTabLabel}`}>
+                    <span>{content.about.artisticActionLabel}</span>
+                    <span aria-hidden="true">↗</span>
+                    <span className="sr-only"> {common.newTabLabel}</span>
                   </a>
                 </div>
               </div>

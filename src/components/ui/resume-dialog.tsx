@@ -22,6 +22,8 @@ export type ResumeDialogLabels = {
   closeLabel: string;
   downloadLabel: string;
   loadingLabel: string;
+  openLabel: string;
+  previewHelpLabel: string;
 };
 
 type ResumeDialogProps = {
@@ -50,7 +52,9 @@ export function ResumeDialog({ pdfHref, labels, surface, triggerClassName }: Res
     }
 
     isOpenRef.current = open;
-    if (!open) setLoaded(false);
+    if (!open) {
+      setLoaded(false);
+    }
   }
 
   return (
@@ -61,9 +65,9 @@ export function ResumeDialog({ pdfHref, labels, surface, triggerClassName }: Res
         </button>
       </DialogTrigger>
       <DialogContent
-        className="flex flex-col gap-0 overflow-hidden rounded-[var(--radius-lg)] border-border bg-background p-0 text-foreground shadow-2xl motion-reduce:transition-none !w-[calc(100vw-1rem)] !max-w-[calc(100vw-1rem)] h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] sm:!w-[min(56rem,calc(100vw-3rem))] sm:!max-w-[min(56rem,calc(100vw-3rem))] sm:h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-4rem)]"
+        className="flex flex-col gap-0 overflow-hidden rounded-[var(--radius-lg)] border-border bg-background p-0 text-foreground shadow-2xl motion-reduce:transition-none w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] sm:w-[min(56rem,calc(100vw-3rem))] sm:max-w-[min(56rem,calc(100vw-3rem))] sm:h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-4rem)]"
       >
-        <div className="flex flex-shrink-0 items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5 sm:py-4">
+        <div className="flex flex-shrink-0 flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5 sm:py-4">
           <DialogTitle className="text-sm font-semibold text-foreground sm:text-base">
             {labels.dialogTitle}
           </DialogTitle>
@@ -72,7 +76,7 @@ export function ResumeDialog({ pdfHref, labels, surface, triggerClassName }: Res
               href={pdfHref}
               download
               onClick={() => trackEvent(getResumeDownloadEvent(surface))}
-              className="inline-flex items-center rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none sm:text-sm"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none sm:text-sm"
             >
               {labels.downloadLabel}
             </a>
@@ -80,12 +84,18 @@ export function ResumeDialog({ pdfHref, labels, surface, triggerClassName }: Res
               <button
                 type="button"
                 aria-label={labels.closeLabel}
-                className="inline-flex size-9 flex-shrink-0 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none"
+                className="inline-flex size-11 flex-shrink-0 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none"
               >
                 <CloseIcon />
               </button>
             </DialogClose>
           </div>
+        </div>
+        <div className="resume-preview-help">
+          <p className="m-0 text-sm text-muted-foreground">{labels.previewHelpLabel}</p>
+          <a className="text-link text-link--hit-area" href={pdfHref} target="_blank" rel="noreferrer">
+            {labels.openLabel}
+          </a>
         </div>
         <div className="relative flex min-h-0 flex-1 flex-col">
           {!loaded && (

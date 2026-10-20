@@ -96,7 +96,7 @@ export const ptBRHome = {
     businessContext: 'Minha trajetória inclui produtos para Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como Subiter, TerraMagna e NOALVO, reconhecidas no 100 Startups to Watch, da revista PEGN. N3LX Digital Business é a estrutura empresarial pela qual conduzo projetos independentes de Product Design e consultoria em UX.',
     artisticEyebrow: 'Além de produto e tecnologia',
     artisticCopy: 'Fora do trabalho com produtos digitais, também componho e produzo música autoral como N3LX — outro espaço onde exploro criatividade, experimentação e construção.',
-    artisticActionLabel: 'Ouvir N3LX no Spotify ↗',
+    artisticActionLabel: 'Ouvir N3LX no Spotify',
   },
   metaCase: {
     eyebrow: 'Por trás deste portfólio',

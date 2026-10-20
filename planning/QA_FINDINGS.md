@@ -1,5 +1,23 @@
 # N3LX Portfolio — QA Findings
 
+## 2026-10-19 — Authorized implementation follow-up
+
+**Status:** Implemented and validated locally; GitHub publication authorized.
+
+D-029 implements the secondary actions, localized new-tab disclosure, 44px resume controls, persistent PDF recovery links, shared product-case progression, and documented governance reconciliation. Important overrides in the affected dialogs/viewer were removed; the transient theme exception is explicit.
+
+208 tests passed, followed by 11 focused retests after final local changes; typecheck, lint, and production build passed. Six production-browser scenarios verified the affected actions, downloads, focus, layout, and mobile-menu geometry. Theme persistence and evidence-modal recovery also passed. The [follow-up record](./14-content-usability-resume-review.md#owner-authorized-implementation-and-publication-follow-up) contains finding dispositions and limitations; [browser results](./qa/2026-10-19-secondary-release/results.json) contain exact measurements. Embedded PDF rendering remains inconclusive in headless Chrome; its independent recovery route is verified.
+
+
+## 2026-10-19 — Renewed content review and localized resumes
+
+**Status:** Localized PDF assets verified locally; usability findings remain open.
+
+The [renewed review](./14-content-usability-resume-review.md) rechecks CU-001–CU-009 and records CU-010 (measured resume controls below the project target), CU-011 (preview recovery limitation; headless rendering inconclusive), and CU-012 (Spotify new-tab announcement). D-026 remains the secondary-action proposal. D-028 records the exact Portuguese source replacement and faithful English translation.
+
+38 focused tests passed. Two-page PDFs were parsed, rendered and visually inspected; browser downloads matched the locale assets. Scoped Home checks used the four normative viewport presets without horizontal overflow. No deployment, full regression, or embedded-preview rendering success is claimed.
+
+
 ## 2026-10-08 — AI-case navigation and storytelling follow-up
 
 **Status:** Implemented and verified locally within feature scope.

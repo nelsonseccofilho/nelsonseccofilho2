@@ -1,7 +1,8 @@
 import { AnalyticsNavigationLink } from '@/components/analytics/analytics-link';
 import { getCaseNavigationProjectOpenEvent } from '@/components/analytics/clarity';
 import { PortfolioReturnLink } from '@/components/navigation/portfolio-return-link';
-import { commonContent, homeContent } from '@/content/i18n';
+import { productCaseOrder } from '@/content/home-shared';
+import { commonContent } from '@/content/i18n';
 import type { ProjectRouteId } from '@/content/i18n/types';
 import { projectFacts } from '@/content/project-facts';
 import type { Locale } from '@/i18n/locales';
@@ -14,9 +15,8 @@ type CaseNavigationProps = {
 
 export function CaseNavigation({ locale, projectId }: CaseNavigationProps) {
   const common = commonContent[locale];
-  const featuredProjects = homeContent[locale].featuredCases.projects;
-  const currentIndex = featuredProjects.findIndex((project) => project.routeId === projectId);
-  const nextProjectId = featuredProjects[currentIndex + 1]?.routeId ?? null;
+  const currentIndex = productCaseOrder.indexOf(projectId);
+  const nextProjectId = currentIndex >= 0 ? productCaseOrder[currentIndex + 1] ?? null : null;
   const nextCaseProjectId = nextProjectId && nextProjectId !== 'horizon-his' ? nextProjectId : null;
 
   return (

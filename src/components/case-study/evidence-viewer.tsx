@@ -106,13 +106,13 @@ export function EvidenceViewer({ image, labels, caption, className, compact = fa
             <span
               className={cn(
                 'case-media__frame relative block transition-colors group-hover:border-primary group-focus-visible:border-primary',
-                compact && 'aspect-[4/3] !rounded-[var(--radius-lg)]',
+                compact && 'case-media__frame--compact aspect-[4/3]',
                 image.responsive && !compact && 'aspect-[var(--evidence-aspect-mobile)] md:aspect-[var(--evidence-aspect-desktop)]',
               )}
               style={frameStyle}
             >
               <EvidencePicture
-                className={cn('case-media__image', compact && '!h-full !w-full object-contain p-2 sm:p-3')}
+                className={cn('case-media__image', compact && 'object-contain p-2 sm:p-3')}
                 image={image}
                 loading={loading}
                 onLoad={handleImageLoad}
@@ -130,7 +130,7 @@ export function EvidenceViewer({ image, labels, caption, className, compact = fa
       </figure>
 
       <DialogContent
-        className="max-h-[calc(100dvh-1rem)] !w-[calc(100vw-1rem)] !max-w-[calc(100vw-1rem)] gap-3 overflow-hidden rounded-[var(--radius-lg)] border-border bg-background p-2 text-foreground shadow-2xl motion-reduce:transition-none sm:!w-[var(--evidence-dialog-width)] sm:!max-w-[calc(100vw-2rem)] sm:p-4"
+        className="max-h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] gap-3 overflow-hidden rounded-[var(--radius-lg)] border-border bg-background p-2 text-foreground shadow-2xl motion-reduce:transition-none sm:w-[var(--evidence-dialog-width)] sm:max-w-[calc(100vw-2rem)] sm:p-4"
         style={dialogStyle}
       >
         <DialogTitle className="sr-only">{labels.enlargedImageLabel}</DialogTitle>

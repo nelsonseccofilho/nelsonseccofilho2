@@ -712,3 +712,55 @@ The AI narrative now connects demonstrated practice to a relevant next step with
 206 tests across 32 files, typecheck, lint, and production build passed. Browser checks covered representative desktop/tablet/mobile, PT/EN, and Light/Dark samples. Keyboard back-to-top returned to 0; consulting opened the expected intercepted WhatsApp URL in another tab; no horizontal overflow or page errors occurred in the checked scenarios. External WhatsApp delivery was not tested and no message was sent.
 
 The [follow-up review and evidence](./13-content-usability-review.md#owner-authorized-follow-up--navigation-and-ai-storytelling) record exact coverage and limitations. D-026 remains a proposal for the two Home secondary actions; this decision does not approve global CTA restyling, unresolved governance changes, or a release.
+
+
+---
+
+## D-028 — Localized resume replacement and renewed usability review
+
+**Date:** 2026-10-19
+**Status:** Resume assets implemented and verified locally; audit recorded; secondary-action design remains proposed; not committed or deployed.
+
+**Context**
+
+The owner requested reviewing evolved content against documented norms, documenting decisions, proposing an AI/Spotify secondary action, replacing the Portuguese resume with the supplied v4 PDF, and creating an equivalent English download. Advance notice was provided before inspection.
+
+**Decision**
+
+Preserve the supplied Portuguese PDF byte-for-byte at the existing PT-BR asset path. Publish no new factual claims: create a faithful English translation at the existing EN path, retaining dates, roles, qualifiers, and proficiency. Preserve the translation in scripts/generate-resume-en.py. Mark resume PDFs binary in .gitattributes to prevent line-ending conversion. Reuse existing Hero/footer locale selection without changing routes or modal behavior.
+
+Retain D-026 as the single secondary-action proposal, with the filled primary's pill geometry and an outlined secondary. Record existing open findings and new resume-target/preview/new-tab findings in the [renewed review](./14-content-usability-resume-review.md); do not silently implement unrelated UX or architecture changes. Historical decisions remain intact and no permanent rule is changed.
+
+**Validation and limits**
+
+38 focused tests across four files passed. Both two-page PDFs were parsed, rendered with Poppler, and visually inspected. Real PT/EN browser downloads matched the local assets; PT matches the owner source exactly. Hero keyboard opening, Escape, focus return, and footer locale mapping were checked. The reviewed Home presets had no horizontal overflow. Embedded preview screenshots were blank in headless Chrome, so preview-rendering success is not claimed. The review records scope, evidence, unresolved norm conflicts, and test limitations. No release, full accessibility certification, or button implementation is implied.
+
+
+---
+
+## D-029 — Secondary actions, resilient resume access, and governance reconciliation
+
+**Date:** 2026-10-19
+**Status:** Implemented and validated locally; owner authorized GitHub publication.
+
+**Decision**
+
+Implement D-026 for the existing AI and Spotify actions. Use outlined pill anchors with existing tokens and localized new-tab disclosure for Spotify. Provide 44px resume controls and persistent localized preview help/open-in-new-tab access; browser iframe load is not proof that a PDF rendered. Keep direct download independent of preview state.
+
+Use one shared product-group order for Home and case progression: HORIZON, SUBITER, DASA, REDE. Keep AI as a separate practice; it has no invented next product. Do not reorder localized content dictionaries merely to control presentation.
+
+Supersede the theme-provider dependency portion of D-004 and PROJECT_RULES §§7/13: retain the existing tested custom AppThemeProvider and pre-hydration initialization, data-theme, explicit light default, localStorage theme persistence, and no system-theme following. Adding next-themes provides no required user benefit in this unit. The transient global transition-suppression style is the sole narrowly scoped important exception: it is removed after the theme update; this does not permit important in ordinary component CSS. Remove redundant mobile-dialog and evidence-viewer overrides, including resume width important utilities.
+
+Restore the four normative viewport gates in the QA matrix, with other sizes supplemental. Preserve D-024's historical record with an English clarification rather than rewriting its original evidence. Retain content/provenance guardrails; a speculative AI section index and ConnectCar claim expansion are not needed to complete this unit.
+
+**Rationale**
+
+Reusing geometry preserves action hierarchy; an independent PDF fallback handles browsers without embedded viewing. Shared product order removes contradictory progression. Reconcile rules to the established tested implementation without introducing a new theme migration risk.
+
+**D-024 English historical clarification**
+
+The owner confirmed that HORIZON HIS prototype screens use fictional demonstration data, not real patient records, prepared for public presentation at Hospitalar 2025. Those screens may inform editorial portfolio assets. HORIZON must remain described as a high-fidelity prototype, never as a deployed hospital system. Editorial composition must preserve product context and readability. This permission applies only to HORIZON and does not authorize publishing other confidential interfaces. The original Portuguese D-024 is retained verbatim as historical evidence; this English clarification carries its meaning forward without expanding its scope.
+
+**Validation gate**
+
+Full tests, typecheck, lint, production build, representative localized Light/Dark browser QA, reduced motion, focus, downloads, and scoped Git review are required before publication. The follow-up in the renewed review will record results and limits.

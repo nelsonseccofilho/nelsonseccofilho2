@@ -1,0 +1,2 @@
+# Keep downloadable resume PDFs byte-for-byte across platforms.
+public/assets/resume/*.pdf binary

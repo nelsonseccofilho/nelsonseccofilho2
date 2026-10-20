@@ -13,6 +13,8 @@ type HeroProps = {
     closeLabel: string;
     downloadLabel: string;
     loadingLabel: string;
+    openLabel: string;
+    previewHelpLabel: string;
   };
 };
 
@@ -40,6 +42,8 @@ export function Hero({ content = enHome.hero, accessibility = enHome.accessibili
                     closeLabel: resume.closeLabel,
                     downloadLabel: resume.downloadLabel,
                     loadingLabel: resume.loadingLabel,
+                    openLabel: resume.openLabel,
+                    previewHelpLabel: resume.previewHelpLabel,
                   }}
                 />
               </>

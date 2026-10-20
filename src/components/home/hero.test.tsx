@@ -39,6 +39,8 @@ describe('Hero', () => {
           closeLabel: 'Close resume',
           downloadLabel: 'Download PDF',
           loadingLabel: 'Loading resume…',
+          openLabel: 'Open PDF in a new tab',
+          previewHelpLabel: 'If the preview does not appear, open the PDF in a new tab or download it.',
         }}
       />,
     );

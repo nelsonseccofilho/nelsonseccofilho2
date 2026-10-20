@@ -246,7 +246,7 @@ export function HeaderSectionNav({
             <MenuIcon />
           </button>
         </DialogTrigger>
-        <DialogContent className="site-header__mobile-nav-dialog !translate-x-0 !translate-y-0">
+        <DialogContent className="site-header__mobile-nav-dialog translate-x-0 translate-y-0">
           <div className="site-header__mobile-nav-heading">
             <DialogTitle className="site-header__mobile-nav-title">{label}</DialogTitle>
             <DialogClose asChild>

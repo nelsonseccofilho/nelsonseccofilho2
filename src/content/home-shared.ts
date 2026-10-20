@@ -1,3 +1,4 @@
+import type { ProjectRouteId } from './i18n/types';
 import type { ptBRHome } from './i18n/pt-BR/home';
 
 // Cover completeness follows the featured selection, not every registered case.
@@ -44,3 +45,13 @@ export const selectedWork = {
   projectName: 'ConnectCar / Freeflow',
   image: createCover('connectcar-freeflow'),
 } as const;
+// Product browsing follows Home product order; the AI practice stays independent.
+export const homeProductGroups = {
+  featured: ['horizon-his', 'subiter'],
+  additional: ['dasa-canal-do-consultor', 'rede-dcc'],
+} as const satisfies Record<string, readonly ProjectRouteId[]>;
+
+export const productCaseOrder: readonly ProjectRouteId[] = [
+  ...homeProductGroups.featured,
+  ...homeProductGroups.additional,
+];

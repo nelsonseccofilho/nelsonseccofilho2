@@ -50,14 +50,14 @@ export const enHome = {
   featuredPractice: {
     eyebrow: 'Featured practice',
     title: 'AI-Assisted Design Engineering Operating System',
-    description: 'A framework I created to connect Design, Engineering and AI through evidence, continuity and human accountability.',
+    description: 'From experimentation to professional practice: a framework I created to connect Design, Engineering and AI through evidence, continuity and human accountability.',
     steps: [
-      { title: 'Evidence', description: 'Capture useful context' },
-      { title: 'Decision', description: 'Choose with clear criteria' },
-      { title: 'Artifact + QA', description: 'Implement and validate' },
-      { title: 'Continuity', description: 'Preserve what was learned' },
+      { title: 'Evidence', description: 'Check sources and context' },
+      { title: 'Decision', description: 'Decide with accountability' },
+      { title: 'Artifact + QA', description: 'Inspect, compose and validate' },
+      { title: 'Continuity', description: 'Record decisions and next steps' },
     ],
-    actionLabel: 'Explore the practice',
+    actionLabel: 'Explore the framework',
   },
   selectedWork: {
     eyebrow: 'Selected work',
@@ -70,12 +70,12 @@ export const enHome = {
   seniority: {
     eyebrow: 'How I work',
     title: 'From evidence to delivery, with AI',
-    description: 'My AI-assisted Design Engineering practice connects context, decisions, artifacts, and validation. AI supports the work; product direction, critical review, and accountability remain human.',
+    description: 'I structure collaboration with AI agents through the framework I developed. Evidence, Design Systems and persistent records support the work; product direction and final accountability remain human.',
     pillars: [
       { title: 'Evidence and context', description: 'Gathering research, approved sources, and project constraints to understand the problem and preserve the origin of each piece of information.' },
       { title: 'Product decisions', description: 'Turning evidence into requirements and priorities, distinguishing facts, inferences, and hypotheses before shaping the solution.' },
-      { title: 'Design and implementation', description: 'Using AI to support analysis, prototyping, and implementation, reusing patterns and connecting product intent to artifacts.' },
-      { title: 'Review and QA', description: 'Reviewing the result against experience, accessibility, and technical quality criteria. Recording what was checked and what still needs validation.' },
+      { title: 'Design and implementation', description: 'Inspecting the current artifact and reusing Design System components and patterns. AI supports execution within authorized scope.' },
+      { title: 'Review and QA', description: 'Defining acceptance criteria and checking experience, accessibility and technical quality. Distinguishing executed tests, available evidence and human approval.' },
       { title: 'Continuity', description: 'Preserving decisions, evidence, and next steps in persistent records to resume work across sessions with context and accountability.' },
     ],
   },
@@ -91,12 +91,12 @@ export const enHome = {
     paragraphs: [
       'I’m Nelson Secco, a Senior Product Designer who also works as a UX Consultant on independent engagements. I work at the intersection of Design, Product, and Engineering. My background combines UX and Product Design experience with software development, helping me understand both the experience we want to create and the technical conditions required to turn it into a real product.',
       'I work hands-on across complex products and systems: investigating context, structuring flows and rules, designing interfaces, and collaborating closely with Engineering through implementation. My role is not to replace other disciplines, but to create continuity between product decisions, experience quality, and technical feasibility.',
-      'I’m also exploring a way of working where Design and implementation happen increasingly close together, using AI to support analysis, prototyping, development, and validation. These tools accelerate execution, but decisions, critical review, and quality standards remain human responsibilities. This portfolio itself was built this way and is practical evidence of how I work today.',
+      'This practice led to the AI-Assisted Design Engineering Operating System, a framework I created and now use as an operational baseline in real professional work, adapted to each engagement. It connects evidence, Design Systems, execution and continuity across sessions. AI supports the work; decisions, critical review and final accountability remain human.',
     ],
     businessContext: 'My background includes products for Embraer, Santander, Bradesco, DASA, REDE, ConnectCar, and Salux, as well as startups such as Subiter, TerraMagna, and NOALVO, recognized in PEGN\'s 100 Startups to Watch. N3LX Digital Business is the business structure through which I lead independent Product Design and UX consulting projects.',
     artisticEyebrow: 'Beyond product and technology',
     artisticCopy: 'Outside of digital product work, I also write and produce original music as N3LX — another space where I explore creativity, experimentation, and making things.',
-    artisticActionLabel: 'Listen to N3LX on Spotify',
+    artisticActionLabel: 'Listen to N3LX on SoundCloud',
   },
   metaCase: {
     eyebrow: 'Behind this portfolio',

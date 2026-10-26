@@ -10,7 +10,7 @@ import { ProjectGrid } from '@/components/home/project-grid';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SendIcon } from '@/components/ui/send-icon';
 import {
-  N3LX_SPOTIFY_URL,
+  N3LX_SOUNDCLOUD_URL,
   getWhatsAppContactUrl,
 } from '@/content/contact';
 import { homeProductGroups, selectedWork } from '@/content/home-shared';
@@ -223,7 +223,7 @@ export function HomePage({ locale }: HomePageProps) {
                 <div className="about__secondary">
                   <p className="about__eyebrow">{content.about.artisticEyebrow}</p>
                   <p className="about__copy">{content.about.artisticCopy}</p>
-                  <a className="secondary-action" href={N3LX_SPOTIFY_URL} target="_blank" rel="noreferrer" aria-label={`${content.about.artisticActionLabel} ${common.newTabLabel}`}>
+                  <a className="secondary-action" href={N3LX_SOUNDCLOUD_URL} target="_blank" rel="noreferrer" aria-label={`${content.about.artisticActionLabel} ${common.newTabLabel}`}>
                     <span>{content.about.artisticActionLabel}</span>
                     <span aria-hidden="true">↗</span>
                     <span className="sr-only"> {common.newTabLabel}</span>

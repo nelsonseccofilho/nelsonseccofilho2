@@ -50,14 +50,14 @@ export const ptBRHome = {
   featuredPractice: {
     eyebrow: 'Prática em destaque',
     title: 'AI-Assisted Design Engineering Operating System',
-    description: 'Um framework que criei para conectar Design, Engenharia e IA com evidências, continuidade e responsabilidade humana.',
+    description: 'Da experimentação à prática profissional: um framework que criei para conectar Design, Engenharia e IA com evidências, continuidade e responsabilidade humana.',
     steps: [
-      { title: 'Evidências', description: 'Capturar contexto útil' },
-      { title: 'Decisão', description: 'Escolher com critério' },
-      { title: 'Artefato + QA', description: 'Implementar e validar' },
-      { title: 'Continuidade', description: 'Preservar o que foi aprendido' },
+      { title: 'Evidências', description: 'Conferir fontes e contexto' },
+      { title: 'Decisão', description: 'Decidir com responsabilidade' },
+      { title: 'Artefato + QA', description: 'Inspecionar, compor e validar' },
+      { title: 'Continuidade', description: 'Registrar decisões e próximo passo' },
     ],
-    actionLabel: 'Conheça a prática',
+    actionLabel: 'Conheça o framework',
   },
   selectedWork: {
     eyebrow: 'Trabalho selecionado',
@@ -70,12 +70,12 @@ export const ptBRHome = {
   seniority: {
     eyebrow: 'Como eu trabalho',
     title: 'Da evidência à entrega, com IA',
-    description: 'Minha prática de Design Engineering assistido por IA conecta contexto, decisões, artefatos e validação. A IA apoia o trabalho; direção de produto, revisão crítica e responsabilidade continuam humanas.',
+    description: 'Organizo minha colaboração com agentes de IA pelo framework que desenvolvi. Evidências, Design Systems e registros persistentes sustentam o trabalho; direção de produto e responsabilidade final permanecem humanas.',
     pillars: [
       { title: 'Evidência e contexto', description: 'Reúno pesquisa, fontes aprovadas e restrições do projeto para compreender o problema e preservar a origem de cada informação.' },
       { title: 'Decisão de produto', description: 'Traduzo evidências em requisitos e prioridades, distinguindo fatos, inferências e hipóteses antes de orientar a solução.' },
-      { title: 'Design e implementação', description: 'Uso IA para apoiar análise, prototipação e implementação, reutilizando padrões e conectando intenção de produto aos artefatos.' },
-      { title: 'Revisão e QA', description: 'Reviso o resultado com critérios de experiência, acessibilidade e qualidade técnica. Registro o que foi verificado e o que ainda precisa de validação.' },
+      { title: 'Design e implementação', description: 'Inspeciono o artefato atual e reutilizo componentes e padrões do Design System. A IA apoia a execução dentro do escopo autorizado.' },
+      { title: 'Revisão e QA', description: 'Defino critérios de aceite e verifico experiência, acessibilidade e qualidade técnica. Distingo testes executados, evidências disponíveis e aprovação humana.' },
       { title: 'Continuidade', description: 'Preservo decisões, evidências e próximos passos em registros persistentes para retomar o trabalho entre sessões com contexto e responsabilidade.' },
     ],
   },
@@ -91,12 +91,12 @@ export const ptBRHome = {
     paragraphs: [
       'Sou Nelson Secco, Senior Product Designer, e também atuo como UX Consultant em projetos independentes. Trabalho na interseção entre Design, Produto e Engenharia. Minha trajetória combina experiência em UX e Product Design com um background em desenvolvimento de software, o que me permite compreender tanto a experiência que queremos criar quanto as condições técnicas necessárias para transformá-la em produto.',
       'Atuo de forma hands-on em produtos e sistemas complexos: investigo contextos, estruturo fluxos e regras, desenho interfaces e colaboro de perto com Engenharia até a implementação. Meu papel não é substituir especialidades, mas criar continuidade entre decisões de produto, qualidade da experiência e viabilidade técnica.',
-      'Hoje também exploro uma forma de trabalho em que Design e implementação acontecem cada vez mais próximos, usando IA para apoiar análise, prototipação, desenvolvimento e validação. As ferramentas aceleram a execução, mas decisões, revisão crítica e critérios de qualidade continuam humanos. Este próprio portfólio foi construído dessa forma e é uma evidência prática de como trabalho hoje.',
+      'Essa prática deu origem ao AI-Assisted Design Engineering Operating System, framework que criei e utilizo como base operacional em atividades profissionais reais, com adaptações por projeto. Ele conecta evidências, Design Systems, execução e continuidade entre sessões. A IA apoia o trabalho; decisões, revisão crítica e responsabilidade final continuam humanas.',
     ],
     businessContext: 'Minha trajetória inclui produtos para Embraer, Santander, Bradesco, DASA, REDE, ConnectCar e Salux, além de startups como Subiter, TerraMagna e NOALVO, reconhecidas no 100 Startups to Watch, da revista PEGN. N3LX Digital Business é a estrutura empresarial pela qual conduzo projetos independentes de Product Design e consultoria em UX.',
     artisticEyebrow: 'Além de produto e tecnologia',
     artisticCopy: 'Fora do trabalho com produtos digitais, também componho e produzo música autoral como N3LX — outro espaço onde exploro criatividade, experimentação e construção.',
-    artisticActionLabel: 'Ouvir N3LX no Spotify',
+    artisticActionLabel: 'Ouvir N3LX no SoundCloud',
   },
   metaCase: {
     eyebrow: 'Por trás deste portfólio',

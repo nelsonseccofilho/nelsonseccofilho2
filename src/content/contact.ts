@@ -25,4 +25,4 @@ export const CONTACT_EMAIL_URL = `mailto:${CONTACT_EMAIL}`;
 export const LINKEDIN_CONTACT_URL = 'https://www.linkedin.com/in/nelsonseccofilho/';
 export const GITHUB_PROFILE_URL = 'https://github.com/nelsonseccofilho';
 export const GITHUB_PORTFOLIO_REPOSITORY_URL = 'https://github.com/nelsonseccofilho/nelsonseccofilho2';
-export const N3LX_SPOTIFY_URL = 'https://open.spotify.com/intl-pt/artist/2ieIog7rXx1yWHaPyQhJvE';
+export const N3LX_SOUNDCLOUD_URL = 'https://soundcloud.com/n3lx';

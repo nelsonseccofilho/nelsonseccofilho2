@@ -1,5 +1,5 @@
 import styles from './case.module.css';
-import { WorkflowDiagram, EvidenceLadder, ArtifactLoop, TrustArchitecture } from './system-diagrams';
+import { WorkflowDiagram, EvidenceLadder, TrustArchitecture } from './system-diagrams';
 import type { Metadata } from 'next';
 import { AnalyticsLink } from '@/components/analytics/analytics-link';
 import { getWhatsAppClickEvent } from '@/components/analytics/clarity';
@@ -14,10 +14,37 @@ import { getWhatsAppContactUrl } from '@/content/contact';
 import { commonContent } from '@/content/i18n';
 import { aiAssistedDesignEngineeringCaseContent, aiAssistedDesignEngineeringSharedFacts } from '@/content/i18n/projects/ai-assisted-design-engineering';
 import type { Locale } from '@/i18n/locales';
+import { getLocalizedPath } from '@/i18n/routes';
+
+function createCaseMetadata(locale: Locale): Metadata {
+  const copy = aiAssistedDesignEngineeringCaseContent[locale].metadata;
+  const origin = 'https://nelsonsecco.netlify.app';
+  const url = origin + getLocalizedPath('ai-assisted-design-engineering', locale);
+  return {
+    ...copy,
+    authors: [{ name: aiAssistedDesignEngineeringSharedFacts.authorName }],
+    alternates: {
+      canonical: url,
+      languages: {
+        'pt-BR': origin + getLocalizedPath('ai-assisted-design-engineering', 'pt-BR'),
+        en: origin + getLocalizedPath('ai-assisted-design-engineering', 'en'),
+      },
+    },
+    openGraph: {
+      ...copy,
+      type: 'article',
+      url,
+      siteName: 'Nelson Secco',
+      locale: locale === 'pt-BR' ? 'pt_BR' : 'en_US',
+      alternateLocale: locale === 'pt-BR' ? 'en_US' : 'pt_BR',
+    },
+    twitter: { card: 'summary', ...copy },
+  };
+}
 
 export const metadataByLocale: Readonly<Record<Locale, Metadata>> = {
-  'pt-BR': aiAssistedDesignEngineeringCaseContent['pt-BR'].metadata,
-  en: aiAssistedDesignEngineeringCaseContent.en.metadata,
+  'pt-BR': createCaseMetadata('pt-BR'),
+  en: createCaseMetadata('en'),
 };
 
 const evidenceFamilies = {
@@ -74,14 +101,33 @@ function NarrativeList({ items, ordered = false }: { items: readonly string[]; o
   );
 }
 
+
+function SourceLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return <a className="text-link text-link--hit-area" href={href}>{children}</a>;
+}
+
+function DescriptionGrid({ items }: { items: readonly { title: string; description: string }[] }) {
+  return (
+    <dl className={styles['case-summary']}>
+      {items.map((item) => (
+        <div key={item.title} className={styles['case-summary__item']}>
+          <dt className="font-semibold text-[var(--color-text-primary)]">{item.title}</dt>
+          <dd className="case-section__copy">{item.description}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 export default function AiAssistedDesignEngineeringPage({ locale = 'pt-BR' }: { locale?: Locale }) {
   const content = aiAssistedDesignEngineeringCaseContent[locale];
   const sections = content.sections;
+  const sources = aiAssistedDesignEngineeringSharedFacts.sources;
 
   return (
     <>
       <SiteHeader content={commonContent[locale]} locale={locale} routeId="ai-assisted-design-engineering" />
-      <main className={`case-study ${styles.editorial}`}>
+      <main className={'case-study ' + styles.editorial}>
         <PortfolioReturnNavigation locale={locale} />
         <header className="py-[clamp(2.5rem,5vw,5rem)]">
           <div className="layout-container grid gap-8 md:gap-10">
@@ -97,95 +143,93 @@ export default function AiAssistedDesignEngineeringPage({ locale = 'pt-BR' }: { 
           </div>
         </header>
 
-        <CaseSection id="operational-problem" title={sections.operationalProblem.title} intro={sections.operationalProblem.intro}>
-          <ul className="m-0 grid list-none gap-4 p-0 md:grid-cols-2">
-            {sections.operationalProblem.bullets.map((bullet) => (
-              <li key={bullet} className="border-t border-[var(--color-border)] pt-4 text-[1.05rem] leading-[1.7] text-[var(--color-text-secondary)]">{bullet}</li>
-            ))}
-          </ul>
+        <CaseSection id="operational-problem" title={sections.problem.title} intro={sections.problem.intro}>
+          <NarrativeList items={sections.problem.bullets} />
         </CaseSection>
 
         <div className="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
-          <CaseSection id="workflow" title={sections.workflow.title} intro={sections.workflow.intro}>
-            <WorkflowDiagram steps={sections.workflow.steps} phases={content.diagramLabels.workflowPhases} />
-            <p className="case-section__copy max-w-[48rem]">{sections.workflow.toolNote}</p>
+          <CaseSection id="versioned-evolution" title={sections.evolution.title} intro={sections.evolution.intro}>
+            <ol className={styles['case-evolution']}>
+              {sections.evolution.decisions.map((decision, index) => (
+                <li key={decision.title}>
+                  <span className={styles.number} aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <h3 className={styles['case-evolution__title']}>{decision.title}</h3>
+                  <p className="case-section__copy">{decision.description}</p>
+                </li>
+              ))}
+            </ol>
+            <SourceLink href={sources.rationale}>{sections.evolution.sourceLabel}</SourceLink>
           </CaseSection>
         </div>
 
-        <CaseSection id="evidence-before-design" title={sections.evidenceBeforeDesign.title} intro={sections.evidenceBeforeDesign.intro}>
-          <EvidenceLadder states={content.diagramLabels.evidenceStates} distinctions={sections.evidenceBeforeDesign.distinctions} />
-          <p className="case-section__copy">{sections.evidenceBeforeDesign.provenance}</p>
-          <PublicEvidence family="ingestion" locale={locale} />
-        </CaseSection>
-
-        <CaseSection id="product-ux-analysis" title={sections.productUxAnalysis.title} intro={sections.productUxAnalysis.intro}>
-          <NarrativeList items={sections.productUxAnalysis.bullets} />
-        </CaseSection>
-
-        <CaseSection id="artifact-work" title={sections.artifactWork.title} intro={sections.artifactWork.intro}>
-          <ArtifactLoop steps={sections.artifactWork.steps} returnLabel={content.diagramLabels.artifactReturn} />
+        <CaseSection id="trust-boundaries" title={sections.architecture.title} intro={sections.architecture.intro}>
+          <TrustArchitecture layers={sections.architecture.layers} labels={content.diagramLabels.trustLayers} />
+          <DescriptionGrid items={sections.architecture.sources} />
+          <p className="case-section__copy">{sections.architecture.example}</p>
+          <SourceLink href={sources.runtime}>{sections.architecture.sourceLabel}</SourceLink>
         </CaseSection>
 
         <div className="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
-          <CaseSection id="operating-principles" title={sections.operatingPrinciples.title} intro={sections.operatingPrinciples.intro}>
-            <dl className="m-0 grid max-w-[60rem] gap-6">
-              {sections.operatingPrinciples.items.map((item) => (
-                <div key={item.code} className="grid gap-2 border-t border-[var(--color-border)] pt-5">
-                  <dt className="text-[clamp(1.05rem,2vw,1.5rem)] leading-[1.5] font-semibold text-[var(--color-text-primary)]">{item.code}</dt>
-                  <dd className="case-section__copy max-w-[48rem]">{item.description}</dd>
+          <CaseSection id="operating-principles" title={sections.principles.title} intro={sections.principles.intro}>
+            <dl className={styles['case-principles']}>
+              {sections.principles.items.map((item) => (
+                <div key={item.code} className={styles['case-summary__item']}>
+                  <dt className="font-semibold text-[var(--color-text-primary)]">{item.code}</dt>
+                  <dd className="case-section__copy">{item.description}</dd>
                 </div>
               ))}
             </dl>
+            <details className={styles['case-detail']}>
+              <summary>{content.details.evidence}</summary>
+              <div className={styles['case-detail__body']}>
+                <p className="case-section__copy">{sections.principles.evidenceIntro}</p>
+                <EvidenceLadder states={content.diagramLabels.evidenceStates} distinctions={sections.principles.distinctions} />
+              </div>
+            </details>
           </CaseSection>
         </div>
 
-        <CaseSection id="runtime" title={sections.runtime.title}>
-          <div className="case-section__text-block"><p className="case-section__copy">{sections.runtime.intro}</p></div>
-          <PublicEvidence family="runtime" locale={locale} />
+        <CaseSection id="professional-application" title={sections.application.title} intro={sections.application.intro}>
+          <NarrativeList items={sections.application.bullets} />
+          <p className="case-section__copy">{sections.application.boundary}</p>
+          <details className={styles['case-detail']}>
+            <summary>{content.details.workflow}</summary>
+            <div className={styles['case-detail__body']}>
+              <p className="case-section__copy">{sections.application.workflowIntro}</p>
+              <WorkflowDiagram steps={sections.application.steps} phases={content.diagramLabels.workflowPhases} />
+            </div>
+          </details>
         </CaseSection>
 
-        <CaseSection id="public-framework" title={sections.publicFramework.title} intro={sections.publicFramework.intro}>
-          <div className="case-section__text-block"><p className="case-section__copy">{sections.publicFramework.evidenceBoundary}</p></div>
-          <PublicEvidence family="readme" locale={locale} />
-        </CaseSection>
-
-        <CaseSection id="continuity" title={sections.continuity.title} intro={sections.continuity.intro}>
-          <div className="case-section__text-block"><p className="case-section__copy">{sections.continuity.validation}</p></div>
-        </CaseSection>
-
-        <CaseSection id="drift-detection" title={sections.driftDetection.title} intro={sections.driftDetection.intro}>
-          <dl className="m-0 grid gap-5 md:grid-cols-3">
-            {sections.driftDetection.states.map((state) => (
-              <div key={state.status} className="grid content-start gap-2 border-t border-[var(--color-border)] pt-4">
-                <dt className="font-semibold text-[var(--color-text-primary)]">{state.status}</dt>
-                <dd className="case-section__copy">{state.description}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="case-section__copy max-w-[48rem]">{sections.driftDetection.evidenceRule}</p>
-        </CaseSection>
-
-        <CaseSection id="versioned-evolution" title={sections.versionedEvolution.title} intro={sections.versionedEvolution.intro}>
-          <div className="case-section__text-block"><p className="case-section__copy">{sections.versionedEvolution.ciBoundary}</p></div>
-          <PublicEvidence family="commit" locale={locale} />
+        <CaseSection id="outcomes" title={sections.outcomes.title} intro={sections.outcomes.intro}>
+          <DescriptionGrid items={sections.outcomes.results} />
+          <h3 className={styles['case-evolution__title']}>{sections.outcomes.learningTitle}</h3>
+          <NarrativeList items={sections.outcomes.learnings} />
+          <SourceLink href={sources.validation}>{sections.outcomes.sourceLabel}</SourceLink>
         </CaseSection>
 
         <div className="border-y border-[var(--color-border)] bg-[var(--color-surface)]">
-          <CaseSection id="trust-boundaries" title={sections.trustBoundaries.title} intro={sections.trustBoundaries.intro}>
-            <TrustArchitecture layers={sections.trustBoundaries.layers} labels={content.diagramLabels.trustLayers} />
-            <p className="case-section__copy max-w-[48rem]">{sections.trustBoundaries.publicationRule}</p>
+          <CaseSection id="public-framework" title={sections.publicFramework.title} intro={sections.publicFramework.intro}>
+            <div className="case-section__text-block">
+              <p className="case-section__copy">{sections.publicFramework.release}</p>
+              <SourceLink href={sources.release}>{sections.publicFramework.releaseLabel}</SourceLink>
+              <p className="case-section__copy">{sections.publicFramework.current}</p>
+              <SourceLink href={sources.main}>{sections.publicFramework.currentLabel}</SourceLink>
+              <p className="case-section__copy">{sections.publicFramework.limitation}</p>
+              <p className="case-section__copy">{sections.publicFramework.next}</p>
+              <SourceLink href={sources.releases}>{sections.publicFramework.releasesLabel}</SourceLink>
+            </div>
+            <p className="case-section__copy">{sections.publicFramework.evidenceBoundary}</p>
+            <details className={styles['case-detail']}>
+              <summary>{content.details.history}</summary>
+              <div className={styles['case-detail__body']}>
+                {(Object.keys(evidenceFamilies) as (keyof typeof evidenceFamilies)[]).map((family) => (
+                  <PublicEvidence key={family} family={family} locale={locale} />
+                ))}
+              </div>
+            </details>
           </CaseSection>
         </div>
-
-        <CaseSection id="outcomes" title={sections.outcomes.title} intro={sections.outcomes.intro}>
-          <NarrativeList items={sections.outcomes.bullets} />
-          <p className="case-section__copy max-w-[48rem]">{sections.outcomes.evidenceBoundary}</p>
-        </CaseSection>
-
-        <CaseSection id="learnings" title={sections.learnings.title} intro={sections.learnings.intro}>
-          <NarrativeList items={sections.learnings.bullets} />
-        </CaseSection>
-
         <CaseSection id="case-contact" title={content.cta.title} intro={content.cta.description}>
           <div className="flex flex-wrap items-center gap-4">
             <AnalyticsLink

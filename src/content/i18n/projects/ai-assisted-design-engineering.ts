@@ -1,21 +1,31 @@
 import type { DictionaryByLocale, MetadataContent } from '@/content/i18n/types';
 import { projectFacts } from '@/content/project-facts';
 
+const repository = projectFacts['ai-assisted-design-engineering'].externalUrls.repository;
 export const aiAssistedDesignEngineeringSharedFacts = {
   ...projectFacts['ai-assisted-design-engineering'],
   authorName: 'Nelson Secco',
   companyName: 'N3LX Digital Business',
   commitSha: '2910154799ed28416475a359a9ea536599f38451',
+  releaseVersion: 'v3.9.0',
+  releaseDate: '2026-10-24',
+  releaseSource: '795cedc5737ae023371f5aca477db20a6f2d635b',
+  inspectedMainSource: 'e82549d7546558786c46caefd189906cf24aba88',
+  inspectedAt: '2026-10-26',
+  sources: {
+    release: repository + '/releases/tag/v3.9.0',
+    releases: repository + '/releases',
+    main: repository + '/tree/e82549d7546558786c46caefd189906cf24aba88',
+    rationale: repository + '/blob/e82549d7546558786c46caefd189906cf24aba88/docs/RATIONALE.md',
+    runtime: repository + '/tree/e82549d7546558786c46caefd189906cf24aba88/runtime',
+    validation: repository + '/blob/e82549d7546558786c46caefd189906cf24aba88/runtime/docs/contracts/VALIDATION_AND_CLOSURE.md',
+  },
 } as const;
-
 type NarrativeSection = { title: string; intro: string };
-type BulletSection = NarrativeSection & { bullets: readonly string[] };
-type StepSection = NarrativeSection & { steps: readonly string[] };
-
+type Description = { title: string; description: string };
 export type AiAssistedDesignEngineeringCaseLocalizedContent = {
   evidence: {
-    establishesLabel: string;
-    doesNotEstablishLabel: string;
+    establishesLabel: string; doesNotEstablishLabel: string;
     items: Readonly<Record<'ingestion' | 'runtime' | 'readme' | 'commit', { title: string; alt: string; establishes: string; doesNotEstablish: string }>>;
   };
   diagramLabels: {
@@ -25,45 +35,252 @@ export type AiAssistedDesignEngineeringCaseLocalizedContent = {
     trustLayers: readonly [string, string, string];
   };
   metadata: MetadataContent;
-  hero: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    context: string;
-    consultingContext: string;
-  };
+  hero: { eyebrow: string; title: string; description: string; context: string; consultingContext: string };
+  details: { workflow: string; evidence: string; history: string };
   sections: {
-    operationalProblem: BulletSection;
-    workflow: StepSection & { toolNote: string };
-    evidenceBeforeDesign: NarrativeSection & {
-      distinctions: readonly [string, string, string, string];
-      provenance: string;
+    problem: NarrativeSection & { bullets: readonly string[] };
+    evolution: NarrativeSection & { decisions: readonly Description[]; sourceLabel: string };
+    architecture: NarrativeSection & {
+      layers: readonly { id: 'public-framework' | 'private-runtime' | 'ai-session'; description: string }[];
+      sources: readonly Description[]; example: string; sourceLabel: string;
     };
-    productUxAnalysis: BulletSection;
-    artifactWork: StepSection;
-    operatingPrinciples: NarrativeSection & {
-      items: readonly { code: 'FACT ≠ INFERENCE ≠ ASSUMPTION' | 'PARITY BEFORE UX EVOLUTION' | 'REUSE → COMPOSE → EVOLVE → CREATE'; description: string }[];
+    principles: NarrativeSection & {
+      items: readonly { code: string; description: string }[];
+      evidenceIntro: string; distinctions: readonly [string, string, string, string];
     };
-    runtime: NarrativeSection;
-    publicFramework: NarrativeSection & { evidenceBoundary: string };
-    continuity: NarrativeSection & { validation: string };
-    driftDetection: NarrativeSection & {
-      states: readonly { status: 'PASS' | 'FOUND' | 'PENDING'; description: string }[];
-      evidenceRule: string;
+    application: NarrativeSection & { bullets: readonly string[]; boundary: string; workflowIntro: string; steps: readonly string[] };
+    outcomes: NarrativeSection & { results: readonly Description[]; learningTitle: string; learnings: readonly string[]; sourceLabel: string };
+    publicFramework: NarrativeSection & {
+      release: string; current: string; limitation: string; evidenceBoundary: string;
+      releaseLabel: string; currentLabel: string; releasesLabel: string; next: string;
     };
-    versionedEvolution: NarrativeSection & { ciBoundary: string };
-    trustBoundaries: NarrativeSection & {
-      layers: readonly { id: 'public-framework' | 'private-runtime' | 'live-sources'; description: string }[];
-      publicationRule: string;
-    };
-    outcomes: BulletSection & { evidenceBoundary: string };
-    learnings: BulletSection;
   };
   cta: { title: string; description: string; githubLabel: string; consultingLabel: string };
 };
 
 export const aiAssistedDesignEngineeringCaseContent = {
   "pt-BR": {
+    "diagramLabels": {
+      "workflowPhases": [
+        "Contexto",
+        "Evidência e decisão",
+        "Design e execução",
+        "Validação e continuidade"
+      ],
+      "trustLayers": [
+        "Framework operacional",
+        "Runtime por projeto",
+        "Sessão de IA"
+      ],
+      "evidenceStates": [
+        "Gravação",
+        "Transcrição",
+        "Requisito aprovado",
+        "Implementação",
+        "Conclusão validada"
+      ],
+      "artifactReturn": "QA → retornar à inspeção do artefato"
+    },
+    "metadata": {
+      "title": "AI-Assisted Design Engineering Operating System — Case de Product Design | Nelson Secco",
+      "description": "Nelson Secco apresenta o framework que criou para conectar Product Design, Design Systems e IA com evidências, continuidade e responsabilidade humana."
+    },
+    "hero": {
+      "eyebrow": "AI-Assisted Design Engineering Operating System",
+      "title": "Sessões de IA são temporárias. O trabalho de produto não é.",
+      "description": "Criei um framework operacional para conectar Product Design, Design Systems e Engenharia em fluxos assistidos por IA — com evidências, continuidade e responsabilidade humana.",
+      "context": "Sou Nelson Secco, Senior Product Designer e UX Consultant. Transformei problemas recorrentes da minha prática em um método genérico, reutilizável e versionado para orientar a colaboração entre profissionais e agentes de IA.",
+      "consultingContext": "Hoje, utilizo o framework como base operacional em atividades profissionais reais, com adaptações específicas por projeto. Este case apresenta o método público; contextos e evidências de clientes permanecem privados."
+    },
+    "details": {
+      "workflow": "Aprofundar: um fluxo genérico de trabalho",
+      "evidence": "Aprofundar: da fonte à conclusão",
+      "history": "Consultar capturas históricas do framework público"
+    },
+    "sections": {
+      "problem": {
+        "title": "O custo de recomeçar a cada conversa",
+        "intro": "O trabalho atravessa dias, decisões e ferramentas. Quando o contexto fica apenas no chat, o profissional precisa reconstruir o que já foi combinado antes de continuar.",
+        "bullets": [
+          "Instruções repetidas e decisões que se perdem entre sessões.",
+          "Fontes conflitantes e suposições que passam a ser tratadas como fatos.",
+          "Mudanças que se afastam do comportamento aprovado ou duplicam o Design System.",
+          "Responsabilidades ambíguas e dificuldade para saber o que foi concluído e o que ainda exige revisão."
+        ]
+      },
+      "evolution": {
+        "title": "Da experimentação a um método reutilizável",
+        "intro": "A evolução exigiu desenhar como o trabalho continua, quem decide e quais fontes sustentam cada ação. Três decisões estruturam essa passagem.",
+        "decisions": [
+          {
+            "title": "Separar regra, contexto e estado",
+            "description": "Consolidar princípios estáveis no framework, manter o contexto no projeto e registrar o ponto de retomada. Cada nova sessão encontra responsabilidades distintas em vez de um único prompt sobrecarregado."
+          },
+          {
+            "title": "Projetar a continuidade",
+            "description": "Organizar frentes de trabalho, sessões e decisões em registros persistentes. O próximo agente precisa reconciliar esses registros com as fontes e com o artefato atual antes de agir."
+          },
+          {
+            "title": "Evoluir com critérios",
+            "description": "Versionar o método, explicitar permissões e definir validação e encerramento. Uma melhoria no framework passa por análise própria antes de ser adotada em cada projeto."
+          }
+        ],
+        "sourceLabel": "Ler o raciocínio de design no repositório público"
+      },
+      "architecture": {
+        "title": "Um método, três responsabilidades",
+        "intro": "O framework governa o trabalho. O runtime preserva o estado de cada projeto. A sessão executa uma tarefa delimitada. A responsabilidade pelas decisões permanece com as pessoas.",
+        "layers": [
+          {
+            "id": "public-framework",
+            "description": "Regras genéricas de colaboração: evidências, escopo, permissões, qualidade e continuidade. É a camada pública e reutilizável."
+          },
+          {
+            "id": "private-runtime",
+            "description": "Registros persistentes de objetivo, decisões, referências e próximo passo. Workstreams organizam frentes de trabalho; sessões registram cada período de execução. O contexto real fica no ambiente autorizado do projeto."
+          },
+          {
+            "id": "ai-session",
+            "description": "Agentes inspecionam, propõem e executam dentro do escopo permitido. Ao terminar a sessão, registram o que mudou, o que foi verificado e como continuar."
+          }
+        ],
+        "sources": [
+          {
+            "title": "Fontes primárias",
+            "description": "Requisitos e aprovações conservam sua origem. O runtime mantém referências e contexto, sem substituir a evidência."
+          },
+          {
+            "title": "Design System canônico",
+            "description": "Componentes, tokens e padrões aprovados orientam a composição. Mudanças compartilhadas exigem análise de impacto e ownership explícito."
+          },
+          {
+            "title": "Artefato atual",
+            "description": "A interface, o arquivo de design ou o código mostram o estado real. Um relato anterior precisa ser reconciliado com esse estado."
+          }
+        ],
+        "example": "Exemplo genérico: antes de alterar um componente, conferir a referência aprovada, inspecionar a instância atual, delimitar quem pode modificá-la e registrar a validação no local responsável pela mudança.",
+        "sourceLabel": "Explorar a estrutura pública de runtime"
+      },
+      "principles": {
+        "title": "Autonomia com responsabilidade humana",
+        "intro": "A IA amplia a capacidade de análise e execução. Direção de produto, interpretação de aprovações e responsabilidade final continuam humanas.",
+        "items": [
+          {
+            "code": "Responsabilidade humana",
+            "description": "Pessoas definem objetivos, avaliam consequências e aprovam decisões de produto."
+          },
+          {
+            "code": "Evidência antes da inferência",
+            "description": "Uma fonte primária verificável tem prioridade sobre uma interpretação conveniente."
+          },
+          {
+            "code": "FACT ≠ INFERENCE ≠ ASSUMPTION",
+            "description": "Separar o observado, o interpretado e o que ainda precisa de confirmação."
+          },
+          {
+            "code": "PARITY BEFORE UX EVOLUTION",
+            "description": "Preservar o comportamento aprovado antes de propor mudanças na experiência."
+          },
+          {
+            "code": "REUSE → COMPOSE → EVOLVE → CREATE",
+            "description": "Inspecionar e reutilizar a base canônica antes de criar novos padrões."
+          },
+          {
+            "code": "Ownership das alterações",
+            "description": "Quem responde pelo arquivo ou artefato alterado também mantém seu registro de mudança."
+          },
+          {
+            "code": "Continuidade persistente",
+            "description": "Objetivo, decisões e próximo passo precisam sobreviver à memória temporária da conversa."
+          },
+          {
+            "code": "Validação proporcional ao risco",
+            "description": "Executar as verificações necessárias e reutilizar evidências ainda válidas, preservando os critérios obrigatórios."
+          },
+          {
+            "code": "Conclusão com critérios",
+            "description": "Definir o aceite antes dos testes e separar execução, evidência e aprovação humana."
+          }
+        ],
+        "evidenceIntro": "Uma transcrição ajuda a recuperar uma conversa. A passagem para requisito, implementação e conclusão exige revisão e evidência em cada etapa.",
+        "distinctions": [
+          "gravação ≠ transcrição",
+          "transcrição ≠ requisito aprovado",
+          "requisito aprovado ≠ implementação",
+          "implementação ≠ conclusão validada"
+        ]
+      },
+      "application": {
+        "title": "Da metodologia à aplicação profissional",
+        "intro": "Utilizo o framework como base operacional na minha prática profissional, com adaptações de governança, ferramentas e confidencialidade a cada projeto.",
+        "bullets": [
+          "O método público fornece princípios e contratos reutilizáveis.",
+          "A configuração do projeto define fontes autorizadas, Design System, responsáveis e limites de atuação.",
+          "A execução profissional aplica esses critérios a tarefas concretas, com inspeção, revisão e validação."
+        ],
+        "boundary": "O uso profissional é uma declaração do autor. Este case não apresenta dados, interfaces ou resultados de clientes como evidência pública.",
+        "workflowIntro": "Esta sequência é uma demonstração genérica derivada da documentação pública, sem representar um projeto de cliente.",
+        "steps": [
+          "Definir objetivo",
+          "Delimitar escopo",
+          "Localizar fontes",
+          "Revisar evidências",
+          "Registrar decisões",
+          "Analisar Produto e UX",
+          "Inspecionar o artefato",
+          "Compor com o Design System",
+          "Executar no escopo autorizado",
+          "Validar critérios",
+          "Revisar com responsáveis",
+          "Registrar o próximo passo"
+        ]
+      },
+      "outcomes": {
+        "title": "O que foi construído — e o que ainda precisa ser demonstrado",
+        "intro": "O resultado público é um framework versionado que torna explícitas as regras de colaboração, a estrutura de continuidade e os limites de atuação.",
+        "results": [
+          {
+            "title": "Demonstrado publicamente",
+            "description": "Método, arquitetura de runtime, contratos e histórico de releases podem ser inspecionados no repositório público."
+          },
+          {
+            "title": "Relatado pelo autor",
+            "description": "Uso como base operacional em atividades profissionais reais, com adaptações específicas. A documentação pública não comprova de forma independente as operações privadas."
+          },
+          {
+            "title": "Benefícios a mensurar",
+            "description": "Reduzir retrabalho, esforço de retomada e inconsistências é um objetivo do método. Este case não apresenta medição comparativa de produtividade ou eficácia geral dos agentes."
+          }
+        ],
+        "learningTitle": "Limitações que orientam a evolução",
+        "learnings": [
+          "Contexto recuperado pode estar incompleto ou desatualizado. A retomada exige conferir as fontes aplicáveis e reconciliar o estado antes de alterar um artefato.",
+          "Conversa, documentação e artefato podem divergir. Registros preservam a intenção; a inspeção confirma a implementação atual.",
+          "Revalidar tudo a cada passo aumenta o custo sem necessariamente mudar a decisão. Critérios prévios e evidência ainda válida ajudam a delimitar o encerramento.",
+          "Autonomia sem limites claros deixa responsabilidades ambíguas. Escopo, permissões e ownership precisam anteceder a execução.",
+          "Testes aprovados sustentam apenas o que foi verificado. Não equivalem à aprovação humana nem demonstram, por si só, a eficácia dos agentes."
+        ],
+        "sourceLabel": "Consultar o contrato público de validação e encerramento"
+      },
+      "publicFramework": {
+        "title": "Um framework público em evolução",
+        "intro": "O método continua experimental e em evolução. A documentação, as decisões e os releases permitem acompanhar o que foi publicado e o que ainda está em desenvolvimento.",
+        "release": "Release publicado: v3.9.0, de 24 de outubro de 2026. Acrescenta três ferramentas opcionais de leitura e apoio à revisão de contexto, coerência de relatos de ações e ciclos de trabalho.",
+        "current": "Após esse release, o main recebeu mudanças adicionais de admissão de fontes e validação proporcional. A referência consultada neste case é de 26 de outubro de 2026; essas mudanças não fazem parte da tag v3.9.0 nem atualizam automaticamente projetos adotantes.",
+        "limitation": "O registro do v3.9.0 relata QA local executado pelo mantenedor. CI hospedada não foi verificada. Isso não comprova autenticação independente das ações de ferramentas, eficácia geral dos agentes ou aceitação dos pilotos opcionais.",
+        "evidenceBoundary": "As capturas abaixo são registros históricos. Elas comprovam a existência da documentação nas versões capturadas; não comprovam de forma independente operações privadas nem indicam a versão atual.",
+        "releaseLabel": "Consultar o release v3.9.0",
+        "currentLabel": "Ver a fonte posterior consultada",
+        "releasesLabel": "Acompanhar o histórico de releases",
+        "next": "Próximos passos: continuar refinando as regras a partir de limitações verificáveis e ampliar a avaliação independente. Novas hipóteses dependem de evidência antes de serem apresentadas como resultados."
+      }
+    },
+    "cta": {
+      "title": "Vamos estruturar seu próximo desafio de produto?",
+      "description": "Converse sobre Product Design, Design Systems e Design Engineering com IA, considerando o contexto, os critérios de qualidade e a responsabilidade da sua equipe.",
+      "githubLabel": "Explorar o framework no GitHub",
+      "consultingLabel": "Conversar sobre consultoria com IA"
+    },
     "evidence": {
       "establishesLabel": "O que esta evidência comprova",
       "doesNotEstablishLabel": "O que ela não comprova",
@@ -93,209 +310,230 @@ export const aiAssistedDesignEngineeringCaseContent = {
           "doesNotEstablish": "Não comprova hosted CI PASS, ganho de produtividade ou execução de operações privadas de clientes."
         }
       }
-    },
-    "diagramLabels": {
-      "workflowPhases": [
-        "Origem",
-        "Evidência e decisão",
-        "Design e execução",
-        "Validação e continuidade"
-      ],
-      "evidenceStates": [
-        "Gravação",
-        "Transcrição",
-        "Requisito aprovado",
-        "Implementação",
-        "Conclusão validada"
-      ],
-      "artifactReturn": "QA → retornar à inspeção do artefato",
-      "trustLayers": [
-        "Framework público",
-        "Runtime privado",
-        "Fontes vivas"
-      ]
-    },
-    "metadata": {
-      "title": "AI-Assisted Design Engineering Operating System — Case de Product Design | Nelson Secco",
-      "description": "Um modelo operacional persistente e orientado por evidências para Product Designers e agentes de IA, usado como base de trabalho na N3LX Digital Business."
-    },
-    "hero": {
-      "eyebrow": "AI-Assisted Design Engineering Operating System",
-      "title": "Sessões de IA são temporárias. O trabalho de produto não é.",
-      "description": "Um modelo operacional persistente e orientado por evidências para Product Designers e agentes de IA.",
-      "context": "O framework evoluiu do fluxo real de Product Design assistido por IA de Nelson para um sistema operacional versionado.",
-      "consultingContext": "Usado como base operacional em projetos reais de clientes por meio da N3LX Digital Business, adaptado às restrições de confidencialidade, evidências, governança e ferramentas de cada projeto."
-    },
-    "sections": {
-      "operationalProblem": {
-        "title": "Quando a sessão termina, o trabalho continua",
-        "intro": "Conversas temporárias precisam de fontes duráveis para preservar intenção, evidências e responsabilidade.",
-        "bullets": [
-          "Perda de contexto entre conversas.",
-          "Evidências antigas ou interpretações sem origem passam a orientar decisões.",
-          "Design drift altera comportamentos aprovados.",
-          "O estado da conversa não equivale ao estado atual do artefato.",
-          "Design System drift cria padrões locais e duplicações.",
-          "Responsabilidades e escopos de mutação ficam ambíguos.",
-          "Requisitos perdem o vínculo com suas fontes e aprovações.",
-          "Limites de sessão interrompem a continuidade operacional."
-        ]
-      },
-      "workflow": {
-        "title": "Da reunião ao handoff persistente",
-        "intro": "Cada transição preserva a origem da evidência e exige o nível de revisão adequado.",
-        "steps": [
-          "Reunião com stakeholders",
-          "Gravação aprovada",
-          "Transcrição local",
-          "Revisão humana da evidência",
-          "Evidence ID, requisito ou decisão",
-          "Análise de Produto/UX",
-          "Inspeção do artefato",
-          "Execução com Figma MCP no escopo autorizado",
-          "QA estrutural e visual",
-          "Revisão com stakeholders",
-          "Refinamento",
-          "Handoff persistente"
-        ],
-        "toolNote": "OBS Studio e WhisperX são exemplos do fluxo local de ingestão de evidências, não dependências obrigatórias do framework."
-      },
-      "evidenceBeforeDesign": {
-        "title": "Evidência antes do design",
-        "intro": "Uma transcrição exige revisão humana; ela não transforma automaticamente uma fala em requisito aprovado.",
-        "distinctions": [
-          "gravação ≠ transcrição",
-          "transcrição ≠ requisito aprovado",
-          "requisito aprovado ≠ implementação",
-          "implementação ≠ conclusão validada"
-        ],
-        "provenance": "Cada transição deve preservar a proveniência."
-      },
-      "productUxAnalysis": {
-        "title": "Análise crítica de Produto e UX",
-        "intro": "As evidências do projeto vêm primeiro. Boas práticas externas ajudam a analisar o problema, mas não substituem contexto, aprovação ou julgamento de produto.",
-        "bullets": [
-          "Classificar fatos, inferências e suposições.",
-          "Reconhecer dúvidas e evidência insuficiente antes de propor mudanças."
-        ]
-      },
-      "artifactWork": {
-        "title": "Trabalhar com o artefato real",
-        "intro": "O artefato atual é a fonte do estado de implementação; o relato de uma conversa não substitui uma nova inspeção.",
-        "steps": [
-          "Inspecionar",
-          "Comparar",
-          "Classificar",
-          "Planejar",
-          "Modificar no escopo autorizado",
-          "Reinspecionar",
-          "Executar QA"
-        ]
-      },
-      "operatingPrinciples": {
-        "title": "Princípios operacionais",
-        "intro": "Regras explícitas mantêm análise, execução e validação conectadas.",
-        "items": [
-          {
-            "code": "FACT ≠ INFERENCE ≠ ASSUMPTION",
-            "description": "Distinguir o que foi observado, interpretado e ainda precisa ser confirmado."
-          },
-          {
-            "code": "PARITY BEFORE UX EVOLUTION",
-            "description": "Preservar o comportamento aprovado antes de propor evolução da experiência."
-          },
-          {
-            "code": "REUSE → COMPOSE → EVOLVE → CREATE",
-            "description": "Inspecionar e reutilizar a base canônica antes de criar novos padrões."
-          }
-        ]
-      },
-      "runtime": {
-        "title": "Project Runtime",
-        "intro": "O runtime preserva contexto operacional, evidências referenciadas, sessões, workstreams, decisões e handoffs. Ele sustenta continuidade sem substituir as fontes primárias ou o estado atual do artefato."
-      },
-      "publicFramework": {
-        "title": "Método público e reutilizável",
-        "intro": "O repositório público contém o método genérico, os contratos e a documentação reutilizável. As capturas reais comprovam a existência desse framework e de sua documentação.",
-        "evidenceBoundary": "Capturas públicas não comprovam, de forma independente, operações confidenciais de clientes."
-      },
-      "continuity": {
-        "title": "Continuidade entre conversas",
-        "intro": "Quando uma sessão atinge seu limite, a próxima recupera objetivo, escopo, decisões, evidências e próximo passo a partir do runtime persistente.",
-        "validation": "A continuidade entre conversas e runtime foi exercitada e validada em uso operacional real; os detalhes específicos de clientes permanecem privados."
-      },
-      "driftDetection": {
-        "title": "Detectar drift sem inventar certeza",
-        "intro": "Comparar evidência aprovada, registro persistente e estado atual do artefato permite classificar o que foi verificado e o que ainda está em aberto.",
-        "states": [
-          {
-            "status": "PASS",
-            "description": "O escopo inspecionado passou na verificação executada."
-          },
-          {
-            "status": "FOUND",
-            "description": "Uma divergência foi encontrada e precisa ser tratada."
-          },
-          {
-            "status": "PENDING",
-            "description": "A verificação ainda está pendente ou a evidência é insuficiente."
-          }
-        ],
-        "evidenceRule": "Evidência insuficiente continua sendo evidência insuficiente; não equivale a PASS."
-      },
-      "versionedEvolution": {
-        "title": "Versionado, não improvisado",
-        "intro": "O commit público de referência registra a evolução do README, da ingestão de evidências e das orientações de transcrição local.",
-        "ciBoundary": "Hosted CI indisponível não é representado como CI PASS. Uma validação só pode ser declarada quando realmente executada."
-      },
-      "trustBoundaries": {
-        "title": "Framework público, runtime privado e fontes vivas",
-        "intro": "Cada fonte preserva sua responsabilidade e seu limite de confiança.",
-        "layers": [
-          {
-            "id": "public-framework",
-            "description": "Método genérico e documentação reutilizável no repositório público."
-          },
-          {
-            "id": "private-runtime",
-            "description": "Contexto, stakeholders, evidências, referências de artefatos e histórico específicos de clientes em fontes privadas governadas."
-          },
-          {
-            "id": "live-sources",
-            "description": "Artefatos, aprovações e fontes primárias são reconciliados no escopo autorizado; o runtime mantém referências e continuidade."
-          }
-        ],
-        "publicationRule": "Não expor identidades, URLs privadas, gravações, transcrições, conteúdos de runtime ou interfaces confidenciais para demonstrar adoção."
-      },
-      "outcomes": {
-        "title": "Resultados qualitativos sustentados por evidência",
-        "intro": "O método foi usado como base operacional em projetos reais, com adaptação a cada contexto.",
-        "bullets": [
-          "Continuidade entre conversas exercitada e validada em uso operacional.",
-          "Reconciliação do artefato real com Figma MCP exercitada no runtime privado adotante.",
-          "Método genérico e documentação pública preservados em um framework versionado."
-        ],
-        "evidenceBoundary": "As duas primeiras afirmações são confirmadas pelo autor; as capturas do GitHub comprovam o framework público, não as operações privadas. Não são apresentados KPIs inventados."
-      },
-      "learnings": {
-        "title": "Aprendizados",
-        "intro": "A continuidade depende de fontes persistentes e de julgamento humano, não apenas da memória da conversa.",
-        "bullets": [
-          "Revisão humana conecta evidência a requisito e decisão.",
-          "Reinspeção evita confundir relato e estado do artefato.",
-          "Adoção exige adaptar governança, ferramentas e confidencialidade ao projeto.",
-          "Capturas reais comprovam existência; diagramas nativos explicam sistemas; representações editoriais protegem trabalho confidencial."
-        ]
-      }
-    },
-    "cta": {
-      "title": "Vamos aplicar IA ao seu processo de produto?",
-      "description": "Converse sobre consultoria em Product Design assistido por IA pela N3LX Digital Business, considerando o contexto, as evidências e a confidencialidade da sua equipe. Se quiser explorar o método primeiro, o framework está disponível no GitHub.",
-      "githubLabel": "Explorar o framework no GitHub",
-      "consultingLabel": "Conversar sobre consultoria com IA"
     }
   },
   "en": {
+    "diagramLabels": {
+      "workflowPhases": [
+        "Context",
+        "Evidence and decisions",
+        "Design and execution",
+        "Validation and continuity"
+      ],
+      "trustLayers": [
+        "Operating framework",
+        "Project runtime",
+        "AI session"
+      ],
+      "evidenceStates": [
+        "Recording",
+        "Transcript",
+        "Approved requirement",
+        "Implementation",
+        "Validated completion"
+      ],
+      "artifactReturn": "QA → return to artifact inspection"
+    },
+    "metadata": {
+      "title": "AI-Assisted Design Engineering Operating System — Product Design Case Study | Nelson Secco",
+      "description": "Nelson Secco presents the framework he created to connect Product Design, Design Systems and AI through evidence, continuity and human accountability."
+    },
+    "hero": {
+      "eyebrow": "AI-Assisted Design Engineering Operating System",
+      "title": "AI sessions are temporary. Product work isn’t.",
+      "description": "I created an operating framework to connect Product Design, Design Systems and Engineering in AI-assisted workflows — with evidence, continuity and human accountability.",
+      "context": "I’m Nelson Secco, a Senior Product Designer and UX Consultant. I turned recurring challenges in my practice into a reusable, versioned method for collaboration between professionals and AI agents.",
+      "consultingContext": "I now use the framework as an operational baseline in real professional work, adapted to each engagement. This case presents the public method; client context and evidence remain private."
+    },
+    "details": {
+      "workflow": "Explore a generic workflow",
+      "evidence": "Explore the path from source to completion",
+      "history": "View historical captures of the public framework"
+    },
+    "sections": {
+      "problem": {
+        "title": "The cost of starting over in every conversation",
+        "intro": "Product work spans days, decisions and tools. When context lives only in a chat, the professional has to reconstruct previous agreements before continuing.",
+        "bullets": [
+          "Repeated instructions and decisions lost between sessions.",
+          "Conflicting sources and assumptions that begin to pass as facts.",
+          "Changes that drift from approved behavior or duplicate the Design System.",
+          "Unclear responsibilities and uncertainty about what is complete and what still needs review."
+        ]
+      },
+      "evolution": {
+        "title": "From experiments to a reusable method",
+        "intro": "Progress meant designing how work continues, who decides and which sources support each action. Three design decisions underpin that transition.",
+        "decisions": [
+          {
+            "title": "Separate rules, context and state",
+            "description": "Keep stable principles in the framework, context within the project and a record of where to resume. Each new session encounters distinct responsibilities rather than one overloaded prompt."
+          },
+          {
+            "title": "Design for continuity",
+            "description": "Organize workstreams, sessions and decisions in persistent records. The next agent must reconcile those records with primary sources and the current artifact before acting."
+          },
+          {
+            "title": "Evolve against explicit criteria",
+            "description": "Version the method, define permissions and establish validation and closure criteria. Framework improvements require a separate assessment before adoption in each project."
+          }
+        ],
+        "sourceLabel": "Read the design rationale in the public repository"
+      },
+      "architecture": {
+        "title": "One method, three responsibilities",
+        "intro": "The framework governs the work. The runtime preserves each project’s state. The session executes a bounded task. People remain accountable for decisions.",
+        "layers": [
+          {
+            "id": "public-framework",
+            "description": "Generic collaboration rules covering evidence, scope, permissions, quality and continuity. This is the public, reusable layer."
+          },
+          {
+            "id": "private-runtime",
+            "description": "Persistent records of objectives, decisions, references and next steps. Workstreams organize ongoing work; sessions record each period of execution. Real context stays within the project’s authorized environment."
+          },
+          {
+            "id": "ai-session",
+            "description": "Agents inspect, propose and execute within permitted scope. At session end, they record what changed, what was verified and how to continue."
+          }
+        ],
+        "sources": [
+          {
+            "title": "Primary sources",
+            "description": "Requirements and approvals retain their provenance. The runtime preserves references and context without replacing the evidence."
+          },
+          {
+            "title": "Canonical Design System",
+            "description": "Approved components, tokens and patterns guide composition. Shared changes require impact assessment and explicit ownership."
+          },
+          {
+            "title": "Current artifact",
+            "description": "The interface, design file or code shows the actual state. Earlier reports must be reconciled with that state."
+          }
+        ],
+        "example": "Generic example: before changing a component, check the approved reference, inspect the current instance, establish who may modify it and record validation where the change belongs.",
+        "sourceLabel": "Explore the public runtime structure"
+      },
+      "principles": {
+        "title": "Autonomy with human accountability",
+        "intro": "AI extends the capacity for analysis and execution. Product direction, interpretation of approvals and final accountability remain human responsibilities.",
+        "items": [
+          {
+            "code": "Human accountability",
+            "description": "People define objectives, assess consequences and approve product decisions."
+          },
+          {
+            "code": "Evidence before inference",
+            "description": "Verifiable primary evidence takes precedence over a convenient interpretation."
+          },
+          {
+            "code": "FACT ≠ INFERENCE ≠ ASSUMPTION",
+            "description": "Separate observations, interpretations and what still needs confirmation."
+          },
+          {
+            "code": "PARITY BEFORE UX EVOLUTION",
+            "description": "Preserve approved behavior before proposing changes to the experience."
+          },
+          {
+            "code": "REUSE → COMPOSE → EVOLVE → CREATE",
+            "description": "Inspect and reuse the canonical foundation before creating new patterns."
+          },
+          {
+            "code": "Change ownership",
+            "description": "The owner of the changed file or artifact also maintains its change record."
+          },
+          {
+            "code": "Persistent continuity",
+            "description": "Objectives, decisions and next steps must outlast the conversation’s temporary memory."
+          },
+          {
+            "code": "Risk-proportionate validation",
+            "description": "Run necessary checks and reuse still-valid evidence while preserving mandatory acceptance criteria."
+          },
+          {
+            "code": "Explicit completion criteria",
+            "description": "Define acceptance before testing and distinguish execution, evidence and human approval."
+          }
+        ],
+        "evidenceIntro": "A transcript helps recover a conversation. Progressing to requirements, implementation and completion requires review and evidence at each transition.",
+        "distinctions": [
+          "recording ≠ transcript",
+          "transcript ≠ approved requirement",
+          "approved requirement ≠ implementation",
+          "implementation ≠ validated completion"
+        ]
+      },
+      "application": {
+        "title": "From methodology to professional practice",
+        "intro": "I use the framework as an operational baseline in professional practice, adapting governance, tools and confidentiality safeguards to each engagement.",
+        "bullets": [
+          "The public method provides reusable principles and contracts.",
+          "Project configuration defines authorized sources, the Design System, responsibilities and execution boundaries.",
+          "Professional execution applies these criteria to concrete tasks through inspection, review and validation."
+        ],
+        "boundary": "Professional use is reported by the author. This case does not present client data, interfaces or results as public evidence.",
+        "workflowIntro": "This sequence is a generic demonstration derived from public documentation, rather than a depiction of a client engagement.",
+        "steps": [
+          "Define the objective",
+          "Bound the scope",
+          "Locate sources",
+          "Review evidence",
+          "Record decisions",
+          "Analyze Product and UX",
+          "Inspect the artifact",
+          "Compose with the Design System",
+          "Execute within authorized scope",
+          "Validate acceptance criteria",
+          "Review with accountable people",
+          "Record the next step"
+        ]
+      },
+      "outcomes": {
+        "title": "What has been built — and what still needs evidence",
+        "intro": "The public outcome is a versioned framework that makes collaboration rules, continuity structures and execution boundaries explicit.",
+        "results": [
+          {
+            "title": "Publicly inspectable",
+            "description": "The method, runtime architecture, contracts and release history can be examined in the public repository."
+          },
+          {
+            "title": "Reported by the author",
+            "description": "Use as an operational baseline in real professional work, adapted to each context. Public documentation does not independently establish private operations."
+          },
+          {
+            "title": "Benefits to measure",
+            "description": "Reducing rework, restart effort and inconsistency is an objective of the method. This case presents no comparative measurement of productivity or general agent effectiveness."
+          }
+        ],
+        "learningTitle": "Limitations that guide further development",
+        "learnings": [
+          "Recovered context can be incomplete or outdated. Resuming work requires checking applicable sources and reconciling state before changing an artifact.",
+          "Conversation, documentation and artifacts can diverge. Records preserve intent; inspection establishes the current implementation.",
+          "Rechecking everything at every step adds cost without necessarily changing a decision. Prior criteria and still-valid evidence help define when to stop.",
+          "Unbounded autonomy leaves responsibilities unclear. Scope, permissions and ownership must precede execution.",
+          "Passing tests support only what was checked. They do not constitute human approval or, on their own, demonstrate agent effectiveness."
+        ],
+        "sourceLabel": "Read the public validation and closure contract"
+      },
+      "publicFramework": {
+        "title": "A public framework that continues to evolve",
+        "intro": "The method remains experimental and evolving. Documentation, decisions and releases show what has been published and what is still under development.",
+        "release": "Published release: v3.9.0, dated October 24, 2026. It adds three optional read-only helpers for source delivery, action-report consistency and supervised work cycles.",
+        "current": "After that release, main received additional source-admission and risk-proportionate validation changes. This case references a snapshot inspected on October 26, 2026; those changes are outside the v3.9.0 tag and do not automatically update adopting projects.",
+        "limitation": "The v3.9.0 record reports maintainer-executed local QA. Hosted CI was not verified. This does not establish independent authentication of tool actions, general agent effectiveness or acceptance of optional pilots.",
+        "evidenceBoundary": "The captures below are historical records. They establish the existence of documentation at the captured revisions; they do not independently prove private operations or indicate the current version.",
+        "releaseLabel": "Read the v3.9.0 release",
+        "currentLabel": "View the later source snapshot",
+        "releasesLabel": "Follow the release history",
+        "next": "Next steps: refine the rules against verifiable limitations and broaden independent evaluation. New hypotheses need evidence before they can be presented as outcomes."
+      }
+    },
+    "cta": {
+      "title": "Let’s structure your next product challenge",
+      "description": "Discuss Product Design, Design Systems and AI-assisted Design Engineering around your team’s context, quality criteria and accountability.",
+      "githubLabel": "Explore the framework on GitHub",
+      "consultingLabel": "Discuss AI consulting"
+    },
     "evidence": {
       "establishesLabel": "What this evidence establishes",
       "doesNotEstablishLabel": "What it does not establish",
@@ -325,206 +563,6 @@ export const aiAssistedDesignEngineeringCaseContent = {
           "doesNotEstablish": "It does not prove hosted CI PASS, productivity gains, or execution of private client operations."
         }
       }
-    },
-    "diagramLabels": {
-      "workflowPhases": [
-        "Source",
-        "Evidence & decision",
-        "Design & execution",
-        "Validation & continuity"
-      ],
-      "evidenceStates": [
-        "Recording",
-        "Transcript",
-        "Approved requirement",
-        "Implementation",
-        "Validated completion"
-      ],
-      "artifactReturn": "QA → return to artifact inspection",
-      "trustLayers": [
-        "Public framework",
-        "Private runtime",
-        "Live sources"
-      ]
-    },
-    "metadata": {
-      "title": "AI-Assisted Design Engineering Operating System — Product Design Case Study | Nelson Secco",
-      "description": "A persistent, evidence-driven operating model for Product Designers and AI agents, used as an operational baseline through N3LX Digital Business."
-    },
-    "hero": {
-      "eyebrow": "AI-Assisted Design Engineering Operating System",
-      "title": "AI sessions are temporary. Product work isn’t.",
-      "description": "A persistent, evidence-driven operating model for Product Designers and AI agents.",
-      "context": "The framework evolved from Nelson’s real AI-assisted Product Design workflow into a versioned operating system.",
-      "consultingContext": "Used as an operational baseline in real client engagements through N3LX Digital Business, adapted to each engagement’s confidentiality, evidence, governance, and tool constraints."
-    },
-    "sections": {
-      "operationalProblem": {
-        "title": "The session ends. The work continues.",
-        "intro": "Temporary conversations need durable sources to preserve intent, evidence, and accountability.",
-        "bullets": [
-          "Context is lost between conversations.",
-          "Outdated evidence or interpretations without provenance begin to guide decisions.",
-          "Design drift changes approved behavior.",
-          "Conversation state does not equal current artifact state.",
-          "Design System drift introduces local patterns and duplication.",
-          "Responsibilities and mutation scopes become ambiguous.",
-          "Requirements lose their connection to sources and approvals.",
-          "Session limits interrupt operational continuity."
-        ]
-      },
-      "workflow": {
-        "title": "From stakeholder meeting to persistent handoff",
-        "intro": "Every transition preserves evidence provenance and requires an appropriate level of review.",
-        "steps": [
-          "Stakeholder meeting",
-          "Approved recording",
-          "Local transcription",
-          "Human evidence review",
-          "Evidence ID, requirement, or decision",
-          "Product/UX analysis",
-          "Artifact inspection",
-          "Figma MCP execution within authorized scope",
-          "Structural and visual QA",
-          "Stakeholder review",
-          "Refinement",
-          "Persistent handoff"
-        ],
-        "toolNote": "OBS Studio and WhisperX are examples of the real local evidence-ingestion workflow, not mandatory framework dependencies."
-      },
-      "evidenceBeforeDesign": {
-        "title": "Evidence before design",
-        "intro": "A transcript requires human review; it does not automatically turn a statement into an approved requirement.",
-        "distinctions": [
-          "recording ≠ transcript",
-          "transcript ≠ approved requirement",
-          "approved requirement ≠ implementation",
-          "implementation ≠ validated completion"
-        ],
-        "provenance": "Each transition must preserve provenance."
-      },
-      "productUxAnalysis": {
-        "title": "Critical Product and UX analysis",
-        "intro": "Project evidence comes first. External best practices support analysis but do not replace context, approval, or product judgment.",
-        "bullets": [
-          "Classify facts, inferences, and assumptions.",
-          "Recognize open questions and insufficient evidence before proposing changes."
-        ]
-      },
-      "artifactWork": {
-        "title": "Work with the live artifact",
-        "intro": "The current artifact is the source of implementation state; a conversation report does not replace a fresh inspection.",
-        "steps": [
-          "Inspect",
-          "Compare",
-          "Classify",
-          "Plan",
-          "Mutate within authorized scope",
-          "Reinspect",
-          "Run QA"
-        ]
-      },
-      "operatingPrinciples": {
-        "title": "Operating principles",
-        "intro": "Explicit rules keep analysis, execution, and validation connected.",
-        "items": [
-          {
-            "code": "FACT ≠ INFERENCE ≠ ASSUMPTION",
-            "description": "Distinguish observations, interpretations, and what still needs confirmation."
-          },
-          {
-            "code": "PARITY BEFORE UX EVOLUTION",
-            "description": "Preserve approved behavior before proposing UX evolution."
-          },
-          {
-            "code": "REUSE → COMPOSE → EVOLVE → CREATE",
-            "description": "Inspect and reuse the canonical foundation before creating new patterns."
-          }
-        ]
-      },
-      "runtime": {
-        "title": "Project Runtime",
-        "intro": "The runtime preserves operational context, evidence references, sessions, workstreams, decisions, and handoffs. It supports continuity without replacing primary sources or current artifact state."
-      },
-      "publicFramework": {
-        "title": "A public, reusable method",
-        "intro": "The public repository contains the generic method, contracts, and reusable documentation. Real screenshots establish the existence of this framework and its documentation.",
-        "evidenceBoundary": "Public screenshots do not independently prove confidential client operations."
-      },
-      "continuity": {
-        "title": "Cross-chat continuity",
-        "intro": "When a session reaches its limit, the next one recovers the objective, scope, decisions, evidence, and next action from the persistent runtime.",
-        "validation": "Cross-chat/runtime continuity was exercised and validated in real operational use; client-specific details remain private."
-      },
-      "driftDetection": {
-        "title": "Detect drift without inventing certainty",
-        "intro": "Comparing approved evidence, persistent records, and current artifact state distinguishes what was checked from what remains unresolved.",
-        "states": [
-          {
-            "status": "PASS",
-            "description": "The inspected scope passed the check that was actually executed."
-          },
-          {
-            "status": "FOUND",
-            "description": "A discrepancy was found and requires attention."
-          },
-          {
-            "status": "PENDING",
-            "description": "Verification is pending or evidence is insufficient."
-          }
-        ],
-        "evidenceRule": "Insufficient evidence remains insufficient evidence; it is not PASS."
-      },
-      "versionedEvolution": {
-        "title": "Versioned, not improvised",
-        "intro": "The reference public commit records the evolution of the README, evidence ingestion, and local transcription guidance.",
-        "ciBoundary": "Unavailable hosted CI is not represented as CI PASS. Validation can only be claimed when it was actually executed."
-      },
-      "trustBoundaries": {
-        "title": "Public framework, private runtime, and live sources",
-        "intro": "Each source retains its responsibility and trust boundary.",
-        "layers": [
-          {
-            "id": "public-framework",
-            "description": "Generic method and reusable documentation in the public repository."
-          },
-          {
-            "id": "private-runtime",
-            "description": "Client-specific context, stakeholders, evidence, artifact references, and history in governed private sources."
-          },
-          {
-            "id": "live-sources",
-            "description": "Artifacts, approvals, and primary sources are reconciled within authorized scope; the runtime preserves references and continuity."
-          }
-        ],
-        "publicationRule": "Do not disclose identities, private URLs, recordings, transcripts, runtime contents, or confidential interfaces to demonstrate adoption."
-      },
-      "outcomes": {
-        "title": "Evidence-backed qualitative outcomes",
-        "intro": "The method was used as an operational baseline in real engagements, adapted to each context.",
-        "bullets": [
-          "Cross-chat continuity exercised and validated in operational use.",
-          "Live artifact reconciliation with Figma MCP exercised in the private adopting runtime.",
-          "Generic method and public documentation preserved in a versioned framework."
-        ],
-        "evidenceBoundary": "The first two statements are owner-confirmed; GitHub screenshots establish the public framework, not private operations. No invented KPIs are presented."
-      },
-      "learnings": {
-        "title": "Learnings",
-        "intro": "Continuity depends on persistent sources and human judgment, not conversation memory alone.",
-        "bullets": [
-          "Human review connects evidence to requirements and decisions.",
-          "Reinspection prevents confusion between reports and artifact state.",
-          "Adoption requires adapting governance, tools, and confidentiality to each engagement.",
-          "Real screenshots prove existence; native diagrams explain systems; editorial representations protect confidential work."
-        ]
-      }
-    },
-    "cta": {
-      "title": "Shall we bring AI into your product process?",
-      "description": "Discuss AI-assisted Product Design consulting through N3LX Digital Business, grounded in your team's context, evidence, and confidentiality. To explore the method first, the framework is available on GitHub.",
-      "githubLabel": "Explore the framework on GitHub",
-      "consultingLabel": "Discuss AI consulting"
     }
   }
 } as const satisfies DictionaryByLocale<AiAssistedDesignEngineeringCaseLocalizedContent>;

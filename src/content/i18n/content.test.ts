@@ -176,34 +176,33 @@ describe('Home and shared localized content', () => {
 });
 
 
+
 describe('AI-assisted Design Engineering case contract', () => {
-  it('keeps both locales complete and structurally equivalent', () => {
+  it('keeps both locales structurally equivalent with explicit public evidence boundaries', () => {
     expect(getStructure(aiAssistedDesignEngineeringCaseContent.en)).toEqual(getStructure(aiAssistedDesignEngineeringCaseContent['pt-BR']));
     for (const content of Object.values(aiAssistedDesignEngineeringCaseContent)) {
       expect(getStringValues(content).every((value) => value.trim().length > 0)).toBe(true);
-      expect(Object.keys(content.sections)).toHaveLength(14);
-      expect(content.sections.workflow.steps).toHaveLength(12);
-      expect(content.sections.evidenceBeforeDesign.distinctions).toHaveLength(4);
-      expect(content.sections.driftDetection.states.map((state) => state.status)).toEqual(['PASS', 'FOUND', 'PENDING']);
-      expect(content.sections.operatingPrinciples.items.map((item) => item.code)).toEqual([
+      expect(Object.keys(content.sections)).toEqual(['problem', 'evolution', 'architecture', 'principles', 'application', 'outcomes', 'publicFramework']);
+      expect(content.sections.application.steps).toHaveLength(12);
+      expect(content.sections.principles.distinctions).toHaveLength(4);
+      expect(content.sections.principles.items.map((item) => item.code)).toEqual(expect.arrayContaining([
         'FACT ≠ INFERENCE ≠ ASSUMPTION', 'PARITY BEFORE UX EVOLUTION', 'REUSE → COMPOSE → EVOLVE → CREATE',
-      ]);
-      expect(content.sections.trustBoundaries.layers.map((layer) => layer.id)).toEqual(['public-framework', 'private-runtime', 'live-sources']);
+      ]));
+      expect(content.sections.architecture.layers.map((layer) => layer.id)).toEqual(['public-framework', 'private-runtime', 'ai-session']);
       expect(getStringValues(content).join(' ')).not.toMatch(/\d+\s*%|https:\/\/(?:www\.)?figma\.com/);
     }
   });
 
-  it('preserves the canonical thesis and public evidence reference without invented KPIs', () => {
+  it('distinguishes the immutable release, later source and historical capture', () => {
+    expect(aiAssistedDesignEngineeringSharedFacts.releaseVersion).toBe('v3.9.0');
+    expect(aiAssistedDesignEngineeringSharedFacts.releaseSource).toBe('795cedc5737ae023371f5aca477db20a6f2d635b');
+    expect(aiAssistedDesignEngineeringSharedFacts.inspectedMainSource).not.toBe(aiAssistedDesignEngineeringSharedFacts.releaseSource);
+    expect(aiAssistedDesignEngineeringSharedFacts.sources.release).toMatch(/\/releases\/tag\/v3.9.0$/);
+    expect(aiAssistedDesignEngineeringSharedFacts.sources.main).toContain(aiAssistedDesignEngineeringSharedFacts.inspectedMainSource);
+    expect(aiAssistedDesignEngineeringSharedFacts.commitSha).toBe('2910154799ed28416475a359a9ea536599f38451');
+    expect(aiAssistedDesignEngineeringSharedFacts.externalUrls.commit).toContain(aiAssistedDesignEngineeringSharedFacts.commitSha);
+    expect(projectFacts['ai-assisted-design-engineering']).not.toHaveProperty('metrics');
     expect(aiAssistedDesignEngineeringCaseContent['pt-BR'].hero.title).toBe('Sessões de IA são temporárias. O trabalho de produto não é.');
     expect(aiAssistedDesignEngineeringCaseContent.en.hero.title).toBe('AI sessions are temporary. Product work isn’t.');
-    expect(aiAssistedDesignEngineeringCaseContent.en.hero.consultingContext).toContain('adapted to each engagement');
-    expect(aiAssistedDesignEngineeringCaseContent.en.sections.publicFramework.evidenceBoundary).toContain('do not independently prove');
-    expect(aiAssistedDesignEngineeringSharedFacts.routeId).toBe('ai-assisted-design-engineering');
-    expect(aiAssistedDesignEngineeringSharedFacts.projectName).toBe(projectFacts['ai-assisted-design-engineering'].projectName);
-    expect(aiAssistedDesignEngineeringSharedFacts.commitSha).toBe('2910154799ed28416475a359a9ea536599f38451');
-    expect(aiAssistedDesignEngineeringSharedFacts.externalUrls.commit).toBe(
-      'https://github.com/nelsonseccofilho/ai-assisted-design-engineering-operating-system/commit/2910154799ed28416475a359a9ea536599f38451',
-    );
-    expect(projectFacts['ai-assisted-design-engineering']).not.toHaveProperty('metrics');
   });
 });

@@ -764,3 +764,26 @@ The owner confirmed that HORIZON HIS prototype screens use fictional demonstrati
 **Validation gate**
 
 Full tests, typecheck, lint, production build, representative localized Light/Dark browser QA, reduced motion, focus, downloads, and scoped Git review are required before publication. The follow-up in the renewed review will record results and limits.
+
+---
+
+## D-030 — Authored AI framework case with progressive disclosure
+**Date:** 2026-10-26
+**Status:** Implemented and validated locally; production publication awaits final owner approval.
+
+**Context**
+The owner authorized a complete bilingual evolution of the existing AI case, including research, editorial architecture, implementation, QA, branch/PR and preview preparation. Final production approval remains a separate checkpoint.
+
+**Decision**
+Preserve the opening thesis, portfolio identity, existing localized URLs, primary consulting action, historical public evidence assets and navigation. Replace fourteen peer narrative sections with seven body sections and the hero: problem, design rationale, architecture, principles, professional application, outcomes/limitations and public evolution. Native disclosures provide technical examples and historical captures while essential evidence limits remain visible.
+
+State Nelson's authorship and professional role in first person. Distinguish public framework, project runtime, primary sources/canonical Design System/current artifact and temporary agent execution. Professional use is explicitly author-reported. Reduce client-operation assertions to the general use authorized in the new brief; no private sources are consulted.
+
+Pin the latest inspected public release (v3.9.0, 2026-10-24, source 795cedc5737ae023371f5aca477db20a6f2d635b) separately from the inspected post-release main (e82549d7546558786c46caefd189906cf24aba88). Keep historical screenshot SHA 2910154799ed28416475a359a9ea536599f38451 unchanged. Do not equate documentation, local QA, hosted CI, private adoption or independent agent effectiveness.
+
+Update localized Home practice summaries and case-specific descriptions, canonicals, language alternatives, Open Graph and summary cards using the existing typed route map. No new dependency, shared theme change, client image, metric or unrelated case edit.
+
+**Validation and consequences**
+206 tests across 32 files passed; the final metadata adjustment passed 28 focused tests, typecheck, lint and production build. Twelve served routes returned 200. Browser observations covered the four mandatory viewport sizes in PT/EN and Light/Dark, plus 360px PT, native keyboard disclosures, focus, evidence-image dialog, theme persistence, back-to-top and reduced motion. No persistent horizontal overflow or observed console error remained. This is scoped QA, not comprehensive accessibility certification.
+
+Rendered screenshots were inspected and displayed in the conversation. Attempts to persist screenshot files failed/timed out; no saved-image artifact is claimed. The audit and evidence limitations are recorded in [the editorial review](./15-ai-case-evolution.md) and [QA results](./qa/2026-10-26-ai-case-evolution/results.json). Production merge and public deployment verification remain pending the owner's final approval.

@@ -50,7 +50,7 @@ export const enHome = {
   featuredPractice: {
     eyebrow: 'Featured practice',
     title: 'AI-Assisted Design Engineering Operating System',
-    description: 'Turns temporary AI sessions into persistent product work guided by evidence and explicit decisions.',
+    description: 'A framework I created to connect Design, Engineering and AI through evidence, continuity and human accountability.',
     steps: [
       { title: 'Evidence', description: 'Capture useful context' },
       { title: 'Decision', description: 'Choose with clear criteria' },

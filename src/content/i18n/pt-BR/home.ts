@@ -50,7 +50,7 @@ export const ptBRHome = {
   featuredPractice: {
     eyebrow: 'Prática em destaque',
     title: 'AI-Assisted Design Engineering Operating System',
-    description: 'Transforma sessões temporárias de IA em trabalho de produto persistente, guiado por evidências e decisões explícitas.',
+    description: 'Um framework que criei para conectar Design, Engenharia e IA com evidências, continuidade e responsabilidade humana.',
     steps: [
       { title: 'Evidências', description: 'Capturar contexto útil' },
       { title: 'Decisão', description: 'Escolher com critério' },

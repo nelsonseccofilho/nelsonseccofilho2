@@ -58,3 +58,11 @@ Do not publish or use the following to prove framework adoption:
 Preferred meaning: `used as an operational baseline in real client engagements through N3LX Digital Business`.
 
 Avoid absolute wording such as: `used identically with every client`.
+
+
+### 2026-10-26 case evolution — public-source update
+The evolved case preserves the historical evidence reference above, but distinguishes it from published v3.9.0 (2026-10-24, source 795cedc5737ae023371f5aca477db20a6f2d635b) and the post-release main inspected at e82549d7546558786c46caefd189906cf24aba88.
+
+For this case revision, the owner authorizes the general statement that the framework is used as an operational baseline in real professional work with project-specific adaptations. Keep it explicitly author-reported. The case does not reproduce the earlier private operational examples as independently demonstrated outcomes. Primary public sources and the new owner brief are sufficient; no private repository, client artifact or populated runtime is needed.
+
+The new narrative describes reusable method and project adaptation, not a finished commercial platform. Benefits remain objectives unless measured. Public screenshots are historical documentation evidence, not proof of current release state, client operations, hosted CI success or agent effectiveness. See D-030 and the dated editorial review.

@@ -77,77 +77,104 @@ describe('localized project page registry', () => {
 });
 
 
+
 describe('AI-assisted Design Engineering registry integration', () => {
-  it('registers the new case in both existing dynamic route generators', async () => {
+  it('preserves both public routes and localized metadata', async () => {
     const project = 'ai-assisted-design-engineering';
     expect(isProjectRouteId(project)).toBe(true);
-    expect(projectRouteIds).toContain(project);
     expect(portugueseProjectParams()).toContainEqual({ project });
     expect(englishProjectParams()).toContainEqual({ project });
+    for (const locale of ['pt-BR', 'en'] as const) {
+      const metadata = getProjectMetadata(project, locale);
+      expect(metadata.title).toMatch(/AI-Assisted Design Engineering Operating System/);
+      expect(metadata.description).toBe(aiAssistedDesignEngineeringCaseContent[locale].metadata.description);
+      const publicPath = locale === 'pt-BR' ? '/projetos/ai-assisted-design-engineering' : '/en/projects/ai-assisted-design-engineering';
+      expect(metadata.alternates?.canonical).toBe('https://nelsonsecco.netlify.app' + publicPath);
+      expect(metadata.alternates?.languages).toHaveProperty('pt-BR');
+      expect(metadata.alternates?.languages).toHaveProperty('en');
+      expect(metadata.openGraph).toMatchObject({ title: metadata.title, description: metadata.description, url: 'https://nelsonsecco.netlify.app' + publicPath });
+      expect(metadata.twitter).toMatchObject({ card: 'summary', title: metadata.title, description: metadata.description });
+    }
     expect(await portugueseProjectMetadata({ params: Promise.resolve({ project }) })).toEqual(getProjectMetadata(project, 'pt-BR'));
     expect(await englishProjectMetadata({ params: Promise.resolve({ project }) })).toEqual(getProjectMetadata(project, 'en'));
   });
 
-  it.each([
-    ['pt-BR', 'Sessões de IA são temporárias. O trabalho de produto não é.', 'Português', 'Inglês'],
-    ['en', 'AI sessions are temporary. Product work isn’t.', 'Portuguese', 'English'],
-  ] as const)('renders the structured %s case with equivalent locale links', (locale, thesis, portugueseLabel, englishLabel) => {
-    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
-    expect(screen.getByRole('heading', { level: 1, name: thesis })).toBeInTheDocument();
-    expect(screen.getByText(thesis)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: portugueseLabel })).toHaveAttribute('href', '/projetos/ai-assisted-design-engineering');
-    expect(screen.getByRole('link', { name: englishLabel })).toHaveAttribute('href', '/en/projects/ai-assisted-design-engineering');
-    expect(getProjectMetadata('ai-assisted-design-engineering', locale).title).toMatch(/AI-Assisted Design Engineering Operating System/);
-    expect(screen.getAllByRole('img')).toHaveLength(4);
-  });
-
-  it.each(['pt-BR', 'en'] as const)('preserves the approved narrative order, CTAs and both navigation mechanisms in %s', (locale) => {
+  it.each(['pt-BR', 'en'] as const)('presents authorship, the editorial sequence and evidence limits in %s', (locale) => {
     const content = aiAssistedDesignEngineeringCaseContent[locale];
     render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
     const main = screen.getByRole('main');
-    expect(within(main).getAllByRole('heading', { level: 1 })).toHaveLength(1);
-    expect(within(main).getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
-      ...Object.values(content.sections).map((section) => section.title),
-      content.cta.title,
+    expect(within(main).getByRole('heading', { level: 1, name: content.hero.title })).toBeInTheDocument();
+    expect(within(main).getAllByRole('heading', { level: 2 }).map((h) => h.textContent)).toEqual([
+      ...Object.values(content.sections).map((section) => section.title), content.cta.title,
     ]);
     for (const section of Object.values(content.sections)) {
-      const region = within(main).getByRole('region', { name: section.title });
-      expect(within(region).getByText(section.intro)).toBeInTheDocument();
+      expect(within(screen.getByRole('region', { name: section.title })).getByText(section.intro)).toBeInTheDocument();
     }
-    for (const key of ['workflow', 'artifactWork'] as const) {
-      const section = content.sections[key];
-      const region = within(main).getByRole('region', { name: section.title });
-      const lists = within(region).getAllByRole('list');
-      for (const list of lists) expect(list.tagName).toBe('OL');
-      const nodes = section.steps.map((step) => within(region).getByText(step));
-      for (let index = 1; index < nodes.length; index += 1) {
-        expect(nodes[index - 1].compareDocumentPosition(nodes[index]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-      }
+    for (const copy of [content.hero.context, content.hero.consultingContext, content.sections.application.boundary,
+      content.sections.publicFramework.limitation, content.sections.publicFramework.evidenceBoundary]) {
+      expect(within(main).getByText(copy)).toBeVisible();
     }
-    expect(within(main).getByText(content.hero.context)).toBeInTheDocument();
-    expect(within(main).getByText(content.hero.consultingContext)).toBeInTheDocument();
-    expect(within(main).getByRole('link', { name: content.cta.githubLabel })).toHaveAttribute('href', projectFacts['ai-assisted-design-engineering'].externalUrls.repository);
-    const consultingLink = within(main).getByRole('link', { name: content.cta.consultingLabel });
-    expect(consultingLink).toHaveAttribute('href', getWhatsAppContactUrl(locale, 'ai-consulting'));
-    expect(consultingLink).toHaveAttribute('target', '_blank');
-    expect(consultingLink).toHaveAttribute('rel', 'noreferrer');
-    expect(consultingLink).toHaveAttribute('data-clarity-mask', 'true');
-    expect(consultingLink).toHaveClass('whatsapp-action');
-    fireEvent.click(consultingLink);
-    expect(trackEventMock).toHaveBeenLastCalledWith('contact_whatsapp_click:ai-consulting');
-    const returnLabel = locale === 'pt-BR' ? 'Portfólio' : 'Portfolio';
-    const returnLinks = within(main).getAllByRole('link', { name: returnLabel });
-    expect(returnLinks).toHaveLength(2);
-    for (const link of returnLinks) expect(link).toHaveAttribute('href', locale === 'pt-BR' ? '/' : '/en');
-    expect(within(main).getAllByRole('navigation')).toHaveLength(2);
-    expect(within(main).getAllByRole('img')).toHaveLength(4);
-    expect(main.querySelectorAll('picture')).toHaveLength(4);
+    const architecture = screen.getByRole('region', { name: content.sections.architecture.title });
+    for (const layer of content.sections.architecture.layers) expect(within(architecture).getByText(layer.description)).toBeVisible();
+    for (const source of content.sections.architecture.sources) expect(within(architecture).getByText(source.description)).toBeVisible();
+    for (const result of content.sections.outcomes.results) expect(within(main).getByText(result.description)).toBeVisible();
+    expect(main.innerHTML).not.toMatch(/source-exports|figma\.com/i);
+    expect(main.textContent).not.toMatch(/\d+\s*%/);
   });
 
-  it.each([
-    ['pt-BR', 'Voltar ao topo'],
-    ['en', 'Back to top'],
-  ] as const)('provides a working localized back-to-top action in the %s AI case', (locale, label) => {
+  it.each(['pt-BR', 'en'] as const)('preserves locale links, consulting behavior, analytics and return navigation in %s', (locale) => {
+    const content = aiAssistedDesignEngineeringCaseContent[locale];
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    expect(screen.getByRole('link', { name: locale === 'pt-BR' ? 'Português' : 'Portuguese' })).toHaveAttribute('href', '/projetos/ai-assisted-design-engineering');
+    expect(screen.getByRole('link', { name: locale === 'pt-BR' ? 'Inglês' : 'English' })).toHaveAttribute('href', '/en/projects/ai-assisted-design-engineering');
+    const consulting = screen.getByRole('link', { name: content.cta.consultingLabel });
+    expect(consulting).toHaveAttribute('href', getWhatsAppContactUrl(locale, 'ai-consulting'));
+    expect(consulting).toHaveAttribute('target', '_blank');
+    expect(consulting).toHaveAttribute('rel', 'noreferrer');
+    expect(consulting).toHaveAttribute('data-clarity-mask', 'true');
+    expect(consulting).toHaveClass('whatsapp-action');
+    fireEvent.click(consulting);
+    expect(trackEventMock).toHaveBeenLastCalledWith('contact_whatsapp_click:ai-consulting');
+    expect(screen.getByRole('link', { name: content.cta.githubLabel })).toHaveAttribute('href', projectFacts['ai-assisted-design-engineering'].externalUrls.repository);
+    const returnLinks = within(screen.getByRole('main')).getAllByRole('link', { name: locale === 'pt-BR' ? 'Portfólio' : 'Portfolio' });
+    expect(returnLinks).toHaveLength(2);
+    for (const link of returnLinks) expect(link).toHaveAttribute('href', locale === 'pt-BR' ? '/' : '/en');
+  });
+
+  it.each(['pt-BR', 'en'] as const)('keeps technical examples in native disclosures and historical evidence qualified in %s', (locale) => {
+    const content = aiAssistedDesignEngineeringCaseContent[locale];
+    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
+    for (const summary of Object.values(content.details)) {
+      const disclosure = screen.getByText(summary).closest('details');
+      expect(disclosure).not.toHaveAttribute('open');
+      expect(disclosure?.querySelector('summary')).toHaveTextContent(summary);
+    }
+    const workflow = screen.getByText(content.details.workflow).closest('details')!;
+    const lists = workflow.querySelectorAll('ol');
+    expect(lists).toHaveLength(4);
+    content.diagramLabels.workflowPhases.forEach((phase, index) => {
+      expect(lists[index]).toHaveAccessibleName(phase);
+      expect(Array.from(lists[index].children).map((li) => li.textContent)).toEqual(content.sections.application.steps.slice(index * 3, index * 3 + 3));
+    });
+    const history = screen.getByText(content.details.history).closest('details')!;
+    expect(history.querySelectorAll('picture')).toHaveLength(4);
+    for (const [family, filename] of [
+      ['ingestion', 'github-evidence-ingestion'], ['runtime', 'github-runtime-tree'],
+      ['readme', 'github-readme'], ['commit', 'github-commit-291015'],
+    ] as const) {
+      const item = content.evidence.items[family];
+      const img = within(history).getByAltText(item.alt);
+      const prefix = '/assets/projects/ai-assisted-design-engineering/evidence/' + filename;
+      expect(img).toHaveAttribute('src', prefix + '-1920.webp');
+      expect(img).toHaveAttribute('width', '1920');
+      for (const width of [640, 1024, 1440, 1920]) expect(img.getAttribute('srcset')).toContain(prefix + '-' + width + '.webp ' + width + 'w');
+      expect(img.closest('picture')?.querySelector('source')).toHaveAttribute('media', '(max-width: 767px)');
+      expect(within(history).getByText(item.establishes)).toBeInTheDocument();
+      expect(within(history).getByText(item.doesNotEstablish)).toBeInTheDocument();
+    }
+  });
+
+  it.each([['pt-BR', 'Voltar ao topo'], ['en', 'Back to top']] as const)('provides a working back-to-top action in %s', (locale, label) => {
     const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
     render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
     expect(screen.queryByRole('button', { name: label })).not.toBeInTheDocument();
@@ -155,68 +182,5 @@ describe('AI-assisted Design Engineering registry integration', () => {
     fireEvent.scroll(window);
     fireEvent.click(screen.getByRole('button', { name: label }));
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
-  });
-
-  it.each(['pt-BR', 'en'] as const)('renders the four semantic system diagrams in %s', (locale) => {
-    const content = aiAssistedDesignEngineeringCaseContent[locale];
-    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
-    const workflow = screen.getByRole('region', { name: content.sections.workflow.title });
-    const lists = within(workflow).getAllByRole('list');
-    expect(lists).toHaveLength(4);
-    content.diagramLabels.workflowPhases.forEach((phase, index) => {
-      expect(within(workflow).getByText(phase)).toBeInTheDocument();
-      expect(lists[index]).toHaveAccessibleName(phase);
-      expect(within(lists[index]).getAllByRole('listitem').map((item) => item.textContent)).toEqual(content.sections.workflow.steps.slice(index * 3, index * 3 + 3));
-    });
-    const evidence = screen.getByRole('region', { name: content.sections.evidenceBeforeDesign.title });
-    expect(within(evidence).getAllByRole('listitem')).toHaveLength(5);
-    for (const text of [...content.diagramLabels.evidenceStates, ...content.sections.evidenceBeforeDesign.distinctions, content.sections.evidenceBeforeDesign.provenance]) {
-      expect(within(evidence).getByText(text)).toBeInTheDocument();
-    }
-    const artifact = screen.getByRole('region', { name: content.sections.artifactWork.title });
-    expect(within(artifact).getAllByRole('listitem')).toHaveLength(7);
-    expect(within(artifact).getByText(content.diagramLabels.artifactReturn, { exact: false })).toBeInTheDocument();
-    const trust = screen.getByRole('region', { name: content.sections.trustBoundaries.title });
-    expect(within(trust).getAllByRole('term')).toHaveLength(3);
-    expect(within(trust).getAllByRole('definition')).toHaveLength(3);
-    for (const label of content.diagramLabels.trustLayers) expect(within(trust).getByText(label)).toBeInTheDocument();
-    for (const layer of content.sections.trustBoundaries.layers) expect(within(trust).getByText(layer.description)).toBeInTheDocument();
-    expect(within(trust).getByText(content.sections.trustBoundaries.publicationRule)).toBeInTheDocument();
-    expect(screen.getAllByRole('img')).toHaveLength(4);
-    expect(document.querySelectorAll('picture')).toHaveLength(4);
-  });
-
-  it.each(['pt-BR', 'en'] as const)('places approved responsive public evidence next to its supporting claim in %s', (locale) => {
-    const content = aiAssistedDesignEngineeringCaseContent[locale];
-    render(<ProjectPage locale={locale} projectId="ai-assisted-design-engineering" />);
-    const placements = [
-      ['ingestion', 'evidenceBeforeDesign', 'github-evidence-ingestion'],
-      ['runtime', 'runtime', 'github-runtime-tree'],
-      ['readme', 'publicFramework', 'github-readme'],
-      ['commit', 'versionedEvolution', 'github-commit-291015'],
-    ] as const;
-    for (const [family, sectionKey, filename] of placements) {
-      const item = content.evidence.items[family];
-      const region = screen.getByRole('region', { name: content.sections[sectionKey].title });
-      expect(item.alt.trim()).not.toBe('');
-      if (family === 'commit') {
-        expect(within(region).getByText(item.establishes)).toHaveTextContent('2910154799ed28416475a359a9ea536599f38451');
-      }
-      const img = within(region).getByRole('img', { name: item.alt });
-      const prefix = '/assets/projects/ai-assisted-design-engineering/evidence/' + filename;
-      expect(img).toHaveAttribute('src', prefix + '-1920.webp');
-      expect(img).toHaveAttribute('width', '1920');
-      expect(img).toHaveAttribute('height', '1080');
-      for (const width of [640, 1024, 1440, 1920]) expect(img.getAttribute('srcset')).toContain(prefix + '-' + width + '.webp ' + width + 'w');
-      expect(img.getAttribute('sizes')).toBeTruthy();
-      const source = img.closest('picture')?.querySelector('source');
-      expect(source).toHaveAttribute('srcset', prefix + '-mobile-640.webp');
-      expect(source).toHaveAttribute('media', '(max-width: 767px)');
-      expect(source).toHaveAttribute('width', '640');
-      expect(source).toHaveAttribute('height', '800');
-      for (const text of [item.title, item.establishes, item.doesNotEstablish, content.evidence.establishesLabel, content.evidence.doesNotEstablishLabel]) expect(within(region).getByText(text)).toBeInTheDocument();
-    }
-    const main = screen.getByRole('main');
-    expect(main.innerHTML).not.toMatch(/source-exports|\.png|figma\.com/i);
   });
 });

@@ -1,0 +1,260 @@
+{
+  "date": "2026-10-26",
+  "baseline": "c4dbaa96d956f5102668e38a74284514481b7c71",
+  "frameworkRelease": "v3.9.0",
+  "frameworkReleaseSource": "795cedc5737ae023371f5aca477db20a6f2d635b",
+  "frameworkInspectedMain": "e82549d7546558786c46caefd189906cf24aba88",
+  "technical": {
+    "fullTests": {
+      "files": 32,
+      "tests": 206,
+      "status": "PASS"
+    },
+    "finalMetadataAndLocaleRetest": {
+      "files": 2,
+      "tests": 28,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "productionBuild": "PASS"
+  },
+  "http": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/en",
+      "status": 200
+    },
+    {
+      "route": "/projetos/ai-assisted-design-engineering",
+      "status": 200,
+      "lang": "pt-BR",
+      "canonical": "https://nelsonsecco.netlify.app/projetos/ai-assisted-design-engineering",
+      "description": "Nelson Secco apresenta o framework que criou para conectar Product Design, Design Systems e IA com evidências, continuidade e responsabilidade humana.",
+      "ogTitle": "AI-Assisted Design Engineering Operating System — Case de Product Design | Nelson Secco",
+      "ogUrl": "https://nelsonsecco.netlify.app/projetos/ai-assisted-design-engineering",
+      "twitterCard": "summary",
+      "alternates": [
+        {
+          "locale": "pt-BR",
+          "url": "https://nelsonsecco.netlify.app/projetos/ai-assisted-design-engineering"
+        },
+        {
+          "locale": "en",
+          "url": "https://nelsonsecco.netlify.app/en/projects/ai-assisted-design-engineering"
+        }
+      ],
+      "h1Count": 1,
+      "h2Count": 8
+    },
+    {
+      "route": "/en/projects/ai-assisted-design-engineering",
+      "status": 200,
+      "lang": "en",
+      "canonical": "https://nelsonsecco.netlify.app/en/projects/ai-assisted-design-engineering",
+      "description": "Nelson Secco presents the framework he created to connect Product Design, Design Systems and AI through evidence, continuity and human accountability.",
+      "ogTitle": "AI-Assisted Design Engineering Operating System — Product Design Case Study | Nelson Secco",
+      "ogUrl": "https://nelsonsecco.netlify.app/en/projects/ai-assisted-design-engineering",
+      "twitterCard": "summary",
+      "alternates": [
+        {
+          "locale": "pt-BR",
+          "url": "https://nelsonsecco.netlify.app/projetos/ai-assisted-design-engineering"
+        },
+        {
+          "locale": "en",
+          "url": "https://nelsonsecco.netlify.app/en/projects/ai-assisted-design-engineering"
+        }
+      ],
+      "h1Count": 1,
+      "h2Count": 8
+    },
+    {
+      "route": "/projetos/horizon-his",
+      "status": 200
+    },
+    {
+      "route": "/en/projects/horizon-his",
+      "status": 200
+    },
+    {
+      "route": "/projetos/subiter",
+      "status": 200
+    },
+    {
+      "route": "/en/projects/subiter",
+      "status": 200
+    },
+    {
+      "route": "/projetos/rede-dcc",
+      "status": 200
+    },
+    {
+      "route": "/en/projects/rede-dcc",
+      "status": 200
+    },
+    {
+      "route": "/projetos/dasa-canal-do-consultor",
+      "status": 200
+    },
+    {
+      "route": "/en/projects/dasa-canal-do-consultor",
+      "status": 200
+    }
+  ],
+  "privacy": [
+    {
+      "file": "src/content/i18n/projects/ai-assisted-design-engineering.ts",
+      "pass": true
+    },
+    {
+      "file": "src/content/i18n/pt-BR/home.ts",
+      "pass": true
+    },
+    {
+      "file": "src/content/i18n/en/home.ts",
+      "pass": true
+    },
+    {
+      "file": "src/components/case-study/projects/ai-assisted-design-engineering/page.tsx",
+      "pass": true
+    },
+    {
+      "file": "planning/15-ai-case-evolution.md",
+      "pass": true
+    }
+  ],
+  "browser": {
+    "source": "Operator-observed Chrome via Browser Use against the local production build; matrix recorded from tool observations, not generated browser execution by this script.",
+    "matrix": [
+      {
+        "locale": "pt-BR",
+        "theme": "light",
+        "width": 1920,
+        "height": 1080,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "light",
+        "width": 1366,
+        "height": 768,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "light",
+        "width": 820,
+        "height": 1180,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "light",
+        "width": 440,
+        "height": 956,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "dark",
+        "width": 1920,
+        "height": 1080,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "dark",
+        "width": 1366,
+        "height": 768,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "dark",
+        "width": 820,
+        "height": 1180,
+        "overflow": false
+      },
+      {
+        "locale": "pt-BR",
+        "theme": "dark",
+        "width": 440,
+        "height": 956,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "light",
+        "width": 1920,
+        "height": 1080,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "light",
+        "width": 1366,
+        "height": 768,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "light",
+        "width": 820,
+        "height": 1180,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "light",
+        "width": 440,
+        "height": 956,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "dark",
+        "width": 1920,
+        "height": 1080,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "dark",
+        "width": 1366,
+        "height": 768,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "dark",
+        "width": 820,
+        "height": 1180,
+        "overflow": false
+      },
+      {
+        "locale": "en",
+        "theme": "dark",
+        "width": 440,
+        "height": 956,
+        "overflow": false
+      }
+    ],
+    "supplemental360": "PASS PT light",
+    "keyboardDisclosures": "PASS",
+    "focusVisible": "PASS",
+    "evidenceViewer": "PASS desktop EN: opens public README, image loaded, Escape closes, trigger focus restored",
+    "backToTop": "PASS EN: keyboard activation returned scrollTop to 0",
+    "themePersistence": "PASS across PT to EN navigation",
+    "screenshots": "Rendered screenshots displayed in conversation. Persistent screenshot writes failed twice/timed out; no saved-image proof claimed.",
+    "limits": [
+      "Not a comprehensive WCAG certification.",
+      "Production deployment requires final owner approval."
+    ],
+    "reducedMotion": "PASS: emulated reduce, scroll behavior auto, keyboard back-to-top reached 0; emulation restored",
+    "consoleErrors": []
+  }
+}

@@ -54,7 +54,7 @@ export function ArtifactLoop({ steps, returnLabel }: { steps: readonly string[];
   );
 }
 
-export function TrustArchitecture({ layers, labels }: { layers: AiAssistedDesignEngineeringCaseLocalizedContent['sections']['trustBoundaries']['layers']; labels: Labels['trustLayers'] }) {
+export function TrustArchitecture({ layers, labels }: { layers: AiAssistedDesignEngineeringCaseLocalizedContent['sections']['architecture']['layers']; labels: Labels['trustLayers'] }) {
   return (
     <dl className={styles.trust}>
       {layers.map((layer, index) => (

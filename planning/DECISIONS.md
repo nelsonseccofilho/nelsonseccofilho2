@@ -787,3 +787,32 @@ Update localized Home practice summaries and case-specific descriptions, canonic
 206 tests across 32 files passed; the final metadata adjustment passed 28 focused tests, typecheck, lint and production build. Twelve served routes returned 200. Browser observations covered the four mandatory viewport sizes in PT/EN and Light/Dark, plus 360px PT, native keyboard disclosures, focus, evidence-image dialog, theme persistence, back-to-top and reduced motion. No persistent horizontal overflow or observed console error remained. This is scoped QA, not comprehensive accessibility certification.
 
 Rendered screenshots were inspected and displayed in the conversation. Attempts to persist screenshot files failed/timed out; no saved-image artifact is claimed. The audit and evidence limitations are recorded in [the editorial review](./15-ai-case-evolution.md) and [QA results](./qa/2026-10-26-ai-case-evolution/results.json). Production merge and public deployment verification remain pending the owner's final approval.
+
+---
+
+## D-031 — SoundCloud destination and Home alignment with the published AI case
+**Date:** 2026-10-26
+**Status:** Implemented and validated locally; preview preparation authorized. Production approval remains a separate checkpoint.
+
+**Context**
+After the owner-approved publication of D-030 through PR #1, the owner requested replacing the Home music link with https://soundcloud.com/n3lx and aligning Home references with the newly published AI case.
+
+**Decision**
+Replace the shared Spotify destination with a named SoundCloud constant and equivalent PT-BR/EN action labels. Preserve the secondary-action styling, 44px minimum target, new-tab behavior, noreferrer and localized new-tab disclosure. The supplied SoundCloud URL returned HTTP 200; audio playback and account ownership were not independently tested.
+
+Update only the Featured Practice summary, its four explanatory step descriptions and case action label, the How I Work introduction and two relevant process steps, and the third About paragraph in both locales. Make the progression from experimentation to professional use explicit, identify authorship and preserve human accountability, canonical Design System reuse, bounded execution and the distinction between testing, evidence and human approval. These statements derive from the published case and owner-approved professional narrative.
+
+Keep existing practice identity, internal case routes, product groups/order, visual components, contact recipient, other case content and shared theme behavior. No client facts, private sources, new metrics, CSS changes or dependency changes are introduced.
+
+**Acceptance and validation**
+- The music action points to the exact owner-supplied SoundCloud URL in both locales, retains external-link semantics and no active Spotify reference remains in src.
+- The framework action remains a same-tab localized internal link with the labels "Conheça o framework" / "Explore the framework".
+- Full official suite: 206 tests across 32 files PASS; typecheck, lint and production build PASS.
+- Rendered review: PT Light at 1920×1080, 1366×768, 820×1180 and 440×956; EN Dark at the same four gates; additional PT Dark mobile and EN Light laptop samples. No horizontal overflow in the inspected states.
+- SoundCloud action height was 47px; keyboard focus was visible. The two locale labels, URL, target and rel were inspected. No external playback was invoked.
+- Localized framework destination and theme persistence were checked; no browser console error was observed in the inspected tab.
+- Screenshots were rendered and inspected inline. This entry does not claim stored screenshot files or comprehensive accessibility certification.
+
+The initial screenshot request timed out once; a fresh capture succeeded without code changes. A language-switch observation was taken before navigation completed and was reconciled against the loaded English route. No product defect or additional validation loop was inferred from these tool timings.
+
+The Home change is isolated from the already-published case. Review the PR preview before the final production approval.
